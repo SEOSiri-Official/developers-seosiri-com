@@ -15,7 +15,7 @@ export default {
       });
     }
 
-    // 2. Health Check Endpoint
+    // 2. Health Endpoint
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",
@@ -28,11 +28,11 @@ export default {
       });
     }
 
-    // 3. Fallback to native static asset fetch
+    // 3. Serve Built Frontend Assets from Cloudflare ASSETS Binding
     try {
       return await env.ASSETS.fetch(request);
     } catch (e) {
-      return new Response("SEOSiri Developer Portal Edge Asset Error", { status: 500 });
+      return new Response("SEOSiri Developer Portal Asset Error", { status: 500 });
     }
   }
 };
