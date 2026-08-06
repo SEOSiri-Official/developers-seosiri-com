@@ -5,4 +5,4 @@ workers_dev = true
 preview_urls = false
 
 [site]
-bucket = "./public"
+bucket = "./dist"

@@ -41,15 +41,16 @@ export const Header: React.FC = () => {
             {/* Architect Avatar Mini-Card */}
             <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 flex items-center space-x-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden border border-blue-500/40 shrink-0">
-                <img
-                  src={LEAD_ARCHITECT.avatarUrl}
-                  alt={LEAD_ARCHITECT.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).onerror = null;
-                    (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/seosiri/assets/main/momenul-ahmad.jpg';
-                  }}
-                />
+                <img 
+  src="/momenul-ahmad.png" 
+  alt="Momenul Ahmad - Lead Architect & SEOSiri Founder" 
+  title="Momenul Ahmad"
+  className="w-12 h-12 rounded-full border-2 border-sky-400 object-cover"
+  onError={(e) => {
+    // Fallback to GitHub avatar if local image fails
+    (e.target as HTMLImageElement).src = "https://github.com/MOBILEPHONE.png";
+  }}
+/>
               </div>
               <div className="text-left font-mono text-xs">
                 <span className="text-slate-400 text-[10px] block uppercase font-bold">Lead Architect</span>

@@ -25,15 +25,16 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             {/* Architect Card */}
             <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
               <div className="flex items-center space-x-3">
-                <img
-                  src={LEAD_ARCHITECT.avatarUrl}
-                  alt={LEAD_ARCHITECT.name}
-                  className="w-10 h-10 rounded-xl object-cover border border-blue-500/40 shrink-0"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).onerror = null;
-                    (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/seosiri/assets/main/momenul-ahmad.jpg';
-                  }}
-                />
+                <img 
+  src="/momenul-ahmad.png" 
+  alt="Momenul Ahmad - Lead Architect & SEOSiri Founder" 
+  title="Momenul Ahmad"
+  className="w-12 h-12 rounded-full border-2 border-sky-400 object-cover"
+  onError={(e) => {
+    // Fallback to GitHub avatar if local image fails
+    (e.target as HTMLImageElement).src = "https://github.com/MOBILEPHONE.png";
+  }}
+/>
                 <div className="min-w-0">
                   <span className="text-[10px] font-mono text-slate-500 uppercase block font-bold">Lead Architect</span>
                   <h5 className="font-bold text-slate-200 text-xs truncate">{LEAD_ARCHITECT.name}</h5>
