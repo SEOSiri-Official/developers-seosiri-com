@@ -1,0 +1,6 @@
+{
+  "name": "SEOSiri MCP Suite Developer Portal",
+  "description": "Corporate & Developer-first portal for developers.seosiri.com featuring interactive graph topology, PyPI package suite, Cloudflare edge gateways, and hosting architecture strategy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

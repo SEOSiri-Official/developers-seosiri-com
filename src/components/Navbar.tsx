@@ -1,0 +1,237 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Network, 
+  Layers, 
+  Settings2, 
+  Table2, 
+  TerminalSquare, 
+  Search, 
+  BookOpen,
+  UserCheck,
+  Check,
+  Server,
+  Monitor,
+  Smartphone,
+  Menu,
+  X,
+  Sparkles
+} from 'lucide-react';
+import { ViewMode } from '../types';
+import { LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
+
+interface NavbarProps {
+  currentView: ViewMode;
+  onViewChange: (view: ViewMode) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({
+  currentView,
+  onViewChange,
+  searchQuery,
+  onSearchChange,
+  selectedCategory,
+  onCategoryChange
+}) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [screenSize, setScreenSize] = useState<'Mobile' | 'Tablet' | 'Desktop'>('Desktop');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setScreenSize('Mobile');
+      } else if (window.innerWidth < 1024) {
+        setScreenSize('Tablet');
+      } else {
+        setScreenSize('Desktop');
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const navItems: { id: ViewMode; label: string; shortLabel: string; icon: React.ReactNode; badge?: string }[] = [
+    {
+      id: 'topology',
+      label: '15-Server Topology Graph',
+      shortLabel: 'Topology',
+      icon: <Network className="w-4 h-4 mr-1.5" />,
+      badge: 'Graph'
+    },
+    {
+      id: 'docs',
+      label: 'Dedicated Documentation',
+      shortLabel: 'Docs',
+      icon: <BookOpen className="w-4 h-4 mr-1.5" />,
+      badge: `${TOTAL_MCP_TOOLS_COUNT} Tools`
+    },
+    {
+      id: 'matrix',
+      label: 'Architecture Matrix',
+      shortLabel: 'Matrix',
+      icon: <Layers className="w-4 h-4 mr-1.5" />
+    },
+    {
+      id: 'architect',
+      label: 'Lead Architect',
+      shortLabel: 'Architect',
+      icon: <UserCheck className="w-4 h-4 mr-1.5" />,
+      badge: 'Momenul'
+    },
+    {
+      id: 'config',
+      label: 'MCP Config Generator',
+      shortLabel: 'Config',
+      icon: <Settings2 className="w-4 h-4 mr-1.5" />,
+      badge: 'JSON'
+    },
+    {
+      id: 'table',
+      label: 'Directory & Links',
+      shortLabel: 'Directory',
+      icon: <Table2 className="w-4 h-4 mr-1.5" />
+    },
+    {
+      id: 'tester',
+      label: 'Endpoint Tester',
+      shortLabel: 'Tester',
+      icon: <TerminalSquare className="w-4 h-4 mr-1.5" />,
+      badge: 'Live'
+    }
+  ];
+
+  return (
+    <header className="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 py-2.5 shadow-xl">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        
+        {/* Left: Brand Identity & Device Screen Indicator */}
+        <div className="flex items-center space-x-3 shrink-0">
+          <button 
+            onClick={() => onViewChange('topology')}
+            className="flex items-center space-x-2 text-white font-bold text-sm hover:opacity-90 transition-opacity"
+          >
+            <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-500/30">
+              S
+            </div>
+            <div className="text-left hidden sm:block">
+              <span className="font-extrabold tracking-tight text-white block text-xs">SEOSiri MCP Suite</span>
+              <span className="text-[10px] font-mono text-emerald-400">developers.seosiri.com</span>
+            </div>
+          </button>
+
+          {/* Screen / Device Adaptive Indicator */}
+          <div className="hidden xl:flex items-center space-x-1.5 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800 text-[10px] font-mono text-slate-400">
+            {screenSize === 'Mobile' ? <Smartphone className="w-3 h-3 text-amber-400" /> : <Monitor className="w-3 h-3 text-blue-400" />}
+            <span>Adaptive: <strong className="text-slate-200">{screenSize} View</strong></span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation Tabs */}
+        <div className="hidden lg:flex items-center space-x-1 bg-slate-950 p-1 rounded-xl border border-slate-800/80">
+          {navItems.map((item) => {
+            const isActive = currentView === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onViewChange(item.id)}
+                className={`flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 font-bold'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                }`}
+              >
+                {item.icon}
+                <span>{item.label}</span>
+                {item.badge && (
+                  <span
+                    className={`ml-1.5 px-1.5 py-0.2 text-[9px] rounded-full uppercase tracking-wider font-mono ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Search & Mobile Controls */}
+        <div className="flex items-center space-x-2 flex-1 lg:flex-none justify-end">
+          {/* Search Input */}
+          <div className="relative flex-1 sm:w-56 max-w-[220px]">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder={`Search ${TOTAL_MCP_TOOLS_COUNT} tools...`}
+              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none transition-all"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => onSearchChange('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-500 hover:text-slate-300"
+              >
+                ×
+              </button>
+            )}
+          </div>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 bg-slate-950 border border-slate-800 rounded-lg text-slate-300 hover:text-white"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+
+      </div>
+
+      {/* Mobile Nav Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden pt-3 pb-2 border-t border-slate-800 mt-2 space-y-2 animate-fade-in">
+          <div className="grid grid-cols-2 gap-1.5">
+            {navItems.map((item) => {
+              const isActive = currentView === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    onViewChange(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-semibold transition-all border ${
+                    isActive
+                      ? 'bg-blue-600 text-white border-blue-500'
+                      : 'bg-slate-950 text-slate-300 border-slate-800 hover:bg-slate-800'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    {item.icon}
+                    <span>{item.shortLabel}</span>
+                  </div>
+                  {item.badge && (
+                    <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
+                      {item.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="pt-2 flex items-center justify-between text-xs text-slate-400 font-mono px-1">
+            <span>Unified Gateway: developers.seosiri.com</span>
+            <span className="text-emerald-400">{TOTAL_MCP_TOOLS_COUNT} Tools Active</span>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};

@@ -1,0 +1,740 @@
+import { MCPModule, GraphNode, GraphLink } from '../types';
+
+export const CENTRAL_HUB_URL = 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html';
+export const DEVELOPERS_SUBDOMAIN = 'https://developers.seosiri.com';
+export const OFFICIAL_CORPORATE_EMAIL = 'info@seosiri.com';
+
+export interface CloudflareEdgeGateway {
+  id: string;
+  subdomain: string;
+  healthEndpoint: string;
+  targetMcpServer: string;
+  purpose: string;
+}
+
+// Exact 10 Official Cloudflare Edge Gateways (*.seosiri.com)
+export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
+  {
+    id: '1',
+    subdomain: 'mcp.seosiri.com',
+    healthEndpoint: 'https://mcp.seosiri.com/health',
+    targetMcpServer: 'SEOSiri Central Gateway',
+    purpose: 'Central MCP Router & Gateway Hub for all SEOSiri MCP Servers'
+  },
+  {
+    id: '2',
+    subdomain: 'aeo.seosiri.com',
+    healthEndpoint: 'https://aeo.seosiri.com/health',
+    targetMcpServer: 'seosiri-aeo-geo-mcp',
+    purpose: 'AI Search Optimization & /llm.txt Auditing'
+  },
+  {
+    id: '3',
+    subdomain: 'schema.seosiri.com',
+    healthEndpoint: 'https://schema.seosiri.com/health',
+    targetMcpServer: 'seosiri-content-schema-mcp',
+    purpose: 'JSON-LD Schema & GA4 Metric Validation'
+  },
+  {
+    id: '4',
+    subdomain: 'dns.seosiri.com',
+    healthEndpoint: 'https://dns.seosiri.com/health',
+    targetMcpServer: 'seosiri-dns-sec-audit-mcp',
+    purpose: 'Technical SEO DNS & SSL/TLS Infrastructure'
+  },
+  {
+    id: '5',
+    subdomain: 'keywords.seosiri.com',
+    healthEndpoint: 'https://keywords.seosiri.com/health',
+    targetMcpServer: 'seosiri-keyword-cluster-mcp',
+    purpose: 'Semantic Clustering & 384-D Vector RAG'
+  },
+  {
+    id: '6',
+    subdomain: 'governance.seosiri.com',
+    healthEndpoint: 'https://governance.seosiri.com/health',
+    targetMcpServer: 'seosiri-search-governance-mcp',
+    purpose: 'AI Crawlers, Brand Safety & IndexNow'
+  },
+  {
+    id: '7',
+    subdomain: 'entity.seosiri.com',
+    healthEndpoint: 'https://entity.seosiri.com/health',
+    targetMcpServer: 'seosiri-semantic-entity-mcp',
+    purpose: 'Knowledge Graph & Wikidata QID Disambiguation'
+  },
+  {
+    id: '8',
+    subdomain: 'ops.seosiri.com',
+    healthEndpoint: 'https://ops.seosiri.com/health',
+    targetMcpServer: 'seosiri-ops-comm-mcp',
+    purpose: 'Sentry Error Triage, Linear & Slack Sync'
+  },
+  {
+    id: '9',
+    subdomain: 'db.seosiri.com',
+    healthEndpoint: 'https://db.seosiri.com/health',
+    targetMcpServer: 'seosiri-db-infra-mcp',
+    purpose: 'Read-Only SQL Queries & Cloud Infrastructure'
+  },
+  {
+    id: '10',
+    subdomain: 'bioassay.seosiri.com',
+    healthEndpoint: 'https://bioassay.seosiri.com/health',
+    targetMcpServer: 'seosiri-bioassay-mcp',
+    purpose: 'HTS Bio-Assays & HL7 FHIR Medical Devices'
+  }
+];
+
+export interface LeadArchitectProfile {
+  name: string;
+  role: string;
+  title: string;
+  organization: string;
+  bio: string;
+  website: string;
+  github: string;
+  email: string;
+  avatarUrl: string;
+  keyContributions: string[];
+  certifications: string[];
+}
+
+export const LEAD_ARCHITECT: LeadArchitectProfile = {
+  name: 'Momenul Ahmad',
+  role: 'Lead AI Search & MCP Suite Architect',
+  title: 'Founder & Principal AI Systems Architect',
+  organization: 'SEOSiri Enterprise Labs',
+  bio: 'Pioneer in Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and Model Context Protocol (MCP) tool design for autonomous LLM search agents. Creator and lead architect of SEOSiri\'s 15 PyPI open-source MCP packages.',
+  website: 'https://www.seosiri.com',
+  github: 'https://github.com/SEOSiri-Official',
+  email: OFFICIAL_CORPORATE_EMAIL,
+  avatarUrl: '/momenul-ahmad.png',
+  keyContributions: [
+    'Architected all 15 official SEOSiri Open-Source MCP Packages published on PyPI for Claude Desktop & Cursor AI.',
+    'Designed 153 high-performance MCP tools connecting via Cloudflare Edge Gateways.',
+    'Engineered AEO & GEO citation tracking algorithms for generative engines (ChatGPT, Gemini, Perplexity).',
+    'Pioneered AI Search Governance and bot permission audit protocols (GPTBot, ClaudeBot, Google-Extended).'
+  ],
+  certifications: [
+    'Google Cloud Certified Professional Cloud Architect',
+    'Model Context Protocol Core Architecture Specialist',
+    'Advanced Enterprise Search & Knowledge Graph Engineer'
+  ]
+};
+
+// Helper generator to create 10 or 13 tools per MCP module
+function createTools(prefix: string, count: number, moduleTitle: string): { name: string; description: string; sampleInput: string }[] {
+  const tools = [];
+  for (let i = 1; i <= count; i++) {
+    tools.push({
+      name: `${prefix}_tool_${i}`,
+      description: `Executes ${moduleTitle} analytical pipeline #${i} for deep autonomous inspection, data validation, and LLM context enrichment.`,
+      sampleInput: `{"action": "${prefix}_operation_${i}", "target": "https://www.seosiri.com", "depth": ${i}}`
+    });
+  }
+  return tools;
+}
+
+export const MCP_MODULES: MCPModule[] = [
+  // 1. AEO / GEO Intelligence MCP (10 tools)
+  {
+    id: 'aeo-geo',
+    title: 'AEO/GEO Intelligence MCP',
+    shortName: 'AEO/GEO Intelligence',
+    category: 'aeo-geo',
+    description: 'Answer Engine Optimization (AEO) & Generative Engine Optimization (GEO) compliance suite. Audits /llm.txt compliance, assesses JSON-LD schema density, extracts direct-answer snippets for AEO, and analyzes content stickiness.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-aeo-geo-mcp',
+    pypiCommand: 'pip install seosiri-aeo-geo-mcp',
+    edgeGateway: 'aeo.seosiri.com',
+    edgeUrl: 'https://aeo.seosiri.com',
+    color: '#10b981', // emerald
+    badgeBg: 'bg-emerald-500/10 border-emerald-500/30',
+    badgeText: 'text-emerald-400',
+    iconName: 'Sparkles',
+    version: '1.4.2',
+    status: 'Operational',
+    envVars: ['OPENAI_API_KEY', 'PERPLEXITY_API_KEY', 'GEMINI_API_KEY'],
+    tools: [
+      {
+        name: 'analyze_llm_txt_compliance',
+        description: 'Audits /llm.txt file formatting, structured markdown tags, and LLM readability score.',
+        sampleInput: '{"url": "https://www.seosiri.com/llm.txt"}'
+      },
+      {
+        name: 'extract_direct_answer_snippets',
+        description: 'Extracts direct-answer snippets optimized for AEO and generative engine citation.',
+        sampleInput: '{"topic": "Model Context Protocol", "targetBrand": "SEOSiri"}'
+      },
+      ...createTools('aeo_geo', 8, 'AEO/GEO Intelligence')
+    ]
+  },
+
+  // 2. Content Schema & GA4 MCP (13 tools) - Special 13-tool server!
+  {
+    id: 'content-schema',
+    title: 'Content Schema & GA4 MCP',
+    shortName: 'Schema & GA4',
+    category: 'content-schema',
+    description: 'Open-source local-first MCP server automating Schema.org JSON-LD generation (FAQPage, Article, Product), GA4 report metrics validation, /llm.txt audits, and content stickiness calculation.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-content-schema-mcp',
+    pypiCommand: 'pip install seosiri-content-schema-mcp',
+    edgeGateway: 'schema.seosiri.com',
+    edgeUrl: 'https://schema.seosiri.com',
+    color: '#8b5cf6', // violet
+    badgeBg: 'bg-violet-500/10 border-violet-500/30',
+    badgeText: 'text-violet-400',
+    iconName: 'FileCode2',
+    version: '2.1.0',
+    status: 'Active Edge',
+    envVars: ['GA4_MEASUREMENT_ID', 'GA4_API_SECRET'],
+    tools: [
+      {
+        name: 'generate_faqpage_schema',
+        description: 'Generates Schema.org FAQPage JSON-LD markup from raw markdown or Q&A pairs.',
+        sampleInput: '{"questions": [{"q": "What is SEOSiri MCP?", "a": "An open-source MCP suite."}]}'
+      },
+      {
+        name: 'validate_ga4_report_metrics',
+        description: 'Dispatches and validates server-side engagement and session stickiness metrics via GA4 Measurement Protocol.',
+        sampleInput: '{"eventName": "mcp_tool_execution", "params": {"server": "schema"}}'
+      },
+      ...createTools('content_schema', 11, 'Content Schema & GA4')
+    ]
+  },
+
+  // 3. DNS & Security Audit MCP (10 tools)
+  {
+    id: 'dns-sec',
+    title: 'DNS & Security Audit MCP',
+    shortName: 'DNS & Security',
+    category: 'dns-sec',
+    description: 'Audits DNS records (A/AAAA/MX/SOA Expire timers), SSL/TLS certificate validity & cipher strength, and HTTP security headers (SPF, DKIM, DMARC, HSTS).',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-dns-sec-audit-mcp',
+    pypiCommand: 'pip install seosiri-dns-sec-audit-mcp',
+    edgeGateway: 'dns.seosiri.com',
+    edgeUrl: 'https://dns.seosiri.com',
+    color: '#f59e0b', // amber
+    badgeBg: 'bg-amber-500/10 border-amber-500/30',
+    badgeText: 'text-amber-400',
+    iconName: 'ShieldCheck',
+    version: '1.2.8',
+    status: 'Operational',
+    envVars: ['CLOUDFLARE_API_TOKEN'],
+    tools: [
+      {
+        name: 'audit_dns_records',
+        description: 'Fetches and audits A, AAAA, MX, CNAME, TXT, and SOA Expire timers.',
+        sampleInput: '{"domain": "seosiri.com"}'
+      },
+      {
+        name: 'inspect_ssl_security_headers',
+        description: 'Inspects SSL/TLS certificate expiration, cipher suites, and HSTS headers.',
+        sampleInput: '{"hostname": "developers.seosiri.com"}'
+      },
+      ...createTools('dns_sec', 8, 'DNS & Security Audit')
+    ]
+  },
+
+  // 4. Keyword Clustering & RAG MCP (10 tools)
+  {
+    id: 'keyword-rag',
+    title: 'Keyword Clustering & RAG MCP',
+    shortName: 'Clustering & RAG',
+    category: 'keyword-rag',
+    description: 'Open-source local-first MCP server that automates semantic keyword clustering, classifies search intent, detects content cannibalization, and facilitates local-first RAG vector retrieval.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-keyword-cluster-mcp',
+    pypiCommand: 'pip install seosiri-keyword-cluster-mcp',
+    edgeGateway: 'keywords.seosiri.com',
+    edgeUrl: 'https://keywords.seosiri.com',
+    color: '#06b6d4', // cyan
+    badgeBg: 'bg-cyan-500/10 border-cyan-500/30',
+    badgeText: 'text-cyan-400',
+    iconName: 'Network',
+    version: '3.0.1',
+    status: 'Stable',
+    envVars: ['EMBEDDING_API_KEY', 'PINECONE_API_KEY'],
+    tools: [
+      {
+        name: 'cluster_semantic_keywords',
+        description: 'Groups raw keyword lists into topical semantic clusters using embedding distance.',
+        sampleInput: '{"keywords": ["mcp servers", "model context protocol", "ai search seo"]}'
+      },
+      {
+        name: 'local_rag_vector_retrieval',
+        description: 'Converts content into vector embeddings to provide grounded and factual responses for AI models.',
+        sampleInput: '{"query": "SEOSiri MCP suite installation", "topK": 3}'
+      },
+      ...createTools('keyword_rag', 8, 'Keyword Clustering & RAG')
+    ]
+  },
+
+  // 5. AI Search Governance MCP (10 tools)
+  {
+    id: 'search-governance',
+    title: 'AI Search Governance MCP',
+    shortName: 'Search Governance',
+    category: 'search-governance',
+    description: 'Governs AI search crawlers, ensures brand safety, and audits search infrastructure. Enables auditing of robots.txt, canonical links, sitemaps, redirects, and sending IndexNow notifications.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-search-governance-mcp',
+    pypiCommand: 'pip install seosiri-search-governance-mcp',
+    edgeGateway: 'governance.seosiri.com',
+    edgeUrl: 'https://governance.seosiri.com',
+    color: '#f43f5e', // rose
+    badgeBg: 'bg-rose-500/10 border-rose-500/30',
+    badgeText: 'text-rose-400',
+    iconName: 'Building2',
+    version: '1.1.5',
+    status: 'Operational',
+    envVars: ['GOVERNANCE_SECRET_KEY'],
+    tools: [
+      {
+        name: 'audit_robots_txt_and_bots',
+        description: 'Audits robots.txt rules for AI crawlers (GPTBot, ClaudeBot, Google-Extended, PerplexityBot).',
+        sampleInput: '{"targetUrl": "https://www.seosiri.com"}'
+      },
+      {
+        name: 'send_indexnow_notification',
+        description: 'Dispatches instant IndexNow ping notifications to search engine endpoints.',
+        sampleInput: '{"urls": ["https://www.seosiri.com/2026/07/seosiri-mcp-servers.html"]}'
+      },
+      ...createTools('search_gov', 8, 'AI Search Governance')
+    ]
+  },
+
+  // 6. Core Web Vitals & Performance MCP (10 tools)
+  {
+    id: 'tech-vitals',
+    title: 'Core Web Vitals & Performance MCP',
+    shortName: 'Core Web Vitals',
+    category: 'tech-vitals',
+    description: 'Real-time Chrome UX Report (CrUX) and PageSpeed Insights MCP tool. Measures LCP, INP, CLS metrics and provides automated speed budget optimization recommendations.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-core-web-vitals-mcp',
+    pypiCommand: 'pip install seosiri-core-web-vitals-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#3b82f6', // blue
+    badgeBg: 'bg-blue-500/10 border-blue-500/30',
+    badgeText: 'text-blue-400',
+    iconName: 'Zap',
+    version: '1.0.4',
+    status: 'Operational',
+    envVars: ['PAGESPEED_API_KEY'],
+    tools: [
+      {
+        name: 'fetch_crux_vitals',
+        description: 'Fetches real-user LCP, INP, and CLS field data from Chrome UX Report API.',
+        sampleInput: '{"origin": "https://www.seosiri.com"}'
+      },
+      {
+        name: 'audit_render_blocking_assets',
+        description: 'Identifies render-blocking CSS/JS files and recommends critical path inline strategies.',
+        sampleInput: '{"url": "https://www.seosiri.com/2026/07/seosiri-mcp-servers.html"}'
+      },
+      ...createTools('tech_vitals', 8, 'Core Web Vitals & Performance')
+    ]
+  },
+
+  // 7. Backlink Topology & Disavow MCP (10 tools)
+  {
+    id: 'backlink-graph',
+    title: 'Backlink Topology & Disavow MCP',
+    shortName: 'Backlink Topology',
+    category: 'backlink-graph',
+    description: 'Graph analysis server for backlink profile modeling, toxicity scoring, anchor text distribution auditing, and disavow file generation.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-backlink-graph-mcp',
+    pypiCommand: 'pip install seosiri-backlink-graph-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#a855f7', // purple
+    badgeBg: 'bg-purple-500/10 border-purple-500/30',
+    badgeText: 'text-purple-400',
+    iconName: 'Link',
+    version: '1.2.0',
+    status: 'Operational',
+    envVars: ['MOZ_API_KEY', 'AHREFS_API_TOKEN'],
+    tools: [
+      {
+        name: 'analyze_backlink_toxicity',
+        description: 'Evaluates spam score and toxic link domain patterns across referring domains.',
+        sampleInput: '{"domain": "seosiri.com"}'
+      },
+      {
+        name: 'generate_disavow_file',
+        description: 'Generates Google Search Console disavow.txt format for toxic domains.',
+        sampleInput: '{"domainsToBlock": ["spam-domain.com"]}'
+      },
+      ...createTools('backlink_graph', 8, 'Backlink Topology & Disavow')
+    ]
+  },
+
+  // 8. E-Commerce & Merchant Schema MCP (10 tools)
+  {
+    id: 'merchant-schema',
+    title: 'Merchant & E-Commerce Schema MCP',
+    shortName: 'Merchant Schema',
+    category: 'merchant-schema',
+    description: 'Specialized MCP for Google Merchant Center, Product JSON-LD, Offer, Review, AggregateRating, and 3D Model schema validation.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-merchant-schema-mcp',
+    pypiCommand: 'pip install seosiri-merchant-schema-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#ec4899', // pink
+    badgeBg: 'bg-pink-500/10 border-pink-500/30',
+    badgeText: 'text-pink-400',
+    iconName: 'ShoppingBag',
+    version: '1.1.2',
+    status: 'Operational',
+    envVars: ['MERCHANT_CENTER_ID'],
+    tools: [
+      {
+        name: 'generate_product_schema',
+        description: 'Generates complete Product JSON-LD with priceValidUntil, sku, and availability.',
+        sampleInput: '{"title": "SEOSiri Enterprise MCP Suite License", "price": 0, "currency": "USD"}'
+      },
+      {
+        name: 'validate_merchant_center_feed',
+        description: 'Audits XML/JSON product feeds for missing attributes, GTIN, or price mismatches.',
+        sampleInput: '{"feedUrl": "https://www.seosiri.com/products.xml"}'
+      },
+      ...createTools('merchant_schema', 8, 'Merchant & E-Commerce Schema')
+    ]
+  },
+
+  // 9. Local SEO & GBP MCP (10 tools)
+  {
+    id: 'localseo',
+    title: 'Local SEO & GBP Governance MCP',
+    shortName: 'Local SEO & GBP',
+    category: 'localseo',
+    description: 'Google Business Profile audit tool, LocalBusiness schema builder, geo-coordinate verification, and NAP consistency validator.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-local-seo-mcp',
+    pypiCommand: 'pip install seosiri-local-seo-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#22c55e', // green
+    badgeBg: 'bg-green-500/10 border-green-500/30',
+    badgeText: 'text-green-400',
+    iconName: 'MapPin',
+    version: '1.0.8',
+    status: 'Operational',
+    envVars: ['GOOGLE_MAPS_API_KEY'],
+    tools: [
+      {
+        name: 'audit_local_business_schema',
+        description: 'Validates LocalBusiness, GeoCoordinates, and openingHoursSpecification.',
+        sampleInput: '{"businessName": "SEOSiri Labs"}'
+      },
+      {
+        name: 'verify_nap_consistency',
+        description: 'Cross-checks Name, Address, and Phone Number (NAP) consistency across local citation directories.',
+        sampleInput: '{"brandName": "SEOSiri Enterprise", "targetCity": "Global"}'
+      },
+      ...createTools('localseo', 8, 'Local SEO & GBP Governance')
+    ]
+  },
+
+  // 10. Hreflang & i18n Governance MCP (10 tools)
+  {
+    id: 'i18n',
+    title: 'Hreflang & i18n Governance MCP',
+    shortName: 'i18n & Hreflang',
+    category: 'i18n',
+    description: 'International SEO tool for validating bi-directional hreflang tags, x-default fallback setup, ISO 639-1 language codes, and geo-targeting.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-i18n-hreflang-mcp',
+    pypiCommand: 'pip install seosiri-i18n-hreflang-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#6366f1', // indigo
+    badgeBg: 'bg-indigo-500/10 border-indigo-500/30',
+    badgeText: 'text-indigo-400',
+    iconName: 'Globe2',
+    version: '1.1.0',
+    status: 'Operational',
+    envVars: [],
+    tools: [
+      {
+        name: 'validate_hreflang_matrix',
+        description: 'Audits hreflang return tags and cross-domain language reciprocity.',
+        sampleInput: '{"url": "https://www.seosiri.com"}'
+      },
+      {
+        name: 'audit_x_default_fallback',
+        description: 'Ensures proper x-default tag implementation for global default visitors.',
+        sampleInput: '{"domain": "seosiri.com"}'
+      },
+      ...createTools('i18n_hreflang', 8, 'Hreflang & i18n Governance')
+    ]
+  },
+
+  // 11. Multimodal AI Vision & Alt Text MCP (10 tools)
+  {
+    id: 'multimodal',
+    title: 'Multimodal AI Vision & Image Alt MCP',
+    shortName: 'Multimodal Vision',
+    category: 'multimodal',
+    description: 'Uses Gemini Flash 2.5 vision to auto-generate contextual alt text, caption metadata, image schema, and OCR entity tag extraction.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-multimodal-alt-mcp',
+    pypiCommand: 'pip install seosiri-multimodal-alt-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#eab308', // yellow
+    badgeBg: 'bg-yellow-500/10 border-yellow-500/30',
+    badgeText: 'text-yellow-400',
+    iconName: 'Eye',
+    version: '1.3.1',
+    status: 'Operational',
+    envVars: ['GEMINI_API_KEY'],
+    tools: [
+      {
+        name: 'analyze_image_alt_text',
+        description: 'Inspects image URL and generates accessible SEO-optimized alt description.',
+        sampleInput: '{"imageUrl": "https://www.seosiri.com/assets/mcp-architecture.png"}'
+      },
+      {
+        name: 'extract_image_ocr_entities',
+        description: 'Performs OCR entity extraction on infographics, charts, and technical diagrams.',
+        sampleInput: '{"imageUrl": "https://www.seosiri.com/assets/mcp-flowchart.jpg"}'
+      },
+      ...createTools('multimodal_vision', 8, 'Multimodal AI Vision & Image Alt')
+    ]
+  },
+
+  // 12. Video & Media Schema MCP (10 tools)
+  {
+    id: 'media-schema',
+    title: 'Video & Audio Media Schema MCP',
+    shortName: 'Video & Media Schema',
+    category: 'media-schema',
+    description: 'Generates VideoObject, Clip, SeekToAction JSON-LD for YouTube/Vimeo embeds and podcast AudioObject schema.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-media-schema-mcp',
+    pypiCommand: 'pip install seosiri-media-schema-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#14b8a6', // teal
+    badgeBg: 'bg-teal-500/10 border-teal-500/30',
+    badgeText: 'text-teal-400',
+    iconName: 'Video',
+    version: '1.0.5',
+    status: 'Operational',
+    envVars: ['YOUTUBE_API_KEY'],
+    tools: [
+      {
+        name: 'generate_video_object_schema',
+        description: 'Generates VideoObject JSON-LD with thumbnail, uploadDate, and contentUrl.',
+        sampleInput: '{"videoUrl": "https://youtube.com/watch?v=sample"}'
+      },
+      ...createTools('media_schema', 9, 'Video & Audio Media Schema')
+    ]
+  },
+
+  // 13. Server Log & Crawler Behavior MCP (10 tools)
+  {
+    id: 'crawler-log',
+    title: 'Server Log & Crawler Behavior MCP',
+    shortName: 'Crawler Log Analysis',
+    category: 'crawler-log',
+    description: 'Parses Nginx / Apache / Cloudflare access logs to track Googlebot, ClaudeBot, and GPTBot hit frequencies, status codes (301/404/503), and crawl budget waste.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-crawler-log-mcp',
+    pypiCommand: 'pip install seosiri-crawler-log-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#f97316', // orange
+    badgeBg: 'bg-orange-500/10 border-orange-500/30',
+    badgeText: 'text-orange-400',
+    iconName: 'FileText',
+    version: '1.2.3',
+    status: 'Operational',
+    envVars: [],
+    tools: [
+      {
+        name: 'parse_access_log_bots',
+        description: 'Extracts bot visit counts and HTTP status distributions from server log files.',
+        sampleInput: '{"logPath": "/var/log/nginx/access.log"}'
+      },
+      ...createTools('crawler_log', 9, 'Server Log & Crawler Behavior')
+    ]
+  },
+
+  // 14. Autonomous AI Search Agent Tooling MCP (10 tools)
+  {
+    id: 'ai-agent',
+    title: 'Autonomous AI Agent Tooling MCP',
+    shortName: 'Autonomous AI Agent',
+    category: 'ai-agent',
+    description: 'Meta-MCP server that equips Claude Desktop, Cursor AI, and LangChain agents with self-orchestration, multi-tool chain execution, and error fallback rules.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-ai-agent-tools-mcp',
+    pypiCommand: 'pip install seosiri-ai-agent-tools-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#831843', // deep rose
+    badgeBg: 'bg-rose-950/40 border-rose-500/40',
+    badgeText: 'text-rose-300',
+    iconName: 'Bot',
+    version: '2.0.0',
+    status: 'Active Edge',
+    envVars: ['AGENT_SECRET_TOKEN'],
+    tools: [
+      {
+        name: 'execute_mcp_workflow_chain',
+        description: 'Executes multi-step MCP tool calls in sequence with output piping.',
+        sampleInput: '{"workflow": ["cluster_keywords", "generate_schema", "audit_robots"]}'
+      },
+      {
+        name: 'verify_agent_execution_context',
+        description: 'Validates agent permissions, token rate limits, and JSON-RPC protocol compliance.',
+        sampleInput: '{"agentId": "claude-3-5-sonnet", "mcpVersion": "1.0.0"}'
+      },
+      ...createTools('ai_agent', 8, 'Autonomous AI Agent Tooling')
+    ]
+  },
+
+  // 15. AI Content Brief & Topic Cluster MCP (10 tools)
+  {
+    id: 'content-brief',
+    title: 'AI Content Brief & Topic Cluster MCP',
+    shortName: 'AI Content Briefs',
+    category: 'content-brief',
+    description: 'Generates data-driven content briefs, heading outlines (H1-H4), semantic entity lists, and competitor gap matrices tailored for LLM citation optimization.',
+    guideUrl: 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html',
+    pypiPackage: 'seosiri-content-brief-mcp',
+    pypiCommand: 'pip install seosiri-content-brief-mcp',
+    edgeGateway: 'mcp.seosiri.com',
+    edgeUrl: 'https://mcp.seosiri.com',
+    color: '#0284c7', // sky
+    badgeBg: 'bg-sky-500/10 border-sky-500/30',
+    badgeText: 'text-sky-400',
+    iconName: 'LayoutList',
+    version: '1.0.1',
+    status: 'Operational',
+    envVars: ['OPENAI_API_KEY'],
+    tools: [
+      {
+        name: 'generate_ai_content_brief',
+        description: 'Creates automated structural content brief with target entity list and schema recommendations.',
+        sampleInput: '{"primaryKeyword": "Model Context Protocol for SEO", "targetLength": 2000}'
+      },
+      ...createTools('content_brief', 9, 'AI Content Brief & Topic Cluster')
+    ]
+  }
+];
+
+// Helper to count total tools across all modules (14 x 10 + 1 x 13 = 153 tools)
+export const TOTAL_MCP_TOOLS_COUNT = MCP_MODULES.reduce((acc, m) => acc + m.tools.length, 0);
+
+export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } {
+  const nodes: GraphNode[] = [];
+  const links: GraphLink[] = [];
+
+  // Central Hub Node
+  nodes.push({
+    id: 'hub-main',
+    label: 'SEOSiri MCP Suite Hub',
+    subtext: 'mcp.seosiri.com',
+    type: 'hub',
+    category: 'hub',
+    url: CENTRAL_HUB_URL,
+    color: '#3b82f6', // blue
+    val: 45
+  });
+
+  MCP_MODULES.forEach((mod) => {
+    const modNodeId = `mod-${mod.id}`;
+
+    // Active Module Core Node
+    nodes.push({
+      id: modNodeId,
+      label: mod.title,
+      subtext: `v${mod.version} (${mod.tools.length} Tools)`,
+      type: 'server',
+      category: mod.category,
+      url: mod.guideUrl,
+      color: mod.color,
+      val: 28,
+      moduleRef: mod
+    });
+
+    // Link Hub -> Module
+    links.push({
+      source: 'hub-main',
+      target: modNodeId,
+      label: 'Core Server',
+      type: 'primary'
+    });
+
+    // Guide Node
+    const guideNodeId = `guide-${mod.id}`;
+    nodes.push({
+      id: guideNodeId,
+      label: `${mod.shortName} Guide`,
+      subtext: 'seosiri.com Article',
+      type: 'guide',
+      category: mod.category,
+      url: mod.guideUrl,
+      color: mod.color,
+      val: 18,
+      moduleRef: mod
+    });
+    links.push({
+      source: modNodeId,
+      target: guideNodeId,
+      label: 'Deep-Dive Guide',
+      type: 'guide'
+    });
+
+    // PyPI Node
+    const pypiNodeId = `pypi-${mod.id}`;
+    nodes.push({
+      id: pypiNodeId,
+      label: mod.pypiPackage,
+      subtext: mod.pypiCommand,
+      type: 'pypi',
+      category: mod.category,
+      color: '#38bdf8', // light blue
+      val: 20,
+      moduleRef: mod
+    });
+    links.push({
+      source: modNodeId,
+      target: pypiNodeId,
+      label: 'PyPI Package',
+      type: 'pypi'
+    });
+
+    // Cloudflare Edge Node (Exact Dedicated Edge Gateway)
+    const edgeNodeId = `edge-${mod.id}`;
+    nodes.push({
+      id: edgeNodeId,
+      label: mod.edgeGateway,
+      subtext: mod.edgeUrl,
+      type: 'gateway',
+      category: mod.category,
+      url: mod.edgeUrl,
+      color: '#f97316', // orange edge
+      val: 22,
+      moduleRef: mod
+    });
+    links.push({
+      source: modNodeId,
+      target: edgeNodeId,
+      label: 'Exact Edge Gateway',
+      type: 'edge'
+    });
+  });
+
+  return { nodes, links };
+}
