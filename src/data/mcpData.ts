@@ -109,7 +109,7 @@ export const LEAD_ARCHITECT: LeadArchitectProfile = {
   website: 'https://www.seosiri.com',
   github: 'https://github.com/SEOSiri-Official',
   email: OFFICIAL_CORPORATE_EMAIL,
-  avatarUrl: '/momenul-ahmad.png',
+  avatarUrl: 'https://github.com/MOBILEPHONE.png',
   keyContributions: [
     'Architected all 15 official SEOSiri Open-Source MCP Packages published on PyPI for Claude Desktop & Cursor AI.',
     'Designed 153 high-performance MCP tools connecting via Cloudflare Edge Gateways.',

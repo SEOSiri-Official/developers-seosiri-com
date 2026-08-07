@@ -34,7 +34,7 @@ export const ArchitectProfile: React.FC = () => {
                   className="w-full h-full object-cover rounded-[14px]"
                   onError={(e) => {
                     (e.target as HTMLImageElement).onerror = null;
-                    (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/seosiri/assets/main/momenul-ahmad.jpg';
+                    (e.target as HTMLImageElement).src = 'https://github.com/MOBILEPHONE.png';
                   }}
                 />
               </div>
