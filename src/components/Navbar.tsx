@@ -57,21 +57,21 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems: { id: ViewMode; label: string; shortLabel: string; icon: React.ReactNode; badge?: string }[] = [
     {
       id: 'topology',
-      label: '15-Server Topology Graph',
+      label: 'Topology Graph',
       shortLabel: 'Topology',
       icon: <Network className="w-4 h-4 mr-1.5" />,
       badge: 'Graph'
     },
     {
       id: 'docs',
-      label: 'Dedicated Documentation',
+      label: 'Docs',
       shortLabel: 'Docs',
       icon: <BookOpen className="w-4 h-4 mr-1.5" />,
       badge: `${TOTAL_MCP_TOOLS_COUNT} Tools`
     },
     {
       id: 'matrix',
-      label: 'Architecture Matrix',
+      label: 'Architecture',
       shortLabel: 'Matrix',
       icon: <Layers className="w-4 h-4 mr-1.5" />
     },
@@ -84,14 +84,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       id: 'config',
-      label: 'MCP Config Generator',
+      label: 'Config Generator',
       shortLabel: 'Config',
       icon: <Settings2 className="w-4 h-4 mr-1.5" />,
       badge: 'JSON'
     },
     {
       id: 'table',
-      label: 'Directory & Links',
+      label: 'Directory',
       shortLabel: 'Directory',
       icon: <Table2 className="w-4 h-4 mr-1.5" />
     },
@@ -125,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 </div>
             <div className="text-left hidden sm:block">
               <span className="font-extrabold tracking-tight text-white block text-xs">SEOSiri MCP Suite</span>
-              <span className="text-[10px] font-mono text-emerald-400">Developers & Development Resources By SEOSiri</span>
+              <span className="text-[10px] font-mono text-emerald-400">Enterprise AI Control Plane</span>
             </div>
           </button>
 
