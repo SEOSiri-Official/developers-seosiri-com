@@ -183,6 +183,12 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
   <span>Subscribe Newsletter</span>
   <span>&rarr;</span>
 </a>
+
+ {/* Continuous Innovation Commitment Hook */}
+            <p className="text-xs text-sky-400 font-mono font-medium pt-1">
+              ⚡ <strong className="text-white">Continuous Innovation Commitment:</strong> Building and shipping new sovereign, local-first MCP servers, VS Code extensions, and developer tooling every sprint to keep your AI agents ahead of algorithm shifts.
+            </p>
+
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px]">
           <p className="text-slate-400 text-center sm:text-left">

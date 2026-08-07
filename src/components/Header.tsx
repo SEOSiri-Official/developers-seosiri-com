@@ -10,22 +10,7 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           
-          {/* Brand & Subdomain Info */}
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/30 flex items-center">
-                <Server className="w-3.5 h-3.5 mr-1" />
-                developers.seosiri.com
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center">
-                <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
-                15 PyPI Packages • {TOTAL_MCP_TOOLS_COUNT} MCP Tools
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/30 flex items-center">
-                <Mail className="w-3.5 h-3.5 mr-1" />
-                {OFFICIAL_CORPORATE_EMAIL}
-              </span>
-            </div>
+         
 
             {/* Title with Brand Logo */}
             <div className="flex items-center gap-3">
@@ -39,7 +24,7 @@ export const Header: React.FC = () => {
                 }}
               />
               <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                SEOSiri 15-Module Model Context Protocol (MCP) Suite
+                SEOSiri Model Context Protocol (MCP) Suite
               </h1>
             </div>
 
@@ -47,53 +32,10 @@ export const Header: React.FC = () => {
               Official enterprise developer portal &amp; Cloudflare edge topology for AI Search Governance, AEO/GEO Analytics, Schema Validation, Core Web Vitals, DNS Security, and Autonomous AI Agent Tooling for Claude Desktop, Cursor AI, and enterprise AI engines.
             </p>
 
-            {/* Continuous Innovation Commitment Hook */}
-            <p className="text-xs text-sky-400 font-mono font-medium pt-1">
-              ⚡ <strong className="text-white">Continuous Innovation Commitment:</strong> Building and shipping new sovereign, local-first MCP servers, VS Code extensions, and developer tooling every sprint to keep your AI agents ahead of algorithm shifts.
-            </p>
-
+           
     </div>
 
-          {/* Lead Architect Badge & Corporate CTA */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">
-            {/* Architect Avatar Mini-Card */}
-            <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl overflow-hidden border border-blue-500/40 shrink-0">
-                <img 
-                  src="https://github.com/MOBILEPHONE.png" 
-                  alt="Momenul Ahmad - Lead Architect & SEOSiri Founder" 
-                  title="Momenul Ahmad"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://github.com/MOBILEPHONE.png";
-                  }}
-                />
-              </div>
-              <div className="text-left font-mono text-xs">
-                <span className="text-slate-400 text-[10px] block uppercase font-bold">Lead Architect</span>
-                <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:text-sky-400 transition-colors">
-                  {LEAD_ARCHITECT.name}
-                </a>
-                <span className="text-emerald-400 text-[10px] block">SEOSiri Founder</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <a
-                href={CENTRAL_HUB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center space-x-2 border border-blue-400/20"
-              >
-                <span>Central Directory Hub</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-
-              <div className="text-[10px] text-slate-400 font-mono text-center">
-                Edge Gateway: <strong className="text-slate-200">{DEVELOPERS_SUBDOMAIN}</strong>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
       </div>
