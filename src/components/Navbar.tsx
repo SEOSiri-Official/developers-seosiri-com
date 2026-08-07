@@ -137,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Desktop Navigation Tabs */}
-        <div className="hidden lg:flex items-center space-x-1 bg-slate-950 p-1 rounded-xl border border-slate-800/80">
+        <div className="hidden md:flex flex-wrap items-center gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800/80 max-w-full overflow-x-auto">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             return (
