@@ -31,14 +31,8 @@ export const Header: React.FC = () => {
             <p className="text-sm text-slate-300 max-w-3xl leading-relaxed">
               Official enterprise developer portal &amp; Cloudflare edge topology for AI Search Governance, AEO/GEO Analytics, Schema Validation, Core Web Vitals, DNS Security, and Autonomous AI Agent Tooling for Claude Desktop, Cursor AI, and enterprise AI engines.
             </p>
-
-           
     </div>
-
-          
-
         </div>
       </div>
-    </div>
   );
 };
