@@ -174,7 +174,15 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
           </div>
 
         </div>
-
+<a 
+  href="https://www.seosiri.com/p/subscribe.html" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition-colors inline-flex items-center gap-1.5 shadow-md"
+>
+  <span>Subscribe Newsletter</span>
+  <span>&rarr;</span>
+</a>
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px]">
           <p className="text-slate-400 text-center sm:text-left">

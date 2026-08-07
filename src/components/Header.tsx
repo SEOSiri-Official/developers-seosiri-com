@@ -52,27 +52,7 @@ export const Header: React.FC = () => {
               ⚡ <strong className="text-white">Continuous Innovation Commitment:</strong> Building and shipping new sovereign, local-first MCP servers, VS Code extensions, and developer tooling every sprint to keep your AI agents ahead of algorithm shifts.
             </p>
 
-            {/* Quick Links (About & Newsletter) */}
-            <div className="flex items-center gap-4 text-xs font-mono pt-1">
-              <a 
-                href="https://www.seosiri.com/p/about.html" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-slate-300 hover:text-sky-400 transition-colors flex items-center gap-1"
-              >
-                About SEOSiri &rarr;
-              </a>
-              <span className="text-slate-600">•</span>
-              <a 
-                href="https://www.seosiri.com/p/subscribe.html" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="px-2.5 py-1 bg-emerald-600/90 hover:bg-emerald-500 text-white rounded-md font-semibold transition-colors flex items-center gap-1 border border-emerald-500/40"
-              >
-                Subscribe Newsletter &rarr;
-              </a>
-            </div>
-          </div>
+    </div>
 
           {/* Lead Architect Badge & Corporate CTA */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">

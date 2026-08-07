@@ -44,8 +44,6 @@ export const ArchitectProfile: React.FC = () => {
             </div>
             
             <div className="flex items-center space-x-2">
-              <a
-                href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg flex items-center gap-1.5 transition-colors font-sans font-semibold text-xs shadow-md" title="About Momenul Ahmad Profile"><span>About Momenul Ahmad</span></a>
  <a href={LEAD_ARCHITECT.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -94,7 +92,18 @@ export const ArchitectProfile: React.FC = () => {
             <p className="text-sm text-slate-300 leading-relaxed border-l-2 border-blue-500 pl-4 py-1 bg-slate-950/40 rounded-r-xl">
               "{LEAD_ARCHITECT.bio}"
             </p>
-
+{/* About Momenul Ahmad button placed directly under the quote */}
+<div className="pt-2 text-left">
+  <a 
+    href="https://www.seosiri.com/p/about.html" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow-md transition-all"
+  >
+    <span>Know More About Momenul Ahmad</span>
+    <span>&rarr;</span>
+  </a>
+</div>
             {/* Email Box */}
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 space-y-2 text-xs font-mono text-slate-300">
               <div className="flex items-center space-x-2 text-blue-400 font-bold">
