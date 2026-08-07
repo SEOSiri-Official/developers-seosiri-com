@@ -77,7 +77,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ onSelect
         <div className="flex items-center space-x-2">
           <Cpu className="w-4 h-4 text-blue-400" />
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">
-            Layer 1: AI Host Clients &amp; IDE Integration
+            Layer 1: AI Host Clients & IDE Integration
           </h3>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -104,7 +104,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ onSelect
         </div>
       </div>
 
-      {/* Layer 2 & 3 & 4: Module Cards Grid */}
+      {/* Layer 2 & 3 & 4: 5 Module Cards Grid */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -113,7 +113,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ onSelect
               Layer 2–4: Modular MCP Server Ecosystem ({MCP_MODULES.length} Core Modules)
             </h3>
           </div>
-          <span className="text-xs text-slate-400 font-mono">Click card to view tools &amp; inspector</span>
+          <span className="text-xs text-slate-400 font-mono">Click card to view tools & inspector</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -225,7 +225,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ onSelect
       <div className="flex justify-center my-2">
         <div className="flex items-center space-x-2 text-xs font-mono text-slate-500 bg-slate-900/60 px-3 py-1 rounded-full border border-slate-800">
           <ArrowDown className="w-3.5 h-3.5 text-emerald-400 animate-bounce" />
-          <span>Unified Index &amp; Registration Node</span>
+          <span>Unified Index & Registration Node</span>
         </div>
       </div>
 

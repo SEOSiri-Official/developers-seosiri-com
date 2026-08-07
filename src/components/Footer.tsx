@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
               <div className="flex items-center space-x-3">
                 <img 
-  src="/momenul-ahmad.png" 
+  src="https://github.com/MOBILEPHONE.png" 
   alt="Momenul Ahmad - Lead Architect & SEOSiri Founder" 
   title="Momenul Ahmad"
   className="w-12 h-12 rounded-full border-2 border-sky-400 object-cover"
