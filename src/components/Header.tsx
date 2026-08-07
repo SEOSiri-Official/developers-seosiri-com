@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
             {/* Title with Brand Logo */}
             <div className="flex items-center gap-3">
               <img 
-                src="https://www.seosiri.com/images/logo.png" 
+                src="https://avatars.githubusercontent.com/u/247144822?s=200&v=4" 
                 alt="SEOSiri Logo" 
                 title="SEOSiri Logo"
                 className="w-9 h-9 rounded-md object-contain bg-slate-950 p-1 border border-slate-700 shrink-0"
