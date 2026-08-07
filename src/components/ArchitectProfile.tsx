@@ -45,7 +45,8 @@ export const ArchitectProfile: React.FC = () => {
             
             <div className="flex items-center space-x-2">
               <a
-                href={LEAD_ARCHITECT.github}
+                href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg flex items-center gap-1.5 transition-colors font-sans font-semibold text-xs shadow-md" title="About Momenul Ahmad Profile"><span>About Momenul Ahmad</span></a>
+ <a href={LEAD_ARCHITECT.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-2.5 py-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded-xl transition-all text-xs font-mono flex items-center space-x-1.5"

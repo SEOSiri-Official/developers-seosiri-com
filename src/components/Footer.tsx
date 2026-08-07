@@ -5,6 +5,7 @@ import { Globe, Terminal, ExternalLink, Network, Server, ShieldCheck, Mail, Gith
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
+<a href="https://www.seosiri.com/p/subscribe.html" target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md font-mono text-xs transition-colors inline-block my-2">Subscribe Newsletter &rarr;</a>
 }
 
 export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
