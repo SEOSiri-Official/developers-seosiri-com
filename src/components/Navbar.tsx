@@ -114,12 +114,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => onViewChange('topology')}
             className="flex items-center space-x-2 text-white font-bold text-sm hover:opacity-90 transition-opacity"
           >
-            <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-500/30">
-              S
-            </div>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-emerald-500 p-1 flex items-center justify-center shrink-0 shadow-md border border-blue-400/30">
+  <svg className="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" rx="128" fill="#0f172a" />
+    <circle cx="256" cy="256" r="190" fill="none" stroke="#0284c7" strokeWidth="28" strokeDasharray="800" strokeDashoffset="100" />
+    <circle cx="256" cy="256" r="130" fill="none" stroke="#38bdf8" strokeWidth="20" />
+    <path d="M 256 120 L 256 256 L 350 256" fill="none" stroke="#34d399" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="256" cy="256" r="32" fill="#38bdf8" />
+  </svg>
+</div>
             <div className="text-left hidden sm:block">
               <span className="font-extrabold tracking-tight text-white block text-xs">SEOSiri MCP Suite</span>
-              <span className="text-[10px] font-mono text-emerald-400">developers.seosiri.com</span>
+              <span className="text-[10px] font-mono text-emerald-400">Developers & Development Resources By SEOSiri</span>
             </div>
           </button>
 
