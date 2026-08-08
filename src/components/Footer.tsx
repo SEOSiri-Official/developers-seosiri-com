@@ -1,7 +1,7 @@
 import React from 'react';
 import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
 import { ViewMode } from '../types';
-import { ExternalLink, ShieldCheck, Mail, Github, Sparkles, FileText, Lock, Zap } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Mail, Github, Sparkles, FileText, Lock, Zap, Network } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </p>
           </div>
 
-          {/* Col 2: Compliance & Policy Links */}
+          {/* Col 2: Compliance & Onsite Policies */}
           <div className="space-y-2 text-left">
             <h4 className="text-slate-200 font-bold uppercase text-[10px] tracking-wider font-mono flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -55,6 +55,12 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 <button onClick={() => onViewChange('assets')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-slate-400" />
                   <span>Brand Assets &amp; Use Cases Policy</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onViewChange('sitemap')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left text-slate-400">
+                  <Network className="w-3 h-3 text-blue-400" />
+                  <span>Sitemap &amp; LLM.txt Index</span>
                 </button>
               </li>
             </ul>

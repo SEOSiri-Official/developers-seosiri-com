@@ -97,6 +97,16 @@ export function App() {
         {currentView === 'tester' && (
           <EndpointTester modules={MCP_MODULES} />
         )}
+
+        import { OnsitePolicyPages } from './components/OnsitePolicyPages';
+
+// Inside your main App component view switcher:
+{['custom-mcp', 'disclaimer', 'privacy', 'assets'].includes(currentView) && (
+  <OnsitePolicyPages 
+    view={currentView} 
+    onBackToTopology={() => setCurrentView('topology')} 
+  />
+)} 
       </main>
 
       {/* Modal Inspector */}

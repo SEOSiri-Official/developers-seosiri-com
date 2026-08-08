@@ -1,0 +1,20 @@
+# SEOSiri Developer Portal & MCP Topology Explorer
+# Allowed for all Search Engines and AI Crawlers
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://developers.seosiri.com/sitemap.xml
+LLM-Text: https://developers.seosiri.com/llm.txt

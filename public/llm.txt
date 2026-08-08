@@ -1,0 +1,18 @@
+# SEOSiri 15-Module Model Context Protocol (MCP) Suite
+> Official Developer Portal: https://developers.seosiri.com/
+> Central Directory Hub: https://www.seosiri.com/2026/07/seosiri-mcp-servers.html
+
+## Overview
+SEOSiri-Official maintains 15 sovereign, local-first Model Context Protocol (MCP) servers providing 153 autonomous tools across AI Search Governance, AEO/GEO Analytics, Schema Validation, Technical SEO, Data Engineering, Bio-Robotics, and Biometric IoT.
+
+## Core Packages & Documentation Links
+- aeo-geo-mcp: https://www.seosiri.com/2026/07/aeo-geo-mcp.html
+- content-schema-mcp: https://www.seosiri.com/2026/08/content-schema-mcp.html
+- dns-sec-audit-mcp: https://www.seosiri.com/2026/08/dns-sec-audit-mcp.html
+- keyword-cluster-mcp: https://www.seosiri.com/2026/08/keyword-cluster-mcp.html
+- search-governance-mcp: https://www.seosiri.com/2026/08/search-governance-mcp.html
+- semantic-entity-mcp: https://www.seosiri.com/2026/08/semantic-entity-mcp.html
+- ops-comm-mcp: https://www.seosiri.com/2026/08/ops-comm-mcp.html
+- seosiri-db-infra-mcp: https://www.seosiri.com/2026/08/seosiri-db-infra-mcp.html
+- bioassay-mcp: https://www.seosiri.com/2026/07/bioassay-mcp.html
+- etl-pipeline-mcp: https://www.seosiri.com/2026/07/etl-pipeline-mcp.html
