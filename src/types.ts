@@ -78,8 +78,15 @@ export interface GraphLink {
   type?: 'primary' | 'pypi' | 'edge' | 'guide' | 'planned';
 }
 
-export type ViewMode = 'topology' | 'matrix' | 'config' | 'table' | 'tester' | 'architect' | 'docs' | 'disclaimer'
+export type ViewMode = 
+  | 'topology' 
+  | 'matrix' 
+  | 'config' 
+  | 'table' 
+  | 'tester' 
+  | 'architect' 
+  | 'docs' 
+  | 'disclaimer'
   | 'custom-mcp'
   | 'privacy'
   | 'assets';
-
