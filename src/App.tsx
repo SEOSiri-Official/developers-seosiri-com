@@ -99,12 +99,12 @@ export function App() {
           <EndpointTester modules={MCP_MODULES} />
         )}
 
-        {['custom-mcp', 'disclaimer', 'privacy', 'assets'].includes(currentView) && (
-          <OnsitePolicyPages 
-            view={currentView} 
-            onBackToTopology={() => setCurrentView('topology')} 
-          />
-        )}
+        {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
+  <OnsitePolicyPages 
+    view={currentView} 
+    onBackToTopology={() => setCurrentView('topology')} 
+  />
+)}
       </main>
 
       {/* Modal Inspector */}

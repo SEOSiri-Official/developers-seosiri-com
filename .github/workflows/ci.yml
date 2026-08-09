@@ -1,0 +1,23 @@
+name: Developer Portal CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Bun Environment
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+          
+      - name: Install Dependencies
+        run: bun install
+        
+      - name: Build Application
+        run: bun run build
