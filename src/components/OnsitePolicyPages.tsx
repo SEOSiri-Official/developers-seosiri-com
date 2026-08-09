@@ -1,7 +1,6 @@
-// src/components/OnsitePolicyPages.tsx
 import React from 'react';
 import { ViewMode } from '../types';
-import { ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, Mail, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
 
 interface OnsitePolicyPagesProps {
@@ -37,7 +36,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           </h1>
 
           <p className="text-sm text-slate-300 leading-relaxed">
-            SEOSiri provides bespoke systems architecture, custom MCP server development, and Cloudflare Zero Trust gateway integration for corporate clients in the **United States, United Kingdom, Canada, Germany, and Japan**.
+            SEOSiri provides bespoke systems architecture, custom MCP server development, and Cloudflare Zero Trust gateway integration for corporate clients in the United States, United Kingdom, Canada, Germany, and Japan.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
@@ -143,7 +142,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
 
           <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
             <span>Official Privacy Reference: </span>
-            <a href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
+            <a href="https://www.seosiri.com/p/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
               SEOSiri.com Official Privacy Policy <ExternalLink className="w-3 h-3" />
             </a>
           </div>
@@ -172,6 +171,71 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
             <span>Official Policy Reference: </span>
             <a href="https://www.seosiri.com/p/assets-policy.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
               SEOSiri.com Official Assets Policy <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* PAGE 5: Sitemap & LLM.txt Index Page */}
+      {view === 'sitemap' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-blue-400">
+            <FileText className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+              Sitemap &amp; Machine-Readable Index
+            </span>
+          </div>
+
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            SEOSiri Developer Portal Sitemap &amp; LLM Index
+          </h1>
+
+          <p className="text-sm text-slate-300 leading-relaxed">
+            Access the complete sitemap index and machine-readable text specifications for search engine crawlers and autonomous AI agents:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+              <h3 className="text-sm font-bold text-sky-400 flex items-center gap-1.5">
+                <FileText className="w-4 h-4" />
+                XML Sitemap File
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Structured XML urlset containing canonical routes for Googlebot and Bingbot.
+              </p>
+              <a
+                href="/sitemap.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs text-emerald-400 font-mono font-bold hover:underline pt-1"
+              >
+                View sitemap.xml &rarr;
+              </a>
+            </div>
+
+            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+              <h3 className="text-sm font-bold text-amber-400 flex items-center gap-1.5">
+                <FileText className="w-4 h-4" />
+                LLM.txt Context Index
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Machine-readable Markdown index for Claude, Perplexity, and SearchGPT crawlers.
+              </p>
+              <a
+                href="/llm.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs text-emerald-400 font-mono font-bold hover:underline pt-1"
+              >
+                View llm.txt &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
+            <span>Central Ecosystem Directory: </span>
+            <a href="https://www.seosiri.com/2026/07/seosiri-mcp-servers.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
+              SEOSiri Central MCP Directory <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>
