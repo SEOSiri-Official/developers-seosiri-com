@@ -1,4 +1,4 @@
-# SEOSiri 15-Module Model Context Protocol (MCP) Suite
+# SEOSiri Model Context Protocol (MCP) Suite
 > Official Developer Portal: https://developers.seosiri.com/
 > Central Directory Hub: https://www.seosiri.com/2026/07/seosiri-mcp-servers.html
 

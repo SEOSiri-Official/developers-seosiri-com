@@ -18,7 +18,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         className="inline-flex items-center space-x-2 text-xs font-mono text-slate-400 hover:text-sky-400 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span>Return to 15-Server Topology Graph</span>
+        <span>Return to Topology Graph Explorer</span>
       </button>
 
       {/* PAGE 1: Custom Enterprise MCP Development Services */}
