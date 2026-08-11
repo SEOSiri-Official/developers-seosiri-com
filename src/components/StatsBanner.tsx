@@ -26,7 +26,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
 
           <div className="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
             <Package className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="text-slate-400">PyPI Packages:</span>
+            <span className="text-slate-400">NPM & PyPI Packages:</span>
             <span className="text-cyan-300 font-bold">{activeCount} Packages</span>
           </div>
 
