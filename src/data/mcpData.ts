@@ -83,7 +83,7 @@ export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
     healthEndpoint: 'https://bioassay.seosiri.com/health',
     targetMcpServer: 'seosiri-bioassay-mcp',
     purpose: 'HTS Bio-Assays & HL7 FHIR Medical Devices'
-  }
+  },
   {
   id: '11',
   subdomain: 'biopharma.seosiri.com',
