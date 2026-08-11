@@ -637,7 +637,7 @@ export const MCP_MODULES: MCPModule[] = [
       },
       ...createTools('content_brief', 9, 'AI Content Brief & Topic Cluster')
     ]
-  }
+  },
   {
   id: "biopharma-mcp",
   title: "Biopharma Software Infrastructure MCP",
