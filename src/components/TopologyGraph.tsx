@@ -492,7 +492,7 @@ export const TopologyGraph: React.FC<TopologyGraphProps> = ({
             }`}
           >
             <Terminal className="w-3 h-3 mr-1" />
-            PyPI Packages
+            NPM & PyPI Packages
           </button>
           <button
             onClick={() => setActiveLegendFilter('guide')}
