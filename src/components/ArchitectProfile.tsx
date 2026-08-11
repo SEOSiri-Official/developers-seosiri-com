@@ -77,7 +77,7 @@ export const ArchitectProfile: React.FC = () => {
                   Founder @ SEOSiri
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-400 border border-purple-500/30">
-                  15 MCP Packages • {TOTAL_MCP_TOOLS_COUNT} MCP Tools
+                  16 Open-Source Packages • NPM/PyPI/Pub.dev/VS Code Extensions • 163 AI Tools
                 </span>
               </div>
               
