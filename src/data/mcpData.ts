@@ -84,6 +84,13 @@ export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
     targetMcpServer: 'seosiri-bioassay-mcp',
     purpose: 'HTS Bio-Assays & HL7 FHIR Medical Devices'
   }
+  {
+  id: '11',
+  subdomain: 'biopharma.seosiri.com',
+  healthEndpoint: 'https://biopharma.seosiri.com/health',
+  targetMcpServer: 'biopharma-mcp',
+  purpose: 'Biopharma Software Infrastructure & FDA 21 CFR Part 11'
+}
 ];
 
 export interface LeadArchitectProfile {
@@ -631,6 +638,36 @@ export const MCP_MODULES: MCPModule[] = [
       ...createTools('content_brief', 9, 'AI Content Brief & Topic Cluster')
     ]
   }
+  {
+  id: "biopharma-mcp",
+  title: "Biopharma Software Infrastructure MCP",
+  shortName: "Biopharma & FDA Part 11",
+  category: "operational",
+  description: "Enterprise-grade MCP server in TypeScript for 4PL dose-response curves, CDISC SDTM exports, FDA 21 CFR Part 11 audit trails, Z-factor HTS, and HIPAA PII redaction.",
+  guideUrl: "https://www.seosiri.com/2026/08/biopharma-mcp.html",
+  pypiPackage: "@seosiri/biopharma-mcp",
+  pypiCommand: "npm install @seosiri/biopharma-mcp",
+  edgeGateway: "biopharma.seosiri.com",
+  edgeUrl: "https://biopharma.seosiri.com",
+  color: "#10b981",
+  badgeBg: "bg-emerald-500/10",
+  badgeText: "text-emerald-400 border-emerald-500/20",
+  iconName: "ShieldCheck",
+  version: "1.0.0",
+  status: "Operational",
+  tools: [
+    { name: "calculate_4pl_curve", description: "Fits 4-Parameter Logistic non-linear sigmoidal dose-response curves.", sampleInput: '{"concentrations": [0.1, 1.0, 10.0], "responses": [5, 50, 95]}' },
+    { name: "assess_parallelism", description: "Computes shared slope/asymptotes consistency via F-Test and TOST metrics.", sampleInput: '{"reference_responses": [10, 20, 30], "test_responses": [10.5, 20.2, 29.8]}' },
+    { name: "calculate_z_factor", description: "Validates microplate HTS metrics from positive and negative controls.", sampleInput: '{"positive_controls": [100, 102], "negative_controls": [5, 6]}' },
+    { name: "parse_large_plate_stream", description: "Memory-safe stream parser for 96-well or 384-well microplate layout string rows.", sampleInput: '{"plate_layout_csv": "10,20,30\\n40,50,60"}' },
+    { name: "resolve_biological_entity_safe", description: "Circuit Breaker query for PubChem or ChEBI compound resolution.", sampleInput: '{"compound_name": "Aspirin", "target_database": "PUBCHEM"}' },
+    { name: "detect_assay_outliers", description: "Grubbs and IQR mathematical filtering boundaries to drop anomalous artifacts.", sampleInput: '{"replicate_values": [10, 10.2, 9.9, 50.0], "method": "IQR"}' },
+    { name: "calculate_lod_loq", description: "Calculates Limit of Detection and Limit of Quantitation from background blanks.", sampleInput: '{"blank_responses": [0.01, 0.02, 0.012], "slope": 1.5}' },
+    { name: "normalize_dilution_potency", description: "Scales observed target calculations dynamically across dilution ratios.", sampleInput: '{"observed_concentration": 50.0, "dilution_factor": 10.0}' },
+    { name: "export_cdisc_sdtm", description: "Converts internal JSON records into CDISC SDTM v1.7 compliant models.", sampleInput: '{"study_id": "STUDY-01", "subject_id": "PAT-99", "domain": "LB", "test_code": "GLUC", "numeric_result": 95.5, "result_unit": "mg/dL"}' },
+    { name: "generate_gxp_audit_log", description: "Records immutably hashed operation logs to stderr for FDA 21 CFR Part 11 auditing.", sampleInput: '{"operator_id": "OP-402", "action_performed": "APPROVE_RUN", "resource_target": "RUN_8829"}' }
+  ]
+}
 ];
 
 // Helper to count total tools across all modules (14 x 10 + 1 x 13 = 153 tools)
