@@ -1,14 +1,120 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>SEOSiri Developer Portal | Model Context Protocol (MCP) Suite</title>
+    <meta name="title" content="SEOSiri Developer Portal | Model Context Protocol (MCP) Suite" />
+    <meta name="description" content="Official enterprise developer portal &amp; Cloudflare edge topology for AI Search Governance, AEO/GEO Analytics, Schema Validation, Core Web Vitals, DNS Security, and Autonomous AI Agent Tooling." />
+    <meta name="keywords" content="Model Context Protocol, MCP Suite, Developer Portal, SEOSiri, Momenul Ahmad, AI Search Governance, AEO, GEO, Data Engineering" />
+    <meta name="author" content="Momenul Ahmad" />
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://developers.seosiri.com/" />
+
+    <!-- Open Graph / Facebook / LinkedIn / Threads -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://developers.seosiri.com/" />
+    <meta property="og:title" content="SEOSiri Developer Portal | Model Context Protocol (MCP) Suite" />
+    <meta property="og:description" content="Official enterprise developer portal &amp; Cloudflare edge topology for AI Search Governance, AEO/GEO Analytics, Schema Validation, Core Web Vitals, DNS Security, and Autonomous AI Agent Tooling." />
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/247144822?s=400&amp;v=4" />
+    <meta property="og:image:secure_url" content="https://avatars.githubusercontent.com/u/247144822?s=400&amp;v=4" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@seosiri" />
+    <meta name="twitter:url" content="https://developers.seosiri.com/" />
+    <meta name="twitter:title" content="SEOSiri Developer Portal | Model Context Protocol (MCP) Suite" />
+    <meta name="twitter:description" content="Official enterprise developer portal &amp; Cloudflare edge topology for AI Search Governance, AEO/GEO Analytics, Schema Validation, and Autonomous AI Agent Tooling." />
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/247144822?s=400&amp;v=4" />
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L16L6HS05"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-4L16L6HS05');
+    </script>
+
+    <!-- Structured Data (Schema.org Multi-Entity JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://developers.seosiri.com/#website",
+          "url": "https://developers.seosiri.com/",
+          "name": "SEOSiri Developer Portal",
+          "description": "Official enterprise developer portal for the SEOSiri Model Context Protocol Suite.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "SEOSiri-Official",
+            "url": "https://seosiri.com"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://seosiri.com/#author",
+          "name": "Momenul Ahmad",
+          "jobTitle": "Lead Architect & Founder",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "SEOSiri"
+          },
+          "sameAs": [
+            "https://github.com/MOBILEPHONE",
+            "https://seosiri.com"
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- PROGRAMMATIC GLOBAL NOFOLLOW INTERCEPTOR SCRIPT (PRESENT & FUTURE PROOF) -->
+    <script>
+      (function() {
+        function enforceSystemNofollow() {
+          var links = document.querySelectorAll('a[href]');
+          for (var i = 0; i < links.length; i++) {
+            var href = links[i].getAttribute('href');
+            if (href && /^https?:\/\//i.test(href)) {
+              if (!href.includes('seosiri.com')) {
+                links[i].setAttribute('rel', 'nofollow noopener noreferrer');
+              }
+            }
+          }
+        }
+
+        // 1. Enforce on initial DOM Load
+        document.addEventListener('DOMContentLoaded', enforceSystemNofollow);
+
+        // 2. Enforce on dynamic SPA re-renders and modal popups via MutationObserver
+        if (typeof MutationObserver !== 'undefined') {
+          var observer = new MutationObserver(function(mutations) {
+            enforceSystemNofollow();
+          });
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+        }
+
+        // 3. Fallback global click interceptor
+        document.addEventListener('click', function(e) {
+          var target = e.target.closest('a[href]');
+          if (target) {
+            var href = target.getAttribute('href');
+            if (href && /^https?:\/\//i.test(href) && !href.includes('seosiri.com')) {
+              target.setAttribute('rel', 'nofollow noopener noreferrer');
+            }
+          }
+        }, true);
+      })();
     </script>
   </head>
   <body>
@@ -16,5 +122,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-
