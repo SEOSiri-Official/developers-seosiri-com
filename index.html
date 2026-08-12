@@ -14,11 +14,25 @@
     
     <!-- Canonical Link -->
     <link rel="canonical" href="https://developers.seosiri.com/" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L16L6HS05"></script>
+    <!-- Google Consent Mode v2 Defaults (Must run BEFORE gtag/GTM) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted',
+        'functionality_storage': 'granted',
+        'personalization_storage': 'granted',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L16L6HS05"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-4L16L6HS05');
     </script>
