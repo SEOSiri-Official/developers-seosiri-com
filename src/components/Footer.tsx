@@ -82,6 +82,12 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 <span>Central Directory Hub</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
+              <li>
+  <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+    <Key className="w-3 h-3 text-amber-400" />
+    <span>API Key Issuer Desk</span>
+  </button>
+</li>
               <a
                 href={LEAD_ARCHITECT.github}
                 target="_blank"

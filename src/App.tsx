@@ -14,7 +14,7 @@ import { DocumentationViewer } from './components/DocumentationViewer';
 import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
 import { Footer } from './components/Footer';
-
+import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 export function App() {
   const [currentView, setCurrentView] = useState<ViewMode>('topology');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -98,7 +98,7 @@ export function App() {
         {currentView === 'tester' && (
           <EndpointTester modules={MCP_MODULES} />
         )}
-
+        {currentView === 'key-issuer' && <ApiKeyGenerator />}
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
   <OnsitePolicyPages 
     view={currentView} 
