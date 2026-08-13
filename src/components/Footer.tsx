@@ -37,6 +37,13 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 <button onClick={() => onViewChange('custom-mcp')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Zap className="w-3 h-3 text-amber-400" />
                   <span>Custom Enterprise MCP Services</span>
+              </li>
+<li>
+                <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <ShieldCheck className="w-3 h-3 text-amber-400" />
+                  <span>API Key Issuer Desk</span>
+                </button>
+              </li>
                 </button>
               </li>
               <li>
