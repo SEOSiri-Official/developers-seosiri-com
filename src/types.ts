@@ -1,4 +1,3 @@
-// src/types.ts
 export type ModuleCategory = 
   | 'hub'
   | 'aeo-geo'
