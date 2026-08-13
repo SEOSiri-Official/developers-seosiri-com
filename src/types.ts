@@ -91,5 +91,4 @@ export type ViewMode =
   | 'custom-mcp' 
   | 'privacy' 
   | 'assets' 
-  | 'sitemap' 
-  | 'key-issuer';
+  | 'sitemap';
