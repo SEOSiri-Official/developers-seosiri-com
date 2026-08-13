@@ -88,10 +88,4 @@ export type ViewMode =
   | 'config' 
   | 'table' 
   | 'tester' 
-  | 'architect' 
-  | 'disclaimer' 
-  | 'custom-mcp' 
-  | 'privacy' 
-  | 'assets' 
-  | 'sitemap'
-  | 'key-issuer';
+  | 'architect';
