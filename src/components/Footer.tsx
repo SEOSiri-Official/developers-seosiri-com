@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             © {new Date().getFullYear()} SEOSiri Enterprise Labs. Designed by <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="text-slate-200 font-bold hover:text-sky-400 transition-colors">{LEAD_ARCHITECT.name}</a>. Licensed under MIT Open Source.
           </p>
           <div className="flex items-center space-x-4 text-slate-400">
-            <span>15 MCP Packages</span>
+            <span>16 MCP Packages</span>
             <span>•</span>
             <span className="text-amber-300 font-bold">{TOTAL_MCP_TOOLS_COUNT} Tools Total</span>
             <span>•</span>
