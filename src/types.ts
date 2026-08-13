@@ -1,3 +1,4 @@
+// src/types.ts
 export type ModuleCategory = 
   | 'hub'
   | 'aeo-geo'
@@ -15,7 +16,8 @@ export type ModuleCategory =
   | 'crawler-log'
   | 'ai-agent'
   | 'content-brief'
-  | 'upcoming';
+  | 'upcoming'
+  | 'operational';
 
 export type NodeType = 
   | 'hub' 
@@ -78,4 +80,17 @@ export interface GraphLink {
   type?: 'primary' | 'pypi' | 'edge' | 'guide' | 'planned';
 }
 
-export type ViewMode = 'topology' | 'docs' | 'matrix' | 'config' | 'table' | 'tester' | 'architect' | 'disclaimer' | 'custom-mcp' | 'privacy' | 'assets' | 'sitemap' | 'key-issuer';
+export type ViewMode = 
+  | 'topology' 
+  | 'docs' 
+  | 'matrix' 
+  | 'config' 
+  | 'table' 
+  | 'tester' 
+  | 'architect' 
+  | 'disclaimer' 
+  | 'custom-mcp' 
+  | 'privacy' 
+  | 'assets' 
+  | 'sitemap' 
+  | 'key-issuer';
