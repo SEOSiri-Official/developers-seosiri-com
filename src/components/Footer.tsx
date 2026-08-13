@@ -39,12 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>Custom Enterprise MCP Services</span>
                 </button>
               </li>
-              <li>
-                <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
-                  <Key className="w-3 h-3 text-amber-400" />
-                  <span>API Key Issuer Desk</span>
-                </button>
-              </li>
+              
               <li>
                 <button onClick={() => onViewChange('privacy')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <Lock className="w-3 h-3 text-slate-400" />
@@ -80,7 +75,11 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </h4>
             <div className="flex flex-wrap gap-2 text-[11px]">
               <a
-                href={CENTRAL_HUB_URL}
+                onClick={() => onViewChange('key-issuer')}
+                className="px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 rounded-lg font-bold transition-all flex items-center gap-1">
+                <span>API Key Issuer Desk</span>
+              </button>
+              <a href={CENTRAL_HUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-1.5 bg-blue-600/10 border border-blue-500/30 text-blue-400 hover:bg-blue-600/20 rounded-lg font-bold transition-all flex items-center gap-1"
