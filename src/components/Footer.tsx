@@ -1,7 +1,7 @@
 import React from 'react';
 import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
 import { ViewMode } from '../types';
-import { ExternalLink, ShieldCheck, Mail, Github, Sparkles, FileText, Lock, Zap, Network } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Github, Sparkles, FileText, Lock, Zap } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -58,8 +58,8 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('sitemap')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left text-slate-400">
-                  <Network className="w-3 h-3 text-blue-400" />
+                <button onClick={() => onViewChange('sitemap')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                  <FileText className="w-3 h-3 text-blue-400" />
                   <span>Sitemap &amp; LLM.txt Index</span>
                 </button>
               </li>
@@ -82,12 +82,6 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 <span>Central Directory Hub</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
-              <li>
-  <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
-    <Key className="w-3 h-3 text-amber-400" />
-    <span>API Key Issuer Desk</span>
-  </button>
-</li>
               <a
                 href={LEAD_ARCHITECT.github}
                 target="_blank"
@@ -123,7 +117,15 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
           <p className="text-slate-400 text-center sm:text-left m-0">
             © {new Date().getFullYear()} SEOSiri Enterprise Labs. Designed by <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="text-slate-200 font-bold hover:text-sky-400 transition-colors">{LEAD_ARCHITECT.name}</a>. Licensed under MIT Open Source.
           </p>
-          
+          <div className="flex items-center space-x-4 text-slate-400">
+            <span>15 MCP Packages</span>
+            <span>•</span>
+            <span className="text-amber-300 font-bold">{TOTAL_MCP_TOOLS_COUNT} Tools Total</span>
+            <span>•</span>
+            <a href={`mailto:${OFFICIAL_CORPORATE_EMAIL}`} className="text-emerald-400 font-bold hover:underline">
+              {OFFICIAL_CORPORATE_EMAIL}
+            </a>
+          </div>
         </div>
 
       </div>

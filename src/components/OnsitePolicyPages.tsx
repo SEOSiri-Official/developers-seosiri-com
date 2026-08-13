@@ -98,7 +98,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           </h1>
 
           <p className="text-sm text-slate-300 leading-relaxed">
-            All 16 open-source Model Context Protocol (MCP) packages, PyPI/NPM libraries, and Cloudflare Worker edge gateways published under <strong>SEOSiri-Official</strong> are provided "as-is" under the MIT Open Source License.
+            All open-source Model Context Protocol (MCP) packages, PyPI/NPM libraries, and Cloudflare Worker edge gateways published under <strong>SEOSiri-Official</strong> are provided "as-is" under the MIT Open Source License.
           </p>
 
           <div className="space-y-3 bg-slate-950 p-5 rounded-2xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
