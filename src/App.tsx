@@ -13,7 +13,6 @@ import { ArchitectProfile } from './components/ArchitectProfile';
 import { DocumentationViewer } from './components/DocumentationViewer';
 import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
-import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 import { Footer } from './components/Footer';
 
 export function App() {
@@ -93,10 +92,6 @@ export function App() {
 
         {currentView === 'tester' && (
           <EndpointTester modules={MCP_MODULES} />
-        )}
-
-        {currentView === 'key-issuer' && (
-          <ApiKeyGenerator />
         )}
 
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
