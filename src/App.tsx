@@ -13,6 +13,7 @@ import { ArchitectProfile } from './components/ArchitectProfile';
 import { DocumentationViewer } from './components/DocumentationViewer';
 import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
+import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 import { Footer } from './components/Footer';
 
 export function App() {
@@ -37,8 +38,10 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans antialiased selection:bg-blue-500 selection:text-white">
+      {/* Global Corporate Header */}
       <Header />
 
+      {/* Navigation Bar */}
       <Navbar
         currentView={currentView}
         onViewChange={setCurrentView}
@@ -48,8 +51,10 @@ export function App() {
         onCategoryChange={setSelectedCategory}
       />
 
+      {/* Metrics & Quick Status Bar */}
       <StatsBanner onViewChange={setCurrentView} />
 
+      {/* Main Content Area */}
       <main className="flex-1">
         {currentView === 'topology' && (
           <TopologyGraph
@@ -94,6 +99,10 @@ export function App() {
           <EndpointTester modules={MCP_MODULES} />
         )}
 
+        {currentView === 'key-issuer' && (
+          <ApiKeyGenerator />
+        )}
+
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
           <OnsitePolicyPages 
             view={currentView} 
@@ -102,6 +111,7 @@ export function App() {
         )}
       </main>
 
+      {/* Modal Inspector */}
       {selectedModule && (
         <NodeInspectorModal
           module={selectedModule}
@@ -110,6 +120,7 @@ export function App() {
         />
       )}
 
+      {/* Global Corporate Footer */}
       <Footer onViewChange={setCurrentView} />
     </div>
   );

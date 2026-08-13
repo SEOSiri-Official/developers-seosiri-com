@@ -27,6 +27,12 @@ export type NodeType =
   | 'tool'
   | 'placeholder';
 
+export interface MCPTool {
+  name: string;
+  description: string;
+  sampleInput?: string;
+}
+
 export interface MCPModule {
   id: string;
   title: string;
@@ -42,11 +48,7 @@ export interface MCPModule {
   badgeBg: string;
   badgeText: string;
   iconName: string;
-  tools: {
-    name: string;
-    description: string;
-    sampleInput: string;
-  }[];
+  tools: MCPTool[];
   envVars?: string[];
   version: string;
   status: 'Operational' | 'Active Edge' | 'Stable' | 'Q4 Upcoming';
@@ -91,5 +93,5 @@ export type ViewMode =
   | 'custom-mcp' 
   | 'privacy' 
   | 'assets' 
-  | 'sitemap' 
+  | 'sitemap'
   | 'key-issuer';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Key, Check, Copy, ShieldCheck, DollarSign, Mail, Send, ExternalLink } from 'lucide-react';
+import { Key, Check, Copy, ShieldCheck, Send } from 'lucide-react';
 
 export const ApiKeyGenerator: React.FC = () => {
   const [clientId, setClientId] = useState('');
@@ -10,35 +10,37 @@ export const ApiKeyGenerator: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [emailStatus, setEmailStatus] = useState<string | null>(null);
 
-  // Master Secret used to sign HMAC-SHA256 (matches env.MASTER_SECRET)
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
 
   const handleGenerateKey = async () => {
     if (!clientId.trim()) return;
 
-    const user = clientId.trim().toLowerCase().replace(/[^a-z0-9_]/g, '');
+    const user = clientId.trim().toLowerCase().replace(/[^a-z0-9-]/g, '-');
     const expiresAt = Math.floor(Date.now() / 1000) + (days * 86400);
     const payload = `${tier}_${country}_${user}_${expiresAt}`;
 
-    // Web Crypto API HMAC-SHA256
-    const encoder = new TextEncoder();
-    const keyData = encoder.encode(MASTER_SECRET);
-    const msgData = encoder.encode(payload);
+    try {
+      const encoder = new TextEncoder();
+      const keyData = encoder.encode(MASTER_SECRET);
+      const msgData = encoder.encode(payload);
 
-    const cryptoKey = await window.crypto.subtle.importKey(
-      "raw", keyData, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]
-    );
+      const cryptoKey = await window.crypto.subtle.importKey(
+        "raw", keyData, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]
+      );
 
-    const signatureBuffer = await window.crypto.subtle.sign("HMAC", cryptoKey, msgData);
-    const signatureHex = Array.from(new Uint8Array(signatureBuffer))
-      .map(b => b.toString(16).padStart(2, '0'))
-      .join('')
-      .substring(0, 8);
+      const signatureBuffer = await window.crypto.subtle.sign("HMAC", cryptoKey, msgData);
+      const signatureHex = Array.from(new Uint8Array(signatureBuffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('')
+        .substring(0, 8);
 
-    const finalKey = `${payload}_${signatureHex}`;
-    setGeneratedKey(finalKey);
-    setCopied(false);
-    setEmailStatus(null);
+      const finalKey = `${payload}_${signatureHex}`;
+      setGeneratedKey(finalKey);
+      setCopied(false);
+      setEmailStatus(null);
+    } catch (err) {
+      console.error("Key generation error:", err);
+    }
   };
 
   const handleCopy = () => {
@@ -50,14 +52,12 @@ export const ApiKeyGenerator: React.FC = () => {
   };
 
   const handleSendNotification = () => {
-    setEmailStatus("License notification dispatched to customer email desk!");
+    setEmailStatus("License details dispatched to customer email desk!");
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6 text-left">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
-        
-        {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div className="flex items-center space-x-3">
             <div className="p-2.5 bg-blue-500/10 border border-blue-500/20 rounded-xl text-blue-400">
@@ -73,13 +73,12 @@ export const ApiKeyGenerator: React.FC = () => {
           </span>
         </div>
 
-        {/* Input Form */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
           <div>
             <label className="block text-slate-300 font-bold mb-1">Customer / Client ID or Email:</label>
             <input
               type="text"
-              placeholder="e.g. john_biotech"
+              placeholder="e.g. us-biotech"
               value={clientId}
               onChange={(e) => setClientId(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
@@ -126,7 +125,6 @@ export const ApiKeyGenerator: React.FC = () => {
           </div>
         </div>
 
-        {/* Generate Button */}
         <button
           onClick={handleGenerateKey}
           className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-blue-900/20 flex items-center justify-center space-x-2"
@@ -135,7 +133,6 @@ export const ApiKeyGenerator: React.FC = () => {
           <span>Generate Signed HMAC-SHA256 Pro API Key</span>
         </button>
 
-        {/* Output Box */}
         {generatedKey && (
           <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-4">
             <div className="flex items-center justify-between">
@@ -168,8 +165,9 @@ export const ApiKeyGenerator: React.FC = () => {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
 };
+
+export default ApiKeyGenerator;
