@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Key, Check, Copy, ShieldCheck, Send, DollarSign, Lock, Unlock, Mail, ExternalLink, AlertCircle, HelpCircle, Info, FileText } from 'lucide-react';
+import { Key, Check, Copy, ShieldCheck, Send, DollarSign, Lock, Unlock, Mail, ExternalLink, HelpCircle, Info, FileText, ChevronDown, ChevronUp } from 'lucide-react';
 import { LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 
 export const ApiKeyGenerator: React.FC = () => {
@@ -7,6 +7,7 @@ export const ApiKeyGenerator: React.FC = () => {
   const [passcode, setPasscode] = useState('');
   const [passcodeError, setPasscodeError] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Admin Key Generation Form State
   const [customerEmail, setCustomerEmail] = useState('');
@@ -85,21 +86,40 @@ export const ApiKeyGenerator: React.FC = () => {
     setEmailStatus(`License email client opened for ${customerEmail}!`);
   };
 
+  const faqs = [
+    {
+      q: "How soon do I receive my cryptographic API key after Payoneer payment?",
+      a: "Once your Payoneer transfer to badhan_pbn@yahoo.com is confirmed, our systems team generates and emails your signed HMAC-SHA256 API key within 15 minutes."
+    },
+    {
+      q: "Can I restrict my API key to a single MCP server scope?",
+      a: "Yes. Keys can be scoped specifically to Biopharma, BioAssay, AEO/GEO, Content Schema, DNS Audit, or ALL ecosystem servers."
+    },
+    {
+      q: "What SLA and rate limits are guaranteed on Pro vs. Enterprise tiers?",
+      a: "Pro Tier guarantees 1,000 requests per minute with 99.9% uptime across Cloudflare edge nodes. Enterprise Tier unlocks 5,000 requests per minute with dedicated custom worker routes."
+    },
+    {
+      q: "Are my API requests logged or recorded on SEOSiri servers?",
+      a: "No. SEOSiri operates a strict zero-log local-first policy plane. All payload transformations and curve calculations execute in-memory with automatic HIPAA/GDPR PII scrubbing."
+    }
+  ];
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 text-left">
       
       {/* PUBLIC CUSTOMER VIEW (PAYONEER INSTRUCTIONS & PRICING) */}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 relative">
         
-        {/* STICKY HELP & MONETIZATION NOTE ICON */}
+        {/* STICKY HELP NOTE BUTTON */}
         <div className="absolute top-4 right-4 z-20">
           <button
             onClick={() => setShowTooltip(!showTooltip)}
             className="p-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 rounded-xl transition-all flex items-center gap-1.5 text-xs font-mono"
-            title="Click for Payoneer & Licensing Guidance"
+            title="Click for Licensing & Scope Guidance"
           >
             <HelpCircle className="w-4 h-4" />
-            <span>Monetization &amp; Scope Note</span>
+            <span>Licensing &amp; Scope Policy</span>
           </button>
 
           {showTooltip && (
@@ -154,7 +174,7 @@ export const ApiKeyGenerator: React.FC = () => {
 
           <div className="bg-slate-950 p-5 rounded-2xl border border-amber-500/30 rounded-2xl space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-amber-400 uppercase">ENTERPRISE TIER</span>
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase">ENTERPRISE CONTRACT</span>
               <span className="text-lg font-extrabold text-white">$2,500 <span className="text-xs font-normal text-slate-400">/ contract</span></span>
             </div>
             <ul className="text-xs text-slate-300 space-y-2 font-mono">
@@ -189,6 +209,44 @@ export const ApiKeyGenerator: React.FC = () => {
             </a>
           </div>
         </div>
+
+        {/* Contract & SLA Guarantees Box */}
+        <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2 text-xs text-slate-300 font-mono">
+          <h4 className="font-bold text-white flex items-center gap-1.5 text-xs">
+            <ShieldCheck className="w-4 h-4 text-blue-400" /> Contract &amp; SLA Terms
+          </h4>
+          <p className="text-[11px] leading-relaxed text-slate-400">
+            All paid Pro and Enterprise API licenses include 99.9% uptime SLA guarantees over Cloudflare Workers edge nodes, 30-day money-back warranty, and zero server-side payload logging.
+          </p>
+        </div>
+
+        {/* FAQ Accordion Section */}
+        <div className="pt-4 border-t border-slate-800 space-y-3">
+          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+            <FileText className="w-4 h-4 text-purple-400" />
+            <span>Frequently Asked Questions (FAQ)</span>
+          </h3>
+
+          <div className="space-y-2 font-mono text-xs">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="bg-slate-950 rounded-xl border border-slate-800/80 overflow-hidden">
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full px-4 py-3 text-left font-bold text-slate-200 hover:text-white flex items-center justify-between transition-colors"
+                >
+                  <span>{faq.q}</span>
+                  {openFaq === idx ? <ChevronUp className="w-4 h-4 text-sky-400" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                </button>
+                {openFaq === idx && (
+                  <div className="px-4 pb-3 text-[11px] text-slate-400 leading-relaxed border-t border-slate-800/50 pt-2">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       {/* ADMIN KEY ISSUER UNLOCK FORM (FOR YOU) */}
