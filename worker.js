@@ -2,6 +2,14 @@
 
 const MCP_SERVERS_REGISTRY = [
   {
+    id: "biopharma-mcp",
+    title: "Biopharma Software Infrastructure MCP",
+    pypi: "@seosiri/biopharma-mcp",
+    article: "https://www.seosiri.com/2026/08/biopharma-mcp.html",
+    edge: "https://biopharma.seosiri.com",
+    toolsCount: 10
+  },
+  {
     id: "aeo-geo-mcp",
     title: "AEO & GEO Intelligence MCP",
     pypi: "seosiri-aeo-geo-mcp",
@@ -142,7 +150,7 @@ function generateDynamicLlmText(currentDate) {
 > Last Updated: ${currentDate}
 
 ## Overview
-SEOSiri-Official maintains a sovereign, local-first ecosystem of ${MCP_SERVERS_REGISTRY.length} open-source Model Context Protocol (MCP) servers. The suite provides high-throughput tools for AI Search Governance, AEO/GEO Analytics, Schema Engineering, Technical SEO, Data Engineering, Bio-Robotics, and Biometric IoT.
+SEOSiri-Official maintains a sovereign, local-first ecosystem of ${MCP_SERVERS_REGISTRY.length} open-source Model Context Protocol (MCP) servers. The suite provides high-throughput tools for AI Search Governance, AEO/GEO Analytics, Schema Engineering, Technical SEO, Data Engineering, Bio-Robotics, Biopharma, and Biometric IoT.
 
 ## Registered MCP Servers & Technical Architecture Guides
 `;
@@ -152,7 +160,7 @@ SEOSiri-Official maintains a sovereign, local-first ecosystem of ${MCP_SERVERS_R
   });
 
   markdown += `## Developer Execution
-All packages are published on PyPI and can be executed via Python's \`uv\` package manager or installed directly via \`pip install <package-name>\`.
+All packages are published on PyPI or NPM and can be executed via Python's \`uv\` package manager (\`uv run --github SEOSiri-Official/<repo>\`) or Node's \`npx\` runner (\`npx <package-name>\`).
 `;
 
   return markdown;
@@ -170,7 +178,7 @@ export default {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
-'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.seosiri.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.seosiri.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;",
         },
       });
     }
@@ -184,7 +192,11 @@ export default {
         timestamp: new Date().toISOString()
       }), {
         status: 200,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        headers: { 
+          "Content-Type": "application/json", 
+          "Access-Control-Allow-Origin": "*",
+          "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.seosiri.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+        }
       });
     }
 
