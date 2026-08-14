@@ -95,15 +95,16 @@ export function App() {
           <EndpointTester modules={MCP_MODULES} />
         )}
 
+        {currentView === 'key-issuer' && (
+          <ApiKeyGenerator />
+        )}
+
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
           <OnsitePolicyPages 
             view={currentView} 
             onBackToTopology={() => setCurrentView('topology')} 
           />
         )}
-        {currentView === 'key-issuer' && (
-  <ApiKeyGenerator />
-)}
       </main>
 
       {selectedModule && (
