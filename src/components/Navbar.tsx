@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
+import { Key, 
   Network, 
   Layers, 
   Settings2, 
@@ -16,8 +16,8 @@ import {
   X,
   Sparkles
 } from 'lucide-react';
-import { ViewMode } from '../types';
-import { LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
+import { Key, ViewMode } from '../types';
+import { Key, LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
 
 interface NavbarProps {
   currentView: ViewMode;
