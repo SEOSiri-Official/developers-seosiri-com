@@ -13,6 +13,7 @@ import { ArchitectProfile } from './components/ArchitectProfile';
 import { DocumentationViewer } from './components/DocumentationViewer';
 import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
+import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 import { Footer } from './components/Footer';
 
 export function App() {
@@ -100,6 +101,9 @@ export function App() {
             onBackToTopology={() => setCurrentView('topology')} 
           />
         )}
+        {currentView === 'key-issuer' && (
+  <ApiKeyGenerator />
+)}
       </main>
 
       {selectedModule && (

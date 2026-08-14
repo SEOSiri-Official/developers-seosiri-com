@@ -102,6 +102,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       icon: <TerminalSquare className="w-4 h-4 mr-1.5" />,
       badge: 'Live'
     }
+    {
+    id: 'key-issuer',
+    label: 'API Key Issuer',
+    shortLabel: 'Key Issuer',
+    icon: <Key className="w-4 h-4 mr-1.5 text-amber-400" />,
+    badge: 'B2B'
+  }
   ];
 
   return (
