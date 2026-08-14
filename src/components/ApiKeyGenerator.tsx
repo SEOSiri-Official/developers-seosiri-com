@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Key, Check, Copy, ShieldCheck, Send } from 'lucide-react';
-import { LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 
 export const ApiKeyGenerator: React.FC = () => {
   const [clientId, setClientId] = useState('');
