@@ -144,6 +144,53 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 }
 
 export const MCP_MODULES: MCPModule[] = [
+  {
+    id: "lambda-data-pipeline-mcp",
+    title: "Lambda Big Data Pipeline MCP",
+    shortName: "Lambda Data Ingestion",
+    category: "operational",
+    description: "Lambda architecture big data ingestion, filtering, and ID stitching with sub-millisecond in-memory Hot Tier RAM writes and backpressure throttling.",
+    guideUrl: "https://www.seosiri.com/2026/07/etl-pipeline-mcp.html",
+    pypiPackage: "lambda-data-pipeline-mcp",
+    pypiCommand: "pip install lambda-data-pipeline-mcp",
+    edgeGateway: "hubappapi.seosiri.com",
+    edgeUrl: "https://hubappapi.seosiri.com",
+    color: "#38bdf8",
+    badgeBg: "bg-sky-500/10",
+    badgeText: "text-sky-400 border-sky-500/20",
+    iconName: "Cpu",
+    version: "1.2.0",
+    status: "Operational",
+    tools: [
+      { name: "lambda_ingest_hot_tier", description: "Sub-millisecond in-memory Hot Tier RAM writes with backpressure throttling.", sampleInput: '{"data": []}' },
+      { name: "lambda_filter_stream", description: "Applies real-time stream filtering rules.", sampleInput: '{"stream_id": "S1"}' }
+    ]
+  },
+  {
+    id: "etl-pipeline-mcp",
+    title: "Enterprise ETL Pipeline MCP",
+    shortName: "ETL Data Pipeline",
+    category: "operational",
+    description: "Local-first MCP ETL system with Hot/Cold tiering, SHA-256 PII scrubbing, ID stitching, Parquet buffers, and data warehouse exports (Snowflake, ClickHouse, BigQuery).",
+    guideUrl: "https://www.seosiri.com/2026/07/etl-pipeline-mcp.html",
+    pypiPackage: "etl-pipeline-mcp",
+    pypiCommand: "pip install etl-pipeline-mcp",
+    edgeGateway: "hubappapi.seosiri.com",
+    edgeUrl: "https://hubappapi.seosiri.com",
+    color: "#0284c7",
+    badgeBg: "bg-sky-500/10",
+    badgeText: "text-sky-400 border-sky-500/20",
+    iconName: "Database",
+    version: "1.0.3",
+    status: "Operational",
+    tools: [
+      { name: "ingest_webhook_payload", description: "Ingests high-speed webhooks from Stripe, Shopify, GitHub, or HubSpot into Hot Tier RAM queue.", sampleInput: '{"source": "stripe", "payload": {}}' },
+      { name: "scrub_pii_sha256", description: "Executes SHA-256 cryptographic PII scrubbing on customer fields.", sampleInput: '{"email": "client@seosiri.com"}' },
+      { name: "stitch_customer_identity", description: "Stitches customer records across multiple platforms using probabilistic graph matching.", sampleInput: '{"user_id": "USR_99"}' },
+      { name: "export_parquet_buffer", description: "Formats transformed data rows into columnar Parquet buffers for DuckDB or S3.", sampleInput: '{"rows": []}' },
+      { name: "stream_warehouse_batch", description: "Streams clean batch buffers directly into Snowflake, ClickHouse, or BigQuery.", sampleInput: '{"target": "snowflake"}' }
+    ]
+  },
   // 1. AEO / GEO Intelligence MCP (10 tools)
   {
     id: 'aeo-geo',
