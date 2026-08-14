@@ -718,13 +718,12 @@ export const MCP_MODULES: MCPModule[] = [
 ];
 
 // Helper to count total tools across all modules (14 x 10 + 1 x 13 = 153 tools)
-export const TOTAL_MCP_TOOLS_COUNT = MCP_MODULES.reduce((acc, m) => acc + m.tools.length, 0);
+export const TOTAL_MCP_TOOLS_COUNT = MCP_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
 
 export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } {
   const nodes: GraphNode[] = [];
   const links: GraphLink[] = [];
 
-  // Central Hub Node
   nodes.push({
     id: 'hub-main',
     label: 'SEOSiri MCP Suite Hub',
@@ -732,92 +731,96 @@ export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } 
     type: 'hub',
     category: 'hub',
     url: CENTRAL_HUB_URL,
-    color: '#3b82f6', // blue
+    color: '#3b82f6',
     val: 45
   });
 
   MCP_MODULES.forEach((mod) => {
     const modNodeId = `mod-${mod.id}`;
 
-    // Active Module Core Node
     nodes.push({
       id: modNodeId,
       label: mod.title,
-      subtext: `v${mod.version} (${mod.tools.length} Tools)`,
+      subtext: `v${mod.version} (${mod.tools ? mod.tools.length : 0} Tools)`,
       type: 'server',
       category: mod.category,
       url: mod.guideUrl,
       color: mod.color,
-      val: 28,
+      val: 35,
       moduleRef: mod
     });
 
-    // Link Hub -> Module
     links.push({
       source: 'hub-main',
       target: modNodeId,
-      label: 'Core Server',
+      label: 'Core Module',
       type: 'primary'
     });
 
-    // Guide Node
-    const guideNodeId = `guide-${mod.id}`;
-    nodes.push({
-      id: guideNodeId,
-      label: `${mod.shortName} Guide`,
-      subtext: 'seosiri.com Article',
-      type: 'guide',
-      category: mod.category,
-      url: mod.guideUrl,
-      color: mod.color,
-      val: 18,
-      moduleRef: mod
-    });
-    links.push({
-      source: modNodeId,
-      target: guideNodeId,
-      label: 'Deep-Dive Guide',
-      type: 'guide'
-    });
+    if (mod.guideUrl) {
+      const guideNodeId = `guide-${mod.id}`;
+      nodes.push({
+        id: guideNodeId,
+        label: `${mod.shortName} Guide`,
+        subtext: 'seosiri.com Article',
+        url: mod.guideUrl,
+        category: mod.category,
+        color: mod.color,
+        val: 18,
+        moduleRef: mod,
+        type: 'guide'
+      });
 
-    // PyPI Node
-    const pypiNodeId = `pypi-${mod.id}`;
-    nodes.push({
-      id: pypiNodeId,
-      label: mod.pypiPackage,
-      subtext: mod.pypiCommand,
-      type: 'pypi',
-      category: mod.category,
-      color: '#38bdf8', // light blue
-      val: 20,
-      moduleRef: mod
-    });
-    links.push({
-      source: modNodeId,
-      target: pypiNodeId,
-      label: 'PyPI Package',
-      type: 'pypi'
-    });
+      links.push({
+        source: modNodeId,
+        target: guideNodeId,
+        label: 'Deep-Dive Guide',
+        type: 'guide'
+      });
+    }
 
-    // Cloudflare Edge Node (Exact Dedicated Edge Gateway)
-    const edgeNodeId = `edge-${mod.id}`;
-    nodes.push({
-      id: edgeNodeId,
-      label: mod.edgeGateway,
-      subtext: mod.edgeUrl,
-      type: 'gateway',
-      category: mod.category,
-      url: mod.edgeUrl,
-      color: '#f97316', // orange edge
-      val: 22,
-      moduleRef: mod
-    });
-    links.push({
-      source: modNodeId,
-      target: edgeNodeId,
-      label: 'Exact Edge Gateway',
-      type: 'edge'
-    });
+    if (mod.pypiPackage) {
+      const pypiNodeId = `pypi-${mod.id}`;
+      nodes.push({
+        id: pypiNodeId,
+        label: mod.pypiPackage,
+        subtext: mod.pypiCommand,
+        url: mod.guideUrl,
+        category: mod.category,
+        color: '#38bdf8',
+        val: 20,
+        moduleRef: mod,
+        type: 'pypi'
+      });
+
+      links.push({
+        source: modNodeId,
+        target: pypiNodeId,
+        label: 'Package Release',
+        type: 'pypi'
+      });
+    }
+
+    if (mod.edgeGateway) {
+      const edgeNodeId = `edge-${mod.id}`;
+      nodes.push({
+        id: edgeNodeId,
+        label: mod.edgeGateway,
+        subtext: mod.edgeUrl,
+        type: 'gateway',
+        category: mod.category,
+        color: '#f97316',
+        val: 22,
+        moduleRef: mod
+      });
+
+      links.push({
+        source: modNodeId,
+        target: edgeNodeId,
+        label: 'Edge Gateway',
+        type: 'edge'
+      });
+    }
   });
 
   return { nodes, links };

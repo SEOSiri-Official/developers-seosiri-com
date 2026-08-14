@@ -4,7 +4,7 @@ import {
   Award, 
   Code, 
   ExternalLink, 
-  Github, 
+   
   Globe, 
   CheckCircle2, 
   Cpu, 
@@ -50,7 +50,7 @@ export const ArchitectProfile: React.FC = () => {
                 className="px-2.5 py-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded-xl transition-all text-xs font-mono flex items-center space-x-1.5"
                 title="GitHub Repositories"
               >
-                <Github className="w-3.5 h-3.5 text-slate-200" />
+                <ExternalLink className="w-3.5 h-3.5 text-slate-200" />
                 <span>GitHub</span>
               </a>
               <a

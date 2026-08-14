@@ -1,7 +1,7 @@
 import React from 'react';
-import { Key, CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
-import { Key, ViewMode } from '../types';
-import { Key, ExternalLink, ShieldCheck, Github, Sparkles, FileText, Lock, Zap, Key } from 'lucide-react';
+import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
+import { ViewMode } from '../types';
+import { ExternalLink, ShieldCheck,  Sparkles, FileText, Lock, Zap, Key } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 rel="noopener noreferrer"
                 className="px-3 py-1.5 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-lg font-mono transition-all flex items-center gap-1"
               >
-                <Github className="w-3 h-3" />
+                <ExternalLink className="w-3 h-3" />
                 <span>GitHub</span>
               </a>
               <a

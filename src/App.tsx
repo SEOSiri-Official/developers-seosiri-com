@@ -71,7 +71,7 @@ export function App() {
 
         {currentView === 'matrix' && (
           <ArchitectureMatrix
-            modules={filteredModules}
+            
             onSelectModule={setSelectedModule}
           />
         )}
@@ -81,18 +81,18 @@ export function App() {
         )}
 
         {currentView === 'config' && (
-          <ConfigGenerator modules={MCP_MODULES} />
+          <ConfigGenerator  />
         )}
 
         {currentView === 'table' && (
           <DirectoryTable
-            modules={filteredModules}
+            
             onSelectModule={setSelectedModule}
           />
         )}
 
         {currentView === 'tester' && (
-          <EndpointTester modules={MCP_MODULES} />
+          <EndpointTester  />
         )}
 
         {currentView === 'key-issuer' && (
