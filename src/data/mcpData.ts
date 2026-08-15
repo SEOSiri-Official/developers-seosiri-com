@@ -718,7 +718,13 @@ export const MCP_MODULES: MCPModule[] = [
 ];
 
 // Helper to count total tools across all modules (14 x 10 + 1 x 13 = 153 tools)
-export const TOTAL_MCP_TOOLS_COUNT = MCP_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
+
+// Filter published active modules (excluding upcoming placeholders)
+export const TOTAL_PUBLISHED_SERVERS = PUBLISHED_MODULES.length;
+export const TOTAL_PACKAGES_COUNT = PUBLISHED_MODULES.length;
+export const TOTAL_MCP_TOOLS_COUNT = PUBLISHED_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
+
+// Old line:  MCP_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
 
 export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } {
   const nodes: GraphNode[] = [];
