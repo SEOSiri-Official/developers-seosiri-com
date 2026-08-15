@@ -1,58 +1,56 @@
 import React from 'react';
-import { MCP_MODULES, LEAD_ARCHITECT, OFFICIAL_EDGE_GATEWAYS } from '../data/mcpData';
+import { MCP_MODULES, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
 import { ViewMode } from '../types';
-import { Server, Package, Globe, Shield, Activity, UserCheck, Sparkles } from 'lucide-react';
+import { Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
 
 interface StatsBannerProps {
   onViewChange: (view: ViewMode) => void;
 }
 
 export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
-  const activeCount = MCP_MODULES.filter((m) => !m.isUpcoming).length;
-  const upcomingCount = MCP_MODULES.filter((m) => m.isUpcoming).length;
-  const totalTools = MCP_MODULES.reduce((acc, m) => acc + m.tools.length, 0);
+  // Dynamically calculate published servers count and gateways count
+  const publishedCount = MCP_MODULES.length;
+  const officialGatewaysCount = 11;
 
   return (
-    <div className="bg-slate-900/60 border-b border-slate-800/80 px-4 py-3">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+    <div className="bg-slate-950/80 border-b border-slate-800/80 py-2.5 px-4 sm:px-6 lg:px-8 font-mono text-xs">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         
-        {/* Left Stats Badges */}
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+        {/* Dynamic Metric Badges Group */}
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Server className="w-3.5 h-3.5 text-blue-400" />
             <span className="text-slate-400">Active MCP Servers:</span>
-            <span className="text-white font-bold">{activeCount} Published</span>
+            <strong className="text-white font-bold">{publishedCount} Published</strong>
           </div>
 
-          <div className="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+          <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Package className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="text-slate-400">NPM & PyPI Packages:</span>
-            <span className="text-cyan-300 font-bold">{activeCount} Packages</span>
+            <span className="text-slate-400">NPM &amp; PyPI Packages:</span>
+            <strong className="text-cyan-300 font-bold">{publishedCount} Packages</strong>
           </div>
 
-          <div className="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
-            <Globe className="w-3.5 h-3.5 text-orange-400" />
+          <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
+            <Globe className="w-3.5 h-3.5 text-amber-400" />
             <span className="text-slate-400">Edge Gateways:</span>
-            <span className="text-orange-300 font-bold">{OFFICIAL_EDGE_GATEWAYS.length} Official Gateways</span>
+            <strong className="text-amber-300 font-bold">{officialGatewaysCount} Official Gateways</strong>
           </div>
 
-          <div className="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
-            <Activity className="w-3.5 h-3.5 text-purple-400" />
+          <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
+            <Cpu className="w-3.5 h-3.5 text-purple-400" />
             <span className="text-slate-400">Total MCP Tools:</span>
-            <span className="text-purple-300 font-bold">{totalTools} Autonomous Tools</span>
+            <strong className="text-purple-300 font-bold">{TOTAL_MCP_TOOLS_COUNT} Autonomous Tools</strong>
           </div>
         </div>
 
-        {/* Right Architect Info & Quick Nav */}
-        <div className="flex items-center space-x-3">
-          <button
-            onClick={() => onViewChange('architect')}
-            className="flex items-center space-x-1.5 text-slate-300 hover:text-white bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors"
-          >
-            <UserCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="text-[11px] font-semibold">Lead Architect: Momenul Ahmad</span>
-          </button>
-        </div>
+        {/* Lead Architect Quick Tag */}
+        <button
+          onClick={() => onViewChange('architect')}
+          className="px-3 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-300 hover:text-white transition-colors flex items-center space-x-1.5"
+        >
+          <UserCheck className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Lead Architect: <strong className="text-white">{LEAD_ARCHITECT.name}</strong></span>
+        </button>
 
       </div>
     </div>
