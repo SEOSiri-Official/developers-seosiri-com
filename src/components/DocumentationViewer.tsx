@@ -162,7 +162,7 @@ ${tool.sampleInput}
               SEOSiri Model Context Protocol Documentation Hub
             </h2>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Complete, production-ready documentation for all 15 official SEOSiri PyPI packages and {TOTAL_MCP_TOOLS_COUNT} specialized MCP tools. Connect locally via <code className="bg-slate-950 px-1.5 py-0.5 rounded text-cyan-300 font-mono text-xs">uvx</code> or through each module's configured edge gateway (e.g. <code className="bg-slate-950 px-1.5 py-0.5 rounded text-amber-300 font-mono text-xs">aeo.seosiri.com</code>, <code className="bg-slate-950 px-1.5 py-0.5 rounded text-amber-300 font-mono text-xs">schema.seosiri.com</code>).
+              Complete, production-ready documentation for all 16 official SEOSiri PyPI packages and {TOTAL_MCP_TOOLS_COUNT} specialized MCP tools. Connect locally via <code className="bg-slate-950 px-1.5 py-0.5 rounded text-cyan-300 font-mono text-xs">uvx</code> or through each module's configured edge gateway (e.g. <code className="bg-slate-950 px-1.5 py-0.5 rounded text-amber-300 font-mono text-xs">aeo.seosiri.com</code>, <code className="bg-slate-950 px-1.5 py-0.5 rounded text-amber-300 font-mono text-xs">schema.seosiri.com</code>).
             </p>
           </div>
 
