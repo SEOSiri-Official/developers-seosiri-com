@@ -22,7 +22,7 @@ import {
   Box,
   Cpu
 } from 'lucide-react';
-import { MCP_MODULES, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, DEVELOPERS_SUBDOMAIN, TOTAL_MCP_TOOLS_COUNT, OFFICIAL_EDGE_GATEWAYS } from '../data/mcpData';
+import { PUBLISHED_MODULES, MCP_MODULES, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, DEVELOPERS_SUBDOMAIN, TOTAL_MCP_TOOLS_COUNT, OFFICIAL_EDGE_GATEWAYS } from '../data/mcpData';
 import { MCPModule } from '../types';
 
 interface DocumentationViewerProps {
@@ -195,7 +195,7 @@ ${tool.sampleInput}
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
                 <Box className="w-4 h-4 text-blue-400" />
-                PyPI MCP Directory ({MCP_MODULES.length})
+                PyPI MCP Directory ({PUBLISHED_MODULES.length})
               </h3>
               <span className="text-[10px] font-mono text-emerald-400">{TOTAL_MCP_TOOLS_COUNT} Tools Total</span>
             </div>

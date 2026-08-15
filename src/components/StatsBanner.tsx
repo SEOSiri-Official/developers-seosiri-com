@@ -1,5 +1,5 @@
 import React from 'react';
-import { MCP_MODULES, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
+import { PUBLISHED_MODULES, MCP_MODULES, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
 import { ViewMode } from '../types';
 import { Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
 
@@ -9,7 +9,7 @@ interface StatsBannerProps {
 
 export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
   // Dynamically calculate published servers count and gateways count
-  const publishedCount = MCP_MODULES.length;
+  const publishedCount = PUBLISHED_MODULES.length;
   const officialGatewaysCount = 11;
 
   return (
