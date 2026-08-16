@@ -123,12 +123,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
           <p className="text-slate-400 text-center sm:text-left m-0">
             © {new Date().getFullYear()} SEOSiri Enterprise Labs. Designed by <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="text-slate-200 font-bold hover:text-sky-400 transition-colors">{LEAD_ARCHITECT.name}</a>. Licensed under MIT Open Source.
           </p>
-          <div className="flex items-center space-x-4 text-slate-400">
-            <span>•</span>
-            <span>•</span>
-              {OFFICIAL_CORPORATE_EMAIL}
-            </a>
-          </div>
+
         </div>
 
       </div>
