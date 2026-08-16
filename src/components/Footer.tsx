@@ -126,7 +126,6 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
           <div className="flex items-center space-x-4 text-slate-400">
             <span>•</span>
             <span>•</span>
-            <a href={`mailto:${OFFICIAL_CORPORATE_EMAIL}`} className="text-emerald-400 font-bold hover:underline">
               {OFFICIAL_CORPORATE_EMAIL}
             </a>
           </div>
