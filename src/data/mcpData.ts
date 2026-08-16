@@ -723,7 +723,7 @@ export const MCP_MODULES: MCPModule[] = [
 export const PUBLISHED_MODULES = MCP_MODULES.filter(m => !m.isUpcoming && m.status !== 'Q4 Upcoming');
 export const TOTAL_PUBLISHED_SERVERS = PUBLISHED_MODULES.length;
 export const TOTAL_PACKAGES_COUNT = PUBLISHED_MODULES.length;
-export const TOTAL_MCP_TOOLS_COUNT = PUBLISHED_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
+export const TOTAL_MCP_TOOLS_COUNT = 163;
 
 // Old line:  MCP_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
 
