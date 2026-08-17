@@ -3,7 +3,6 @@
 > 🌐 **Live Developer Portal & Topology Explorer:** [developers.seosiri.com](https://developers.seosiri.com/)  
 > 📖 **Central Ecosystem Directory:** [SEOSiri MCP Directory](https://www.seosiri.com/2026/07/seosiri-mcp-servers.html)
 
-[![![SEOSiri-Official/developers-seosiri-com MCP server](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com/badges/score.svg)](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com)(https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com/badges/card.svg?v=1)](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com)
 
 Official enterprise developer portal, interactive D3 network topology graph, and Cloudflare Workers edge gateway manager for the **SEOSiri Model Context Protocol (MCP) Suite**.
 
