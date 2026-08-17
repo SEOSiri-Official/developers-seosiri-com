@@ -90,11 +90,11 @@ const MCP_SERVERS_REGISTRY = [
     toolsCount: 9
   },
   {
-    id: "seosiri-vscode-mcp-manager",
-    title: "VS Code Extension & MCP Suite Manager",
-    pypi: "seosiri-vscode-mcp-manager",
-    article: "https://www.seosiri.com/2026/08/seosiri-vscode-mcp-manager.html",
-    edge: "https://vscode.seosiri.com",
+    id: "lambda-data-pipeline-mcp",
+    title: "Lambda Big Data Pipeline MCP",
+    pypi: "lambda-data-pipeline-mcp",
+    article: "https://www.seosiri.com/2026/07/etl-pipeline-mcp.html",
+    edge: "https://hubappapi.seosiri.com",
     toolsCount: 10
   },
   {
@@ -132,44 +132,38 @@ const MCP_SERVERS_REGISTRY = [
 ];
 
 function generateDynamicSitemapXml(currentDate) {
-  let urlsXml = `  <url>\n    <loc>https://developers.seosiri.com/</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
-  urlsXml += `  <url>\n    <loc>https://developers.seosiri.com/llm.txt</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.9</priority>\n  </url>\n`;
-  urlsXml += `  <url>\n    <loc>https://www.seosiri.com/2026/07/seosiri-mcp-servers.html</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.95</priority>\n  </url>\n`;
-
-  MCP_SERVERS_REGISTRY.forEach(item => {
-    urlsXml += `  <url>\n    <loc>${item.article}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
+  let urls = [
+    "https://developers.seosiri.com/",
+    "https://developers.seosiri.com/llm.txt",
+    "https://www.seosiri.com/2026/07/seosiri-mcp-servers.html"
+  ];
+  MCP_SERVERS_REGISTRY.forEach(item => { if (item.article) urls.push(item.article); });
+  const uniqueUrls = Array.from(new Set(urls));
+  let xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
+  uniqueUrls.forEach(loc => {
+    xml += "  <url>\n    <loc>" + loc + "</loc>\n    <lastmod>" + currentDate + "</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n";
   });
-
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlsXml}</urlset>`;
+  xml += "</urlset>";
+  return xml;
 }
 
 function generateDynamicLlmText(currentDate) {
-  let markdown = `# SEOSiri Model Context Protocol (MCP) Ecosystem
-> Official Developer Portal: https://developers.seosiri.com/
-> Central Master Directory: https://www.seosiri.com/2026/07/seosiri-mcp-servers.html
-> Last Updated: ${currentDate}
-
-## Overview
-SEOSiri-Official maintains a sovereign, local-first ecosystem of ${MCP_SERVERS_REGISTRY.length} open-source Model Context Protocol (MCP) servers. The suite provides high-throughput tools for AI Search Governance, AEO/GEO Analytics, Schema Engineering, Technical SEO, Data Engineering, Bio-Robotics, Biopharma, and Biometric IoT.
-
-## Registered MCP Servers & Technical Architecture Guides
-`;
-
+  let markdown = "# SEOSiri Model Context Protocol (MCP) Ecosystem\n";
+  markdown += "> Official Developer Portal: https://developers.seosiri.com/\n";
+  markdown += "> Central Master Directory: https://www.seosiri.com/2026/07/seosiri-mcp-servers.html\n";
+  markdown += "> Last Updated: " + currentDate + "\n\n";
+  markdown += "## Overview\nSEOSiri maintains " + MCP_SERVERS_REGISTRY.length + " open-source MCP servers with 163 autonomous tools for AEO, GEO, Biopharma, and Data Engineering.\n\n";
+  markdown += "## Registered MCP Servers\n";
   MCP_SERVERS_REGISTRY.forEach(item => {
-    markdown += `- **${item.title}** (\`${item.pypi}\`)\n  - Architecture Guide: ${item.article}\n  - Cloudflare Edge Gateway: ${item.edge}\n  - Total Tools: ${item.toolsCount}\n\n`;
+    markdown += "- **" + item.title + "** (`" + item.pypi + "`)\n  - Guide: " + item.article + "\n  - Gateway: " + item.edge + "\n  - Tools: " + item.toolsCount + "\n\n";
   });
-
-  markdown += `## Developer Execution
-All packages are published on PyPI or NPM and can be executed via Python's \`uv\` package manager (\`uv run --github SEOSiri-Official/<repo>\`) or Node's \`npx\` runner (\`npx <package-name>\`).
-`;
-
   return markdown;
 }
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = new Date().toISOString().split("T")[0];
 
     if (request.method === "OPTIONS") {
       return new Response(null, {
@@ -184,61 +178,18 @@ export default {
     }
 
     if (url.pathname === "/health") {
-      return new Response(JSON.stringify({
-        status: "HEALTHY",
-        service: "SEOSiri Developer Portal & Dynamic MCP Gateway",
-        active_mcp_servers_count: MCP_SERVERS_REGISTRY.length,
-        version: "1.0.0",
-        timestamp: new Date().toISOString()
-      }), {
+      return new Response(JSON.stringify({ status: "HEALTHY", active_mcp_servers: MCP_SERVERS_REGISTRY.length }), {
         status: 200,
-        headers: { 
-          "Content-Type": "application/json", 
-          "Access-Control-Allow-Origin": "*",
-          "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.seosiri.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
-        }
-      });
-    }
-    
-const rateLimit = await checkPerUserRateLimit(clientIp, userInfo);
-if (!rateLimit.allowed) {
-  return new Response(JSON.stringify({
-    error: "RATE_LIMIT_EXCEEDED",
-    message: `Free tier limit reached (30 req/min). Upgrade to Pro (1,000 req/min) for $299/mo.`,
-    payoneer_payment_email: "badhan_pbn@yahoo.com",
-    portal: "https://developers.seosiri.com",
-    retry_after_seconds: rateLimit.resetSeconds
-  }), {
-    status: 429,
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Retry-After": String(rateLimit.resetSeconds)
-    }
-  });
-}
-    if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap") {
-      const xmlContent = generateDynamicSitemapXml(currentDate);
-      return new Response(xmlContent, {
-        status: 200,
-        headers: {
-          "Content-Type": "application/xml; charset=utf-8",
-          "Cache-Control": "public, max-age=3600, s-maxage=86400",
-          "Access-Control-Allow-Origin": "*"
-        }
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*", "Content-Security-Policy": "default-src 'self';" }
       });
     }
 
+    if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap") {
+      return new Response(generateDynamicSitemapXml(currentDate), { headers: { "Content-Type": "application/xml" } });
+    }
+
     if (url.pathname === "/llm.txt") {
-      const markdownContent = generateDynamicLlmText(currentDate);
-      return new Response(markdownContent, {
-        status: 200,
-        headers: {
-          "Content-Type": "text/plain; charset=utf-8",
-          "Cache-Control": "public, max-age=3600, s-maxage=86400",
-          "Access-Control-Allow-Origin": "*"
-        }
-      });
+      return new Response(generateDynamicLlmText(currentDate), { headers: { "Content-Type": "text/plain" } });
     }
 
     try {
@@ -248,7 +199,7 @@ if (!rateLimit.allowed) {
       }
       return response;
     } catch (e) {
-      return new Response("SEOSiri Developer Portal Edge Active", { status: 200 });
+      return new Response("SEOSiri Edge Active", { status: 200 });
     }
   }
 };
