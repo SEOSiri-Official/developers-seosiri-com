@@ -199,7 +199,24 @@ export default {
         }
       });
     }
-
+    
+const rateLimit = await checkPerUserRateLimit(clientIp, userInfo);
+if (!rateLimit.allowed) {
+  return new Response(JSON.stringify({
+    error: "RATE_LIMIT_EXCEEDED",
+    message: `Free tier limit reached (30 req/min). Upgrade to Pro (1,000 req/min) for $299/mo.`,
+    payoneer_payment_email: "badhan_pbn@yahoo.com",
+    portal: "https://developers.seosiri.com",
+    retry_after_seconds: rateLimit.resetSeconds
+  }), {
+    status: 429,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Retry-After": String(rateLimit.resetSeconds)
+    }
+  });
+}
     if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap") {
       const xmlContent = generateDynamicSitemapXml(currentDate);
       return new Response(xmlContent, {
