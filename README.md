@@ -3,7 +3,7 @@
 > 🌐 **Live Developer Portal & Topology Explorer:** [developers.seosiri.com](https://developers.seosiri.com/)  
 > 📖 **Central Ecosystem Directory:** [SEOSiri MCP Directory](https://www.seosiri.com/2026/07/seosiri-mcp-servers.html)
 
-[![SEOSiri Developer Portal on Glama](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com/badges/card.svg?v=1)](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com)
+[![![SEOSiri-Official/developers-seosiri-com MCP server](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com/badges/score.svg)](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com)(https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com/badges/card.svg?v=1)](https://glama.ai/mcp/servers/SEOSiri-Official/developers-seosiri-com)
 
 Official enterprise developer portal, interactive D3 network topology graph, and Cloudflare Workers edge gateway manager for the **SEOSiri Model Context Protocol (MCP) Suite**.
 
@@ -18,6 +18,25 @@ Official enterprise developer portal, interactive D3 network topology graph, and
 - **Zero-Setup Client Config Generator:** Automatically compiles valid `claude_desktop_config.json` files for local `uv` and `npx` package execution.
 - **Live Edge Health Inspector:** Monitors sub-millisecond HTTP response latencies across all 11 live Cloudflare Worker edge subdomains.
 - **Dynamic Serverless Sitemap & LLM.txt Engine:** Generates real-time `/sitemap.xml` and `/llm.txt` endpoints at the edge for Googlebot and AI crawlers (GPTBot, ClaudeBot, PerplexityBot).
+
+---
+
+---
+
+## 💼 Commercial Licensing & High-Throughput API Keys
+
+Need higher rate limits for enterprise production or autonomous AI pipelines?
+
+- **Free Tier (Default):** 30 requests / minute (Zero setup, no credit card required).
+- **Pro Tier ($299 / month):** 1,000 requests / minute across all Cloudflare edge gateways with dedicated HMAC-SHA256 API key.
+- **Enterprise Contract ($2,500 / contract):** 5,000 requests / minute, dedicated Cloudflare Zero Trust VPC setup, custom tool engineering, and SLA guarantee.
+
+### How to Upgrade via Payoneer:
+1. Transfer **$299** (Pro) or **$2,500** (Enterprise) to our official Payoneer account: **`badhan_pbn@yahoo.com`**
+2. Include your **Company Name & Email** in the payment note.
+3. Your signed cryptographic API key (`PRO_US_...`) will be dispatched to your email within 15 minutes.
+4. **Developer Portal & Documentation:** [developers.seosiri.com](https://developers.seosiri.com/)
+5. **Corporate Contact Desk:** `info@seosiri.com`
 
 ---
 
@@ -61,6 +80,7 @@ The application is deployed to Cloudflare Workers using a zero-dependency native
 ```
 
 ---
+
 
 ## 💖 Lead Architect & Attribution
 
