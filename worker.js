@@ -1,4 +1,4 @@
-// worker.js - Unified Machine-Discovery Layer for developers.seosiri.com
+// worker.js - Authoritative Machine-Discovery & Edge Router for developers.seosiri.com
 
 const PUBLIC_CANONICAL_URLS = [
   "https://developers.seosiri.com/",
@@ -19,22 +19,8 @@ const PUBLIC_CANONICAL_URLS = [
   "https://www.seosiri.com/2026/02/biometric-iot-bridge.html"
 ];
 
-const ROBOTS_TXT_BODY = `# As a condition of accessing this website, you agree to abide by the following content signals:
-
-# (a) If a Content-Signal = yes, you may collect content for the corresponding use.
-# (b) If a Content-Signal = no, you may not collect content for the corresponding use.
-# (c) If the website operator does not include a Content-Signal for a corresponding use,
-#     the website operator neither grants nor restricts permission via Content-Signal.
-
-# The content signals and their meanings are:
-# search:   building a search index and providing search results (hyperlinks and short excerpts).
-# ai-input: inputting content into AI models for RAG, retrieval, grounding, and answer generation.
-# ai-train: training or fine-tuning AI models.
-# use:      how AI systems may consume content (immediate, reference, or full).
-
-# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
-# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
-# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
+const ROBOTS_TXT_BODY = `# SEOSiri Developer Portal & Machine Discovery Protocol
+# Policy: Search Discovery = Allowed | AI Retrieval/Grounding = Allowed | Model Training = Not Authorized
 
 User-agent: *
 Content-Signal: search=yes,ai-input=yes,ai-train=no,use=reference
@@ -42,16 +28,10 @@ Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-# 1. Search Engine & Discovery Crawlers (Allowed)
+# 1. Search Engine & Grounding AI Agents (Allowed)
 User-agent: Googlebot
 User-agent: Bingbot
 User-agent: DuckDuckBot
-User-agent: Yandex
-Allow: /
-Disallow: /admin
-Disallow: /api/keys
-
-# 2. Generative AI Search & Answer Grounding Agents (Allowed for Retrieval & Grounding)
 User-agent: GPTBot
 User-agent: ClaudeBot
 User-agent: PerplexityBot
@@ -61,14 +41,13 @@ Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-# 3. Bulk Scraping & Unauthorized Harvesters (Disallowed)
+# 2. Aggressive Scrapers & Bulk Harvesters (Disallowed)
 User-agent: CCBot
 User-agent: Bytespider
 User-agent: Amazonbot
 User-agent: meta-externalagent
 Disallow: /
 
-# Declarations
 Sitemap: https://developers.seosiri.com/sitemap.xml
 LLM-Text: https://developers.seosiri.com/llm.txt
 `;
@@ -84,64 +63,64 @@ SEOSiri-Official maintains a sovereign, local-first ecosystem of 16 Model Contex
 ---
 
 ## 1. AI Search Governance, AEO & GEO Suite
-- **AEO & GEO Intelligence MCP** (\`seosiri-aeo-geo-mcp\`): Audits \`/llm.txt\`, evaluates GEO content readiness, and benchmarks generative answer visibility.
+- **AEO & GEO Intelligence MCP** (\`seosiri-aeo-geo-mcp\`): Audits \`/llm.txt\`, evaluates GEO content readiness, and benchmarks generative answer visibility (10 Tools).
   - Docs: https://www.seosiri.com/2026/07/aeo-geo-mcp.html
   - Gateway: https://aeo.seosiri.com
-- **Content Schema & GA4 MCP** (\`seosiri-content-schema-mcp\`): Generates TechArticle/FAQ JSON-LD schemas and validates analytics data streams.
+- **Content Schema & GA4 MCP** (\`seosiri-content-schema-mcp\`): Generates TechArticle/FAQ JSON-LD schemas and validates analytics data streams (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/content-schema-mcp.html
   - Gateway: https://schema.seosiri.com
-- **Search Governance MCP** (\`seosiri-search-governance-mcp\`): Dispatches IndexNow API calls and enforces AI bot governance rules.
+- **Search Governance MCP** (\`seosiri-search-governance-mcp\`): Dispatches IndexNow API calls and enforces AI bot governance rules (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/search-governance-mcp.html
   - Gateway: https://governance.seosiri.com
-- **Keyword Clustering & Vector RAG MCP** (\`seosiri-keyword-cluster-mcp\`): Implements 384-dimensional vector embedding search and intent clustering.
+- **Keyword Clustering & Vector RAG MCP** (\`seosiri-keyword-cluster-mcp\`): Implements 384-dimensional vector embedding search and intent clustering (13 Tools).
   - Docs: https://www.seosiri.com/2026/08/keyword-cluster-mcp.html
   - Gateway: https://keywords.seosiri.com
-- **Knowledge Graph & Entity MCP** (\`seosiri-semantic-entity-mcp\`): Resolves named entities to Wikidata QIDs and formats \`sameAs\` triples.
+- **Knowledge Graph & Entity MCP** (\`seosiri-semantic-entity-mcp\`): Resolves named entities to Wikidata QIDs and formats \`sameAs\` triples (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/semantic-entity-mcp.html
   - Gateway: https://entity.seosiri.com
-- **DNS & Security Audit MCP** (\`seosiri-dns-sec-audit-mcp\`): Inspects SOA expiry parameters, TLS cert validity, and HSTS/CSP headers.
+- **DNS & Security Audit MCP** (\`seosiri-dns-sec-audit-mcp\`): Inspects SOA expiry parameters, TLS cert validity, and HSTS/CSP headers (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/dns-sec-audit-mcp.html
   - Gateway: https://dns.seosiri.com
 
 ---
 
 ## 2. Enterprise Data Engineering & DevOps Suite
-- **Enterprise ETL Pipeline MCP** (\`etl-pipeline-mcp\`): Ingests multi-source webhooks, executes SHA-256 PII scrubbing, and exports columnar Parquet buffers.
+- **Enterprise ETL Pipeline MCP** (\`etl-pipeline-mcp\`): Ingests multi-source webhooks, executes SHA-256 PII scrubbing, and exports columnar Parquet buffers (9 Tools).
   - Docs: https://www.seosiri.com/2026/07/etl-pipeline-mcp.html
   - Gateway: https://hubappapi.seosiri.com
-- **Lambda Big Data Pipeline MCP** (\`lambda-data-pipeline-mcp\`): Sub-millisecond Hot/Cold RAM data tiering with backpressure queue management.
+- **Lambda Big Data Pipeline MCP** (\`lambda-data-pipeline-mcp\`): Sub-millisecond Hot/Cold RAM data tiering with backpressure queue management (10 Tools).
   - Docs: https://www.seosiri.com/2026/07/etl-pipeline-mcp.html
   - Gateway: https://hubappapi.seosiri.com
-- **Database & Cloud Infrastructure MCP** (\`seosiri-db-infra-mcp\`): Read-only PostgreSQL schema exploration and AWS S3 security boundary checks.
+- **Database & Cloud Infrastructure MCP** (\`seosiri-db-infra-mcp\`): Read-only PostgreSQL schema exploration and AWS S3 security boundary checks (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/seosiri-db-infra-mcp.html
   - Gateway: https://db.seosiri.com
-- **Operations & Sentry Triage MCP** (\`seosiri-ops-comm-mcp\`): Parses production error stack traces, creates Linear tickets, and sends incident alerts.
+- **Operations & Sentry Triage MCP** (\`seosiri-ops-comm-mcp\`): Parses production error stack traces, creates Linear tickets, and sends incident alerts (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/ops-comm-mcp.html
   - Gateway: https://ops.seosiri.com
-- **Universal API Security Guard MCP** (\`seosiri-api-guard\`): Scans for OWASP Top 10 vulnerabilities, validates PCI-DSS Luhn algorithms, and masks GDPR IPs.
+- **Universal API Security Guard MCP** (\`seosiri-api-guard\`): Scans for OWASP Top 10 vulnerabilities, validates PCI-DSS Luhn algorithms, and masks GDPR IPs (10 Tools).
   - Docs: https://www.seosiri.com/2026/07/seosiri-mcp-servers.html
   - Gateway: https://mcp.seosiri.com
 
 ---
 
 ## 3. Life Sciences, Bionics & Hardware Suite
-- **Biopharma Infrastructure MCP** (\`@seosiri/biopharma-mcp\`): Fits 4-Parameter Logistic (4PL) regression curves, calculates Z-factors, and logs FDA 21 CFR Part 11 audit trails.
+- **Biopharma Infrastructure MCP** (\`@seosiri/biopharma-mcp\`): Fits 4-Parameter Logistic (4PL) regression curves, calculates Z-factors, and logs FDA 21 CFR Part 11 audit trails (10 Tools).
   - Docs: https://www.seosiri.com/2026/08/biopharma-mcp.html
   - Gateway: https://biopharma.seosiri.com
-- **BioAssay Automation MCP** (\`seosiri-bioassay-mcp\`): Computes TR-FRET ratios and converts lab observations to HL7 FHIR v4.0.1 resources.
+- **BioAssay Automation MCP** (\`seosiri-bioassay-mcp\`): Computes TR-FRET ratios and converts lab observations to HL7 FHIR v4.0.1 resources (10 Tools).
   - Docs: https://www.seosiri.com/2026/07/bioassay-mcp.html
   - Gateway: https://bioassay.seosiri.com
-- **Bio-Robotics Kinematics Core** (\`seosiri-biorobotics\`): Translates UniProt genomics coordinates into Cartesian CNC/3D-printer G-code instructions.
+- **Bio-Robotics Kinematics Core** (\`seosiri-biorobotics\`): Translates UniProt genomics coordinates into Cartesian CNC/3D-printer G-code instructions (6 Tools).
   - Docs: https://www.seosiri.com/2026/07/seosiri-bio-robotics-core-engine.html
   - Gateway: https://mcp.seosiri.com
-- **Biometric IoT Hardware Bridge** (\`biometric-iot-bridge-mcp\`): Anti-replay sliding-window authentication and MQTT actuator triggering.
+- **Biometric IoT Hardware Bridge** (\`biometric-iot-bridge-mcp\`): Anti-replay sliding-window authentication and MQTT actuator triggering (7 Tools).
   - Docs: https://www.seosiri.com/2026/02/biometric-iot-bridge.html
   - Gateway: https://mcp.seosiri.com
 
 ---
 
 ## 4. EdTech & Orchestration Suite
-- **Learning Orchestrator MCP** (\`seosiri-learning-orchestrator\`): Implements SuperMemo SM-2 spaced repetition, Bloom's Taxonomy, and LMS LTI integration.
+- **Learning Orchestrator MCP** (\`seosiri-learning-orchestrator\`): Implements SuperMemo SM-2 spaced repetition, Bloom's Taxonomy, and LMS LTI integration (8 Tools).
   - Docs: https://www.seosiri.com/2026/07/seosiri-mcp-servers.html
   - Gateway: https://mcp.seosiri.com
 
@@ -190,7 +169,7 @@ export default {
       });
     }
 
-    // 2. Direct Robots.txt Handler (Exact Content-Signals & Non-Conflicting Policy)
+    // 2. Authoritative Non-Conflicting robots.txt Handler
     if (url.pathname === "/robots.txt") {
       return new Response(ROBOTS_TXT_BODY, {
         status: 200,
