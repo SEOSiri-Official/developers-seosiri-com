@@ -1,20 +1,28 @@
-# SEOSiri Developer Portal & MCP Topology Explorer
-# Allowed for all Search Engines and AI Crawlers
+# SEOSiri Developer Portal & Machine Discovery Protocol
+# Policy: Search Discovery = Allowed | AI Retrieval = Allowed | Model Training = Not Authorized
 
-User-agent: *
+# 1. Standard Search Engine Crawlers
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Yandex
 Allow: /
+Disallow: /admin
+Disallow: /api/keys
 
+# 2. AI Retrieval & Grounding Search Crawlers (AEO / GEO)
 User-agent: GPTBot
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Google-Extended
+User-agent: Applebot-Extended
 Allow: /
+Disallow: /admin
+Disallow: /api/keys
 
+# 3. Content Rights & AI Training Reservation
+Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
+
+# 4. Canonical Discovery Declarations
 Sitemap: https://developers.seosiri.com/sitemap.xml
 LLM-Text: https://developers.seosiri.com/llm.txt
