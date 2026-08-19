@@ -20,18 +20,18 @@ const PUBLIC_CANONICAL_URLS = [
 ];
 
 const ROBOTS_TXT_BODY = `# SEOSiri Developer Portal & Machine Discovery Protocol
-# Policy: Search Discovery = Allowed | AI Retrieval/Grounding = Allowed | Model Training = Not Authorized
+# Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
+# LLM-Text: https://developers.seosiri.com/llm.txt
 
 User-agent: *
-Content-Signal: search=yes,ai-input=yes,ai-train=no,use=reference
 Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-# 1. Search Engine & Grounding AI Agents (Allowed)
 User-agent: Googlebot
 User-agent: Bingbot
 User-agent: DuckDuckBot
+User-agent: Yandex
 User-agent: GPTBot
 User-agent: ClaudeBot
 User-agent: PerplexityBot
@@ -41,7 +41,6 @@ Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-# 2. Aggressive Scrapers & Bulk Harvesters (Disallowed)
 User-agent: CCBot
 User-agent: Bytespider
 User-agent: Amazonbot
@@ -49,7 +48,6 @@ User-agent: meta-externalagent
 Disallow: /
 
 Sitemap: https://developers.seosiri.com/sitemap.xml
-LLM-Text: https://developers.seosiri.com/llm.txt
 `;
 
 const LLM_TXT_BODY = `# SEOSiri Model Context Protocol (MCP) Ecosystem
