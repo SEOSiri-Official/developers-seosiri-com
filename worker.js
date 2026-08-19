@@ -57,6 +57,35 @@ export default {
     }
 
     // 2. Health Endpoint
+    // Direct robots.txt handler
+    if (url.pathname === "/robots.txt") {
+      const robotsTxt = `# SEOSiri Developer Portal & Machine Discovery Protocol
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /api/keys
+
+Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
+
+Sitemap: https://developers.seosiri.com/sitemap.xml
+LLM-Text: https://developers.seosiri.com/llm.txt
+`;
+      return new Response(robotsTxt, {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "public, max-age=3600, s-maxage=86400",
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
+    }
+
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",
