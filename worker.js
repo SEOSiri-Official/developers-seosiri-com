@@ -1,4 +1,4 @@
-// worker.js - Authoritative Machine-Discovery & Edge Router for developers.seosiri.com
+// worker.js - Unified Machine-Discovery Layer for developers.seosiri.com
 
 const PUBLIC_CANONICAL_URLS = [
   "https://developers.seosiri.com/",
@@ -20,18 +20,18 @@ const PUBLIC_CANONICAL_URLS = [
 ];
 
 const ROBOTS_TXT_BODY = `# SEOSiri Developer Portal & Machine Discovery Protocol
-# Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
-# LLM-Text: https://developers.seosiri.com/llm.txt
+# Policy: Search Discovery = Allowed | AI Retrieval = Allowed | Model Training = Not Authorized
 
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api/keys
-
+# 1. Standard Search Engine Crawlers
 User-agent: Googlebot
 User-agent: Bingbot
 User-agent: DuckDuckBot
 User-agent: Yandex
+Allow: /
+Disallow: /admin
+Disallow: /api/keys
+
+# 2. AI Retrieval & Grounding Search Crawlers (AEO / GEO)
 User-agent: GPTBot
 User-agent: ClaudeBot
 User-agent: PerplexityBot
@@ -41,13 +41,12 @@ Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-User-agent: CCBot
-User-agent: Bytespider
-User-agent: Amazonbot
-User-agent: meta-externalagent
-Disallow: /
+# 3. Content Rights & AI Training Reservation
+# Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
 
+# 4. Canonical Discovery Declarations
 Sitemap: https://developers.seosiri.com/sitemap.xml
+# LLM-Text: https://developers.seosiri.com/llm.txt
 `;
 
 const LLM_TXT_BODY = `# SEOSiri Model Context Protocol (MCP) Ecosystem
@@ -154,7 +153,6 @@ export default {
     const url = new URL(request.url);
     const currentDate = new Date().toISOString().split("T")[0];
 
-    // 1. CORS Preflight
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,
@@ -167,7 +165,6 @@ export default {
       });
     }
 
-    // 2. Authoritative Non-Conflicting robots.txt Handler
     if (url.pathname === "/robots.txt") {
       return new Response(ROBOTS_TXT_BODY, {
         status: 200,
@@ -179,7 +176,6 @@ export default {
       });
     }
 
-    // 3. Dynamic Sitemap.xml Handler
     if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap") {
       return new Response(generateDynamicSitemapXml(currentDate), {
         status: 200,
@@ -191,7 +187,6 @@ export default {
       });
     }
 
-    // 4. Dynamic LLM.txt Context Handler
     if (url.pathname === "/llm.txt") {
       return new Response(LLM_TXT_BODY, {
         status: 200,
@@ -203,7 +198,6 @@ export default {
       });
     }
 
-    // 5. Health Check Handler
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",
@@ -221,7 +215,6 @@ export default {
       });
     }
 
-    // 6. Static Assets & SPA Fallback
     try {
       const response = await env.ASSETS.fetch(request);
       if (response.status === 404 && !url.pathname.includes(".")) {
