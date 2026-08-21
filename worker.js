@@ -4,6 +4,7 @@ const PUBLIC_CANONICAL_URLS = [
   "https://developers.seosiri.com/",
   "https://developers.seosiri.com/llm.txt",
   "https://www.seosiri.com/2026/07/seosiri-mcp-servers.html",
+  "https://www.seosiri.com/2026/08/industrial-ai-gateway.html",
   "https://www.seosiri.com/2026/08/biopharma-mcp.html",
   "https://www.seosiri.com/2026/07/aeo-geo-mcp.html",
   "https://www.seosiri.com/2026/08/content-schema-mcp.html",

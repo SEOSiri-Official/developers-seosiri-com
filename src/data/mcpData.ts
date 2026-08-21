@@ -15,6 +15,13 @@ export interface CloudflareEdgeGateway {
 // Exact 10 Official Cloudflare Edge Gateways (*.seosiri.com)
 export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
   {
+    id: "12",
+    subdomain: "iaig.seosiri.com",
+    healthEndpoint: "https://iaig.seosiri.com/health",
+    targetMcpServer: "industrial-ai-gateway",
+    purpose: "Zero-Trust SCADA/PLC Interlocks & ROS 2 Robotics"
+  },
+  {
     id: '1',
     subdomain: 'mcp.seosiri.com',
     healthEndpoint: 'https://mcp.seosiri.com/health',

@@ -323,6 +323,7 @@ export const ApiKeyGenerator: React.FC = () => {
                   onChange={(e) => setMcpScope(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                 >
+                                    <option value="IAIG">Industrial AI Gateway (iaig.seosiri.com)</option>
                   <option value="BIOPHARMA">Biopharma MCP (biopharma.seosiri.com)</option>
                   <option value="BIOASSAY">BioAssay MCP (bioassay.seosiri.com)</option>
                   <option value="AEO">AEO/GEO Intelligence MCP (aeo.seosiri.com)</option>
