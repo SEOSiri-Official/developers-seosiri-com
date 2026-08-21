@@ -155,7 +155,7 @@ ${tool.sampleInput}
                 <BookOpen className="w-3.5 h-3.5" />
                 Dedicated Documentation Assets
               </span>
-              <span className="text-slate-400">16 Packages • {TOTAL_MCP_TOOLS_COUNT} Tools • 10 Live Edge Gateways</span>
+              <span className="text-slate-400">17 Packages • {TOTAL_MCP_TOOLS_COUNT} Tools • 10 Live Edge Gateways</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
