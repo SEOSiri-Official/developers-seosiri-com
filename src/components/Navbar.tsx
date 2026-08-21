@@ -69,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       label: 'Docs',
       shortLabel: 'Docs',
       icon: <BookOpen className="w-4 h-4 mr-1.5" />,
-      badge: `${TOTAL_MCP_TOOLS_COUNT} Tools`
+      badge: `181 Tools`
     },
     {
       id: 'matrix',
@@ -184,7 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder={`Search ${TOTAL_MCP_TOOLS_COUNT} tools...`}
+              placeholder={`Search 181 Tools...`}
               className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none transition-all"
             />
             {searchQuery && (
