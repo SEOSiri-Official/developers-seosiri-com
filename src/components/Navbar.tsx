@@ -8,13 +8,11 @@ import {
   Search, 
   BookOpen,
   UserCheck,
-  Check,
   Server,
   Monitor,
   Smartphone,
   Menu,
   X,
-  Sparkles,
   Zap,
   Key
 } from 'lucide-react';
@@ -69,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       label: 'Docs',
       shortLabel: 'Docs',
       icon: <BookOpen className="w-4 h-4 mr-1.5" />,
-      badge: `181 Tools`
+      badge: `${TOTAL_MCP_TOOLS_COUNT} Tools`
     },
     {
       id: 'matrix',
@@ -105,12 +103,12 @@ export const Navbar: React.FC<NavbarProps> = ({
       badge: 'Live'
     },
     {
-    id: 'key-issuer',
-    label: 'API Key Issuer',
-    shortLabel: 'Key Issuer',
-    icon: <Key className="w-4 h-4 mr-1.5 text-amber-400" />,
-    badge: 'B2B'
-  }
+      id: 'key-issuer',
+      label: 'API Key Issuer',
+      shortLabel: 'Key Issuer',
+      icon: <Key className="w-4 h-4 mr-1.5 text-amber-400" />,
+      badge: 'B2B'
+    }
   ];
 
   return (
@@ -124,14 +122,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center space-x-2 text-white font-bold text-sm hover:opacity-90 transition-opacity"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-emerald-500 p-1 flex items-center justify-center shrink-0 shadow-md border border-blue-400/30">
-  <svg className="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="512" height="512" rx="128" fill="#0f172a" />
-    <circle cx="256" cy="256" r="190" fill="none" stroke="#0284c7" strokeWidth="28" strokeDasharray="800" strokeDashoffset="100" />
-    <circle cx="256" cy="256" r="130" fill="none" stroke="#38bdf8" strokeWidth="20" />
-    <path d="M 256 120 L 256 256 L 350 256" fill="none" stroke="#34d399" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="256" cy="256" r="32" fill="#38bdf8" />
-  </svg>
-</div>
+              <svg className="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="512" height="512" rx="128" fill="#0f172a" />
+                <circle cx="256" cy="256" r="190" fill="none" stroke="#0284c7" strokeWidth="28" strokeDasharray="800" strokeDashoffset="100" />
+                <circle cx="256" cy="256" r="130" fill="none" stroke="#38bdf8" strokeWidth="20" />
+                <path d="M 256 120 L 256 256 L 350 256" fill="none" stroke="#34d399" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="256" cy="256" r="32" fill="#38bdf8" />
+              </svg>
+            </div>
             <div className="text-left hidden sm:block">
               <span className="font-extrabold tracking-tight text-white block text-xs">SEOSiri MCP Suite</span>
               <span className="text-[10px] font-mono text-emerald-400">Enterprise AI Control Plane</span>
@@ -175,16 +173,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Search & Mobile Controls */}
+        {/* Search Input */}
         <div className="flex items-center space-x-2 flex-1 lg:flex-none justify-end">
-          {/* Search Input */}
           <div className="relative flex-1 sm:w-56 max-w-[220px]">
             <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder={`Search 181 Tools...`}
+              placeholder="Search 181 tools..."
               className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none transition-all"
             />
             {searchQuery && (
@@ -197,7 +194,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 bg-slate-950 border border-slate-800 rounded-lg text-slate-300 hover:text-white"
@@ -207,46 +203,6 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
       </div>
-
-      {/* Mobile Nav Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden pt-3 pb-2 border-t border-slate-800 mt-2 space-y-2 animate-fade-in">
-          <div className="grid grid-cols-2 gap-1.5">
-            {navItems.map((item) => {
-              const isActive = currentView === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    onViewChange(item.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-semibold transition-all border ${
-                    isActive
-                      ? 'bg-blue-600 text-white border-blue-500'
-                      : 'bg-slate-950 text-slate-300 border-slate-800 hover:bg-slate-800'
-                  }`}
-                >
-                  <div className="flex items-center">
-                    {item.icon}
-                    <span>{item.shortLabel}</span>
-                  </div>
-                  {item.badge && (
-                    <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="pt-2 flex items-center justify-between text-xs text-slate-400 font-mono px-1">
-            <span>Unified Gateway: developers.seosiri.com</span>
-            <span className="text-emerald-400">{TOTAL_MCP_TOOLS_COUNT} Tools Active</span>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
