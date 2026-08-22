@@ -884,6 +884,8 @@ export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } 
 export const TOTAL_OFFICIAL_GATEWAYS = 12;
 
 
-// Sync Timestamp: 1787326796.2238877export const DIRECTORY_TITLE = 'MCP Servers & Endpoints Directory';\nexport const TOTAL_PUBLISHED_SERVERS = MCP_MODULES.length;
+// Final Clean Metrics Sync
+export const DIRECTORY_TITLE = 'MCP Servers & Endpoints Directory';
+export const TOTAL_PUBLISHED_SERVERS = MCP_MODULES.length;
 export const TOTAL_PACKAGES_COUNT = MCP_MODULES.length;
-export const TOTAL_MCP_TOOLS_COUNT = MCP_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);\n
+export const TOTAL_MCP_TOOLS_COUNT = MCP_MODULES.reduce((acc, m) => acc + (m.tools ? m.tools.length : 0), 0);
