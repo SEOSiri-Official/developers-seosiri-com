@@ -187,7 +187,21 @@ export const MCP_MODULES: MCPModule[] = [
       { name: "iaig_dispatch_ros2_goal", description: "Translates AI instructions into deterministic ROS 2 Navigation actions.", sampleInput: "{\"amr_id\": \"AMR_04\", \"destination_zone\": \"Palletizer_Area_2\"}" },
       { name: "iaig_queue_proposal_hmi", description: "Locks physical command inside queue until worker approves on plant HMI screen.", sampleInput: "{\"proposed_action_name\": \"FLUSH_VALVE\", \"target_equipment\": \"VALVE_99B\", \"parameters\": {}}" },
       { name: "iaig_throttle_tool_context", description: "Dynamically restricts exposed tools based on operator role to reduce token bloat.", sampleInput: "{\"operator_role\": \"OPERATOR\", \"active_work_order\": \"WO-4402\"}" }
-    ]
+,{
+    name: "iaig_firewall_inspect",
+    description: "Enterprise-grade AI Firewall. Sanitizes prompts, detects injection, masks PII/PHI.",
+    inputSchema: { type: "object", properties: { prompt: { type: "string" } }, required: ["prompt"] }
+  },
+  {
+    name: "iaig_budget_gate",
+    description: "Enforces hard operational budget caps. Prevents rogue agents from depleting API credits.",
+    inputSchema: { type: "object", properties: { max_usd: { type: "number" }, project_id: { type: "string" } }, required: ["max_usd", "project_id"] }
+  },
+  {
+    name: "iaig_audit_ledger",
+    description: "Generates FDA/SOC2-compliant immutable logs for AI actions.",
+    inputSchema: { type: "object", properties: { action: { type: "string" }, metadata: { type: "object" } }, required: ["action"] }
+  }    ]
   },
   {
     id: "lambda-data-pipeline-mcp",
