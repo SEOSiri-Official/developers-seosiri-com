@@ -15,6 +15,13 @@ export interface CloudflareEdgeGateway {
 // Exact 10 Official Cloudflare Edge Gateways (*.seosiri.com)
 export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
   {
+    id: '13',
+    subdomain: 'rovomcp.seosiri.com',
+    healthEndpoint: 'https://rovomcp.seosiri.com/health',
+    targetMcpServer: 'rovo-mcp-link',
+    purpose: 'Zero-Trust Atlassian Rovo & External IDE MCP Gateway'
+  },
+  {
     id: "12",
     subdomain: "iaig.seosiri.com",
     healthEndpoint: "https://iaig.seosiri.com/health",
