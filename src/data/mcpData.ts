@@ -15,96 +15,96 @@ export interface CloudflareEdgeGateway {
 // Exact 10 Official Cloudflare Edge Gateways (*.seosiri.com)
 export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
   {
-    id: '13',
-    subdomain: 'rovomcp.seosiri.com',
-    healthEndpoint: 'https://rovomcp.seosiri.com/health',
-    targetMcpServer: 'rovo-mcp-link',
-    purpose: 'Zero-Trust Atlassian Rovo & External IDE MCP Gateway'
+    id: "1",
+    subdomain: "aeo.seosiri.com",
+    healthEndpoint: "https://aeo.seosiri.com/health",
+    targetMcpServer: "seosiri-aeo-geo-mcp",
+    purpose: "AEO/GEO Search & LLM.txt Audit"
+  },
+  {
+    id: "2",
+    subdomain: "schema.seosiri.com",
+    healthEndpoint: "https://schema.seosiri.com/health",
+    targetMcpServer: "seosiri-content-schema-mcp",
+    purpose: "Schema.org Validation & GA4 Guardrails"
+  },
+  {
+    id: "3",
+    subdomain: "dns.seosiri.com",
+    healthEndpoint: "https://dns.seosiri.com/health",
+    targetMcpServer: "seosiri-dns-sec-audit-mcp",
+    purpose: "DNS Security & TLS/SSL Health Probes"
+  },
+  {
+    id: "4",
+    subdomain: "keywords.seosiri.com",
+    healthEndpoint: "https://keywords.seosiri.com/health",
+    targetMcpServer: "seosiri-keyword-cluster-mcp",
+    purpose: "384-D Vector RAG & Search Intent Clustering"
+  },
+  {
+    id: "5",
+    subdomain: "governance.seosiri.com",
+    healthEndpoint: "https://governance.seosiri.com/health",
+    targetMcpServer: "seosiri-search-governance-mcp",
+    purpose: "AI Search Crawler & IndexNow Dispatcher"
+  },
+  {
+    id: "6",
+    subdomain: "entity.seosiri.com",
+    healthEndpoint: "https://entity.seosiri.com/health",
+    targetMcpServer: "seosiri-semantic-entity-mcp",
+    purpose: "Wikidata Disambiguation & Entity Triples"
+  },
+  {
+    id: "7",
+    subdomain: "ops.seosiri.com",
+    healthEndpoint: "https://ops.seosiri.com/health",
+    targetMcpServer: "seosiri-ops-comm-mcp",
+    purpose: "Sentry Triage & Linear Sync"
+  },
+  {
+    id: "8",
+    subdomain: "db.seosiri.com",
+    healthEndpoint: "https://db.seosiri.com/health",
+    targetMcpServer: "seosiri-db-infra-mcp",
+    purpose: "Read-Only Postgres & AWS S3 Querying"
+  },
+  {
+    id: "9",
+    subdomain: "bioassay.seosiri.com",
+    healthEndpoint: "https://bioassay.seosiri.com/health",
+    targetMcpServer: "seosiri-bioassay-mcp",
+    purpose: "TR-FRET & HL7 FHIR Medical Device Converter"
+  },
+  {
+    id: "10",
+    subdomain: "hubappapi.seosiri.com",
+    healthEndpoint: "https://hubappapi.seosiri.com/health",
+    targetMcpServer: "etl-pipeline-mcp",
+    purpose: "Enterprise ETL & Webhook Ingestion"
+  },
+  {
+    id: "11",
+    subdomain: "biopharma.seosiri.com",
+    healthEndpoint: "https://biopharma.seosiri.com/health",
+    targetMcpServer: "biopharma-mcp",
+    purpose: "4PL Curve Fitting & FDA 21 CFR Part 11 Audit Trail"
   },
   {
     id: "12",
     subdomain: "iaig.seosiri.com",
     healthEndpoint: "https://iaig.seosiri.com/health",
     targetMcpServer: "industrial-ai-gateway",
-    purpose: "Zero-Trust SCADA/PLC Interlocks & ROS 2 Robotics"
+    purpose: "Zero-Trust Industrial AI Gateway & ROS 2 Control"
   },
   {
-    id: '1',
-    subdomain: 'mcp.seosiri.com',
-    healthEndpoint: 'https://mcp.seosiri.com/health',
-    targetMcpServer: 'SEOSiri Central Gateway',
-    purpose: 'Central MCP Router & Gateway Hub for all SEOSiri MCP Servers'
-  },
-  {
-    id: '2',
-    subdomain: 'aeo.seosiri.com',
-    healthEndpoint: 'https://aeo.seosiri.com/health',
-    targetMcpServer: 'seosiri-aeo-geo-mcp',
-    purpose: 'AI Search Optimization & /llm.txt Auditing'
-  },
-  {
-    id: '3',
-    subdomain: 'schema.seosiri.com',
-    healthEndpoint: 'https://schema.seosiri.com/health',
-    targetMcpServer: 'seosiri-content-schema-mcp',
-    purpose: 'JSON-LD Schema & GA4 Metric Validation'
-  },
-  {
-    id: '4',
-    subdomain: 'dns.seosiri.com',
-    healthEndpoint: 'https://dns.seosiri.com/health',
-    targetMcpServer: 'seosiri-dns-sec-audit-mcp',
-    purpose: 'Technical SEO DNS & SSL/TLS Infrastructure'
-  },
-  {
-    id: '5',
-    subdomain: 'keywords.seosiri.com',
-    healthEndpoint: 'https://keywords.seosiri.com/health',
-    targetMcpServer: 'seosiri-keyword-cluster-mcp',
-    purpose: 'Semantic Clustering & 384-D Vector RAG'
-  },
-  {
-    id: '6',
-    subdomain: 'governance.seosiri.com',
-    healthEndpoint: 'https://governance.seosiri.com/health',
-    targetMcpServer: 'seosiri-search-governance-mcp',
-    purpose: 'AI Crawlers, Brand Safety & IndexNow'
-  },
-  {
-    id: '7',
-    subdomain: 'entity.seosiri.com',
-    healthEndpoint: 'https://entity.seosiri.com/health',
-    targetMcpServer: 'seosiri-semantic-entity-mcp',
-    purpose: 'Knowledge Graph & Wikidata QID Disambiguation'
-  },
-  {
-    id: '8',
-    subdomain: 'ops.seosiri.com',
-    healthEndpoint: 'https://ops.seosiri.com/health',
-    targetMcpServer: 'seosiri-ops-comm-mcp',
-    purpose: 'Sentry Error Triage, Linear & Slack Sync'
-  },
-  {
-    id: '9',
-    subdomain: 'db.seosiri.com',
-    healthEndpoint: 'https://db.seosiri.com/health',
-    targetMcpServer: 'seosiri-db-infra-mcp',
-    purpose: 'Read-Only SQL Queries & Cloud Infrastructure'
-  },
-  {
-    id: '10',
-    subdomain: 'bioassay.seosiri.com',
-    healthEndpoint: 'https://bioassay.seosiri.com/health',
-    targetMcpServer: 'seosiri-bioassay-mcp',
-    purpose: 'HTS Bio-Assays & HL7 FHIR Medical Devices'
-  },
-  {
-  id: '11',
-  subdomain: 'biopharma.seosiri.com',
-  healthEndpoint: 'https://biopharma.seosiri.com/health',
-  targetMcpServer: 'biopharma-mcp',
-  purpose: 'Biopharma Software Infrastructure & FDA 21 CFR Part 11'
-}
+    id: "13",
+    subdomain: "rovomcp.seosiri.com",
+    healthEndpoint: "https://rovomcp.seosiri.com/health",
+    targetMcpServer: "rovo-mcp-link",
+    purpose: "Zero-Trust Atlassian Rovo & External IDE MCP Gateway"
+  }
 ];
 
 export interface LeadArchitectProfile {
