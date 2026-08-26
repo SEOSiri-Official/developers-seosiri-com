@@ -29,7 +29,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Globe className="w-3.5 h-3.5 text-amber-400" />
             <span className="text-slate-400">Edge Gateways:</span>
-            <strong className="text-amber-300 font-bold">{TOTAL_OFFICIAL_GATEWAYS} Official Gateways</strong>
+            <strong className="text-amber-300 font-bold">13 Official Gateways</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
