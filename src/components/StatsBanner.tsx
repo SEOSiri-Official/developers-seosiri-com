@@ -1,7 +1,7 @@
 import React from 'react';
-import { TOTAL_PUBLISHED_SERVERS, TOTAL_PACKAGES_COUNT, TOTAL_OFFICIAL_GATEWAYS, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
-import { ViewMode } from '../types';
-import { Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
+import { OFFICIAL_EDGE_GATEWAYS, TOTAL_PUBLISHED_SERVERS, TOTAL_PACKAGES_COUNT, TOTAL_OFFICIAL_GATEWAYS, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
+import { OFFICIAL_EDGE_GATEWAYS, ViewMode } from '../types';
+import { OFFICIAL_EDGE_GATEWAYS, Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
 
 interface StatsBannerProps {
   onViewChange: (view: ViewMode) => void;
@@ -29,7 +29,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Globe className="w-3.5 h-3.5 text-amber-400" />
             <span className="text-slate-400">Edge Gateways:</span>
-            <strong className="text-amber-300 font-bold">{TOTAL_OFFICIAL_GATEWAYS} Official Gateways</strong>
+            <strong className="text-amber-300 font-bold">{OFFICIAL_EDGE_GATEWAYS.length} Official Gateways</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
