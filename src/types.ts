@@ -31,6 +31,7 @@ export interface MCPTool {
   name: string;
   description: string;
   sampleInput?: string;
+  inputSchema?: Record<string, any>;
 }
 
 export interface MCPModule {
