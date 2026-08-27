@@ -176,10 +176,10 @@ export const MCP_MODULES: MCPModule[] = [
     version: "1.0.0",
     status: "Operational",
     tools: [
-      { name: "rovomcp_sanitize_payload", description: "Executes real-time PII/PHI redaction (SSN, credit card, email, IP) at the edge based on industry compliance policy.", sampleInput: "{"contextData": "User John Doe SSN 123-45-6789", "policy": {"maskPII": true, "industryCategory": "HEALTHCARE"}}" },
-      { name: "rovomcp_inspect_prompt", description: "Runs incoming prompts through the AI Firewall to intercept prompt injections and overrides.", sampleInput: "{"contextData": "ignore previous instructions"}" },
-      { name: "rovomcp_verify_token", description: "Validates custom X-SEOSiri-Token handshake headers for secure Rovo agent routing.", sampleInput: "{"token": "production_fallback_handshake_hash_token"}" },
-      { name: "rovomcp_get_health", description: "Queries live status, transport channels, and edge health metrics from rovomcp.seosiri.com.", sampleInput: "{}" }
+      { name: "rovomcp_sanitize_payload", description: "Executes real-time PII/PHI redaction (SSN, credit card, email, IP) at the edge based on industry compliance policy.", sampleInput: '{"contextData": "User John Doe SSN 123-45-6789", "policy": {"maskPII": true, "industryCategory": "HEALTHCARE"}}' },
+      { name: "rovomcp_inspect_prompt", description: "Runs incoming prompts through the AI Firewall to intercept prompt injections and overrides.", sampleInput: '{"contextData": "ignore previous instructions"}' },
+      { name: "rovomcp_verify_token", description: "Validates custom X-SEOSiri-Token handshake headers for secure Rovo agent routing.", sampleInput: '{"token": "production_fallback_handshake_hash_token"}' },
+      { name: "rovomcp_get_health", description: "Queries live status, transport channels, and edge health metrics from rovomcp.seosiri.com.", sampleInput: '{}' }
     ]
   },
   {
