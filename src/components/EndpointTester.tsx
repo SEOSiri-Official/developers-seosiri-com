@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { OFFICIAL_EDGE_GATEWAYS, MCP_MODULES } from '../data/mcpData';
-import { OFFICIAL_EDGE_GATEWAYS, 
+import { MCP_MODULES } from '../data/mcpData';
   TerminalSquare, 
   Play, 
   Check, 
