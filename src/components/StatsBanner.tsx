@@ -1,7 +1,7 @@
 import React from 'react';
-import { OFFICIAL_EDGE_GATEWAYS, TOTAL_PUBLISHED_SERVERS, TOTAL_PACKAGES_COUNT, TOTAL_OFFICIAL_GATEWAYS, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
-import { OFFICIAL_EDGE_GATEWAYS, ViewMode } from '../types';
-import { OFFICIAL_EDGE_GATEWAYS, Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
+import { TOTAL_PUBLISHED_SERVERS, TOTAL_PACKAGES_COUNT, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
+import { ViewMode } from '../types';
+import { Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
 
 interface StatsBannerProps {
   onViewChange: (view: ViewMode) => void;
