@@ -159,6 +159,30 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: "rovo-mcp-link",
+    title: "SEOSiri Rovo-MCP Link Gateway",
+    shortName: "Rovo-MCP Link",
+    category: "operational",
+    description: "Zero-Trust Enterprise Gateway bridging Atlassian Rovo Agents, Jira, Confluence, and External IDEs (Cursor, Claude) to SEOSiri MCP Servers with real-time PII/PHI scrubbing and AI firewalls.",
+    guideUrl: "https://www.seosiri.com/2026/07/seosiri-mcp-servers.html",
+    pypiPackage: "@seosiri/rovo-mcp-link",
+    pypiCommand: "npm install @seosiri/rovo-mcp-link",
+    edgeGateway: "rovomcp.seosiri.com",
+    edgeUrl: "https://rovomcp.seosiri.com",
+    color: "#ec4899",
+    badgeBg: "bg-pink-500/10",
+    badgeText: "text-pink-400 border-pink-500/20",
+    iconName: "ShieldCheck",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "rovomcp_sanitize_payload", description: "Executes real-time PII/PHI redaction (SSN, credit card, email, IP) at the edge based on industry compliance policy.", sampleInput: "{"contextData": "User John Doe SSN 123-45-6789", "policy": {"maskPII": true, "industryCategory": "HEALTHCARE"}}" },
+      { name: "rovomcp_inspect_prompt", description: "Runs incoming prompts through the AI Firewall to intercept prompt injections and overrides.", sampleInput: "{"contextData": "ignore previous instructions"}" },
+      { name: "rovomcp_verify_token", description: "Validates custom X-SEOSiri-Token handshake headers for secure Rovo agent routing.", sampleInput: "{"token": "production_fallback_handshake_hash_token"}" },
+      { name: "rovomcp_get_health", description: "Queries live status, transport channels, and edge health metrics from rovomcp.seosiri.com.", sampleInput: "{}" }
+    ]
+  },
+  {
     id: "industrial-ai-gateway",
     title: "Industrial AI Gateway MCP",
     shortName: "Industrial AI Gateway",
