@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { OFFICIAL_EDGE_GATEWAYS, MCP_MODULES } from '../data/mcpData';
 import {
   Terminal,
+  TerminalSquare,
+  RefreshCw,
   Send,
   CheckCircle2,
   AlertTriangle,
