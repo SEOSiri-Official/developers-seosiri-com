@@ -12,18 +12,18 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
     <div className="bg-slate-950/80 border-b border-slate-800/80 py-2.5 px-4 sm:px-6 lg:px-8 font-mono text-xs">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         
-        {/* Metric Badges Group - Explicitly set to 16 Published, 16 Packages, 13 Gateways, 163 Tools */}
+        {/* Metric Badges Group matching your exact system design */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Server className="w-3.5 h-3.5 text-blue-400" />
             <span className="text-slate-400">Active MCP Servers:</span>
-            <strong className="text-white font-bold">16 Published</strong>
+            <strong className="text-white font-bold">19 Published</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Package className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-slate-400">NPM &amp; PyPI Packages:</span>
-            <strong className="text-cyan-300 font-bold">16 Packages</strong>
+            <strong className="text-cyan-300 font-bold">19 Packages (+ Atlassian App)</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
@@ -35,7 +35,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Cpu className="w-3.5 h-3.5 text-purple-400" />
             <span className="text-slate-400">Total MCP Tools:</span>
-            <strong className="text-purple-300 font-bold">163 Autonomous Tools</strong>
+            <strong className="text-purple-300 font-bold">191 Autonomous Tools</strong>
           </div>
         </div>
 
