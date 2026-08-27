@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import { MCP_MODULES } from '../data/mcpData';
-  TerminalSquare, 
-  Play, 
-  Check, 
-  Copy, 
-  Zap, 
-  RefreshCw, 
-  Code2, 
-  Sparkles,
-  Server
+import { OFFICIAL_EDGE_GATEWAYS, MCP_MODULES } from '../data/mcpData';
+import {
+  Terminal,
+  Send,
+  CheckCircle2,
+  AlertTriangle,
+  Clock,
+  Server,
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  Globe,
+  Play,
+  Activity,
+  Copy,
+  Check
 } from 'lucide-react';
 
 export const EndpointTester: React.FC = () => {
