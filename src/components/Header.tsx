@@ -1,6 +1,6 @@
 import React from 'react';
-import { OFFICIAL_EDGE_GATEWAYS, CENTRAL_HUB_URL, DEVELOPERS_SUBDOMAIN, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
-import { OFFICIAL_EDGE_GATEWAYS, ExternalLink, Terminal, Shield, Zap, Sparkles, Server, UserCheck, Mail, CheckCircle2 } from 'lucide-react';
+import { CENTRAL_HUB_URL, DEVELOPERS_SUBDOMAIN, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
+import { ExternalLink, Terminal, Shield, Zap, Sparkles, Server, UserCheck, Mail, CheckCircle2 } from 'lucide-react';
 
 export const Header: React.FC = () => {
   return (
