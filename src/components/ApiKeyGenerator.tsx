@@ -323,16 +323,22 @@ export const ApiKeyGenerator: React.FC = () => {
                   onChange={(e) => setMcpScope(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                 >
-                                    <option value="IAIG">Industrial AI Gateway (iaig.seosiri.com)</option>
+                  <option value="ALL">ALL Ecosystem MCPs (Full 20-Package Suite Access)</option>
                   <option value="BIOPHARMA">Biopharma MCP (biopharma.seosiri.com)</option>
+                  <option value="IAIG">Industrial AI Gateway (iaig.seosiri.com)</option>
+                  <option value="ROVOMCP">Rovo-MCP Link Gateway (rovomcp.seosiri.com)</option>
                   <option value="BIOASSAY">BioAssay MCP (bioassay.seosiri.com)</option>
                   <option value="AEO">AEO/GEO Intelligence MCP (aeo.seosiri.com)</option>
                   <option value="SCHEMA">Content Schema MCP (schema.seosiri.com)</option>
-                  <option value="KEYWORDS">Keyword Cluster MCP (keywords.seosiri.com)</option>
+                  <option value="KEYWORDS">Keyword Cluster & Vector RAG (keywords.seosiri.com)</option>
                   <option value="GOVERNANCE">Search Governance MCP (governance.seosiri.com)</option>
-                  <option value="OPS">Ops Comm MCP (ops.seosiri.com)</option>
-                  <option value="DB">Database Infra MCP (db.seosiri.com)</option>
-                  <option value="ALL">ALL Ecosystem MCPs (Full Suite Access)</option>
+                  <option value="ENTITY">Semantic Entity & Knowledge Graph (entity.seosiri.com)</option>
+                  <option value="DNS">DNS & Security Audit MCP (dns.seosiri.com)</option>
+                  <option value="OPS">Ops Comm & Incident Response (ops.seosiri.com)</option>
+                  <option value="DB">Database Infra & Query MCP (db.seosiri.com)</option>
+                  <option value="ETL">Enterprise ETL & Lambda Ingestion (hubappapi.seosiri.com)</option>
+                  <option value="VSCODE">VS Code Suite Manager (vscode.seosiri.com)</option>
+                  <option value="CORE">Universal Central MCP Gateway (mcp.seosiri.com)</option>
                 </select>
               </div>
 
