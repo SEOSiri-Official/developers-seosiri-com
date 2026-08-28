@@ -76,3 +76,5 @@ SEOSiri-Official maintains a sovereign, local-first ecosystem of 16 Model Contex
 - **NPM Execution:** `npx -y @seosiri/biopharma-mcp`
 - **PyPI / UV Execution:** `uv run --github SEOSiri-Official/<repo-name>`
 - **Direct Edge Invocations:** Add header `x-seosiri-key: <KEY>` to requests sent to `*.seosiri.com`.
+
+- seosiri-vscode-mcp-manager: https://www.seosiri.com/2026/08/vscode-mcp-manager.html
