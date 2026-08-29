@@ -11,15 +11,19 @@ import {
   Code2, 
   Cpu, 
   Sparkles,
-  Info
+  Info,
+  Laptop
 } from 'lucide-react';
 
+type HostType = 'claude' | 'cursor' | 'cline' | 'openai' | 'sse' | 'python';
+type TransportType = 'uvx' | 'pipx' | 'python';
+
 export const ConfigGenerator: React.FC = () => {
-  const [selectedHost, setSelectedHost] = useState<'claude' | 'cursor' | 'cline' | 'python' | 'sse'>('claude');
+  const [selectedHost, setSelectedHost] = useState<HostType>('claude');
   const [selectedModules, setSelectedModules] = useState<string[]>(
     MCP_MODULES.map((m) => m.id)
   );
-  const [transportMode, setTransportMode] = useState<'uvx' | 'pipx' | 'python'>('uvx');
+  const [transportMode, setTransportMode] = useState<TransportType>('uvx');
   const [copied, setCopied] = useState(false);
 
   const toggleModule = (id: string) => {
@@ -40,33 +44,70 @@ export const ConfigGenerator: React.FC = () => {
   const generatedCode = useMemo(() => {
     const activeMods = MCP_MODULES.filter((m) => selectedModules.includes(m.id));
 
+    // 1. OpenAI Responses API (Remote MCP Tool Connector)
+    if (selectedHost === 'openai') {
+      const toolsPayload = activeMods
+        .filter((m) => m.edgeUrl)
+        .map((m) => ({
+          type: 'mcp',
+          server_url: `${m.edgeUrl}/sse`,
+          description: m.description
+        }));
+
+      return `# OpenAI Responses API (Remote MCP Tool Connectors)
+# Install official SDK: pip install openai
+
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-4o",
+    input="Audit my workspace and execute SEOSiri MCP tools.",
+    tools=${JSON.stringify(toolsPayload, null, 2)}
+)
+
+print(response.output)`;
+    }
+
+    // 2. Claude Desktop, Cursor IDE, Roo Code / Cline JSON Configurations
     if (selectedHost === 'claude' || selectedHost === 'cursor' || selectedHost === 'cline') {
       const mcpServers: Record<string, any> = {};
 
       activeMods.forEach((m) => {
-        if (transportMode === 'uvx') {
-          mcpServers[m.pypiPackage] = {
-            command: 'uvx',
-            args: [m.pypiPackage],
-            env: (m.envVars || []).reduce((acc: any, v) => {
-              acc[v] = `YOUR_${v}`;
-              return acc;
-            }, {})
+        const isNpm = m.pypiPackage && (m.pypiPackage.startsWith('@') || m.pypiPackage.includes('npm'));
+        const isForgeOrSSE = m.id === 'rovo-mcp-link' || (m.pypiPackage && m.pypiPackage.includes('Forge'));
+
+        if (isForgeOrSSE) {
+          mcpServers[m.id] = {
+            url: `${m.edgeUrl || 'https://rovomcp.seosiri.com'}/sse`,
+            type: 'sse'
           };
-        } else if (transportMode === 'pipx') {
-          mcpServers[m.pypiPackage] = {
-            command: 'pipx',
-            args: ['run', m.pypiPackage],
-            env: (m.envVars || []).reduce((acc: any, v) => {
+        } else if (isNpm) {
+          mcpServers[m.id] = {
+            command: 'npx',
+            args: ['-y', m.pypiPackage],
+            env: (m.envVars || []).reduce((acc: any, v: string) => {
               acc[v] = `YOUR_${v}`;
               return acc;
             }, {})
           };
         } else {
-          mcpServers[m.pypiPackage] = {
-            command: 'python',
-            args: ['-m', m.pypiPackage.replace(/-/g, '_')],
-            env: (m.envVars || []).reduce((acc: any, v) => {
+          let cmd = 'uvx';
+          let args = [m.pypiPackage];
+
+          if (transportMode === 'pipx') {
+            cmd = 'pipx';
+            args = ['run', m.pypiPackage];
+          } else if (transportMode === 'python') {
+            cmd = 'python';
+            args = ['-m', m.pypiPackage.replace(/-/g, '_')];
+          }
+
+          mcpServers[m.pypiPackage || m.id] = {
+            command: cmd,
+            args: args,
+            env: (m.envVars || []).reduce((acc: any, v: string) => {
               acc[v] = `YOUR_${v}`;
               return acc;
             }, {})
@@ -77,25 +118,32 @@ export const ConfigGenerator: React.FC = () => {
       return JSON.stringify({ mcpServers }, null, 2);
     }
 
+    // 3. Cloudflare Edge Gateway SSE Configuration
     if (selectedHost === 'sse') {
       const sseConfig: Record<string, any> = {};
       activeMods.forEach((m) => {
         sseConfig[m.id] = {
-          url: `${m.edgeUrl}/sse`,
+          url: `${m.edgeUrl || 'https://developers.seosiri.com'}/sse`,
           type: 'sse',
           headers: {
-            'X-SEOSiri-Client': 'MCP-Suite-V2'
+            'x-seosiri-key': 'PRO_US_CLIENT_YOUR_KEY_HERE'
           }
         };
       });
       return JSON.stringify({ mcpServers: sseConfig }, null, 2);
     }
 
+    // 4. Python MCP SDK Client Script
     if (selectedHost === 'python') {
       const imports = `import asyncio\nfrom mcp import ClientSession, StdioServerParameters\nfrom mcp.client.stdio import stdio_client\n\n`;
-      const asyncMain = `async function run_seosiri_mcp_suite():\n    # Connect to SEOSiri MCP Servers\n`;
       
-      const serversCode = activeMods.map((m) => `    # ${m.title}\n    server_params_${m.id.replace(/-/g, '_')} = StdioServerParameters(\n        command="uvx",\n        args=["${m.pypiPackage}"],\n        env={${(m.envVars || []).map(v => `"${v}": "YOUR_${v}"`).join(', ')}}\n    )\n`).join('\n');
+      const serversCode = activeMods.map((m) => {
+        const isNpm = m.pypiPackage && (m.pypiPackage.startsWith('@') || m.pypiPackage.includes('npm'));
+        const cmd = isNpm ? 'npx' : 'uvx';
+        const args = isNpm ? `["-y", "${m.pypiPackage}"]` : `["${m.pypiPackage}"]`;
+        
+        return `    # ${m.title}\n    server_params_${m.id.replace(/-/g, '_')} = StdioServerParameters(\n        command="${cmd}",\n        args=${args},\n        env={${(m.envVars || []).map(v => `"${v}": "YOUR_${v}"`).join(', ')}}\n    )\n`;
+      }).join('\n');
 
       return `${imports}# SEOSiri MCP Suite - Python SDK Integration\n\n${serversCode}\n\nasync def main():\n    print("SEOSiri MCP Suite initialized with ${activeMods.length} active servers.")\n\nif __name__ == "__main__":\n    asyncio.run(main())\n`;
     }
@@ -111,6 +159,8 @@ export const ConfigGenerator: React.FC = () => {
         return '.cursor/mcp.json';
       case 'cline':
         return 'cline_mcp_settings.json';
+      case 'openai':
+        return 'openai_mcp_connector.py';
       case 'sse':
         return 'mcp_edge_sse_config.json';
       case 'python':
@@ -138,7 +188,7 @@ export const ConfigGenerator: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6 text-left">
       
       {/* Header */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
@@ -187,6 +237,7 @@ export const ConfigGenerator: React.FC = () => {
               {[
                 { id: 'claude', name: 'Claude Desktop App', file: 'claude_desktop_config.json', badge: 'Popular' },
                 { id: 'cursor', name: 'Cursor IDE', file: '.cursor/mcp.json', badge: 'IDE' },
+                { id: 'openai', name: 'OpenAI Responses API', file: 'openai_mcp_connector.py', badge: 'Remote MCP' },
                 { id: 'cline', name: 'Roo Code / Cline', file: 'cline_mcp_settings.json', badge: 'Extension' },
                 { id: 'sse', name: 'Cloudflare Edge SSE', file: 'mcp_edge_sse_config.json', badge: 'Cloud' },
                 { id: 'python', name: 'Python MCP SDK Client', file: 'seosiri_mcp_client.py', badge: 'Script' }
@@ -204,7 +255,9 @@ export const ConfigGenerator: React.FC = () => {
                     <p className="text-xs font-bold">{host.name}</p>
                     <p className="text-[11px] text-slate-400 font-mono mt-0.5">{host.file}</p>
                   </div>
-                  <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                  <span className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded ${
+                    host.id === 'openai' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold' : 'bg-slate-800 text-slate-300'
+                  }`}>
                     {host.badge}
                   </span>
                 </button>
@@ -213,11 +266,11 @@ export const ConfigGenerator: React.FC = () => {
           </div>
 
           {/* Transport Executor Selection */}
-          {selectedHost !== 'sse' && selectedHost !== 'python' && (
+          {selectedHost !== 'sse' && selectedHost !== 'python' && selectedHost !== 'openai' && (
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
               <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
                 <Terminal className="w-3.5 h-3.5 mr-1.5 text-cyan-400" />
-                2. Execution Transport
+                2. Execution Transport (PyPI Modules)
               </h3>
               <div className="grid grid-cols-3 gap-2">
                 {[
@@ -247,7 +300,7 @@ export const ConfigGenerator: React.FC = () => {
               3. Select Active SEOSiri MCP Modules ({selectedModules.length}/{MCP_MODULES.length})
             </h3>
 
-            <div className="space-y-2">
+            <div className="max-h-60 overflow-y-auto space-y-2 pr-1 font-mono text-xs">
               {MCP_MODULES.map((mod) => {
                 const isChecked = selectedModules.includes(mod.id);
                 return (
@@ -260,21 +313,21 @@ export const ConfigGenerator: React.FC = () => {
                         : 'bg-slate-950/40 border-slate-900 text-slate-500 hover:text-slate-400'
                     }`}
                   >
-                    <div className="flex items-center space-x-2.5">
+                    <div className="flex items-center space-x-2.5 truncate">
                       <div
-                        className="w-2.5 h-2.5 rounded-full"
+                        className="w-2.5 h-2.5 rounded-full shrink-0"
                         style={{ backgroundColor: mod.color }}
                       />
-                      <div>
-                        <p className="text-xs font-bold">{mod.title}</p>
-                        <p className="text-[10px] font-mono text-slate-400">{mod.pypiPackage}</p>
+                      <div className="truncate">
+                        <p className="text-xs font-bold truncate">{mod.title}</p>
+                        <p className="text-[10px] font-mono text-slate-400 truncate">{mod.pypiPackage}</p>
                       </div>
                     </div>
 
                     {isChecked ? (
-                      <CheckSquare className="w-4 h-4 text-emerald-400" />
+                      <CheckSquare className="w-4 h-4 text-emerald-400 shrink-0" />
                     ) : (
-                      <Square className="w-4 h-4 text-slate-600" />
+                      <Square className="w-4 h-4 text-slate-600 shrink-0" />
                     )}
                   </div>
                 );
@@ -307,7 +360,7 @@ export const ConfigGenerator: React.FC = () => {
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-white" />
-                      <span>Copied JSON!</span>
+                      <span>Copied!</span>
                     </>
                   ) : (
                     <>
@@ -338,7 +391,7 @@ export const ConfigGenerator: React.FC = () => {
               <div>
                 <p className="font-semibold text-blue-300">Quick Installation Path:</p>
                 <p className="text-[11px] text-slate-400 mt-0.5">
-                  Paste this JSON snippet into your host's MCP settings file. Ensure you have <code className="bg-slate-900 px-1 py-0.5 rounded text-cyan-300">uv</code> or <code className="bg-slate-900 px-1 py-0.5 rounded text-cyan-300">pipx</code> installed in your PATH.
+                  Paste this JSON snippet into your host's MCP settings file. NPM packages execute via <code className="bg-slate-900 px-1 py-0.5 rounded text-emerald-300">npx</code>, Python packages via <code className="bg-slate-900 px-1 py-0.5 rounded text-cyan-300">uvx</code>, and Forge apps stream over <code className="bg-slate-900 px-1 py-0.5 rounded text-pink-300">Cloudflare SSE</code>.
                 </p>
               </div>
             </div>
@@ -351,3 +404,5 @@ export const ConfigGenerator: React.FC = () => {
     </div>
   );
 };
+
+export default ConfigGenerator;
