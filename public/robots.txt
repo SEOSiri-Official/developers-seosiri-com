@@ -1,21 +1,26 @@
 # SEOSiri Developer Portal & Machine Discovery Protocol
-# Policy: Search Discovery = Allowed | AI Retrieval = Allowed | Model Training = Not Authorized
+# Policy: Search Discovery = Allowed | AI Retrieval / Grounding = Allowed | Model Training = Not Authorized
 
 # 1. Standard Search Engine Crawlers
 User-agent: Googlebot
 User-agent: Bingbot
 User-agent: DuckDuckBot
 User-agent: Yandex
+User-agent: Baiduspider
 Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-# 2. AI Retrieval & Grounding Search Crawlers (AEO / GEO)
+# 2. AI Grounding, Retrieval & Search Engine Crawlers (AEO / GEO)
 User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
 User-agent: ClaudeBot
 User-agent: PerplexityBot
 User-agent: Google-Extended
 User-agent: Applebot-Extended
+User-agent: Cohere-ai
+User-agent: Amazonbot
 Allow: /
 Disallow: /admin
 Disallow: /api/keys
