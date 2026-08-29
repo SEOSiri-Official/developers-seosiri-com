@@ -159,6 +159,30 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: "vscode-mcp-manager",
+    title: "VS Code Suite Manager MCP",
+    shortName: "VS Code Manager",
+    category: "operational",
+    description: "Enterprise VS Code Extension & MCP Suite Manager orchestrating IDE configuration generation, extension security audits, and live edge gateway telemetry across Cursor, Claude, and VS Code.",
+    guideUrl: "https://www.seosiri.com/2026/08/vscode-mcp-manager.html",
+    pypiPackage: "seosiri-vscode-mcp-manager",
+    pypiCommand: "https://vscode.seosiri.com/health",
+    edgeGateway: "vscode.seosiri.com",
+    edgeUrl: "https://vscode.seosiri.com",
+    color: "#0284c7",
+    badgeBg: "bg-sky-500/10",
+    badgeText: "text-sky-400 border-sky-500/20",
+    iconName: "Settings2",
+    version: "1.0.3",
+    status: "Operational",
+    tools: [
+      { name: "vscode_generate_mcp_config", description: "Generates verified configuration snippets for Claude Desktop, Cursor, and OpenAI Responses API Remote MCP tool connectors.", sampleInput: '{"client_type": "OPENAI_RESPONSES_API"}' },
+      { name: "vscode_audit_extension_manifest", description: "Audits extension manifests for security vulnerabilities, activation triggers, and tool bindings.", sampleInput: '{"manifest_json": "{}"}' },
+      { name: "vscode_sync_workspace_settings", description: "Synchronizes recommended team settings, linters, and MCP permissions.", sampleInput: '{"target_ide": "CURSOR"}' },
+      { name: "vscode_inspect_live_gateways", description: "Inspects real-time connection status across all 13 Cloudflare edge gateways directly from the IDE.", sampleInput: '{}' }
+    ]
+  },
+  {
     id: "rovo-mcp-link",
     title: "SEOSiri Rovo-MCP Link Gateway",
     shortName: "Rovo-MCP Link",
