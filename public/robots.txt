@@ -1,5 +1,6 @@
 # SEOSiri Developer Portal & Machine Discovery Protocol
 # Policy: Search Discovery = Allowed | AI Retrieval / Grounding = Allowed | Model Training = Not Authorized
+# Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
 
 # 1. Standard Search Engine Crawlers
 User-agent: Googlebot
@@ -25,9 +26,5 @@ Allow: /
 Disallow: /admin
 Disallow: /api/keys
 
-# 3. Content Rights & AI Training Reservation
-Content-Signal: search=yes,ai-retrieval=yes,ai-train=no
-
-# 4. Canonical Discovery Declarations
+# 3. Canonical Discovery Declarations
 Sitemap: https://developers.seosiri.com/sitemap.xml
-LLM-Text: https://developers.seosiri.com/llm.txt
