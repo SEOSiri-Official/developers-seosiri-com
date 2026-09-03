@@ -1,7 +1,7 @@
 import React from 'react';
-import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
+import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 import { ViewMode } from '../types';
-import { ExternalLink, ShieldCheck,  Sparkles, FileText, Lock, Zap, Key } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -40,12 +40,6 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('custom-mcp')} className="hover:text-amber-400 transition-colors flex items-center gap-1 text-left">
-                  <ShieldCheck className="w-3 h-3 text-amber-400" />
-                  <span>AI Governance & Liability</span>
-                </button>
-              </li>
-              <li>
                 <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Key className="w-3 h-3 text-amber-400" />
                   <span>API Key Issuer Desk</span>
@@ -74,6 +68,17 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <FileText className="w-3 h-3 text-blue-400" />
                   <span>Sitemap &amp; LLM.txt Index</span>
                 </button>
+              </li>
+              <li>
+                <a
+                  href="https://www.seosiri.com/p/security-policy.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left"
+                >
+                  <ShieldCheck className="w-3 h-3 text-slate-400" />
+                  <span>Security Policy &amp; security.txt</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -124,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
           </p>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar - Clean Copyright Only */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px]">
           <p className="text-slate-400 text-center sm:text-left m-0">
             © {new Date().getFullYear()} SEOSiri Enterprise Labs. Designed by <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="text-slate-200 font-bold hover:text-sky-400 transition-colors">{LEAD_ARCHITECT.name}</a>. Licensed under MIT Open Source.
