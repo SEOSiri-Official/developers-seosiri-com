@@ -1,5 +1,5 @@
 import React from 'react';
-import { LEAD_ARCHITECT } from '../data/mcpData';
+import { TOTAL_PUBLISHED_SERVERS, TOTAL_PACKAGES_COUNT, TOTAL_MCP_TOOLS_COUNT, LEAD_ARCHITECT } from '../data/mcpData';
 import { ViewMode } from '../types';
 import { Server, Package, Globe, Cpu, UserCheck } from 'lucide-react';
 
@@ -8,28 +8,30 @@ interface StatsBannerProps {
 }
 
 export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
+  const TOTAL_OFFICIAL_GATEWAYS = 13;
+
   return (
     <div className="bg-slate-950/80 border-b border-slate-800/80 py-2.5 px-4 sm:px-6 lg:px-8 font-mono text-xs">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         
-        {/* Metric Badges Group matching your exact system design */}
+        {/* Metric Badges Group */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Server className="w-3.5 h-3.5 text-blue-400" />
             <span className="text-slate-400">Active MCP Servers:</span>
-            <strong className="text-white font-bold">20 Published</strong>
+            <strong className="text-white font-bold">{TOTAL_PUBLISHED_SERVERS} Published</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Package className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-slate-400">NPM &amp; PyPI Packages:</span>
-            <strong className="text-cyan-300 font-bold">20 Packages (+ Atlassian App)</strong>
+            <strong className="text-cyan-300 font-bold">{TOTAL_PACKAGES_COUNT} Packages (+ Atlassian App)</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Globe className="w-3.5 h-3.5 text-amber-400" />
             <span className="text-slate-400">Edge Gateways:</span>
-            <strong className="text-amber-300 font-bold">13 Official Gateways</strong>
+            <strong className="text-amber-300 font-bold">{TOTAL_OFFICIAL_GATEWAYS} Official Gateways</strong>
           </div>
 
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
