@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { MCP_MODULES } from '../data/mcpData';
-import { 
+import { Activity, MCP_MODULES } from '../data/mcpData';
+import { Activity, 
   Settings2, 
   Copy, 
   Check, 
