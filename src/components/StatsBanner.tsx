@@ -35,7 +35,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ onViewChange }) => {
           <div className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg flex items-center space-x-2">
             <Cpu className="w-3.5 h-3.5 text-purple-400" />
             <span className="text-slate-400">Total MCP Tools:</span>
-            <strong className="text-purple-300 font-bold">195 Autonomous Tools</strong>
+            <strong className="text-purple-300 font-bold">{TOTAL_MCP_TOOLS_COUNT} Autonomous Tools</strong>
           </div>
         </div>
 
