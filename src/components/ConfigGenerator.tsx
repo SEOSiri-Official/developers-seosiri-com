@@ -29,24 +29,43 @@ export const ConfigGenerator: React.FC<ConfigGeneratorProps> = ({ modules, onVie
     else setActiveModules(new Set(modules.map(m => m.id)));
   };
 
+  const getFilename = () => {
+    switch(selectedHost) {
+      case 'cursor': return '.cursor/mcp.json';
+      case 'cline': return 'cline_mcp_settings.json';
+      case 'openai': return 'openai_mcp_connector.py';
+      case 'cloudflare': return 'mcp_edge_sse_config.json';
+      case 'python': return 'seosiri_mcp_client.py';
+      case 'claude':
+      default: return 'claude_desktop_config.json';
+    }
+  };
+
   const generateJSON = () => {
     const config: any = { mcpServers: {} };
     
     modules.filter(mod => activeModules.has(mod.id)).forEach(mod => {
+      const envObj: Record<string, string> = {};
+      if (mod.envVars && mod.envVars.length > 0) {
+        mod.envVars.forEach(v => {
+          envObj[v] = `YOUR_${v}`;
+        });
+      }
+
       if (mod.id === 'rovo-mcp-link') {
         config.mcpServers[mod.id] = {
           command: "npx",
           args: ["-y", "mcp-remote", "https://rovomcp.seosiri.com/sse"],
-          env: { "X_SEOSIRI_KEY": "YOUR_PRO_API_KEY" }
+          env: { "X_SEOSIRI_KEY": "YOUR_PRO_API_KEY", ...envObj }
         };
       } else if (mod.pypiPackage && (mod.pypiPackage.startsWith('@') || mod.pypiPackage.includes('npm'))) {
-        config.mcpServers[mod.id] = { command: "npx", args: ["-y", mod.pypiPackage], env: {} };
+        config.mcpServers[mod.id] = { command: "npx", args: ["-y", mod.pypiPackage], env: envObj };
       } else {
         let cmd = "uvx";
         let argsArr = [mod.pypiPackage];
         if (transport === 'pipx run') { cmd = "pipx"; argsArr = ["run", mod.pypiPackage]; }
         else if (transport === 'python -m') { cmd = "python"; argsArr = ["-m", mod.pypiPackage]; }
-        config.mcpServers[mod.id] = { command: cmd, args: argsArr, env: {} };
+        config.mcpServers[mod.id] = { command: cmd, args: argsArr, env: envObj };
       }
     });
 
@@ -64,7 +83,7 @@ export const ConfigGenerator: React.FC<ConfigGeneratorProps> = ({ modules, onVie
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = selectedHost === 'cursor' ? 'mcp.json' : 'claude_desktop_config.json';
+    a.download = getFilename().split('/').pop() || 'config.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -85,9 +104,9 @@ export const ConfigGenerator: React.FC<ConfigGeneratorProps> = ({ modules, onVie
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
         {/* LEFT SIDEBAR: Controls & Checklist */}
         <div className="lg:col-span-4 space-y-6">
+          
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5">
             <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-4"><Terminal className="w-4 h-4 text-blue-400"/> 1. CHOOSE TARGET AI HOST</h3>
             <div className="space-y-2">
@@ -98,6 +117,22 @@ export const ConfigGenerator: React.FC<ConfigGeneratorProps> = ({ modules, onVie
               <button onClick={() => setSelectedHost('cursor')} className={`w-full text-left p-3 rounded-xl border font-semibold text-sm flex justify-between items-center transition-all ${selectedHost === 'cursor' ? 'border-blue-500 bg-blue-500/10 text-white' : 'border-slate-800 text-slate-400 hover:border-slate-700'}`}>
                 <div>Cursor IDE<div className="text-[10px] font-mono font-normal opacity-70">.cursor/mcp.json</div></div>
                 {selectedHost === 'cursor' && <span className="text-[9px] px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded">IDE</span>}
+              </button>
+              <button onClick={() => setSelectedHost('openai')} className={`w-full text-left p-3 rounded-xl border font-semibold text-sm flex justify-between items-center transition-all ${selectedHost === 'openai' ? 'border-blue-500 bg-blue-500/10 text-white' : 'border-slate-800 text-slate-400 hover:border-slate-700'}`}>
+                <div>OpenAI Responses API<div className="text-[10px] font-mono font-normal opacity-70">openai_mcp_connector.py</div></div>
+                {selectedHost === 'openai' && <span className="text-[9px] px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded">REMOTE MCP</span>}
+              </button>
+              <button onClick={() => setSelectedHost('cline')} className={`w-full text-left p-3 rounded-xl border font-semibold text-sm flex justify-between items-center transition-all ${selectedHost === 'cline' ? 'border-blue-500 bg-blue-500/10 text-white' : 'border-slate-800 text-slate-400 hover:border-slate-700'}`}>
+                <div>Roo Code / Cline<div className="text-[10px] font-mono font-normal opacity-70">cline_mcp_settings.json</div></div>
+                {selectedHost === 'cline' && <span className="text-[9px] px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded">EXTENSION</span>}
+              </button>
+              <button onClick={() => setSelectedHost('cloudflare')} className={`w-full text-left p-3 rounded-xl border font-semibold text-sm flex justify-between items-center transition-all ${selectedHost === 'cloudflare' ? 'border-blue-500 bg-blue-500/10 text-white' : 'border-slate-800 text-slate-400 hover:border-slate-700'}`}>
+                <div>Cloudflare Edge SSE<div className="text-[10px] font-mono font-normal opacity-70">mcp_edge_sse_config.json</div></div>
+                {selectedHost === 'cloudflare' && <span className="text-[9px] px-2 py-0.5 bg-slate-500/20 text-slate-400 rounded">CLOUD</span>}
+              </button>
+              <button onClick={() => setSelectedHost('python')} className={`w-full text-left p-3 rounded-xl border font-semibold text-sm flex justify-between items-center transition-all ${selectedHost === 'python' ? 'border-blue-500 bg-blue-500/10 text-white' : 'border-slate-800 text-slate-400 hover:border-slate-700'}`}>
+                <div>Python MCP SDK Client<div className="text-[10px] font-mono font-normal opacity-70">seosiri_mcp_client.py</div></div>
+                {selectedHost === 'python' && <span className="text-[9px] px-2 py-0.5 bg-slate-500/20 text-slate-400 rounded">SCRIPT</span>}
               </button>
             </div>
           </div>
@@ -141,12 +176,14 @@ export const ConfigGenerator: React.FC<ConfigGeneratorProps> = ({ modules, onVie
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-2xl sticky top-24">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-4 border-b border-slate-800 pb-4">
               <div>
-                <h3 className="text-sm font-bold text-white flex items-center gap-2"><FileJson className="w-4 h-4 text-emerald-400"/> {selectedHost === 'cursor' ? '.cursor/mcp.json' : 'claude_desktop_config.json'}</h3>
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <FileJson className="w-4 h-4 text-emerald-400"/> 
+                  {getFilename()}
+                </h3>
                 <p className="text-[10px] text-slate-400 font-mono mt-1">{activeModules.size} MCP servers configured</p>
               </div>
               
               <div className="flex flex-wrap items-center gap-2">
-                {/* The new "Validate Runtime Surface" Button perfectly aligned! */}
                 {onViewChange && (
                   <button onClick={() => onViewChange('tester')} className="px-3 py-1.5 bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors">
                     <Activity className="w-3.5 h-3.5" /> Validate Runtime Surface
