@@ -17,7 +17,7 @@ import { Download,
   Activity,
   Copy,
   Check
-} from 'lucide-react';
+} Key, Download } from 'lucide-react';
 
 export const EndpointTester: React.FC = () => {
   const [selectedModuleId, setSelectedModuleId] = useState<string>('aeo-geo');
@@ -383,6 +383,7 @@ export const EndpointTester: React.FC = () => {
 
               {responsePayload && (
                 <>
+<>
 <button
                   onClick={() => downloadDriftReceipt(selectedGateway?.healthEndpoint || "", requestPayload, responseData)}
                   className="px-2.5 py-1 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
@@ -402,6 +403,7 @@ export const EndpointTester: React.FC = () => {
                   )}
                   <span>{copied ? 'Copied' : 'Copy Payload'}</span>
                 </button>
+                </>
                 </>
               )}
             </div>
