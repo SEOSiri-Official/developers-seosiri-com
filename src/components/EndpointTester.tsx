@@ -384,26 +384,23 @@ export const EndpointTester: React.FC = () => {
               {responsePayload && (
                 <>
 <>
-<button
-                  onClick={() => downloadDriftReceipt(selectedGateway?.healthEndpoint || "", requestPayload, responseData)}
-                  className="px-2.5 py-1 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
-                  title="Export Cryptographic Drift Receipt"
-                >
-                  <Download className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Export Drift Receipt</span>
-                </button>
-                <button
-                  onClick={handleCopyResponse}
-                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-all"
-                >
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5 text-slate-400" />
-                  )}
-                  <span>{copied ? 'Copied' : 'Copy Payload'}</span>
-                </button>
-                </>
+<>
+  <button
+    onClick={() => downloadDriftReceipt(selectedGateway?.healthEndpoint || "", requestPayload, responseData)}
+    className="px-2.5 py-1 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
+    title="Export Cryptographic Drift Receipt"
+  >
+    <Download className="w-3.5 h-3.5 text-sky-400" />
+    <span>Export Drift Receipt</span>
+  </button>
+  <button
+    onClick={handleCopyResponse}
+    className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
+  >
+    {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+    <span>{copied ? 'Copied' : 'Copy Payload'}</span>
+  </button>
+</>
                 </>
               )}
             </div>
