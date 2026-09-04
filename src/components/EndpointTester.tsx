@@ -1,23 +1,11 @@
 import React, { useState } from 'react';
-import { Download, OFFICIAL_EDGE_GATEWAYS, MCP_MODULES } from '../data/mcpData';
-import { Download,
-  Terminal,
-  TerminalSquare,
-  RefreshCw,
-  Send,
-  CheckCircle2,
-  AlertTriangle,
-  Clock,
-  Server,
-  ArrowRight,
-  ShieldCheck,
-  Zap,
-  Globe,
-  Play,
-  Activity,
-  Copy,
-  Check
-} Key, Download } from 'lucide-react';
+import { 
+  Terminal, Send, CheckCircle2, AlertTriangle, Clock, Server, 
+  ArrowRight, ShieldCheck, Zap, Globe, Play, Activity, Copy, 
+  Check, Download, Key 
+} from 'lucide-react';
+import { OFFICIAL_EDGE_GATEWAYS, MCP_MODULES } from '../data/mcpData';
+import { ViewMode } from '../types';
 
 export const EndpointTester: React.FC = () => {
   const [selectedModuleId, setSelectedModuleId] = useState<string>('aeo-geo');
