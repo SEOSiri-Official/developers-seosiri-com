@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
-import { 
-  Terminal, Send, CheckCircle2, AlertTriangle, Clock, Server, 
-  ArrowRight, ShieldCheck, Zap, Globe, Play, Activity, Copy, 
-  Check, Download, Key 
-} from 'lucide-react';
 import { OFFICIAL_EDGE_GATEWAYS, MCP_MODULES } from '../data/mcpData';
-import { ViewMode } from '../types';
+import {
+  Terminal,
+  TerminalSquare,
+  RefreshCw,
+  Send,
+  CheckCircle2,
+  AlertTriangle,
+  Clock,
+  Server,
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  Globe,
+  Play,
+  Activity,
+  Copy,
+  Check
+} from 'lucide-react';
 
 export const EndpointTester: React.FC = () => {
   const [selectedModuleId, setSelectedModuleId] = useState<string>('aeo-geo');
@@ -145,39 +157,6 @@ export const EndpointTester: React.FC = () => {
     navigator.clipboard.writeText(JSON.stringify(responsePayload, null, 2));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  
-  // SEOSiri Cryptographic Schema Drift Receipt Generator
-  const downloadDriftReceipt = async (gatewayUrl: string, reqPayload: any, resPayload: any) => {
-    try {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(JSON.stringify(resPayload));
-      const hashBuffer = await window.crypto.subtle.digest("SHA-256", data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const sha256Hex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-
-      const receipt = {
-        complianceStandard: "SEOSIRI_MCP_DRIFT_DETECTOR_SPEC_V1",
-        version: "1.0.0",
-        timestamp: new Date().toISOString(),
-        gatewayEndpoint: gatewayUrl,
-        requestPayload: reqPayload,
-        responseSnapshot: resPayload,
-        schemaSnapshotSha256: sha256Hex,
-        driftDetectorSignature: `DRIFT_PROOF_${sha256Hex.substring(0, 16).toUpperCase()}`,
-        verificationStatus: "VALIDATED_RUNTIME_SURFACE_STABLE"
-      };
-
-      const blob = new Blob([JSON.stringify(receipt, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `seosiri-drift-receipt-${Date.now()}.json`;
-      a.click();
-    } catch (err) {
-      console.error("Error generating receipt", err);
-    }
   };
 
   return (
@@ -370,26 +349,17 @@ export const EndpointTester: React.FC = () => {
               </div>
 
               {responsePayload && (
-                <>
-<>
-<>
-  <button
-    onClick={() => downloadDriftReceipt(selectedGateway?.healthEndpoint || "", requestPayload, responseData)}
-    className="px-2.5 py-1 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
-    title="Export Cryptographic Drift Receipt"
-  >
-    <Download className="w-3.5 h-3.5 text-sky-400" />
-    <span>Export Drift Receipt</span>
-  </button>
-  <button
-    onClick={handleCopyResponse}
-    className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-mono flex items-center space-x-1.5 transition-colors"
-  >
-    {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-    <span>{copied ? 'Copied' : 'Copy Payload'}</span>
-  </button>
-</>
-                </>
+                <button
+                  onClick={handleCopyResponse}
+                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-all"
+                >
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 text-slate-400" />
+                  )}
+                  <span>{copied ? 'Copied' : 'Copy Payload'}</span>
+                </button>
               )}
             </div>
 
