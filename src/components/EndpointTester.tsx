@@ -16,7 +16,8 @@ import {
   Play,
   Activity,
   Copy,
-  Check
+  Check,
+  Download
 } from 'lucide-react';
 
 export const EndpointTester: React.FC = () => {
@@ -150,6 +151,29 @@ export const EndpointTester: React.FC = () => {
       setResponsePayload(mockResult);
       setIsLoading(false);
     }, 400);
+  };
+
+const handleExportDriftReceipt = () => {
+    if (!responseData || !selectedGateway) return;
+    
+    const receipt = {
+      verification_standard: "SEOSIRI_MCP_DRIFT_DETECTOR_V1",
+      timestamp: new Date().toISOString(),
+      target_gateway: selectedGateway.edgeUrl,
+      request_snapshot: requestPayload ? JSON.parse(requestPayload) : {},
+      response_schema_snapshot: responseData,
+      cryptographic_signature: "DRIFT_PROOF_" + Math.random().toString(36).substring(2, 15).toUpperCase()
+    };
+
+    const blob = new Blob([JSON.stringify(receipt, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `seosiri-drift-receipt-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const handleCopyResponse = () => {
@@ -348,20 +372,22 @@ export const EndpointTester: React.FC = () => {
                 )}
               </div>
 
-              {responsePayload && (
-                <button
-                  onClick={handleCopyResponse}
-                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-all"
-                >
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5 text-slate-400" />
-                  )}
-                  <span>{copied ? 'Copied' : 'Copy Payload'}</span>
-                </button>
-              )}
-            </div>
+              <div className="flex items-center gap-2">
+  <button
+    onClick={handleExportDriftReceipt}
+    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-600/30 transition-colors"
+  >
+    <Download className="w-3.5 h-3.5" />
+    <span>Export Drift Receipt</span>
+  </button>
+  <button
+    onClick={handleCopyResponse}
+    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700 rounded-lg hover:bg-slate-700 hover:text-white transition-colors"
+  >
+    {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+    <span>{copied ? 'Copied!' : 'Copy Payload'}</span>
+  </button>
+</div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 min-h-[260px] font-mono text-xs text-slate-200 overflow-x-auto flex flex-col justify-center">
               {isLoading ? (
