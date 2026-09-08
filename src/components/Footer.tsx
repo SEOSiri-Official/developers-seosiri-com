@@ -1,7 +1,7 @@
 import React from 'react';
-import { FileText, CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
-import { FileText, ViewMode } from '../types';
-import { FileText, ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
+import { FileText, FileText, CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
+import { FileText, FileText, ViewMode } from '../types';
+import { FileText, FileText, ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
