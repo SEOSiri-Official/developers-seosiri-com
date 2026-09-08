@@ -118,13 +118,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       shortLabel: 'Dashboard',
       icon: <Lock className="w-4 h-4 mr-1.5 text-sky-400" />,
       badge: 'OIDC'
-    },
-    {
-      id: 'sitemap',
-      label: 'Sitemap & LLM.txt',
-      shortLabel: 'Sitemap',
-      icon: <FileText className="w-4 h-4 mr-1.5 text-emerald-400" />,
-      badge: 'SEO'
     }
   ];
 
