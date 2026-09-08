@@ -107,7 +107,7 @@ export const UserPortal: React.FC = () => {
                 Point your domain or API subdomain directly to SEOSiri Edge Shield via CNAME:
               </p>
               <div className="bg-slate-950 p-2 rounded font-mono text-[10px] text-emerald-400">
-                CNAME api.yourdomain.com --> guard.seosiri.com
+                CNAME api.yourdomain.com &rarr; guard.seosiri.com
               </div>
               <p className="text-slate-400 text-[11px]">All traffic is inspected for SQLi, XSS, and BOLA before reaching your servers.</p>
             </div>
