@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { 
   Network, 
   Layers, 
@@ -19,7 +20,6 @@ import {
 } from 'lucide-react';
 import { ViewMode } from '../types';
 import { LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
-
 interface NavbarProps {
   currentView: ViewMode;
   onViewChange: (view: ViewMode) => void;
