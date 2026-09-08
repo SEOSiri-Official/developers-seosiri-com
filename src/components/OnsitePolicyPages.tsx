@@ -1,7 +1,7 @@
 import React from 'react';
-import { ViewMode } from '../types';
-import { ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, CheckCircle2 } from 'lucide-react';
-import { OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
+import { FileText, ViewMode } from '../types';
+import { FileText, ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { FileText, OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
 
 interface OnsitePolicyPagesProps {
   view: ViewMode;
