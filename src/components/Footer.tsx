@@ -1,7 +1,7 @@
 import React from 'react';
 import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 import { ViewMode } from '../types';
-import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </p>
           </div>
 
-        {/* Col 2: Compliance & Onsite Policies */}
+          {/* Col 2: Compliance & Onsite Policies */}
           <div className="space-y-2 text-left">
             <h4 className="text-slate-200 font-bold uppercase text-[10px] tracking-wider font-mono flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -51,12 +51,10 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>API Key Issuer Desk</span>
                 </button>
               </li>
-<li>
+              <li>
                 <button onClick={() => onViewChange('user-portal')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <User className="w-3 h-3 text-sky-400" />
                   <span>Client Security Dashboard</span>
-                </button>
-              </li>
                 </button>
               </li>
               <li>
@@ -97,8 +95,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </ul>
           </div>
             
-            
-               {/* Col 3: Quick Navigation & Portals */}
+          {/* Col 3: Quick Navigation & Portals */}
           <div className="space-y-2 text-left">
             <h4 className="text-slate-200 font-bold uppercase text-[10px] tracking-wider font-mono flex items-center gap-1.5">
               <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
