@@ -108,8 +108,23 @@ export const Navbar: React.FC<NavbarProps> = ({
       shortLabel: 'Key Issuer',
       icon: <Key className="w-4 h-4 mr-1.5 text-amber-400" />,
       badge: 'B2B'
+    },
+    {
+      id: 'user-portal',
+      label: 'Client Dashboard',
+      shortLabel: 'Dashboard',
+      icon: <Lock className="w-4 h-4 mr-1.5 text-sky-400" />,
+      badge: 'OIDC'
+    },
+    {
+      id: 'sitemap',
+      label: 'Sitemap & LLM.txt',
+      shortLabel: 'Sitemap',
+      icon: <FileText className="w-4 h-4 mr-1.5 text-emerald-400" />,
+      badge: 'SEO'
     }
   ];
+  
 
   return (
     <header className="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 py-2.5 shadow-xl">

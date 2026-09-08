@@ -16,13 +16,14 @@ import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
 import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 import { Footer } from './components/Footer';
+import { UserPortal } from './components/UserPortal';
 
 export function App() {
   const [currentView, setCurrentView] = useState<ViewMode>('topology');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedModule, setSelectedModule] = useState<MCPModule | null>(null);
-
+  
   const filteredModules = MCP_MODULES.filter((mod) => {
     const matchesCategory = selectedCategory === 'all' || mod.category === selectedCategory;
     const q = (searchQuery || '').toLowerCase();
@@ -66,6 +67,7 @@ export function App() {
         {currentView === 'table' && <DirectoryTable modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
+        {currentView === 'user-portal' && <UserPortal />}
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
           <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} />
         )}
