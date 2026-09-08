@@ -95,4 +95,5 @@ export type ViewMode =
   | 'privacy' 
   | 'assets' 
   | 'sitemap' 
-  | 'key-issuer';
+  | 'key-issuer'
+  | 'user-portal';

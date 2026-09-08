@@ -1,3 +1,4 @@
+import { UserPortal } from "./components/UserPortal";
 import React, { useState } from 'react';
 import { ViewMode, MCPModule } from './types';
 import { MCP_MODULES } from './data/mcpData';

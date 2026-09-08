@@ -51,6 +51,14 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>API Key Issuer Desk</span>
                 </button>
               </li>
+<li>
+                <button onClick={() => onViewChange('user-portal')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <User className="w-3 h-3 text-sky-400" />
+                  <span>Client Security Dashboard</span>
+                </button>
+              </li>
+                </button>
+              </li>
               <li>
                 <button onClick={() => onViewChange('privacy')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <Lock className="w-3 h-3 text-slate-400" />
