@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { 
   Network, 
   Layers, 
@@ -13,8 +12,10 @@ import {
   Smartphone,
   Menu,
   X,
+  Sparkles,
   Zap,
-  Key
+  Key,
+  FileText
 } from 'lucide-react';
 import { ViewMode } from '../types';
 import { LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';

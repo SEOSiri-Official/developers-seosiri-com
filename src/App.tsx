@@ -1,4 +1,3 @@
-import { UserPortal } from "./components/UserPortal";
 import React, { useState } from 'react';
 import { ViewMode, MCPModule } from './types';
 import { MCP_MODULES } from './data/mcpData';
@@ -15,15 +14,15 @@ import { DocumentationViewer } from './components/DocumentationViewer';
 import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
 import { ApiKeyGenerator } from './components/ApiKeyGenerator';
-import { Footer } from './components/Footer';
 import { UserPortal } from './components/UserPortal';
+import { Footer } from './components/Footer';
 
 export function App() {
   const [currentView, setCurrentView] = useState<ViewMode>('topology');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedModule, setSelectedModule] = useState<MCPModule | null>(null);
-  
+
   const filteredModules = MCP_MODULES.filter((mod) => {
     const matchesCategory = selectedCategory === 'all' || mod.category === selectedCategory;
     const q = (searchQuery || '').toLowerCase();
@@ -57,13 +56,17 @@ export function App() {
             searchQuery={searchQuery}
             selectedCategory={selectedCategory}
             onSelectModule={setSelectedModule}
-            onSelectNode={(node) => { if (node.moduleRef) setSelectedModule(node.moduleRef); }}
+            onSelectNode={(node) => {
+              if (node.moduleRef) {
+                setSelectedModule(node.moduleRef);
+              }
+            }}
           />
         )}
         {currentView === 'docs' && <DocumentationViewer initialModuleId={selectedModule?.id} />}
         {currentView === 'matrix' && <ArchitectureMatrix modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'architect' && <ArchitectProfile />}
-        {currentView === 'config' && <ConfigGenerator modules={MCP_MODULES} onViewChange={setCurrentView} />}
+        {currentView === 'config' && <ConfigGenerator modules={MCP_MODULES} />}
         {currentView === 'table' && <DirectoryTable modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
@@ -84,4 +87,5 @@ export function App() {
     </div>
   );
 }
+
 export default App;

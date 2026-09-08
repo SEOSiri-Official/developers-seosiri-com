@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { ShieldCheck, User, Key, Globe, ExternalLink, Check, Copy, Zap, Lock, BookOpen } from 'lucide-react';
-import { MONETIZATION_CONFIG } from '../data/mcpData';
+const MONETIZATION_CONFIG = {
+  payoneerEmail: "badhan_pbn@yahoo.com",
+  portalUrl: "https://developers.seosiri.com",
+  supportDesk: "info@seosiri.com"
+};
 
 export const UserPortal: React.FC = () => {
   const [googleEmail, setGoogleEmail] = useState<string | null>(null);
