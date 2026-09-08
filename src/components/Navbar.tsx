@@ -16,10 +16,12 @@ import {
   Sparkles,
   Zap,
   Key,
-  FileText
+  FileText,
+  Lock
 } from 'lucide-react';
 import { ViewMode } from '../types';
 import { LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
+
 interface NavbarProps {
   currentView: ViewMode;
   onViewChange: (view: ViewMode) => void;
@@ -125,7 +127,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       badge: 'SEO'
     }
   ];
-  
 
   return (
     <header className="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 py-2.5 shadow-xl">
@@ -189,7 +190,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Search Input */}
+        {/* Search & Mobile Controls */}
         <div className="flex items-center space-x-2 flex-1 lg:flex-none justify-end">
           <div className="relative flex-1 sm:w-56 max-w-[220px]">
             <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
@@ -197,7 +198,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search 199 tools..."
+              placeholder={`Search ${TOTAL_MCP_TOOLS_COUNT} tools...`}
               className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none transition-all"
             />
             {searchQuery && (
