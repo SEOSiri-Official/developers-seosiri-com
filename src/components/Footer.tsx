@@ -81,6 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>Sitemap &amp; LLM.txt Index</span>
                 </button>
               </li>
+              
               <li>
                 <a
                   href="https://www.seosiri.com/p/security-policy.html"

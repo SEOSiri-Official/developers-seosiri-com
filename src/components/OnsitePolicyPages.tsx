@@ -176,7 +176,60 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         </div>
       )}
 
-      {/* PAGE 5: Sitemap & LLM.txt Index Page */}
+      {/* PAGE 5: AI Governance & Autonomous Agent Liability Framework */}
+      {view === 'governance-liability' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <ShieldCheck className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              EU AI Act &amp; Compliance Framework
+            </span>
+          </div>
+
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            SEOSiri AI Governance &amp; Autonomous Agent Liability Framework
+          </h1>
+
+          <p className="text-sm text-slate-300 leading-relaxed">
+            This framework establishes strict operational bounds, risk classifications, and liability demarcations for autonomous AI agents (Claude, Cursor, LangChain, Atlassian Rovo) invoking SEOSiri Model Context Protocol tools.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+              <h3 className="text-sm font-bold text-sky-400 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4" />
+                Human-in-the-Loop Stage-Gates
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                State-mutating tool executions (database writes, financial webhooks, physical kinematics) require explicit operator sign-off or cryptographically verified tokens before physical execution.
+              </p>
+            </div>
+
+            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+              <h3 className="text-sm font-bold text-emerald-400 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4" />
+                Zero-Retention Edge Interlocks
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Edge proxy routing via <a href="https://guard.seosiri.com/legal/dpa" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline">guard.seosiri.com/legal/dpa</a> strips PII in-memory under GDPR Recital 49, preventing training data contamination.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 font-mono text-xs text-slate-400 leading-relaxed">
+            <strong className="text-white">Liability Demarcation:</strong> The deploying enterprise or developer acts as the primary Controller responsible for model prompt steering and tool authorization scopes. SEOSiri-Official disclaims liability for unvalidated autonomous agent loops operating without recommended rate limits or approval stage-gates.
+          </div>
+
+          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
+            <span>Official Security Policy: </span>
+            <a href="https://www.seosiri.com/security.txt" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
+              RFC 9116 security.txt Disclosures <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* PAGE 6: Sitemap & LLM.txt Index Page */}
       {view === 'sitemap' && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
           <div className="flex items-center space-x-3 text-blue-400">
@@ -231,6 +284,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
               </a>
             </div>
           </div>
+          
 
           <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
             <span>Central Ecosystem Directory: </span>

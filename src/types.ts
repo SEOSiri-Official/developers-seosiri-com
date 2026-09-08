@@ -96,4 +96,5 @@ export type ViewMode =
   | 'assets' 
   | 'sitemap' 
   | 'key-issuer'
-  | 'user-portal';
+  | 'user-portal'
+  | 'governance-liability';
