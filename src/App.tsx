@@ -82,7 +82,7 @@ export function App() {
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
         {/* {currentView === 'user-portal' && <UserPortal />} */}
-        {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap'].includes(currentView) && (
+        {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability'].includes(currentView) && (
           <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} />
         )}
       </main>
