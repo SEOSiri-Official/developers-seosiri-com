@@ -1,3 +1,5 @@
+import { EducationalJourneyBanner } from "./components/EducationalJourneyBanner";
+import { EnterpriseProductivityManual } from "./components/EnterpriseProductivityManual";
 import React, { useState } from 'react';
 import { ViewMode, MCPModule } from './types';
 import { MCP_MODULES } from './data/mcpData';
@@ -81,7 +83,9 @@ export function App() {
         {currentView === 'table' && <DirectoryTable modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
-        {/* {currentView === 'user-portal' && <UserPortal />} */}
+        {/* {currentView === 'user-portal' && <UserPortal />}
+        {currentView === 'productivity-manual' && <EnterpriseProductivityManual onBackToTopology={() => setCurrentView('topology')} />}
+ */}
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability'].includes(currentView) && (
           <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} />
         )}
@@ -94,6 +98,7 @@ export function App() {
           onClose={() => setSelectedModule(null)}
         />
       )}
+      <EducationalJourneyBanner onViewChange={setCurrentView} />
       <Footer onViewChange={(view) => {
           window.location.hash = view;
           setCurrentView(view);

@@ -39,6 +39,14 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>Custom Enterprise MCP Services</span>
                 </button>
               </li>
+<li>
+                <button onClick={() => onViewChange('productivity-manual')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span>Enterprise Productivity Manual &amp; ROI</span>
+                </button>
+              </li>
+                </button>
+              </li>
               <li>
                 <button onClick={() => onViewChange('governance-liability')} className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1 text-left">
                   <ShieldCheck className="w-3 h-3 text-amber-400" />

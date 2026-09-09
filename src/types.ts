@@ -97,4 +97,5 @@ export type ViewMode =
   | 'sitemap' 
   | 'key-issuer'
   | 'user-portal'
-  | 'governance-liability';
+  | 'governance-liability'
+  | 'productivity-manual';
