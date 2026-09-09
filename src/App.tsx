@@ -90,7 +90,7 @@ export function App() {
         {/* {currentView === 'user-portal' && <UserPortal />}
         {currentView === 'productivity-manual' && <EnterpriseProductivityManual onBackToTopology={() => setCurrentView('topology')} />}
  */}
-        {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability'].includes(currentView) && (
+        {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability', 'productivity-manual'].includes(currentView) && (
           <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} />
         )}
       </main>
