@@ -20,16 +20,16 @@ import { UserPortal } from './components/UserPortal';
 import { Footer } from './components/Footer';
 
 export function App() {
-  React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentView]);
-
   const getInitialView = (): ViewMode => {
     const hash = window.location.hash.replace("#", "") as ViewMode;
     const validViews: ViewMode[] = ["topology", "docs", "matrix", "config", "table", "tester", "architect", "disclaimer", "custom-mcp", "privacy", "assets", "sitemap", "key-issuer", "user-portal", "governance-liability"];
     return validViews.includes(hash) ? hash : "topology";
   };
   const [currentView, setCurrentView] = useState<ViewMode>(getInitialView);
+
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentView]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedModule, setSelectedModule] = useState<MCPModule | null>(null);
