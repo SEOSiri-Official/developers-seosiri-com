@@ -34,8 +34,8 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
         </div>
 
         <p className="text-sm text-slate-300 leading-relaxed">
-          Modern technology teams frequently waste <strong>$600 to $2,500+ every month</strong> across fragmented subscriptions (separate tools for scraping, schema generators, proxy filters, log parsers, and custom API wrappers). 
-          The <strong>SEOSiri Model Context Protocol Suite</strong> consolidates these functions into sovereign, local-first execution layers.
+          Modern technology teams frequently waste <strong>$600 to $2,500+ every month</strong> across fragmented SaaS subscriptions (separate vendors for web scrapers, schema auditors, proxy filters, log parsers, and custom API wrappers). 
+          The <strong>SEOSiri Model Context Protocol Suite</strong> consolidates these functions into sovereign, local-first execution layers backed by global Cloudflare Workers edge nodes.
         </p>
 
         {/* Cost Comparison Table */}
@@ -98,4 +98,5 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
     </div>
   );
 };
+
 export default EnterpriseProductivityManual;

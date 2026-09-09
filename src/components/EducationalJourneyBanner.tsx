@@ -9,6 +9,12 @@ interface EducationalJourneyProps {
 export const EducationalJourneyBanner: React.FC<EducationalJourneyProps> = ({ onViewChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleNavigate = (view: ViewMode) => {
+    onViewChange(view);
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50 max-w-sm sm:max-w-md font-sans">
       {!isOpen ? (
@@ -47,7 +53,7 @@ export const EducationalJourneyBanner: React.FC<EducationalJourneyProps> = ({ on
                 <span>One-Click Config Generator</span>
               </div>
               <p className="text-[11px] text-slate-400 font-sans">Copy zero-install JSON snippets for Claude Desktop and Cursor IDE.</p>
-              <button onClick={() => { onViewChange('config'); setIsOpen(false); }} className="text-[11px] text-sky-400 hover:underline flex items-center gap-1 font-bold">
+              <button onClick={() => handleNavigate('config')} className="text-[11px] text-sky-400 hover:underline flex items-center gap-1 font-bold">
                 Launch Config Generator &rarr;
               </button>
             </div>
@@ -58,7 +64,7 @@ export const EducationalJourneyBanner: React.FC<EducationalJourneyProps> = ({ on
                 <span>Edge Sandbox Testing</span>
               </div>
               <p className="text-[11px] text-slate-400 font-sans">Simulate live JSON-RPC 2.0 tool calls across all 13 Cloudflare edge gateways.</p>
-              <button onClick={() => { onViewChange('tester'); setIsOpen(false); }} className="text-[11px] text-sky-400 hover:underline flex items-center gap-1 font-bold">
+              <button onClick={() => handleNavigate('tester')} className="text-[11px] text-sky-400 hover:underline flex items-center gap-1 font-bold">
                 Open Endpoint Tester &rarr;
               </button>
             </div>
@@ -69,7 +75,7 @@ export const EducationalJourneyBanner: React.FC<EducationalJourneyProps> = ({ on
                 <span>Enterprise Shield &amp; Productivity</span>
               </div>
               <p className="text-[11px] text-slate-400 font-sans">Deploy automated PII scrubbing (guard.seosiri.com) and cut team tooling bills.</p>
-              <button onClick={() => { onViewChange('productivity-manual'); setIsOpen(false); }} className="text-[11px] text-amber-300 hover:underline flex items-center gap-1 font-bold">
+              <button onClick={() => handleNavigate('productivity-manual')} className="text-[11px] text-amber-300 hover:underline flex items-center gap-1 font-bold">
                 Read Enterprise Manual &rarr;
               </button>
             </div>

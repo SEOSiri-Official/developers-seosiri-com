@@ -20,6 +20,10 @@ import { UserPortal } from './components/UserPortal';
 import { Footer } from './components/Footer';
 
 export function App() {
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentView]);
+
   const getInitialView = (): ViewMode => {
     const hash = window.location.hash.replace("#", "") as ViewMode;
     const validViews: ViewMode[] = ["topology", "docs", "matrix", "config", "table", "tester", "architect", "disclaimer", "custom-mcp", "privacy", "assets", "sitemap", "key-issuer", "user-portal", "governance-liability"];
