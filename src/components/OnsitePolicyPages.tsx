@@ -298,15 +298,15 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
     
       {/* PAGE 7: Enterprise AI Productivity & Cost-Optimization Manual */}
       {view === "productivity-manual" && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-8 text-left font-sans">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
             <div className="flex items-center space-x-3 text-amber-400">
               <Zap className="w-8 h-8" />
               <div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                   Enterprise AI Productivity &amp; Cost-Optimization Manual
                 </h1>
-                <p className="text-xs text-slate-400 font-mono mt-1">ROI Analysis • Tooling Consolidation • Zero-Leakage Edge</p>
+                <p className="text-xs text-slate-400 font-mono mt-1">Infrastructure Consolidation • ROI Strategy • Flagship Edge Shield</p>
               </div>
             </div>
             <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs rounded-full font-bold">
@@ -315,28 +315,90 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           </div>
 
           <p className="text-sm text-slate-300 leading-relaxed">
-            Engineering organizations often spend <strong className="text-white">$600 to $2,500+ monthly</strong> across disconnected SaaS subscriptions for separate scraping APIs, schema validators, WAF proxies, error log parsers, and custom wrappers. 
-            The <strong className="text-white">SEOSiri Model Context Protocol Suite</strong> consolidates these tasks into sovereign, local-first execution layers powered by global Cloudflare Workers edge nodes.
+            Engineering organizations often waste <strong className="text-white">$600 to $2,500+ monthly</strong> across disconnected vendor subscriptions for scraping proxies, schema checkers, web application firewalls, error parsers, and custom API wrappers. 
+            The <strong className="text-white">SEOSiri Model Context Protocol Suite</strong> consolidates these workflows into sovereign, local-first execution layers powered by global Cloudflare Workers edge nodes.
           </p>
 
+          {/* FLAGSHIP PRODUCT SPOTLIGHT: SEOSIRI SECURITY PROXY (guard.seosiri.com) */}
+          <div className="bg-gradient-to-br from-blue-950/70 via-slate-950 to-slate-950 p-6 sm:p-8 rounded-2xl border-2 border-sky-500/40 shadow-2xl space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="px-2.5 py-0.5 bg-sky-500/20 border border-sky-400/40 text-sky-300 font-mono text-[10px] font-bold rounded-full uppercase tracking-wider">
+                ★ Flagship Commercial Product
+              </span>
+              <span className="text-xs font-mono text-emerald-400 font-semibold">
+                ● TLS 1.3 Active Edge WAF
+              </span>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                <ShieldCheck className="w-6 h-6 text-sky-400" />
+                <span>SEOSiri Active Security Proxy &amp; WAF</span>
+              </h2>
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                Zero-trust reverse proxy deployed at <strong className="text-sky-300">guard.seosiri.com</strong>. Protects Web Apps, Mobile APIs (iOS/Android), and CMS platforms against OWASP Top 10 exploits, BOLA/IDOR, and automated bot probes with <strong>zero code modifications</strong> (Method A DNS CNAME Proxy).
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-2">
+              <div className="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <strong className="text-sky-300 block mb-1">Web &amp; API Defense</strong>
+                <span className="text-[11px] text-slate-400">SQLi, XSS, CSRF, BOLA/IDOR UUID enforcement, Mass Assignment DTO filtering.</span>
+              </div>
+              <div className="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <strong className="text-purple-300 block mb-1">Mobile App Shield</strong>
+                <span className="text-[11px] text-slate-400">Frida/Xposed anti-hooking, 60s sliding-window nonces, hardware keystore validation.</span>
+              </div>
+              <div className="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <strong className="text-emerald-300 block mb-1">GDPR Recital 49 &amp; CCPA</strong>
+                <span className="text-[11px] text-slate-400">Zero persistent clean logging. 30-day auto-purged threat telemetry with self-hosted DPA.</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
+              <div className="text-xs font-mono text-slate-400">
+                Plans: <strong className="text-white">$29 Starter</strong> • <strong className="text-white">$99 Pro</strong> • <strong className="text-white">$499 Enterprise</strong>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://guard.seosiri.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-mono font-semibold transition-colors flex items-center gap-1 border border-slate-700"
+                >
+                  <span>Visit guard.seosiri.com</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  onClick={() => onBackToTopology()}
+                  className="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-mono font-bold transition-all shadow-md"
+                >
+                  Explore in Graph &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Cost Comparison Table */}
           <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3 font-mono text-xs">
             <div className="flex items-center gap-2 text-emerald-400 font-bold uppercase text-[11px]">
-              <span>✓ How SEOSiri Consolidates Monthly Tech Spend</span>
+              <CheckCircle2 className="w-4 h-4" />
+              <span>How SEOSiri Consolidates Monthly Tech Spend</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-slate-300 text-[11px] border-collapse">
                 <thead>
                   <tr className="border-b border-slate-800 text-slate-500">
-                    <th className="py-2">Fragmented SaaS Tool</th>
+                    <th className="py-2">Fragmented SaaS Stack</th>
                     <th className="py-2">Typical Monthly Cost</th>
                     <th className="py-2 text-sky-400">SEOSiri Sovereign Replacement</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-900">
                   <tr>
-                    <td className="py-2.5">Third-Party Cloud WAF &amp; Proxy</td>
+                    <td className="py-2.5">Third-Party Cloud WAF &amp; Bot Proxy</td>
                     <td className="py-2.5 text-rose-400">$100 – $300/mo</td>
-                    <td className="py-2.5 text-emerald-400">guard.seosiri.com (Reverse Proxy WAF)</td>
+                    <td className="py-2.5 text-emerald-400 font-bold">guard.seosiri.com (Reverse Proxy WAF)</td>
                   </tr>
                   <tr>
                     <td className="py-2.5">Enterprise SEO &amp; Schema SaaS</td>
@@ -358,17 +420,42 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-950/80 to-slate-950 p-6 rounded-2xl border border-blue-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="text-white font-bold text-sm">Schedule an Enterprise Architecture Consultation</h3>
-              <p className="text-xs text-slate-400 mt-1 font-mono">Consolidate redundant SaaS tools and deploy zero-trust MCP gateways with Lead Systems Architect Momenul Ahmad.</p>
+          {/* TWO BALANCED ACTIONS: KEY ISSUER & B2B CONSULTATION */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 font-mono text-xs">
+            <div className="bg-slate-950 p-5 rounded-2xl border border-amber-500/30 space-y-3">
+              <div className="text-amber-400 font-bold flex items-center gap-1.5">
+                <Key className="w-4 h-4" />
+                <span>Instant API &amp; License Provisioning</span>
+              </div>
+              <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
+                Generate cryptographically signed HMAC-SHA256 license tokens for your team or clients with custom rate limits.
+              </p>
+              <button
+                onClick={() => {
+                  window.location.hash = "key-issuer";
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="w-full py-2.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 rounded-xl border border-amber-500/40 font-bold transition-all text-center block"
+              >
+                Open API Key Issuer Desk &rarr;
+              </button>
             </div>
-            <a
-              href="mailto:info@seosiri.com?subject=Enterprise%20Productivity%20%26%20Architecture%20Consultation"
-              className="px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold font-mono transition-all shadow-lg shrink-0"
-            >
-              Book Consultation &rarr;
-            </a>
+
+            <div className="bg-slate-950 p-5 rounded-2xl border border-blue-500/30 space-y-3">
+              <div className="text-sky-400 font-bold flex items-center gap-1.5">
+                <Mail className="w-4 h-4" />
+                <span>Bespoke Architecture Consultation</span>
+              </div>
+              <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
+                Schedule an enterprise systems audit with Lead Architect Momenul Ahmad to deploy custom VPC gateways.
+              </p>
+              <a
+                href="mailto:info@seosiri.com?subject=Enterprise%20Architecture%20%26%20Security%20Audit"
+                className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all text-center block shadow-md"
+              >
+                Contact Corporate Desk &rarr;
+              </a>
+            </div>
           </div>
         </div>
       )}
