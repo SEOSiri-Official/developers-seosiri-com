@@ -1,7 +1,7 @@
-import React from 'react';
-import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
-import { ViewMode } from '../types';
-import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
+import React from "react";
+import { CENTRAL_HUB_URL, LEAD_ARCHITECT } from "../data/mcpData";
+import { ViewMode } from "../types";
+import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from "lucide-react";
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -34,62 +34,59 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </h4>
             <ul className="space-y-1.5 text-[11px] font-sans">
               <li>
-                <button onClick={() => onViewChange('custom-mcp')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("custom-mcp")} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Zap className="w-3 h-3 text-amber-400" />
                   <span>Custom Enterprise MCP Services</span>
                 </button>
               </li>
-<li>
-                <button onClick={() => onViewChange('productivity-manual')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+              <li>
+                <button onClick={() => onViewChange("productivity-manual")} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Sparkles className="w-3 h-3 text-amber-400" />
                   <span>Enterprise Productivity Manual &amp; ROI</span>
                 </button>
               </li>
-                </button>
-              </li>
               <li>
-                <button onClick={() => onViewChange('governance-liability')} className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("governance-liability")} className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1 text-left">
                   <ShieldCheck className="w-3 h-3 text-amber-400" />
                   <span>AI Governance &amp; Liability</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("key-issuer")} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Key className="w-3 h-3 text-amber-400" />
                   <span>API Key Issuer Desk</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('user-portal')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("user-portal")} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <User className="w-3 h-3 text-sky-400" />
                   <span>Client Security Dashboard</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('privacy')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("privacy")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <Lock className="w-3 h-3 text-slate-400" />
                   <span>Privacy Policy</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('disclaimer')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("disclaimer")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-slate-400" />
                   <span>Disclaimer &amp; Usage Terms</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('assets')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("assets")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-slate-400" />
                   <span>Brand Assets &amp; Use Cases Policy</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('sitemap')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange("sitemap")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-blue-400" />
                   <span>Sitemap &amp; LLM.txt Index</span>
                 </button>
               </li>
-              
               <li>
                 <a
                   href="https://www.seosiri.com/p/security-policy.html"
