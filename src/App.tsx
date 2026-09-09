@@ -88,10 +88,10 @@ export function App() {
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
         {/* {currentView === 'user-portal' && <UserPortal />}
-        {currentView === 'productivity-manual' && <EnterpriseProductivityManual onBackToTopology={() => setCurrentView('topology')} />}
+        {currentView === 'productivity-manual' && <EnterpriseProductivityManual onBackToTopology={() => setCurrentView('topology')} onViewChange={setCurrentView} />}
  */}
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability', 'productivity-manual'].includes(currentView) && (
-          <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} />
+          <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} onViewChange={setCurrentView} />
         )}
       </main>
 

@@ -6,9 +6,10 @@ import { OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
 interface OnsitePolicyPagesProps {
   view: ViewMode;
   onBackToTopology: () => void;
+  onViewChange?: (view: ViewMode) => void;
 }
 
-export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBackToTopology }) => {
+export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBackToTopology, onViewChange }) => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-8 text-left">
       
@@ -432,7 +433,11 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
               </p>
               <button
                 onClick={() => {
-                  window.location.hash = "key-issuer";
+                  if (onViewChange) {
+                    onViewChange("key-issuer");
+                  } else {
+                    onBackToTopology();
+                  }
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className="w-full py-2.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 rounded-xl border border-amber-500/40 font-bold transition-all text-center block"
