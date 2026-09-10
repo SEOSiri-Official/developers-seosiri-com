@@ -126,14 +126,14 @@ export const LEAD_ARCHITECT: LeadArchitectProfile = {
   role: 'Lead AI Search & MCP Suite Architect',
   title: 'Founder & Principal AI Systems Architect',
   organization: 'SEOSiri Enterprise Labs',
-  bio: 'Pioneer in Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and Model Context Protocol (MCP) tool design for autonomous LLM search agents. Creator and lead architect of SEOSiri\'s 15 PyPI open-source MCP packages.',
+  bio: 'Pioneer in Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and Model Context Protocol (MCP) tool design for autonomous LLM search agents. Creator and lead architect of SEOSiri's 21 published MCP packages and 199 autonomous tools.',
   website: 'https://www.seosiri.com',
   github: 'https://github.com/SEOSiri-Official',
   email: OFFICIAL_CORPORATE_EMAIL,
   avatarUrl: 'https://github.com/MOBILEPHONE.png',
   keyContributions: [
-    'Architected all 15 official SEOSiri Open-Source MCP Packages published on PyPI for Claude Desktop & Cursor AI.',
-    'Designed 153 high-performance MCP tools connecting via Cloudflare Edge Gateways.',
+    'Architected all 21 official SEOSiri MCP Packages published on PyPI for Claude Desktop & Cursor AI.',
+    'Designed 199 high-performance autonomous MCP tools connecting via Cloudflare Edge Gateways.',
     'Engineered AEO & GEO citation tracking algorithms for generative engines (ChatGPT, Gemini, Perplexity).',
     'Pioneered AI Search Governance and bot permission audit protocols (GPTBot, ClaudeBot, Google-Extended).'
   ],
