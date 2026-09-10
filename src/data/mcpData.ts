@@ -126,7 +126,7 @@ export const LEAD_ARCHITECT: LeadArchitectProfile = {
   role: 'Lead AI Search & MCP Suite Architect',
   title: 'Founder & Principal AI Systems Architect',
   organization: 'SEOSiri Enterprise Labs',
-  bio: 'Pioneer in Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and Model Context Protocol (MCP) tool design for autonomous LLM search agents. Creator and lead architect of SEOSiri's 21 published MCP packages and 199 autonomous tools.',
+  bio: "Pioneer in Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and Model Context Protocol (MCP) tool design for autonomous LLM search agents. Creator and lead architect of SEOSiri's 21 published MCP packages and 199 autonomous tools.",
   website: 'https://www.seosiri.com',
   github: 'https://github.com/SEOSiri-Official',
   email: OFFICIAL_CORPORATE_EMAIL,
