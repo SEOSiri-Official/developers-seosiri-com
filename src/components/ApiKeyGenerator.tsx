@@ -288,6 +288,19 @@ export const ApiKeyGenerator: React.FC = () => {
               <option value="AEO">AEO/GEO Intelligence MCP ($99/mo)</option>
               <option value="SCHEMA">Content Schema &amp; GA4 MCP ($99/mo)</option>
               <option value="KEYWORDS">Keyword Cluster &amp; RAG ($99/mo)</option>
+              <option value="GOVERNANCE">AI Search Governance MCP ($99/mo)</option>
+              <option value="ENTITY">Semantic Entity &amp; Knowledge Graph MCP ($99/mo)</option>
+              <option value="DNS">DNS &amp; Security Audit MCP ($99/mo)</option>
+              <option value="OPS">Ops Comm &amp; Incident Response MCP ($99/mo)</option>
+              <option value="DB">Database Infra &amp; Query MCP ($99/mo)</option>
+              <option value="ETL">Enterprise ETL &amp; Data Pipeline MCP ($99/mo)</option>
+              <option value="LAMBDA">Lambda Big Data Ingestion MCP ($99/mo)</option>
+              <option value="VSCODE">VS Code Suite Manager MCP ($99/mo)</option>
+              <option value="APIGUARD">Universal API Security Guard MCP ($99/mo)</option>
+              <option value="BIOROBOTICS">Bio-Robotics Kinematics Core MCP ($99/mo)</option>
+              <option value="LEARNING">EdTech Learning Orchestrator MCP ($99/mo)</option>
+              <option value="BIOMETRIC">Biometric IoT Hardware Bridge MCP ($99/mo)</option>
+              <option value="CENTRAL">Universal Central MCP Gateway ($99/mo)</option>
               <option value="ALL">🌟 ALL Ecosystem MCPs (Full 21 Suites - $299/mo)</option>
             </select>
           </div>
