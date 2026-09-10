@@ -168,7 +168,7 @@ export const ArchitectProfile: React.FC = () => {
             Enterprise Manifesto by Momenul Ahmad
           </span>
           <h3 className="text-xl font-bold text-white mt-1">
-            The SEOSiri 15-Server Model Context Protocol (MCP) Standard
+            The SEOSiri Enterprise Model Context Protocol (MCP) Standard
           </h3>
         </div>
 
@@ -179,7 +179,7 @@ export const ArchitectProfile: React.FC = () => {
             </div>
             <h4 className="font-bold text-white text-base">1. Autonomous LLM Tooling</h4>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Standardizing {TOTAL_MCP_TOOLS_COUNT} specialized LLM tools across Claude Desktop, Cursor AI, and synthetic search agents so AI engines reason directly over live SEO, DNS, and Knowledge Graph data.
+              Standardizing {TOTAL_MCP_TOOLS_COUNT} specialized LLM tools across Claude Desktop, Cursor AI, Atlassian Rovo, and Edge Proxy WAFs so AI engines reason directly over live SEO, DNS, and Knowledge Graph data.
             </p>
           </div>
 
