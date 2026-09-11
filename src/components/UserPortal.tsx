@@ -41,7 +41,7 @@ export const UserPortal: React.FC = () => {
     country: 'US',
     expiresAtUnix: Math.floor(Date.now() / 1000) + (29 * 86400),
     domain: 'api.acme-store.com',
-    rawKey: 'PRO_US_acme-store_SECURITY_1818241500_8a92f1b4',
+    rawKey: 'PRO_US_acme-store_SECURITY_1818241500_eb1705c8',
     isValid: true
   });
 
