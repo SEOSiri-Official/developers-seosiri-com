@@ -47,16 +47,23 @@ export const UserPortal: React.FC = () => {
 
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
 
-  // Gateways lookup per scope
+  // Synchronized 1:1 with Admin API Key Issuer & Cloudflare Edge Gateways
   const gatewayUrlMap: Record<string, string> = {
     SECURITY: "guard.seosiri.com",
-    BIOPHARMA: "biopharma.seosiri.com",
-    IAIG: "iaig.seosiri.com",
     ROVOMCP: "rovomcp.seosiri.com",
+    BIOPHARMA: "biopharma.seosiri.com",
     BIOASSAY: "bioassay.seosiri.com",
+    IAIG: "iaig.seosiri.com",
     AEO: "aeo.seosiri.com",
     SCHEMA: "schema.seosiri.com",
     KEYWORDS: "keywords.seosiri.com",
+    GOVERNANCE: "governance.seosiri.com",
+    OPS: "ops.seosiri.com",
+    DB: "db.seosiri.com",
+    BIOROBOTICS: "mcp.seosiri.com",
+    LEARNING: "mcp.seosiri.com",
+    BIOMETRIC: "mcp.seosiri.com",
+    ETL: "hubappapi.seosiri.com",
     ALL: "developers.seosiri.com"
   };
 
@@ -341,24 +348,34 @@ export const UserPortal: React.FC = () => {
           </div>
         )}
 
-        {/* 7. Bottom Settlement / Extension Banner (Matches Screenshot) */}
+      {/* 7. Commercial License Purchase & Settlement Desk */}
         <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div>
-            <p className="text-slate-200 font-bold m-0">Need to extend or add seats for your organization?</p>
+            <p className="text-slate-200 font-bold m-0">Purchase New License or Extend Seats:</p>
             <p className="text-slate-400 text-[11px] mt-0.5 mb-0">
-              Renew via verified Payoneer account: <strong className="text-emerald-400">badhan_pbn@yahoo.com</strong>
+              Transfer settlement ($29 Starter / $99 Pro / $499 Enterprise) to Payoneer: <strong className="text-emerald-400 select-all">badhan_pbn@yahoo.com</strong>
             </p>
+            <span className="text-[10px] text-slate-500 mt-1 block">
+              Include your Company Name and Target Scope ({license.scope}) in the note for 15-minute activation.
+            </span>
           </div>
-          <a
-            href={`mailto:${OFFICIAL_CORPORATE_EMAIL}?subject=License%20Extension%20Inquiry%20-%20${license.clientId}`}
-            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0"
-          >
-            <span>Request Invoice Extension</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href="#key-issuer"
+              onClick={() => { window.location.hash = 'key-issuer'; window.location.reload(); }}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+            >
+              <span>Purchase / Order Key</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href={`mailto:${OFFICIAL_CORPORATE_EMAIL}?subject=License%20Purchase%20Inquiry%20-%20${license.clientId}`}
+              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+            >
+              <span>Email Sales Desk</span>
+            </a>
+          </div>
         </div>
-
-      </div>
     </div>
   );
 };
