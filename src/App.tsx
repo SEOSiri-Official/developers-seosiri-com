@@ -87,9 +87,7 @@ export function App() {
         {currentView === 'table' && <DirectoryTable modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
-        {/* {currentView === 'user-portal' && <UserPortal />}
-        {currentView === 'productivity-manual' && <EnterpriseProductivityManual onBackToTopology={() => setCurrentView('topology')} onViewChange={setCurrentView} />}
- */}
+{currentView === 'user-portal' && <UserPortal />}
         {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability', 'productivity-manual'].includes(currentView) && (
           <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} onViewChange={setCurrentView} />
         )}
