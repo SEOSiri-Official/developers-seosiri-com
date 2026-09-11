@@ -82,6 +82,30 @@ export interface GraphLink {
   type?: 'primary' | 'pypi' | 'edge' | 'guide' | 'planned';
 }
 
+// Existing ViewMode, MCPTool, MCPModule, GraphNode, GraphLink remain unchanged...
+
+// B2B User Model & Licensing Entitlement Interfaces
+export interface ApiKeyRecord {
+  keyString: string;
+  scope: string;
+  tier: 'PRO' | 'ENTERPRISE';
+  country: string;
+  expiresAtUnix: number;
+  monthlyValueUSD: number;
+  status: 'ACTIVE' | 'WARNING_EXPIRING' | 'EXPIRED';
+}
+
+export interface SEOSiriUserModel {
+  uid: string;
+  email: string;
+  organization: string;
+  projectDomain: string;
+  activeTier: 'PRO' | 'ENTERPRISE';
+  assignedScopes: string[];
+  activeKeys: ApiKeyRecord[];
+  createdAt: string;
+}
+
 export type ViewMode = 
   | 'topology' 
   | 'docs' 
