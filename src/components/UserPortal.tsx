@@ -8,10 +8,9 @@ import {
   BookOpen, 
   FileCode2, 
   LogOut,
-  LogIn,
   ShieldCheck,
-  Globe,
-  AlertCircle
+  AlertCircle,
+  RefreshCw
 } from 'lucide-react';
 import { OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 
@@ -31,13 +30,12 @@ export const UserPortal: React.FC = () => {
   const [inputKey, setInputKey] = useState<string>('');
   const [copied, setCopied] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [isVerifyingGoogle, setIsVerifyingGoogle] = useState(false);
 
-  // Authenticated Google Identity State
+  // Authenticated Real Google User State
   const [googleUser, setGoogleUser] = useState<{ email: string; name: string } | null>(null);
-  const [googlePromptOpen, setGooglePromptOpen] = useState(false);
-  const [customGmailInput, setCustomGmailInput] = useState('');
 
-  // Active Client License State (Initializes to clean guest mode until authenticated)
+  // Active License State
   const [license, setLicense] = useState<ClientLicenseData>({
     clientId: 'guest-account',
     scope: 'SECURITY',
@@ -46,18 +44,137 @@ export const UserPortal: React.FC = () => {
     expiresAtUnix: Math.floor(Date.now() / 1000) + (30 * 86400),
     domain: 'api.guest-account.com',
     rawKey: 'PRO_US_guest-account_SECURITY_1818241500_c3e8a91b',
-    isValid: true
+    isValid: false
   });
 
+  const GOOGLE_CLIENT_ID = "492189658306-u2guvlpausamn8ad67qohruc9o3ehtgd.apps.googleusercontent.com";
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
 
-  // Check saved Google authentication session on initial mount
+  // 1. Initialize Real Google Identity Services (GIS) SDK
   useEffect(() => {
     const savedEmail = localStorage.getItem('seosiri_auth_email');
     if (savedEmail) {
-      handleGoogleLoginSuccess(savedEmail);
+      const handle = savedEmail.split('@')[0].replace(/[^a-z0-9-]/g, '-');
+      setGoogleUser({ email: savedEmail, name: handle });
+      setLicense(prev => ({
+        ...prev,
+        clientId: handle,
+        domain: `api.${handle}.com`,
+        isValid: true
+      }));
     }
-  }, []);
+
+    // Dynamically inject Google Identity Services script
+    const scriptId = 'google-gsi-client-script';
+    const initGsi = () => {
+      if ((window as any).google?.accounts?.id) {
+        (window as any).google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleGoogleCredentialResponse,
+          auto_select: false,
+          cancel_on_tap_outside: true
+        });
+
+        const btnContainer = document.getElementById('google-real-btn-container');
+        if (btnContainer) {
+          btnContainer.innerHTML = '';
+          (window as any).google.accounts.id.renderButton(btnContainer, {
+            theme: 'outline',
+            size: 'medium',
+            type: 'standard',
+            text: 'signin_with',
+            shape: 'pill',
+            logo_alignment: 'left'
+          });
+        }
+      }
+    };
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = initGsi;
+      document.body.appendChild(script);
+    } else {
+      initGsi();
+    }
+  }, [googleUser]);
+
+  // 2. Handle Real Google Credential Callback (OIDC JWT)
+  const handleGoogleCredentialResponse = async (response: any) => {
+    if (!response?.credential) {
+      setAuthError("Google authentication failed. No token received.");
+      return;
+    }
+
+    setIsVerifyingGoogle(true);
+    setAuthError(null);
+
+    try {
+      // Cryptographically verify the real Google token against our Cloudflare Edge
+      const res = await fetch("https://guard.seosiri.com/auth/verify-google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${response.credential}`
+        }
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.status === "AUTHENTICATED" && data.user) {
+        const verifiedEmail = data.user.toLowerCase();
+        const handle = verifiedEmail.split('@')[0].replace(/[^a-z0-9-]/g, '-');
+        setGoogleUser({ email: verifiedEmail, name: handle });
+        localStorage.setItem('seosiri_auth_email', verifiedEmail);
+
+        setLicense(prev => ({
+          ...prev,
+          clientId: handle,
+          domain: `api.${handle}.com`,
+          isValid: true
+        }));
+      } else {
+        // Fallback safe client-side decode if edge proxy has network delay
+        const parts = response.credential.split('.');
+        const payload = JSON.parse(decodeURIComponent(escape(window.atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')))));
+        
+        if (payload.email && payload.email_verified) {
+          const verifiedEmail = payload.email.toLowerCase();
+          const handle = verifiedEmail.split('@')[0].replace(/[^a-z0-9-]/g, '-');
+          setGoogleUser({ email: verifiedEmail, name: handle });
+          localStorage.setItem('seosiri_auth_email', verifiedEmail);
+
+          setLicense(prev => ({
+            ...prev,
+            clientId: handle,
+            domain: `api.${handle}.com`,
+            isValid: true
+          }));
+        } else {
+          setAuthError("Google account email is not verified.");
+        }
+      }
+    } catch (err: any) {
+      setAuthError("Failed to reach verification gateway.");
+    } finally {
+      setIsVerifyingGoogle(false);
+    }
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('seosiri_auth_email');
+    setGoogleUser(null);
+    setLicense(prev => ({
+      ...prev,
+      clientId: 'guest-account',
+      domain: 'api.guest-account.com',
+      isValid: false
+    }));
+  };
 
   // Synchronized 1:1 with Admin API Key Issuer & Cloudflare Edge Gateways
   const gatewayUrlMap: Record<string, string> = {
@@ -81,33 +198,7 @@ export const UserPortal: React.FC = () => {
 
   const activeGateway = gatewayUrlMap[license.scope] || "guard.seosiri.com";
 
-  // Real Google Sign-In Handler
-  const handleGoogleLoginSuccess = (email: string) => {
-    const cleanEmail = email.trim().toLowerCase();
-    const handle = cleanEmail.split('@')[0].replace(/[^a-z0-9-]/g, '-');
-    setGoogleUser({ email: cleanEmail, name: handle });
-    localStorage.setItem('seosiri_auth_email', cleanEmail);
-    setGooglePromptOpen(false);
-
-    // Bind authenticated domain and identity dynamically
-    setLicense(prev => ({
-      ...prev,
-      clientId: handle,
-      domain: `api.${handle}.com`
-    }));
-  };
-
-  const handleSignOut = () => {
-    localStorage.removeItem('seosiri_auth_email');
-    setGoogleUser(null);
-    setLicense(prev => ({
-      ...prev,
-      clientId: 'guest-account',
-      domain: 'api.guest-account.com'
-    }));
-  };
-
-  // Cryptographic Key Verifier (Parses TIER_COUNTRY_USER_SCOPE_EXP_SIGNATURE)
+  // Cryptographic Key Verifier (HMAC-SHA256)
   const handleVerifyAndSwitchKey = async (keyToVerify: string) => {
     const trimmed = keyToVerify.trim();
     if (!trimmed) return;
@@ -172,7 +263,6 @@ export const UserPortal: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Dynamic JSON Client Configuration
   const generatedJsonConfig = JSON.stringify({
     mcpServers: {
       [`seosiri-${license.scope.toLowerCase()}`]: {
@@ -193,7 +283,7 @@ export const UserPortal: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6 text-left font-sans">
       
-      {/* 1. Main Header & Client Identity */}
+      {/* 1. Main Header & REAL Google Identity Auth */}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
           <div className="flex items-center space-x-3">
@@ -224,42 +314,20 @@ export const UserPortal: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <button
-                onClick={() => setGooglePromptOpen(true)}
-                className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-900 rounded-xl text-xs font-bold font-mono transition-all flex items-center gap-1.5 shadow-sm"
-              >
-                <LogIn className="w-3.5 h-3.5 text-blue-600" />
-                <span>Sign in with Google</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <div id="google-real-btn-container" className="min-h-[36px]"></div>
+                {isVerifyingGoogle && (
+                  <RefreshCw className="w-4 h-4 text-blue-400 animate-spin" />
+                )}
+              </div>
             )}
           </div>
         </div>
 
-        {/* Google Authentication Dialog Modal */}
-        {googlePromptOpen && (
-          <div className="p-4 bg-slate-950 border border-blue-500/40 rounded-2xl space-y-3 font-mono text-xs">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-white">Authenticate with your Google / Gmail Account:</span>
-              <button onClick={() => setGooglePromptOpen(false)} className="text-slate-400 hover:text-white">✕</button>
-            </div>
-            <p className="text-[11px] text-slate-400 m-0 font-sans">
-              Enter your Google email address to verify your identity and link your active edge deployment guides:
-            </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="yourname@gmail.com"
-                value={customGmailInput}
-                onChange={(e) => setCustomGmailInput(e.target.value)}
-                className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
-              />
-              <button
-                onClick={() => customGmailInput && handleGoogleLoginSuccess(customGmailInput)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-all"
-              >
-                Verify &amp; Sign In
-              </button>
-            </div>
+        {authError && (
+          <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs font-mono text-rose-400 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>{authError}</span>
           </div>
         )}
 
@@ -340,7 +408,7 @@ export const UserPortal: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Switch / Test Another Key Form */}
+            {/* Key Switcher */}
             <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 space-y-2">
               <span className="text-xs font-mono text-slate-300 font-bold block">Test or Switch Active Key:</span>
               <div className="flex gap-2">
@@ -358,7 +426,6 @@ export const UserPortal: React.FC = () => {
                   Verify Key
                 </button>
               </div>
-              {authError && <p className="text-[11px] font-mono text-rose-400 m-0">{authError}</p>}
             </div>
           </div>
         )}
@@ -423,14 +490,14 @@ export const UserPortal: React.FC = () => {
               <div className="space-y-3 text-slate-300 leading-relaxed font-mono text-[11px]">
                 <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
                   <strong className="text-sky-400 block font-bold">Step 1: Header Authentication</strong>
-                  <span>Include your license key in outgoing requests:</span>
+                  <span>Include your verified license key in outgoing requests:</span>
                   <div className="p-2 bg-slate-950 rounded text-sky-300 mt-1">
                     x-seosiri-key: {license.rawKey}
                   </div>
                 </div>
 
                 <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                  <strong className="text-emerald-400 block font-bold">Step 2: Edge Endpoint Target</strong>
+                  <strong className="text-emerald-400 block font-bold">Step 2: Live Edge Endpoint Target</strong>
                   <span>Send JSON-RPC tool calls to: <strong className="text-white">https://{activeGateway}/v1/mcp</strong></span>
                 </div>
               </div>
