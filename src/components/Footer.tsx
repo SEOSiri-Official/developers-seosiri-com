@@ -34,39 +34,15 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </h4>
             <ul className="space-y-1.5 text-[11px] font-sans">
               <li>
-                <button onClick={() => onViewChange("custom-mcp")} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
-                  <Zap className="w-3 h-3 text-amber-400" />
-                  <span>Custom Enterprise MCP Services</span>
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onViewChange("productivity-manual")} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
-                  <Sparkles className="w-3 h-3 text-amber-400" />
-                  <span>Enterprise Productivity Manual &amp; ROI</span>
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onViewChange("governance-liability")} className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1 text-left">
-                  <ShieldCheck className="w-3 h-3 text-amber-400" />
-                  <span>AI Governance &amp; Liability</span>
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onViewChange("key-issuer")} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
-                  <Key className="w-3 h-3 text-amber-400" />
-                  <span>API Key Issuer Desk</span>
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onViewChange("user-portal")} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
-                  <User className="w-3 h-3 text-sky-400" />
-                  <span>Client Security Dashboard</span>
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onViewChange("privacy")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <a
+                  href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left"
+                >
                   <Lock className="w-3 h-3 text-slate-400" />
-                  <span>Privacy Policy</span></a>
+                  <span>Privacy Policy</span>
+                </a>
               </li>
               <li>
                 <button onClick={() => onViewChange("disclaimer")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
