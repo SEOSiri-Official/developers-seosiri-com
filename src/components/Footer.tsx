@@ -67,7 +67,6 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 <button onClick={() => onViewChange("privacy")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <Lock className="w-3 h-3 text-slate-400" />
                   <span>Privacy Policy</span></a>
-                </button>
               </li>
               <li>
                 <button onClick={() => onViewChange("disclaimer")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
