@@ -193,7 +193,8 @@ export const ApiKeyGenerator: React.FC = () => {
       `info@seosiri.com`
     );
 
-    window.location.href = `mailto:${customerEmail}?subject=${subject}&body=${body}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${customerEmail}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank');
     setEmailStatus(`License email pre-loaded for ${customerEmail}!`);
   };
 
