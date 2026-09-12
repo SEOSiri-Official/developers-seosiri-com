@@ -1,7 +1,7 @@
-import React from "react";
-import { CENTRAL_HUB_URL, LEAD_ARCHITECT } from "../data/mcpData";
-import { ViewMode } from "../types";
-import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from "lucide-react";
+import React from 'react';
+import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
+import { ViewMode } from '../types';
+import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -26,13 +26,43 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </p>
           </div>
 
-          {/* Col 2: Compliance & Onsite Policies */}
+          {/* Col 2: Compliance & Onsite Policies (ALL 10 ITEMS RESTORED) */}
           <div className="space-y-2 text-left">
             <h4 className="text-slate-200 font-bold uppercase text-[10px] tracking-wider font-mono flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               Compliance &amp; Onsite Policies
             </h4>
             <ul className="space-y-1.5 text-[11px] font-sans">
+              <li>
+                <button onClick={() => onViewChange('custom-mcp')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <Zap className="w-3 h-3 text-amber-400" />
+                  <span>Custom Enterprise MCP Services</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onViewChange('manual')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span>Enterprise Productivity Manual &amp; ROI</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onViewChange('governance')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <ShieldCheck className="w-3 h-3 text-amber-400" />
+                  <span>AI Governance &amp; Liability</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onViewChange('key-issuer')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <Key className="w-3 h-3 text-amber-400" />
+                  <span>API Key Issuer Desk</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onViewChange('user-portal')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <User className="w-3 h-3 text-sky-400" />
+                  <span>Client Security Dashboard</span>
+                </button>
+              </li>
               <li>
                 <a
                   href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html"
@@ -45,37 +75,32 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 </a>
               </li>
               <li>
-                <button onClick={() => onViewChange("disclaimer")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange('disclaimer')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-slate-400" />
                   <span>Disclaimer &amp; Usage Terms</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange("assets")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange('assets')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-slate-400" />
                   <span>Brand Assets &amp; Use Cases Policy</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange("sitemap")} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange('sitemap')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <FileText className="w-3 h-3 text-blue-400" />
                   <span>Sitemap &amp; LLM.txt Index</span>
                 </button>
               </li>
               <li>
-                <a
-                  href="https://www.seosiri.com/p/security-policy.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left"
-                >
+                <button onClick={() => onViewChange('security')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
                   <ShieldCheck className="w-3 h-3 text-slate-400" />
                   <span>Security Policy &amp; security.txt</span>
-                </a>
+                </button>
               </li>
             </ul>
           </div>
-            
+
           {/* Col 3: Quick Navigation & Portals */}
           <div className="space-y-2 text-left">
             <h4 className="text-slate-200 font-bold uppercase text-[10px] tracking-wider font-mono flex items-center gap-1.5">
@@ -122,10 +147,10 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
           </p>
         </div>
 
-        {/* Bottom Bar - Clean Copyright Only */}
+        {/* Bottom Bar */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px]">
           <p className="text-slate-400 text-center sm:text-left m-0">
-            © {new Date().getFullYear()} SEOSiri Enterprise Labs. Designed by <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener noreferrer" className="text-slate-200 font-bold hover:text-sky-400 transition-colors">{LEAD_ARCHITECT.name}</a>. Licensed under MIT Open Source.
+            © 2026 SEOSiri Enterprise Labs. Designed by <a href="https://www.seosiri.com/p/about.html" rel="nofollow noopener noreferrer" className="text-slate-200 font-bold hover:text-sky-400 transition-colors">{LEAD_ARCHITECT.name}</a>. Licensed under MIT Open Source.
           </p>
         </div>
 
@@ -133,3 +158,5 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
     </footer>
   );
 };
+
+export default Footer;
