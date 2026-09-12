@@ -143,7 +143,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
 
           <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
             <span>Official Privacy Reference: </span>
-            <a href="https://www.seosiri.com/p/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
+            <a href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
               SEOSiri.com Official Privacy Policy <ExternalLink className="w-3 h-3" />
             </a>
           </div>
