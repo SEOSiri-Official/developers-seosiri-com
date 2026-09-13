@@ -68,6 +68,55 @@ interface OnsitePolicyPagesProps {
         </div>
       )}
 
+
+      {/* PAGE: Enterprise Productivity Manual & ROI (#manual) */}
+      {view === 'manual' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <Sparkles className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              Productivity &amp; ROI
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Enterprise Productivity Manual &amp; ROI</h1>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            Autonomous AI agents connected via the SEOSiri Model Context Protocol Suite reduce manual developer operations by up to 84%. Learn how enterprise engineering teams deploy local-first MCP tools with measured efficiency gains.
+          </p>
+        </div>
+      )}
+
+      {/* PAGE: AI Governance & Liability (#governance) */}
+      {view === 'governance' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <ShieldCheck className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              Governance &amp; Liability
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Governance &amp; Corporate Liability Framework</h1>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations.
+          </p>
+        </div>
+      )}
+
+      {/* PAGE: Security Policy & security.txt (#security) */}
+      {view === 'security' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
+          <div className="flex items-center space-x-3 text-sky-400">
+            <ShieldCheck className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/25">
+              RFC 9116 Compliant
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">Security Policy &amp; security.txt</h1>
+          <p className="text-xs text-slate-300 font-sans leading-relaxed">
+            SEOSiri adheres to RFC 9116 security vulnerability disclosure standards. Our public security.txt file is deployed across all edge gateways.
+          </p>
+        </div>
+      )}
+
 export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBackToTopology, onViewChange }) => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-8 text-left">
