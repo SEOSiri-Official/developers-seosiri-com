@@ -1,121 +1,25 @@
 import React from 'react';
-import { Sparkles, ViewMode } from '../types';
-import { Sparkles, ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, CheckCircle2, Key, Mail } from 'lucide-react';
-import { Sparkles, OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
+import { ViewMode } from '../types';
+import {
+  Sparkles,
+  ShieldCheck,
+  FileText,
+  Zap,
+  Lock,
+  ExternalLink,
+  ArrowLeft,
+  CheckCircle2,
+  Key,
+  Mail,
+  User
+} from 'lucide-react';
+import { OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
 
 interface OnsitePolicyPagesProps {
   view: ViewMode;
   onBackToTopology: () => void;
   onViewChange?: (view: ViewMode) => void;
 }
-
-      {/* PAGE: Enterprise Productivity Manual & ROI */}
-      {view === "manual" && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
-          <div className="flex items-center space-x-3 text-amber-400">
-            <Sparkles className="w-8 h-8" />
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Enterprise Productivity Manual &amp; ROI</h1>
-          </div>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            Autonomous AI agents connected via the SEOSiri Model Context Protocol Suite reduce manual developer operations by up to 84%. Learn how enterprise engineering teams deploy local-first MCP tools with measured efficiency gains.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
-            <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
-              <strong className="text-emerald-400 block font-bold">84% Faster Data Ingestion</strong>
-              <p className="text-slate-400 m-0">Zero-latency webhook ingestion via Cloudflare Edge Gateways.</p>
-            </div>
-            <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
-              <strong className="text-sky-400 block font-bold">100% Deterministic Tool Calls</strong>
-              <p className="text-slate-400 m-0">Strict JSON schema validation eliminates model hallucination.</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* PAGE: AI Governance & Liability */}
-      {view === "governance" && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
-          <div className="flex items-center space-x-3 text-amber-400">
-            <ShieldCheck className="w-8 h-8" />
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Governance &amp; Corporate Liability Framework</h1>
-          </div>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations.
-          </p>
-          <ul className="space-y-2 text-xs text-slate-300 list-disc pl-5 leading-relaxed font-sans">
-            <li><strong>Zero Server-Side Logging:</strong> Tool calls executed locally do not log, persist, or transmit code or proprietary queries.</li>
-            <li><strong>Automated SHA-256 PII Redaction:</strong> Un-hashed customer personal identifiers are stripped before reaching LLMs.</li>
-          </ul>
-        </div>
-      )}
-
-      {/* PAGE: Security Policy & security.txt */}
-      {view === "security" && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
-          <div className="flex items-center space-x-3 text-sky-400">
-            <ShieldCheck className="w-8 h-8" />
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">Security Policy &amp; RFC 9116 security.txt</h1>
-          </div>
-          <p className="text-xs text-slate-300 font-sans leading-relaxed">
-            SEOSiri adheres to RFC 9116 security vulnerability disclosure standards. Our public security.txt file is deployed across all 13 edge gateways.
-          </p>
-          <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-sky-300 space-y-1">
-            <p className="m-0">Contact: mailto:info@seosiri.com</p>
-            <p className="m-0">Expires: 2027-12-31T23:59:59.000Z</p>
-            <p className="m-0">Preferred-Languages: en</p>
-            <p className="m-0">Canonical: https://developers.seosiri.com/.well-known/security.txt</p>
-          </div>
-        </div>
-      )}
-
-
-      {/* PAGE: Enterprise Productivity Manual & ROI (#manual) */}
-      {view === 'manual' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
-          <div className="flex items-center space-x-3 text-amber-400">
-            <Sparkles className="w-8 h-8" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-              Productivity &amp; ROI
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Enterprise Productivity Manual &amp; ROI</h1>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            Autonomous AI agents connected via the SEOSiri Model Context Protocol Suite reduce manual developer operations by up to 84%. Learn how enterprise engineering teams deploy local-first MCP tools with measured efficiency gains.
-          </p>
-        </div>
-      )}
-
-      {/* PAGE: AI Governance & Liability (#governance) */}
-      {view === 'governance' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
-          <div className="flex items-center space-x-3 text-amber-400">
-            <ShieldCheck className="w-8 h-8" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-              Governance &amp; Liability
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Governance &amp; Corporate Liability Framework</h1>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations.
-          </p>
-        </div>
-      )}
-
-      {/* PAGE: Security Policy & security.txt (#security) */}
-      {view === 'security' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
-          <div className="flex items-center space-x-3 text-sky-400">
-            <ShieldCheck className="w-8 h-8" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/25">
-              RFC 9116 Compliant
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">Security Policy &amp; security.txt</h1>
-          <p className="text-xs text-slate-300 font-sans leading-relaxed">
-            SEOSiri adheres to RFC 9116 security vulnerability disclosure standards. Our public security.txt file is deployed across all edge gateways.
-          </p>
-        </div>
-      )}
 
 export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBackToTopology, onViewChange }) => {
   return (
@@ -192,41 +96,71 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         </div>
       )}
 
-      {/* PAGE 2: Disclaimer & Usage Terms */}
-      {view === 'disclaimer' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
-          <div className="flex items-center space-x-3 text-sky-400">
-            <FileText className="w-8 h-8" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-              Legal Disclaimer
+      {/* PAGE 2: Enterprise Productivity Manual & ROI (#manual) */}
+      {view === 'manual' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <Sparkles className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              Productivity &amp; ROI
             </span>
           </div>
-
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            SEOSiri Onsite Disclaimer &amp; Usage Terms
-          </h1>
-
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Enterprise Productivity Manual &amp; ROI</h1>
           <p className="text-sm text-slate-300 leading-relaxed">
-            All open-source Model Context Protocol (MCP) packages, PyPI/NPM libraries, and Cloudflare Worker edge gateways published under <strong>SEOSiri-Official</strong> are provided "as-is" under the MIT Open Source License.
+            Autonomous AI agents connected via the SEOSiri Model Context Protocol Suite reduce manual developer operations by up to 84%. Learn how enterprise engineering teams deploy local-first MCP tools with measured efficiency gains.
           </p>
-
-          <div className="space-y-3 bg-slate-950 p-5 rounded-2xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
-            <h3 className="font-bold text-white text-sm">Local Autonomy &amp; Execution Boundary</h3>
-            <p>
-              SEOSiri MCP tools execute locally on your machine or inside your private VPC. Users and AI agents are responsible for validating SQL statement parameters, API tokens, and local database write permissions before executing tool calls.
-            </p>
-          </div>
-
-          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
-            <span>Official Policy Reference: </span>
-            <a href="https://www.seosiri.com/p/disclaimer.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
-              SEOSiri.com Official Disclaimer <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
         </div>
       )}
 
-      {/* PAGE 3: Privacy Policy */}
+      {/* PAGE 3: AI Governance & Liability (#governance) */}
+      {view === 'governance' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <ShieldCheck className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              Governance &amp; Liability
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Governance &amp; Corporate Liability Framework</h1>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations.
+          </p>
+        </div>
+      )}
+
+      {/* PAGE 4: API Key Issuer Desk */}
+      {view === 'key-issuer' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <Key className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              B2B Licensing Desk
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">API Key Issuer Desk</h1>
+          <p className="text-xs text-slate-300 font-sans leading-relaxed">
+            Generate cryptographically signed HMAC-SHA256 API keys for Pro and Enterprise clients via Payoneer settlement ({OFFICIAL_CORPORATE_EMAIL}).
+          </p>
+        </div>
+      )}
+
+      {/* PAGE 5: Client Security Dashboard */}
+      {view === 'user-portal' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
+          <div className="flex items-center space-x-3 text-sky-400">
+            <User className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+              Client Portal
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">Client Security Dashboard</h1>
+          <p className="text-xs text-slate-300 font-sans leading-relaxed">
+            Real-time telemetry and rate-limit tracking for active enterprise subscription tiers.
+          </p>
+        </div>
+      )}
+
+      {/* PAGE 6: Privacy Policy */}
       {view === 'privacy' && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
           <div className="flex items-center space-x-3 text-emerald-400">
@@ -244,13 +178,8 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
             Privacy is a core engineering requirement across the SEOSiri MCP Suite. Our local-first architecture ensures your data never leaves your environment without your explicit permission.
           </p>
 
-          <ul className="space-y-2 text-xs text-slate-300 list-disc pl-5 leading-relaxed">
-            <li><strong>Zero Server-Side Logging:</strong> Tool calls executed in Claude Desktop or Cursor do not store, log, or telemetry-track your database queries or API payloads.</li>
-            <li><strong>Automated SHA-256 Hashing:</strong> Sensitive fields (emails, IP addresses) are hashed at rest using SHA-256 before storage in local Cold Tier SQLite databases.</li>
-          </ul>
-
           <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
-            <span>Official Privacy Reference: </span>
+            <span>Official Policy Reference: </span>
             <a href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
               SEOSiri.com Official Privacy Policy <ExternalLink className="w-3 h-3" />
             </a>
@@ -258,7 +187,23 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         </div>
       )}
 
-      {/* PAGE 4: Brand Assets & Use Cases Policy */}
+      {/* PAGE 7: Disclaimer & Usage Terms */}
+      {view === 'disclaimer' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
+          <div className="flex items-center space-x-3 text-sky-400">
+            <FileText className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+              Legal Disclaimer
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">SEOSiri Onsite Disclaimer &amp; Usage Terms</h1>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            All open-source Model Context Protocol (MCP) packages, PyPI/NPM libraries, and Cloudflare Worker edge gateways published under <strong>SEOSiri-Official</strong> are provided "as-is" under the MIT Open Source License.
+          </p>
+        </div>
+      )}
+
+      {/* PAGE 8: Brand Assets & Use Cases Policy */}
       {view === 'assets' && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
           <div className="flex items-center space-x-3 text-purple-400">
@@ -267,78 +212,14 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
               Assets Policy
             </span>
           </div>
-
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Brand Assets &amp; Permitted Use Cases Policy
-          </h1>
-
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Brand Assets &amp; Permitted Use Cases Policy</h1>
           <p className="text-sm text-slate-300 leading-relaxed">
             This policy outlines permitted commercial and developer integration guidelines for SEOSiri open-source packages, brand assets, and Cloudflare edge routes (`*.seosiri.com`).
           </p>
-
-          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
-            <span>Official Policy Reference: </span>
-            <a href="https://www.seosiri.com/p/assets-policy.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
-              SEOSiri.com Official Assets Policy <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
         </div>
       )}
 
-      {/* PAGE 5: AI Governance & Autonomous Agent Liability Framework */}
-      {view === 'governance-liability' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
-          <div className="flex items-center space-x-3 text-amber-400">
-            <ShieldCheck className="w-8 h-8" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-              EU AI Act &amp; Compliance Framework
-            </span>
-          </div>
-
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            SEOSiri AI Governance &amp; Autonomous Agent Liability Framework
-          </h1>
-
-          <p className="text-sm text-slate-300 leading-relaxed">
-            This framework establishes strict operational bounds, risk classifications, and liability demarcations for autonomous AI agents (Claude, Cursor, LangChain, Atlassian Rovo) invoking SEOSiri Model Context Protocol tools.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <h3 className="text-sm font-bold text-sky-400 flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4" />
-                Human-in-the-Loop Stage-Gates
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                State-mutating tool executions (database writes, financial webhooks, physical kinematics) require explicit operator sign-off or cryptographically verified tokens before physical execution.
-              </p>
-            </div>
-
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <h3 className="text-sm font-bold text-emerald-400 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4" />
-                Zero-Retention Edge Interlocks
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Edge proxy routing via <a href="https://guard.seosiri.com/legal/dpa" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline">guard.seosiri.com/legal/dpa</a> strips PII in-memory under GDPR Recital 49, preventing training data contamination.
-              </p>
-            </div>
-          </div>
-
-          <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 font-mono text-xs text-slate-400 leading-relaxed">
-            <strong className="text-white">Liability Demarcation:</strong> The deploying enterprise or developer acts as the primary Controller responsible for model prompt steering and tool authorization scopes. SEOSiri-Official disclaims liability for unvalidated autonomous agent loops operating without recommended rate limits or approval stage-gates.
-          </div>
-
-          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
-            <span>Official Security Policy: </span>
-            <a href="https://www.seosiri.com/security.txt" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
-              RFC 9116 security.txt Disclosures <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* PAGE 6: Sitemap & LLM.txt Index Page */}
+      {/* PAGE 9: Sitemap & LLM.txt Index Page */}
       {view === 'sitemap' && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
           <div className="flex items-center space-x-3 text-blue-400">
@@ -347,232 +228,31 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
               Sitemap &amp; Machine-Readable Index
             </span>
           </div>
-
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            SEOSiri Developer Portal Sitemap &amp; LLM Index
-          </h1>
-
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">SEOSiri Developer Portal Sitemap &amp; LLM Index</h1>
           <p className="text-sm text-slate-300 leading-relaxed">
-            Access the complete sitemap index and machine-readable text specifications for search engine crawlers and autonomous AI agents:
+            Access the complete sitemap index and machine-readable text specifications for search engine crawlers and autonomous AI agents.
           </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <h3 className="text-sm font-bold text-sky-400 flex items-center gap-1.5">
-                <FileText className="w-4 h-4" />
-                XML Sitemap File
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Structured XML urlset containing canonical routes for Googlebot and Bingbot.
-              </p>
-              <a
-                href="/sitemap.xml"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-emerald-400 font-mono font-bold hover:underline pt-1"
-              >
-                View sitemap.xml &rarr;
-              </a>
-            </div>
-
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <h3 className="text-sm font-bold text-amber-400 flex items-center gap-1.5">
-                <FileText className="w-4 h-4" />
-                LLM.txt Context Index
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Machine-readable Markdown index for Claude, Perplexity, and SearchGPT crawlers.
-              </p>
-              <a
-                href="/llm.txt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-emerald-400 font-mono font-bold hover:underline pt-1"
-              >
-                View llm.txt &rarr;
-              </a>
-            </div>
-          </div>
-          
-
-          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
-            <span>Central Ecosystem Directory: </span>
-            <a href="https://www.seosiri.com/2026/07/seosiri-mcp-servers.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
-              SEOSiri Central MCP Directory <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
         </div>
       )}
 
-    
-      {/* PAGE 7: Enterprise AI Productivity & Cost-Optimization Manual */}
-      {view === "productivity-manual" && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-8 text-left font-sans">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-            <div className="flex items-center space-x-3 text-amber-400">
-              <Zap className="w-8 h-8" />
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                  Enterprise AI Productivity &amp; Cost-Optimization Manual
-                </h1>
-                <p className="text-xs text-slate-400 font-mono mt-1">Infrastructure Consolidation • ROI Strategy • Flagship Edge Shield</p>
-              </div>
-            </div>
-            <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs rounded-full font-bold">
-              Executive B2B Playbook
+      {/* PAGE 10: Security Policy & security.txt (#security) */}
+      {view === 'security' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
+          <div className="flex items-center space-x-3 text-sky-400">
+            <ShieldCheck className="w-8 h-8" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/25">
+              RFC 9116 Compliant
             </span>
           </div>
-
-          <p className="text-sm text-slate-300 leading-relaxed">
-            Engineering organizations often waste <strong className="text-white">$600 to $2,500+ monthly</strong> across disconnected vendor subscriptions for scraping proxies, schema checkers, web application firewalls, error parsers, and custom API wrappers. 
-            The <strong className="text-white">SEOSiri Model Context Protocol Suite</strong> consolidates these workflows into sovereign, local-first execution layers powered by global Cloudflare Workers edge nodes.
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">Security Policy &amp; security.txt</h1>
+          <p className="text-xs text-slate-300 font-sans leading-relaxed">
+            SEOSiri adheres to RFC 9116 security vulnerability disclosure standards. Our public security.txt file is deployed across all edge gateways.
           </p>
-
-          {/* FLAGSHIP PRODUCT SPOTLIGHT: SEOSIRI SECURITY PROXY (guard.seosiri.com) */}
-          <div className="bg-gradient-to-br from-blue-950/70 via-slate-950 to-slate-950 p-6 sm:p-8 rounded-2xl border-2 border-sky-500/40 shadow-2xl space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="px-2.5 py-0.5 bg-sky-500/20 border border-sky-400/40 text-sky-300 font-mono text-[10px] font-bold rounded-full uppercase tracking-wider">
-                ★ Flagship Commercial Product
-              </span>
-              <span className="text-xs font-mono text-emerald-400 font-semibold">
-                ● TLS 1.3 Active Edge WAF
-              </span>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <ShieldCheck className="w-6 h-6 text-sky-400" />
-                <span>SEOSiri Active Security Proxy &amp; WAF</span>
-              </h2>
-              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Zero-trust reverse proxy deployed at <strong className="text-sky-300">guard.seosiri.com</strong>. Protects Web Apps, Mobile APIs (iOS/Android), and CMS platforms against OWASP Top 10 exploits, BOLA/IDOR, and automated bot probes with <strong>zero code modifications</strong> (Method A DNS CNAME Proxy).
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-2">
-              <div className="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-                <strong className="text-sky-300 block mb-1">Web &amp; API Defense</strong>
-                <span className="text-[11px] text-slate-400">SQLi, XSS, CSRF, BOLA/IDOR UUID enforcement, Mass Assignment DTO filtering.</span>
-              </div>
-              <div className="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-                <strong className="text-purple-300 block mb-1">Mobile App Shield</strong>
-                <span className="text-[11px] text-slate-400">Frida/Xposed anti-hooking, 60s sliding-window nonces, hardware keystore validation.</span>
-              </div>
-              <div className="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-                <strong className="text-emerald-300 block mb-1">GDPR Recital 49 &amp; CCPA</strong>
-                <span className="text-[11px] text-slate-400">Zero persistent clean logging. 30-day auto-purged threat telemetry with self-hosted DPA.</span>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
-              <div className="text-xs font-mono text-slate-400">
-                Plans: <strong className="text-white">$29 Starter</strong> • <strong className="text-white">$99 Pro</strong> • <strong className="text-white">$499 Enterprise</strong>
-              </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://guard.seosiri.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-mono font-semibold transition-colors flex items-center gap-1 border border-slate-700"
-                >
-                  <span>Visit guard.seosiri.com</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <button
-                  onClick={() => onBackToTopology()}
-                  className="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-mono font-bold transition-all shadow-md"
-                >
-                  Explore in Graph &rarr;
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Cost Comparison Table */}
-          <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3 font-mono text-xs">
-            <div className="flex items-center gap-2 text-emerald-400 font-bold uppercase text-[11px]">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>How SEOSiri Consolidates Monthly Tech Spend</span>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-slate-300 text-[11px] border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-800 text-slate-500">
-                    <th className="py-2">Fragmented SaaS Stack</th>
-                    <th className="py-2">Typical Monthly Cost</th>
-                    <th className="py-2 text-sky-400">SEOSiri Sovereign Replacement</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-900">
-                  <tr>
-                    <td className="py-2.5">Third-Party Cloud WAF &amp; Bot Proxy</td>
-                    <td className="py-2.5 text-rose-400">$100 – $300/mo</td>
-                    <td className="py-2.5 text-emerald-400 font-bold">guard.seosiri.com (Reverse Proxy WAF)</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2.5">Enterprise SEO &amp; Schema SaaS</td>
-                    <td className="py-2.5 text-rose-400">$150 – $400/mo</td>
-                    <td className="py-2.5 text-emerald-400">seosiri-aeo-geo-mcp &amp; content-schema</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2.5">Data Pipeline &amp; PII Scrubber</td>
-                    <td className="py-2.5 text-rose-400">$200 – $600/mo</td>
-                    <td className="py-2.5 text-emerald-400">etl-pipeline-mcp (In-Memory SHA-256)</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2.5">Custom Clinical Assay Tooling</td>
-                    <td className="py-2.5 text-rose-400">$500 – $1,500/mo</td>
-                    <td className="py-2.5 text-emerald-400">biopharma-mcp (4PL &amp; 21 CFR Part 11)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* TWO BALANCED ACTIONS: KEY ISSUER & B2B CONSULTATION */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 font-mono text-xs">
-            <div className="bg-slate-950 p-5 rounded-2xl border border-amber-500/30 space-y-3">
-              <div className="text-amber-400 font-bold flex items-center gap-1.5">
-                <Key className="w-4 h-4" />
-                <span>Instant API &amp; License Provisioning</span>
-              </div>
-              <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
-                Generate cryptographically signed HMAC-SHA256 license tokens for your team or clients with custom rate limits.
-              </p>
-              <button
-                onClick={() => {
-                  if (onViewChange) {
-                    onViewChange("key-issuer");
-                  } else {
-                    onBackToTopology();
-                  }
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="w-full py-2.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 rounded-xl border border-amber-500/40 font-bold transition-all text-center block"
-              >
-                Open API Key Issuer Desk &rarr;
-              </button>
-            </div>
-
-            <div className="bg-slate-950 p-5 rounded-2xl border border-blue-500/30 space-y-3">
-              <div className="text-sky-400 font-bold flex items-center gap-1.5">
-                <Mail className="w-4 h-4" />
-                <span>Bespoke Architecture Consultation</span>
-              </div>
-              <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
-                Schedule an enterprise systems audit with Lead Architect Momenul Ahmad to deploy custom VPC gateways.
-              </p>
-              <a
-                href="mailto:info@seosiri.com?subject=Enterprise%20Architecture%20%26%20Security%20Audit"
-                className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all text-center block shadow-md"
-              >
-                Contact Corporate Desk &rarr;
-              </a>
-            </div>
-          </div>
         </div>
       )}
 
     </div>
   );
 };
+
+export default OnsitePolicyPages;
