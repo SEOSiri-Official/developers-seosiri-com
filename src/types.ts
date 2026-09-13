@@ -122,4 +122,7 @@ export type ViewMode =
   | 'key-issuer'
   | 'user-portal'
   | 'governance-liability'
-  | 'productivity-manual';
+  | 'manual'
+  | 'governance'
+   'productivity-manual'
+  | 'security';
