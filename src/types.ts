@@ -124,5 +124,4 @@ export type ViewMode =
   | 'governance-liability'
   | 'manual'
   | 'governance'
-   'productivity-manual'
   | 'security';
