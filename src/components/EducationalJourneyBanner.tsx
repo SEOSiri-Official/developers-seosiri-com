@@ -76,7 +76,7 @@ export const EducationalJourneyBanner: React.FC<EducationalJourneyProps> = ({ on
                 <span>Enterprise Shield &amp; Productivity</span>
               </div>
               <p className="text-[11px] text-slate-400 font-sans">Deploy automated PII scrubbing (guard.seosiri.com) and cut team tooling bills.</p>
-              <button onClick={() => handleNavigate('productivity-manual')} className="text-[11px] text-amber-300 hover:underline flex items-center gap-1 font-bold">
+              <button onClick={() => handleNavigate('manual')} className="text-[11px] text-amber-300 hover:underline flex items-center gap-1 font-bold">
                 Read Enterprise Manual &rarr;
               </button>
             </div>
