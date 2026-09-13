@@ -1,5 +1,3 @@
-import { EducationalJourneyBanner } from "./components/EducationalJourneyBanner";
-import { EnterpriseProductivityManual } from "./components/EnterpriseProductivityManual";
 import React, { useState } from 'react';
 import { ViewMode, MCPModule } from './types';
 import { MCP_MODULES } from './data/mcpData';
@@ -17,15 +15,64 @@ import { NodeInspectorModal } from './components/NodeInspectorModal';
 import { OnsitePolicyPages } from './components/OnsitePolicyPages';
 import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 import { UserPortal } from './components/UserPortal';
+import { EducationalJourneyBanner } from "./components/EducationalJourneyBanner";
 import { Footer } from './components/Footer';
+
+// Every ViewMode this app can route to via URL hash on initial load.
+const VALID_VIEWS: ViewMode[] = [
+  "topology",
+  "docs",
+  "matrix",
+  "config",
+  "table",
+  "tester",
+  "architect",
+  "disclaimer",
+  "custom-mcp",
+  "privacy",
+  "assets",
+  "sitemap",
+  "key-issuer",
+  "user-portal",
+  "governance-liability",
+  "manual",
+  "governance",
+  "security",
+];
+
+// Every ViewMode that OnsitePolicyPages is responsible for rendering.
+// Keep this in sync with the `view === '...'` blocks inside OnsitePolicyPages.tsx.
+const ONSITE_POLICY_VIEWS: ViewMode[] = [
+  'custom-mcp',
+  'disclaimer',
+  'privacy',
+  'assets',
+  'sitemap',
+  'governance-liability',
+  'manual',
+  'governance',
+  'security',
+];
 
 export function App() {
   const getInitialView = (): ViewMode => {
     const hash = window.location.hash.replace("#", "") as ViewMode;
-    const validViews: ViewMode[] = ["topology", "docs", "matrix", "config", "table", "tester", "architect", "disclaimer", "custom-mcp", "privacy", "assets", "sitemap", "key-issuer", "user-portal", "governance-liability"];
-    return validViews.includes(hash) ? hash : "topology";
+    return VALID_VIEWS.includes(hash) ? hash : "topology";
   };
   const [currentView, setCurrentView] = useState<ViewMode>(getInitialView);
+
+  // Keep currentView in sync with the URL hash for the whole lifetime of the
+  // app, not just at first mount. Without this, a hash-only address-bar edit
+  // (e.g. typing #manual while already on the page) can fire a same-document
+  // navigation that never re-runs getInitialView(), leaving currentView
+  // stale and rendering nothing — the intermittent "blank page" bug.
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentView(getInitialView());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -87,9 +134,12 @@ export function App() {
         {currentView === 'table' && <DirectoryTable modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
-{currentView === 'user-portal' && <UserPortal />}
-        {['custom-mcp', 'disclaimer', 'privacy', 'assets', 'sitemap', 'governance-liability', 'productivity-manual'].includes(currentView) && (
-          <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} onViewChange={setCurrentView} />
+        {currentView === 'user-portal' && <UserPortal />}
+        {ONSITE_POLICY_VIEWS.includes(currentView) && (
+          <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} onViewChange={(view) => {
+            window.location.hash = view;
+            setCurrentView(view);
+          }} />
         )}
       </main>
 
@@ -100,7 +150,10 @@ export function App() {
           onClose={() => setSelectedModule(null)}
         />
       )}
-      <EducationalJourneyBanner onViewChange={setCurrentView} />
+      <EducationalJourneyBanner onViewChange={(view) => {
+        window.location.hash = view;
+        setCurrentView(view);
+      }} />
       <Footer onViewChange={(view) => {
           window.location.hash = view;
           setCurrentView(view);
