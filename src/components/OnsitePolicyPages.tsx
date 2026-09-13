@@ -11,7 +11,8 @@ import {
   CheckCircle2,
   Key,
   Mail,
-  User
+  User,
+  Globe
 } from 'lucide-react';
 import { OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
 
@@ -33,6 +34,15 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         <ArrowLeft className="w-4 h-4" />
         <span>Return to Topology Graph Explorer</span>
       </button>
+
+      {/* GLOBAL ENTERPRISE NOTICE BANNER */}
+      <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="flex items-center gap-2">
+          <Globe className="w-4 h-4 text-sky-400" />
+          <span>Global Compliance Jurisdiction: <strong className="text-white">US, UK, CA, EU (GDPR), JP</strong></span>
+        </div>
+        <span className="text-emerald-400 font-bold">● Sovereign Edge Active</span>
+      </div>
 
       {/* PAGE 1: Custom Enterprise MCP Development Services */}
       {view === 'custom-mcp' && (
@@ -96,19 +106,41 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         </div>
       )}
 
-      {/* PAGE 2: Enterprise Productivity Manual & ROI (#manual) */}
-      {view === 'manual' && (
+      {/* PAGE 2: Enterprise Productivity Manual & ROI (#productivity-manual & #manual) */}
+      {(view === 'productivity-manual' || view === 'manual') && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
           <div className="flex items-center space-x-3 text-amber-400">
             <Sparkles className="w-8 h-8" />
             <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-              Productivity &amp; ROI
+              Executive B2B Playbook &amp; ROI
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Enterprise Productivity Manual &amp; ROI</h1>
+
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Enterprise AI Productivity &amp; Cost-Optimization Manual
+          </h1>
+
           <p className="text-sm text-slate-300 leading-relaxed">
-            Autonomous AI agents connected via the SEOSiri Model Context Protocol Suite reduce manual developer operations by up to 84%. Learn how enterprise engineering teams deploy local-first MCP tools with measured efficiency gains.
+            Engineering organizations waste thousands monthly across disconnected SaaS subscriptions for scraping proxies, schema checkers, web application firewalls, and custom wrappers. The <strong className="text-white">SEOSiri Model Context Protocol Suite</strong> consolidates these workflows into sovereign execution layers powered by global Cloudflare Workers edge nodes.
           </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+            <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+              <strong className="text-emerald-400 block font-bold">84% Faster Data Ingestion</strong>
+              <p className="text-slate-400 m-0">Zero-latency webhook ingestion via Cloudflare Edge Gateways.</p>
+            </div>
+            <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+              <strong className="text-sky-400 block font-bold">100% Deterministic Tool Calls</strong>
+              <p className="text-slate-400 m-0">Strict JSON schema validation eliminates model hallucination.</p>
+            </div>
+          </div>
+
+          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800 flex items-center justify-between">
+            <span>Official Master Directory Reference:</span>
+            <a href="https://www.seosiri.com/2026/07/seosiri-mcp-servers.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1 font-mono">
+              seosiri.com Master MCP Directory <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       )}
 
@@ -118,17 +150,28 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           <div className="flex items-center space-x-3 text-amber-400">
             <ShieldCheck className="w-8 h-8" />
             <span className="text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-              Governance &amp; Liability
+              EU AI Act &amp; Compliance Framework
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Governance &amp; Corporate Liability Framework</h1>
+
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            AI Governance &amp; Corporate Liability Framework
+          </h1>
+
           <p className="text-sm text-slate-300 leading-relaxed">
-            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations.
+            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations under international jurisdiction (US CCPA, EU GDPR Recital 49).
           </p>
+
+          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
+            <span>Official Security Disclosures: </span>
+            <a href="https://developers.seosiri.com/.well-known/security.txt" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1">
+              RFC 9116 security.txt <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       )}
 
-      {/* PAGE 4: API Key Issuer Desk */}
+      {/* PAGE 4: API Key Issuer Desk (#key-issuer) */}
       {view === 'key-issuer' && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
           <div className="flex items-center space-x-3 text-amber-400">
@@ -144,7 +187,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
         </div>
       )}
 
-      {/* PAGE 5: Client Security Dashboard */}
+      {/* PAGE 5: Client Security Dashboard (#user-portal) */}
       {view === 'user-portal' && (
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
           <div className="flex items-center space-x-3 text-sky-400">
@@ -198,7 +241,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">SEOSiri Onsite Disclaimer &amp; Usage Terms</h1>
           <p className="text-sm text-slate-300 leading-relaxed">
-            All open-source Model Context Protocol (MCP) packages, PyPI/NPM libraries, and Cloudflare Worker edge gateways published under <strong>SEOSiri-Official</strong> are provided "as-is" under the MIT Open Source License.
+            All open-source Model Context Protocol (MCP) packages, PyPI/NPM libraries, and Cloudflare Worker edge gateways published under <strong>SEOSiri-Official</strong> are provided "as-is" under the MIT Open Source License. Refer to <a href="https://www.seosiri.com/p/disclaimer.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline">seosiri.com/p/disclaimer.html</a>.
           </p>
         </div>
       )}
@@ -214,7 +257,7 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Brand Assets &amp; Permitted Use Cases Policy</h1>
           <p className="text-sm text-slate-300 leading-relaxed">
-            This policy outlines permitted commercial and developer integration guidelines for SEOSiri open-source packages, brand assets, and Cloudflare edge routes (`*.seosiri.com`).
+            This policy outlines permitted commercial and developer integration guidelines for SEOSiri open-source packages, brand assets, and Cloudflare edge routes (`*.seosiri.com`). Refer to <a href="https://www.seosiri.com/p/assets-policy.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline">seosiri.com/p/assets-policy.html</a>.
           </p>
         </div>
       )}
@@ -230,8 +273,14 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">SEOSiri Developer Portal Sitemap &amp; LLM Index</h1>
           <p className="text-sm text-slate-300 leading-relaxed">
-            Access the complete sitemap index and machine-readable text specifications for search engine crawlers and autonomous AI agents.
+            Access the complete sitemap index and machine-readable text specifications for search engine crawlers and autonomous AI agents:
           </p>
+          <div className="pt-2 text-xs text-slate-400 border-t border-slate-800">
+            <span>Central Ecosystem Directory: </span>
+            <a href="https://www.seosiri.com/2026/07/seosiri-mcp-servers.html" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:underline inline-flex items-center gap-1 font-mono">
+              seosiri.com Central MCP Directory <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       )}
 
@@ -248,6 +297,12 @@ export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBa
           <p className="text-xs text-slate-300 font-sans leading-relaxed">
             SEOSiri adheres to RFC 9116 security vulnerability disclosure standards. Our public security.txt file is deployed across all edge gateways.
           </p>
+          <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-sky-300 space-y-1">
+            <p className="m-0">Contact: mailto:info@seosiri.com</p>
+            <p className="m-0">Expires: 2027-12-31T23:59:59.000Z</p>
+            <p className="m-0">Preferred-Languages: en</p>
+            <p className="m-0">Canonical: https://developers.seosiri.com/.well-known/security.txt</p>
+          </div>
         </div>
       )}
 
