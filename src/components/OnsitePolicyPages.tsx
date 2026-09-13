@@ -1,13 +1,72 @@
 import React from 'react';
-import { ViewMode } from '../types';
-import { ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, CheckCircle2, Key, Mail } from 'lucide-react';
-import { OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
+import { Sparkles, ViewMode } from '../types';
+import { Sparkles, ShieldCheck, FileText, Zap, Lock, ExternalLink, ArrowLeft, CheckCircle2, Key, Mail } from 'lucide-react';
+import { Sparkles, OFFICIAL_CORPORATE_EMAIL, LEAD_ARCHITECT } from '../data/mcpData';
 
 interface OnsitePolicyPagesProps {
   view: ViewMode;
   onBackToTopology: () => void;
   onViewChange?: (view: ViewMode) => void;
 }
+
+      {/* PAGE: Enterprise Productivity Manual & ROI */}
+      {view === "manual" && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <Sparkles className="w-8 h-8" />
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Enterprise Productivity Manual &amp; ROI</h1>
+          </div>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            Autonomous AI agents connected via the SEOSiri Model Context Protocol Suite reduce manual developer operations by up to 84%. Learn how enterprise engineering teams deploy local-first MCP tools with measured efficiency gains.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+            <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+              <strong className="text-emerald-400 block font-bold">84% Faster Data Ingestion</strong>
+              <p className="text-slate-400 m-0">Zero-latency webhook ingestion via Cloudflare Edge Gateways.</p>
+            </div>
+            <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+              <strong className="text-sky-400 block font-bold">100% Deterministic Tool Calls</strong>
+              <p className="text-slate-400 m-0">Strict JSON schema validation eliminates model hallucination.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PAGE: AI Governance & Liability */}
+      {view === "governance" && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left">
+          <div className="flex items-center space-x-3 text-amber-400">
+            <ShieldCheck className="w-8 h-8" />
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Governance &amp; Corporate Liability Framework</h1>
+          </div>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            SEOSiri enforces air-gapped data boundaries to insulate enterprise clients from legal liabilities arising from generative AI operations.
+          </p>
+          <ul className="space-y-2 text-xs text-slate-300 list-disc pl-5 leading-relaxed font-sans">
+            <li><strong>Zero Server-Side Logging:</strong> Tool calls executed locally do not log, persist, or transmit code or proprietary queries.</li>
+            <li><strong>Automated SHA-256 PII Redaction:</strong> Un-hashed customer personal identifiers are stripped before reaching LLMs.</li>
+          </ul>
+        </div>
+      )}
+
+      {/* PAGE: Security Policy & security.txt */}
+      {view === "security" && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6 text-left font-mono">
+          <div className="flex items-center space-x-3 text-sky-400">
+            <ShieldCheck className="w-8 h-8" />
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans">Security Policy &amp; RFC 9116 security.txt</h1>
+          </div>
+          <p className="text-xs text-slate-300 font-sans leading-relaxed">
+            SEOSiri adheres to RFC 9116 security vulnerability disclosure standards. Our public security.txt file is deployed across all 13 edge gateways.
+          </p>
+          <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-sky-300 space-y-1">
+            <p className="m-0">Contact: mailto:info@seosiri.com</p>
+            <p className="m-0">Expires: 2027-12-31T23:59:59.000Z</p>
+            <p className="m-0">Preferred-Languages: en</p>
+            <p className="m-0">Canonical: https://developers.seosiri.com/.well-known/security.txt</p>
+          </div>
+        </div>
+      )}
 
 export const OnsitePolicyPages: React.FC<OnsitePolicyPagesProps> = ({ view, onBackToTopology, onViewChange }) => {
   return (
