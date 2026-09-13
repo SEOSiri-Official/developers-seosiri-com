@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Compass, ChevronDown, ChevronUp, CheckCircle2, ArrowRight, X, Sparkles } from 'lucide-react';
 import { ViewMode } from '../types';
+import { TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
 
 interface EducationalJourneyProps {
   onViewChange: (view: ViewMode) => void;
@@ -42,7 +43,7 @@ export const EducationalJourneyBanner: React.FC<EducationalJourneyProps> = ({ on
             <div className="p-2.5 bg-slate-900 rounded-xl border border-slate-800/80 space-y-1">
               <div className="text-sky-400 font-bold flex items-center gap-1.5">
                 <span className="w-4 h-4 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px]">1</span>
-                <span>Discover Topology &amp; 199 Tools</span>
+                <span>Discover Topology &amp; {TOTAL_MCP_TOOLS_COUNT} Tools</span>
               </div>
               <p className="text-[11px] text-slate-400 font-sans">Explore nodes in the interactive D3 graph or search by functional keywords.</p>
             </div>
