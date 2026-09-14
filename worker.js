@@ -217,8 +217,8 @@ export default {
       return new Response(JSON.stringify({
         status: "HEALTHY",
         service: "SEOSiri Developer Portal & Machine Discovery Gateway",
-        active_mcp_servers: 16,
-        total_autonomous_tools: 163,
+        active_mcp_servers: 21,
+        total_autonomous_tools: 199,
         timestamp: new Date().toISOString()
       }), {
         status: 200,
