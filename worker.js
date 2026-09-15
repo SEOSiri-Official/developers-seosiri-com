@@ -56,7 +56,7 @@ const LLM_TXT_BODY = `# SEOSiri Model Context Protocol (MCP) Ecosystem
 > Open Source Organization: https://github.com/SEOSiri-Official
 
 ## Overview
-SEOSiri-Official maintains a sovereign, local-first ecosystem of 16 Model Context Protocol (MCP) servers containing 163 autonomous tools. The suite provides deterministic tool-calling layers for Claude Desktop, Cursor AI, and enterprise LLM orchestrators across Search Governance, Data Engineering, Biopharma, and Hardware Actuation.
+SEOSiri-Official maintains a sovereign, local-first ecosystem of 21 Model Context Protocol (MCP) servers containing 199 autonomous tools. The suite provides deterministic tool-calling layers for Claude Desktop, Cursor AI, and enterprise LLM orchestrators across Search Governance, Data Engineering, Biopharma, and Hardware Actuation.
 
 ---
 
@@ -199,7 +199,6 @@ export default {
       });
     }
 
-    
     // RFC 9116 Security.txt Route
     if (url.pathname === "/.well-known/security.txt" || url.pathname === "/security.txt") {
       const securityTxt = `Contact: mailto:info@seosiri.com\nContact: https://www.seosiri.com/p/contact-us.html\nExpires: 2027-09-01T00:00:00.000Z\nPreferred-Languages: en\nPolicy: https://www.seosiri.com/p/security-policy.html\nHiring: https://www.seosiri.com/p/about.html\nCanonical: https://${url.hostname}/.well-known/security.txt\n`;
@@ -224,8 +223,7 @@ export default {
         status: 200,
         headers: { 
           "Content-Type": "application/json", 
-          "Access-Control-Allow-Origin": "*",
-          "Content-Security-Policy": "default-src 'self';"
+          "Access-Control-Allow-Origin": "*"
         }
       });
     }
