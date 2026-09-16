@@ -84,6 +84,37 @@ export function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedModule, setSelectedModule] = useState<MCPModule | null>(null);
 
+  // Synchronize window.location.hash with React currentView state
+  React.useEffect(() => {
+    const handleHashSync = () => {
+      const hash = window.location.hash.replace("#", "").trim();
+      if (!hash) return;
+      if (hash === "manual" || hash === "productivity-manual") {
+        setCurrentView("productivity-manual" as ViewMode);
+      } else if (hash === "pricing") {
+        setCurrentView("pricing" as ViewMode);
+      } else if (hash === "governance-liability" || hash === "governance") {
+        setCurrentView("governance-liability" as ViewMode);
+      } else if (hash === "key-issuer") {
+        setCurrentView("key-issuer" as ViewMode);
+      } else if (hash === "user-portal") {
+        setCurrentView("user-portal" as ViewMode);
+      } else if (hash === "sitemap") {
+        setCurrentView("sitemap" as ViewMode);
+      } else if (hash === "docs") {
+        setCurrentView("docs" as ViewMode);
+      } else if (hash === "matrix") {
+        setCurrentView("matrix" as ViewMode);
+      } else if (hash === "topology") {
+        setCurrentView("topology" as ViewMode);
+      }
+    };
+    handleHashSync();
+    window.addEventListener("hashchange", handleHashSync);
+    return () => window.removeEventListener("hashchange", handleHashSync);
+  }, []);
+
+
   const filteredModules = MCP_MODULES.filter((mod) => {
     const matchesCategory = selectedCategory === 'all' || mod.category === selectedCategory;
     const q = (searchQuery || '').toLowerCase();

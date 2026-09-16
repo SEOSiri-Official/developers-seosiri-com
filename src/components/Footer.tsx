@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
               </li>
               <li>
                 <a
-                  href="https://www.seosiri.com/p/privacy-policy.html"
+                  href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left"
