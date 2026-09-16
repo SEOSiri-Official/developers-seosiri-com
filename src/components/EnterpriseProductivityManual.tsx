@@ -29,14 +29,25 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
             </div>
           </div>
           <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs rounded-full font-bold">
-            Executive B2B Guide
+            EXECUTIVE B2B PLAYBOOK &amp; ROI
           </span>
         </div>
 
         <p className="text-sm text-slate-300 leading-relaxed">
-          Modern technology teams frequently waste <strong>$600 to $2,500+ every month</strong> across fragmented SaaS subscriptions (separate vendors for web scrapers, schema auditors, proxy filters, log parsers, and custom API wrappers). 
-          The <strong>SEOSiri Model Context Protocol Suite</strong> consolidates these functions into sovereign, local-first execution layers backed by global Cloudflare Workers edge nodes.
+          Engineering organizations waste thousands monthly across disconnected SaaS subscriptions for scraping proxies, schema checkers, web application firewalls, and custom wrappers. The <strong>SEOSiri Model Context Protocol Suite</strong> consolidates these workflows into sovereign execution layers powered by global Cloudflare Workers edge nodes.
         </p>
+
+        {/* Highlight Metrics */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+            <span className="text-xs font-mono font-bold text-emerald-400 block">84% Faster Data Ingestion</span>
+            <p className="text-xs text-slate-400">Zero-latency webhook ingestion via Cloudflare Edge Gateways.</p>
+          </div>
+          <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+            <span className="text-xs font-mono font-bold text-sky-400 block">100% Deterministic Tool Calls</span>
+            <p className="text-xs text-slate-400">Strict JSON schema validation eliminates model hallucination.</p>
+          </div>
+        </div>
 
         {/* Cost Comparison Table */}
         <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-3 font-mono text-xs">
@@ -98,5 +109,4 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
     </div>
   );
 };
-
 export default EnterpriseProductivityManual;

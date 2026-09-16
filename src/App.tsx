@@ -1,3 +1,4 @@
+import { EnterpriseProductivityManual } from "./components/EnterpriseProductivityManual";
 import { ApiPricingMatrix } from "./components/ApiPricingMatrix";
 import { AgentQuickstartGrid } from "./components/AgentQuickstartGrid";
 import { CommercialGatewayBanner } from "./components/CommercialGatewayBanner";
@@ -90,6 +91,7 @@ export function App() {
       const hash = window.location.hash.replace("#", "").trim();
       if (!hash) return;
       if (hash === "manual" || hash === "productivity-manual") {
+        setCurrentView("productivity-manual" as ViewMode);
         setCurrentView("productivity-manual" as ViewMode);
       } else if (hash === "pricing") {
         setCurrentView("pricing" as ViewMode);
