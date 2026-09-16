@@ -1,3 +1,5 @@
+import { AgentQuickstartGrid } from "./components/AgentQuickstartGrid";
+import { CommercialGatewayBanner } from "./components/CommercialGatewayBanner";
 import React, { useState } from 'react';
 import { ViewMode, MCPModule } from './types';
 import { MCP_MODULES } from './data/mcpData';
@@ -127,7 +129,13 @@ export function App() {
             }}
           />
         )}
-        {currentView === 'docs' && <DocumentationViewer initialModuleId={selectedModule?.id} />}
+        {currentView === 'docs' && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <CommercialGatewayBanner />
+            <AgentQuickstartGrid />
+            <DocumentationViewer initialModuleId={selectedModule?.id} />
+          </div>
+        )}
         {currentView === 'matrix' && <ArchitectureMatrix modules={filteredModules} onSelectModule={setSelectedModule} />}
         {currentView === 'architect' && <ArchitectProfile />}
         {currentView === 'config' && <ConfigGenerator modules={MCP_MODULES} />}
