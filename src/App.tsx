@@ -1,3 +1,4 @@
+import { ApiPricingMatrix } from "./components/ApiPricingMatrix";
 import { AgentQuickstartGrid } from "./components/AgentQuickstartGrid";
 import { CommercialGatewayBanner } from "./components/CommercialGatewayBanner";
 import React, { useState } from 'react';

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
+  DollarSign,
   Network, 
   Layers, 
   Settings2, 
@@ -106,7 +107,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       badge: 'Live'
     },
     {
-      id: 'key-issuer',
+          {
+      id: 'pricing',
+      label: 'API Pricing',
+      shortLabel: 'Pricing',
+      icon: <DollarSign className="w-4 h-4 mr-1.5 text-amber-400" />,
+      badge: 'Plans'
+    },
+    id: 'key-issuer',
       label: 'API Key Issuer',
       shortLabel: 'Key Issuer',
       icon: <Key className="w-4 h-4 mr-1.5 text-amber-400" />,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 import { ViewMode } from '../types';
-import { ExternalLink, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
+import { ExternalLink, DollarSign, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
 
 interface FooterProps {
   onViewChange: (view: ViewMode) => void;
@@ -37,6 +37,14 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 <button onClick={() => onViewChange('custom-mcp')} className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Zap className="w-3 h-3 text-amber-400" />
                   <span>Custom Enterprise MCP Services</span>
+                </button>
+              </li>
+<li>
+                <button onClick={() => onViewChange('pricing')} className="text-amber-300 font-bold hover:underline flex items-center gap-1 text-left">
+                  <DollarSign className="w-3 h-3 text-amber-400" />
+                  <span>Commercial API Pricing &amp; Plans</span>
+                </button>
+              </li>
                 </button>
               </li>
               <li>

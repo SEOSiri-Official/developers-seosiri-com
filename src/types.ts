@@ -119,6 +119,7 @@ export type ViewMode =
   | 'privacy' 
   | 'assets' 
   | 'sitemap' 
+  | 'pricing'
   | 'key-issuer'
   | 'user-portal'
   | 'governance-liability'
