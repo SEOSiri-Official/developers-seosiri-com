@@ -17,7 +17,6 @@ import {
   Sparkles,
   Zap,
   Key,
-  FileText,
   Lock
 } from 'lucide-react';
 import { ViewMode } from '../types';
@@ -107,14 +106,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       badge: 'Live'
     },
     {
-          {
       id: 'pricing',
       label: 'API Pricing',
       shortLabel: 'Pricing',
       icon: <DollarSign className="w-4 h-4 mr-1.5 text-amber-400" />,
       badge: 'Plans'
     },
-    id: 'key-issuer',
+    {
+      id: 'key-issuer',
       label: 'API Key Issuer',
       shortLabel: 'Key Issuer',
       icon: <Key className="w-4 h-4 mr-1.5 text-amber-400" />,
@@ -221,6 +220,43 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
       </div>
+
+      {/* Mobile Nav Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden pt-3 pb-2 border-t border-slate-800 mt-2 space-y-2 animate-fade-in">
+          <div className="grid grid-cols-2 gap-1.5">
+            {navItems.map((item) => {
+              const isActive = currentView === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    onViewChange(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-xs font-semibold transition-all border ${
+                    isActive
+                      ? 'bg-blue-600 text-white border-blue-500'
+                      : 'bg-slate-950 text-slate-300 border-slate-800 hover:bg-slate-800'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    {item.icon}
+                    <span>{item.shortLabel}</span>
+                  </div>
+                  {item.badge && (
+                    <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
+                      {item.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </header>
   );
 };
+
+export default Navbar;

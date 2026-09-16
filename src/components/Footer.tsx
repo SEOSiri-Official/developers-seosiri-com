@@ -1,5 +1,5 @@
 import React from 'react';
-import { CENTRAL_HUB_URL, LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
+import { CENTRAL_HUB_URL, LEAD_ARCHITECT } from '../data/mcpData';
 import { ViewMode } from '../types';
 import { ExternalLink, DollarSign, ShieldCheck, Sparkles, FileText, Lock, Zap, Key, User } from 'lucide-react';
 
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             </p>
           </div>
 
-          {/* Col 2: Compliance & Onsite Policies (ALL 10 ITEMS RESTORED) */}
+          {/* Col 2: Compliance & Onsite Policies (ALL 10 ITEMS RESTORED & CLEAN) */}
           <div className="space-y-2 text-left">
             <h4 className="text-slate-200 font-bold uppercase text-[10px] tracking-wider font-mono flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -39,22 +39,20 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>Custom Enterprise MCP Services</span>
                 </button>
               </li>
-<li>
-                <button onClick={() => onViewChange('pricing')} className="text-amber-300 font-bold hover:underline flex items-center gap-1 text-left">
+              <li>
+                <button onClick={() => onViewChange('pricing')} className="text-amber-300 hover:text-amber-200 font-bold transition-colors flex items-center gap-1 text-left">
                   <DollarSign className="w-3 h-3 text-amber-400" />
                   <span>Commercial API Pricing &amp; Plans</span>
                 </button>
               </li>
-                </button>
-              </li>
               <li>
-                <button onClick={() => onViewChange('manual')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange('productivity-manual')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
                   <Sparkles className="w-3 h-3 text-amber-400" />
                   <span>Enterprise Productivity Manual &amp; ROI</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('governance')} className="text-amber-400 font-bold hover:underline flex items-center gap-1 text-left">
+                <button onClick={() => onViewChange('governance-liability')} className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1 text-left">
                   <ShieldCheck className="w-3 h-3 text-amber-400" />
                   <span>AI Governance &amp; Liability</span>
                 </button>
@@ -73,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
               </li>
               <li>
                 <a
-                  href="https://www.seosiri.com/p/privacy-policythis-privacy-policy-has.html"
+                  href="https://www.seosiri.com/p/privacy-policy.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left"
@@ -101,10 +99,15 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onViewChange('security')} className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left">
+                <a
+                  href="https://www.seosiri.com/p/security-policy.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-slate-200 transition-colors flex items-center gap-1 text-left"
+                >
                   <ShieldCheck className="w-3 h-3 text-slate-400" />
                   <span>Security Policy &amp; security.txt</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
