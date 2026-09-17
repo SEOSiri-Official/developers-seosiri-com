@@ -94,6 +94,77 @@ export const ApiPricingMatrix: React.FC<ApiPricingMatrixProps> = ({ onViewChange
         </div>
       </div>
 
+            {/* COMMERCIAL SECURITY GUARD SHOWCASE (guard.seosiri.com) */}
+      <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-blue-950 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-b border-slate-800 pb-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-0.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs font-bold rounded-full">
+                COMMERCIAL CLOUD SECURITY PRODUCT
+              </span>
+              <span className="px-2.5 py-0.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-bold rounded-full">
+                Zero-Trust Edge WAF
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">SEOSiri Cloud Defense &amp; Threat Mitigation Shield</h2>
+            <p className="text-xs text-slate-300 max-w-2xl leading-relaxed font-mono">
+              guard.seosiri.com • Autonomous Reverse Proxy &amp; WAF protecting WordPress, Shopify, Next.js, and Mobile APIs with zero code changes.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 font-mono text-xs shrink-0">
+            <a
+              href="https://guard.seosiri.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl shadow-lg transition-all flex items-center gap-1.5"
+            >
+              <span>Visit guard.seosiri.com</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://guard.seosiri.com/legal/dpa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl border border-slate-700 transition-all"
+            >
+              <span>GDPR DPA Shield</span>
+            </a>
+          </div>
+        </div>
+
+        {/* 3 Tier Pricing Cards for Security Guard */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 text-xs font-mono">
+          <div className="p-4 bg-slate-950/90 rounded-2xl border border-slate-800 space-y-2">
+            <span className="text-slate-400 text-[10px] block uppercase font-bold">Starter Shield</span>
+            <div className="text-2xl font-black text-white">$29 <span className="text-xs text-slate-400 font-normal">/ mo</span></div>
+            <p className="text-slate-400 text-[11px] font-sans">Single Domain WAF • SQLi &amp; XSS Edge Mitigation • 100 RPM limit</p>
+            <a href="https://guard.seosiri.com/" target="_blank" rel="noopener noreferrer" className="inline-block text-sky-400 text-xs hover:underline font-bold pt-1">
+              Deploy Starter &rarr;
+            </a>
+          </div>
+
+          <div className="p-4 bg-slate-950/90 rounded-2xl border border-amber-500/40 space-y-2 shadow-lg shadow-amber-500/5">
+            <span className="text-amber-400 text-[10px] block uppercase font-bold">Pro Defense (Most Popular)</span>
+            <div className="text-2xl font-black text-white">$99 <span className="text-xs text-slate-400 font-normal">/ mo</span></div>
+            <p className="text-slate-400 text-[11px] font-sans">Up to 3 Domains/APIs • BOLA UUID Enforcer • 5-min Email Incident Alerts</p>
+            <a href="https://guard.seosiri.com/" target="_blank" rel="noopener noreferrer" className="inline-block text-amber-300 text-xs hover:underline font-bold pt-1">
+              Deploy Pro Defense &rarr;
+            </a>
+          </div>
+
+          <div className="p-4 bg-slate-950/90 rounded-2xl border border-slate-800 space-y-2">
+            <span className="text-purple-400 text-[10px] block uppercase font-bold">Enterprise Custom</span>
+            <div className="text-2xl font-black text-white">$499 <span className="text-xs text-slate-400 font-normal">/ mo</span></div>
+            <p className="text-slate-400 text-[11px] font-sans">Unlimited Endpoints • Mobile Anti-Hooking &amp; Nonce • 24/7 SLA Support</p>
+            <a href="https://guard.seosiri.com/" target="_blank" rel="noopener noreferrer" className="inline-block text-purple-300 text-xs hover:underline font-bold pt-1">
+              Contact Enterprise &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+
       {/* Category Filter Tabs */}
       <div className="flex flex-wrap gap-2 font-mono text-xs">
         {[

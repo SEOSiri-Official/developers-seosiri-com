@@ -14,6 +14,20 @@ export interface ApiPricingItem {
 }
 
 export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
+  {
+    id: "guard-seosiri-waf",
+    name: "SEOSiri Cloud Defense & Reverse Proxy WAF",
+    gateway: "guard.seosiri.com",
+    category: "SECURITY_GOV",
+    monthlyUsd: 99,
+    annualUsd: 79,
+    rateLimitRpm: 1000,
+    toolsCount: 12,
+    slaUptime: "99.99%",
+    scopeCode: "SECURITY_SHIELD",
+    description: "Autonomous Edge WAF protecting web & mobile APIs against SQLi, XSS, BOLA/IDOR, and Mass Assignment with zero code changes. Tier plans: Starter $29 / Pro $99 / Ent $499.",
+    featured: true
+  },
   // --- High-Value Specialized Suites ($149/mo) ---
   {
     id: 'biopharma-mcp',
