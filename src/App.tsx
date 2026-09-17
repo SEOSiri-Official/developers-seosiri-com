@@ -93,6 +93,8 @@ export function App() {
       if (hash === "manual" || hash === "productivity-manual") {
         setCurrentView("productivity-manual" as ViewMode);
         setCurrentView("productivity-manual" as ViewMode);
+        setCurrentView("productivity-manual" as ViewMode);
+        setCurrentView("productivity-manual" as ViewMode);
       } else if (hash === "pricing") {
         setCurrentView("pricing" as ViewMode);
       } else if (hash === "governance-liability" || hash === "governance") {
