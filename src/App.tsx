@@ -54,6 +54,7 @@ const ONSITE_POLICY_VIEWS: ViewMode[] = [
   'sitemap',
   'governance-liability',
   'manual',
+  'productivity-manual',
   'governance',
   'security',
 ];
@@ -179,6 +180,18 @@ export function App() {
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
         {currentView === 'user-portal' && <UserPortal />}
+                {currentView === 'pricing' && (
+          <ApiPricingMatrix onViewChange={(view) => {
+            window.location.hash = view;
+            setCurrentView(view);
+          }} />
+        )}
+        {(currentView === 'productivity-manual' || (currentView as any) === 'manual\) && (
+          <EnterpriseProductivityManual onBackToTopology={() => {
+            window.location.hash = 'topology';
+            setCurrentView('topology');
+          }} />
+        )}
         {ONSITE_POLICY_VIEWS.includes(currentView) && (
           <OnsitePolicyPages view={currentView} onBackToTopology={() => setCurrentView('topology')} onViewChange={(view) => {
             window.location.hash = view;
