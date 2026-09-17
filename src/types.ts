@@ -124,5 +124,6 @@ export type ViewMode =
   | 'user-portal'
   | 'governance-liability'
   | 'manual'
+  | 'productivity-manual'
   | 'governance'
   | 'security';
