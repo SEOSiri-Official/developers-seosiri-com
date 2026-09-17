@@ -186,7 +186,7 @@ export function App() {
             setCurrentView(view);
           }} />
         )}
-        {(currentView === 'productivity-manual' || (currentView as any) === 'manual\) && (
+        {(currentView === 'productivity-manual' || (currentView as any) === 'manual') && (
           <EnterpriseProductivityManual onBackToTopology={() => {
             window.location.hash = 'topology';
             setCurrentView('topology');
