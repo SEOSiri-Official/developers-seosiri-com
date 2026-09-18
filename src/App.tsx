@@ -89,7 +89,8 @@ export function App() {
   // Synchronize window.location.hash with React currentView state
   React.useEffect(() => {
     const handleHashSync = () => {
-      const hash = window.location.hash.replace("#", "").trim();
+      const rawHash = window.location.hash.replace("#", "").trim();
+      const hash = rawHash.split("?")[0];
       if (!hash) return;
       if (hash === "manual" || hash === "productivity-manual") {
         setCurrentView("productivity-manual" as ViewMode);
