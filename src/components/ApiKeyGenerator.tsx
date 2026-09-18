@@ -94,14 +94,23 @@ export const ApiKeyGenerator: React.FC = () => {
         setCalcScope("SEOSiri Security Shield - Starter ($29/mo)");
         setCalcTier("STARTER (100 req/min)");
         setCalcDuration(30);
+        setMcpScope("SECURITY_STARTER");
+        setTier("STARTER");
+        setDays(30);
       } else if (url.includes("plan=enterprise") || url.includes("enterprise")) {
         setCalcScope("SEOSiri Security Proxy - Enterprise ($499/mo)");
         setCalcTier("ENTERPRISE (5,000 req/min)");
         setCalcDuration(30);
+        setMcpScope("SECURITY_ENTERPRISE");
+        setTier("ENTERPRISE");
+        setDays(30);
       } else if (url.includes("plan=pro") || url.includes("pro")) {
         setCalcScope("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
         setCalcTier("PRO (1,000 req/min)");
         setCalcDuration(30);
+        setMcpScope("SECURITY_PRO");
+        setTier("PRO");
+        setDays(30);
       }
     }
   }, []);
@@ -514,7 +523,7 @@ export const ApiKeyGenerator: React.FC = () => {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-slate-300 font-bold mb-1">Target MCP Server Scope (All 21 Options):</label>
+                <label className="block text-slate-300 font-bold mb-1">Target MCP Server Scope (Official Edge Gateways):</label>
                 <select
                   value={mcpScope}
                   onChange={(e) => setMcpScope(e.target.value)}
@@ -523,7 +532,6 @@ export const ApiKeyGenerator: React.FC = () => {
                   <option value="SECURITY_STARTER">★ SEOSiri Security Shield - Starter ($29/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_PRO">★ SEOSiri Security Proxy &amp; WAF - Pro ($99/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_ENTERPRISE">★ SEOSiri Security Proxy - Enterprise ($499/mo) (guard.seosiri.com)</option>
-                  <option value="SECURITY">★ SEOSiri Security Proxy &amp; WAF (guard.seosiri.com)</option>
                   <option value="BIOPHARMA">Biopharma Software Infrastructure MCP (biopharma.seosiri.com)</option>
                   <option value="IAIG">Industrial AI Gateway MCP (iaig.seosiri.com)</option>
                   <option value="ROVOMCP">Rovo-MCP Link Gateway (rovomcp.seosiri.com)</option>
