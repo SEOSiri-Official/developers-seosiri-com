@@ -15,8 +15,22 @@ export interface ApiPricingItem {
 
 export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
   {
-    id: "guard-seosiri-waf",
-    name: "SEOSiri Cloud Defense & Reverse Proxy WAF",
+    id: "guard-starter",
+    name: "SEOSiri Security Shield - Starter ($29/mo)",
+    gateway: "guard.seosiri.com",
+    category: "SECURITY_GOV",
+    monthlyUsd: 29,
+    annualUsd: 23,
+    rateLimitRpm: 100,
+    toolsCount: 8,
+    slaUptime: "99.9%",
+    scopeCode: "SECURITY_STARTER",
+    description: "Essential perimeter defense for blogs, SMBs, and single CMS websites. SQLi, XSS, and standard rate limiting.",
+    featured: false
+  },
+  {
+    id: "guard-pro",
+    name: "SEOSiri Security Proxy & WAF - Pro ($99/mo)",
     gateway: "guard.seosiri.com",
     category: "SECURITY_GOV",
     monthlyUsd: 99,
@@ -24,9 +38,23 @@ export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
     rateLimitRpm: 1000,
     toolsCount: 12,
     slaUptime: "99.99%",
-    scopeCode: "SECURITY_SHIELD",
-    description: "Autonomous Edge WAF protecting web & mobile APIs against SQLi, XSS, BOLA/IDOR, and Mass Assignment with zero code changes. Tier plans: Starter $29 / Pro $99 / Ent $499.",
+    scopeCode: "SECURITY_PRO",
+    description: "High-throughput edge defense for Mobile APIs, SaaS apps, and e-commerce. BOLA/IDOR, Mass Assignment, and real-time alerts.",
     featured: true
+  },
+  {
+    id: "guard-enterprise",
+    name: "SEOSiri Security Proxy - Enterprise ($499/mo)",
+    gateway: "guard.seosiri.com",
+    category: "SECURITY_GOV",
+    monthlyUsd: 499,
+    annualUsd: 399,
+    rateLimitRpm: 5000,
+    toolsCount: 12,
+    slaUptime: "99.99%",
+    scopeCode: "SECURITY_ENTERPRISE",
+    description: "Dedicated Cloudflare Zero Trust setup with custom engineering SLA, mobile anti-tamper, and 24/7 priority support.",
+    featured: false
   },
   // --- High-Value Specialized Suites ($149/mo) ---
   {
