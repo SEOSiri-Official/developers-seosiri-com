@@ -139,8 +139,8 @@ export const ApiPricingMatrix: React.FC<ApiPricingMatrixProps> = ({ onViewChange
             <span className="text-slate-400 text-[10px] block uppercase font-bold">Starter Shield</span>
             <div className="text-2xl font-black text-white">$29 <span className="text-xs text-slate-400 font-normal">/ mo</span></div>
             <p className="text-slate-400 text-[11px] font-sans">Single Domain WAF • SQLi &amp; XSS Edge Mitigation • 100 RPM limit</p>
-            <a href="https://guard.seosiri.com/" target="_blank" rel="noopener noreferrer" className="inline-block text-sky-400 text-xs hover:underline font-bold pt-1">
-              Deploy Starter &rarr;
+            <a onClick={() => onViewChange('key-issuer')} href="#key-issuer?plan=starter" rel="noopener noreferrer" className="inline-block text-sky-400 text-xs hover:underline font-bold pt-1">
+              Deploy Starter ($29) &rarr;
             </a>
           </div>
 
@@ -148,8 +148,8 @@ export const ApiPricingMatrix: React.FC<ApiPricingMatrixProps> = ({ onViewChange
             <span className="text-amber-400 text-[10px] block uppercase font-bold">Pro Defense (Most Popular)</span>
             <div className="text-2xl font-black text-white">$99 <span className="text-xs text-slate-400 font-normal">/ mo</span></div>
             <p className="text-slate-400 text-[11px] font-sans">Up to 3 Domains/APIs • BOLA UUID Enforcer • 5-min Email Incident Alerts</p>
-            <a href="https://guard.seosiri.com/" target="_blank" rel="noopener noreferrer" className="inline-block text-amber-300 text-xs hover:underline font-bold pt-1">
-              Deploy Pro Defense &rarr;
+            <a onClick={() => onViewChange('key-issuer')} href="#key-issuer?plan=starter" rel="noopener noreferrer" className="inline-block text-amber-300 text-xs hover:underline font-bold pt-1">
+              Deploy Pro ($99) &rarr;
             </a>
           </div>
 
@@ -157,8 +157,8 @@ export const ApiPricingMatrix: React.FC<ApiPricingMatrixProps> = ({ onViewChange
             <span className="text-purple-400 text-[10px] block uppercase font-bold">Enterprise Custom</span>
             <div className="text-2xl font-black text-white">$499 <span className="text-xs text-slate-400 font-normal">/ mo</span></div>
             <p className="text-slate-400 text-[11px] font-sans">Unlimited Endpoints • Mobile Anti-Hooking &amp; Nonce • 24/7 SLA Support</p>
-            <a href="https://guard.seosiri.com/" target="_blank" rel="noopener noreferrer" className="inline-block text-purple-300 text-xs hover:underline font-bold pt-1">
-              Contact Enterprise &rarr;
+            <a onClick={() => onViewChange('key-issuer')} href="#key-issuer?plan=starter" rel="noopener noreferrer" className="inline-block text-purple-300 text-xs hover:underline font-bold pt-1">
+              Deploy Enterprise ($499) &rarr;
             </a>
           </div>
         </div>
