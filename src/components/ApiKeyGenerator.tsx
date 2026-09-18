@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Key, 
   Check, 
@@ -24,10 +24,10 @@ import {
 import { LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 
 export const ApiKeyGenerator: React.FC = () => {
-  // Public Calculator State
-  const [calcScope, setCalcScope] = useState('SECURITY');
-  const [calcTier, setCalcTier] = useState<'PRO' | 'ENTERPRISE'>('PRO');
-  const [calcDuration, setCalcDuration] = useState(365);
+  // Public Calculator State (Properly Declared)
+  const [calcScope, setCalcScope] = useState('SEOSiri Security Shield - Starter ($29/mo)');
+  const [calcTier, setCalcTier] = useState<string>('STARTER (100 req/min)');
+  const [calcDuration, setCalcDuration] = useState(30);
 
   // Admin Desk State
   const [isAdminUnlocked, setIsAdminUnlocked] = useState(false);
@@ -39,10 +39,10 @@ export const ApiKeyGenerator: React.FC = () => {
   // Admin Key Generation Form State
   const [customerEmail, setCustomerEmail] = useState('');
   const [clientId, setClientId] = useState('');
-  const [tier, setTier] = useState<'PRO' | 'ENTERPRISE'>('PRO');
-  const [mcpScope, setMcpScope] = useState('SECURITY');
+  const [tier, setTier] = useState<string>('PRO');
+  const [mcpScope, setMcpScope] = useState('SECURITY_STARTER');
   const [country, setCountry] = useState('GLOBAL');
-  const [days, setDays] = useState(365);
+  const [days, setDays] = useState(30);
   const [generatedKey, setGeneratedKey] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [emailStatus, setEmailStatus] = useState<string | null>(null);
@@ -50,18 +50,20 @@ export const ApiKeyGenerator: React.FC = () => {
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
   const ADMIN_PASSCODE = "seosiri2026";
 
-  // Dynamic Price Calculation Engine
-  const calculatePrice = (scope: string, selectedTier: 'PRO' | 'ENTERPRISE', durationDays: number) => {
+  // Dynamic Price Calculation Engine (Handles $29 Starter, $99 Pro, $149 Suites, $499 Enterprise, $599 Master)
+  const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
     let baseMonthly = 99;
 
-    if (scope === 'ALL') {
-      baseMonthly = selectedTier === 'PRO' ? 299 : 2500;
-    } else if (scope === 'SECURITY') {
-      baseMonthly = selectedTier === 'PRO' ? 99 : 499;
-    } else if (scope === 'BIOPHARMA' || scope === 'IAIG') {
-      baseMonthly = selectedTier === 'PRO' ? 149 : 999;
+    if (scope.includes('Starter') || selectedTier.includes('STARTER')) {
+      baseMonthly = 29;
+    } else if (scope.includes('Enterprise ($499') || (selectedTier.includes('ENTERPRISE') && !scope.includes('ALL') && !scope.includes('Master'))) {
+      baseMonthly = 499;
+    } else if (scope === 'ALL' || scope.includes('Master')) {
+      baseMonthly = selectedTier.includes('ENTERPRISE') ? 2500 : 599;
+    } else if (scope === 'BIOPHARMA' || scope === 'IAIG' || scope.includes('149')) {
+      baseMonthly = selectedTier.includes('ENTERPRISE') ? 999 : 149;
     } else {
-      baseMonthly = selectedTier === 'PRO' ? 99 : 499;
+      baseMonthly = selectedTier.includes('ENTERPRISE') ? 499 : 99;
     }
 
     const months = Math.max(1, Math.round(durationDays / 30));
@@ -80,6 +82,38 @@ export const ApiKeyGenerator: React.FC = () => {
 
   const publicPrice = calculatePrice(calcScope, calcTier, calcDuration);
   const adminPrice = calculatePrice(mcpScope, tier, days);
+
+  // URL Parameter Synchronization (Reads ?plan=starter, ?plan=pro, ?plan=enterprise without crashing)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = window.location.href;
+      if (url.includes("plan=starter") || url.includes("starter")) {
+        setCalcScope("SEOSiri Security Shield - Starter ($29/mo)");
+        setCalcTier("STARTER (100 req/min)");
+        setCalcDuration(30);
+      } else if (url.includes("plan=enterprise") || url.includes("enterprise")) {
+        setCalcScope("SEOSiri Security Proxy - Enterprise ($499/mo)");
+        setCalcTier("ENTERPRISE (5,000 req/min)");
+        setCalcDuration(30);
+      } else if (url.includes("plan=pro") || url.includes("pro")) {
+        setCalcScope("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
+        setCalcTier("PRO (1,000 req/min)");
+        setCalcDuration(30);
+      }
+    }
+  }, []);
+
+  // When package changes, auto-align appropriate tier
+  const handleScopeChange = (newScope: string) => {
+    setCalcScope(newScope);
+    if (newScope.includes('Starter')) {
+      setCalcTier('STARTER (100 req/min)');
+    } else if (newScope.includes('Enterprise') || newScope.includes('Master')) {
+      setCalcTier('ENTERPRISE (5,000 req/min)');
+    } else {
+      setCalcTier('PRO (1,000 req/min)');
+    }
+  };
 
   const handleUnlockAdmin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -138,6 +172,9 @@ export const ApiKeyGenerator: React.FC = () => {
     }
 
     const gatewayMap: Record<string, string> = {
+      SECURITY_STARTER: "https://guard.seosiri.com",
+      SECURITY_PRO: "https://guard.seosiri.com",
+      SECURITY_ENTERPRISE: "https://guard.seosiri.com",
       SECURITY: "https://guard.seosiri.com",
       BIOPHARMA: "https://biopharma.seosiri.com",
       IAIG: "https://iaig.seosiri.com",
@@ -163,7 +200,7 @@ export const ApiKeyGenerator: React.FC = () => {
     };
 
     const gatewayUrl = gatewayMap[mcpScope] || "https://developers.seosiri.com";
-    const quotaText = tier === 'PRO' ? '1,000 req/min' : '5,000 req/min';
+    const quotaText = tier === 'STARTER' ? '100 req/min' : tier === 'PRO' ? '1,000 req/min' : '5,000 req/min';
 
     const subject = encodeURIComponent(`Your SEOSiri ${mcpScope} Security & API License [Invoice Confirmed]`);
     const body = encodeURIComponent(
@@ -181,7 +218,7 @@ export const ApiKeyGenerator: React.FC = () => {
       `Target Gateway   : ${gatewayUrl}\n` +
       `--------------------------------------------------\n\n` +
       `DEPLOYMENT INSTRUCTIONS:\n` +
-      (mcpScope === 'SECURITY'
+      (mcpScope.includes('SECURITY')
         ? `Option A (DNS CNAME Proxy): Point CNAME api.yourdomain.com -> guard.seosiri.com\n` +
           `Option B (API Header): Pass 'x-seosiri-key: ${generatedKey}' with all verification requests.\n\n`
         : `Include header 'x-seosiri-key: ${generatedKey}' in your HTTP requests or MCP client config.\n\n`) +
@@ -209,7 +246,7 @@ export const ApiKeyGenerator: React.FC = () => {
     },
     {
       q: "Can I license a single specific MCP or the entire ecosystem?",
-      a: "You can license individual servers ($99/mo) or the complete 21-package ecosystem under an ALL-Ecosystem master key ($299/mo)."
+      a: "You can license individual servers ($29 Starter, $99 Pro, $499 Enterprise) or the complete 21-package ecosystem under an ALL-Ecosystem master key."
     },
     {
       q: "Are my API requests logged or recorded on SEOSiri servers?",
@@ -217,45 +254,10 @@ export const ApiKeyGenerator: React.FC = () => {
     }
   ];
 
-  
-  
-
-  
-  // Auto-sync tier when package changes
-  React.useEffect(() => {
-    if (selectedPackage.includes("29") || selectedPackage.includes("Starter")) {
-      setSelectedTier("STARTER (100 req/min)");
-    } else if (selectedPackage.includes("499") || (selectedPackage.includes("Enterprise") && !selectedPackage.includes("Master"))) {
-      setSelectedTier("ENTERPRISE (5,000 req/min)");
-    } else if (selectedPackage.includes("599") || selectedPackage.includes("Master")) {
-      setSelectedTier("ENTERPRISE (5,000 req/min)");
-    } else {
-      setSelectedTier("PRO (1,000 req/min)");
-    }
-  }, [selectedPackage]);
-
-  // Read URL query params on initial load
-  React.useEffect(() => {
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    if (url.includes("plan=starter") || url.includes("starter")) {
-      setSelectedPackage("SEOSiri Security Shield - Starter ($29/mo)");
-      setSelectedTier("STARTER (100 req/min)");
-      setBillingDuration("1 Month (30 Days)");
-    } else if (url.includes("plan=enterprise") || url.includes("enterprise")) {
-      setSelectedPackage("SEOSiri Security Proxy - Enterprise ($499/mo)");
-      setSelectedTier("ENTERPRISE (5,000 req/min)");
-    } else if (url.includes("plan=pro") || url.includes("pro")) {
-      setSelectedPackage("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
-      setSelectedTier("PRO (1,000 req/min)");
-    }
-  }, []);
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 text-left font-sans">
       
-      {/* ---------------------------------------------------------------- */}
-      {/* PUBLIC CUSTOMER CHECKOUT VIEW & DYNAMIC PRICING CALCULATOR      */}
-      {/* ---------------------------------------------------------------- */}
+      {/* PUBLIC CUSTOMER CHECKOUT VIEW & DYNAMIC PRICING CALCULATOR */}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 relative">
         
         {/* Sticky Help Badge */}
@@ -305,18 +307,18 @@ export const ApiKeyGenerator: React.FC = () => {
           </span>
         </div>
 
-        {/* Interactive Scope & Duration Selectors for Public Buyers */}
+        {/* Interactive Scope & Duration Selectors */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
           <div>
             <label className="block text-slate-300 font-bold mb-1">Select Package / Scope:</label>
             <select
               value={calcScope}
-              onChange={(e) => setCalcScope(e.target.value)}
+              onChange={(e) => handleScopeChange(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
             >
               <option value="SEOSiri Security Shield - Starter ($29/mo)">SEOSiri Security Shield - Starter ($29/mo)</option>
-                <option value="SEOSiri Security Proxy & WAF - Pro ($99/mo)">SEOSiri Security Proxy & WAF - Pro ($99/mo)</option>
-                <option value="SEOSiri Security Proxy - Enterprise ($499/mo)">SEOSiri Security Proxy - Enterprise ($499/mo)</option>
+              <option value="SEOSiri Security Proxy & WAF - Pro ($99/mo)">SEOSiri Security Proxy &amp; WAF - Pro ($99/mo)</option>
+              <option value="SEOSiri Security Proxy - Enterprise ($499/mo)">SEOSiri Security Proxy - Enterprise ($499/mo)</option>
               <option value="BIOPHARMA">Biopharma Software Infrastructure ($149/mo)</option>
               <option value="IAIG">Industrial AI Gateway ($149/mo)</option>
               <option value="ROVOMCP">Rovo-MCP Link Gateway ($99/mo)</option>
@@ -345,12 +347,12 @@ export const ApiKeyGenerator: React.FC = () => {
             <label className="block text-slate-300 font-bold mb-1">Select Tier Level:</label>
             <select
               value={calcTier}
-              onChange={(e) => setCalcTier(e.target.value as 'PRO' | 'ENTERPRISE')}
+              onChange={(e) => setCalcTier(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
             >
               <option value="STARTER (100 req/min)">STARTER (100 req/min)</option>
-                <option value="PRO">PRO (1,000 req/min)</option>
-              <option value="ENTERPRISE">ENTERPRISE (5,000 req/min)</option>
+              <option value="PRO (1,000 req/min)">PRO (1,000 req/min)</option>
+              <option value="ENTERPRISE (5,000 req/min)">ENTERPRISE (5,000 req/min)</option>
             </select>
           </div>
 
@@ -385,7 +387,7 @@ export const ApiKeyGenerator: React.FC = () => {
               ${publicPrice.finalTotal} <span className="text-sm font-normal text-slate-400">USD</span>
             </div>
             <p className="text-xs text-slate-400">
-              Base: ${publicPrice.baseMonthly}/mo • {publicPrice.months} Months Duration
+              Base: ${publicPrice.baseMonthly}/mo • {publicPrice.months} Month{publicPrice.months > 1 ? 's' : ''} Duration
               {publicPrice.savings > 0 && <span className="text-emerald-400"> (You save ${publicPrice.savings})</span>}
             </p>
           </div>
@@ -441,9 +443,7 @@ export const ApiKeyGenerator: React.FC = () => {
 
       </div>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* ADMIN KEY ISSUER DESK (SYSTEM OWNER WORKSPACE)                   */}
-      {/* ---------------------------------------------------------------- */}
+      {/* ADMIN KEY ISSUER DESK (SYSTEM OWNER WORKSPACE) */}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div className="flex items-center space-x-3">
@@ -517,6 +517,9 @@ export const ApiKeyGenerator: React.FC = () => {
                   onChange={(e) => setMcpScope(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                 >
+                  <option value="SECURITY_STARTER">★ SEOSiri Security Shield - Starter ($29/mo) (guard.seosiri.com)</option>
+                  <option value="SECURITY_PRO">★ SEOSiri Security Proxy &amp; WAF - Pro ($99/mo) (guard.seosiri.com)</option>
+                  <option value="SECURITY_ENTERPRISE">★ SEOSiri Security Proxy - Enterprise ($499/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY">★ SEOSiri Security Proxy &amp; WAF (guard.seosiri.com)</option>
                   <option value="BIOPHARMA">Biopharma Software Infrastructure MCP (biopharma.seosiri.com)</option>
                   <option value="IAIG">Industrial AI Gateway MCP (iaig.seosiri.com)</option>
@@ -546,9 +549,10 @@ export const ApiKeyGenerator: React.FC = () => {
                 <label className="block text-slate-300 font-bold mb-1">Target Tier Level:</label>
                 <select
                   value={tier}
-                  onChange={(e) => setTier(e.target.value as 'PRO' | 'ENTERPRISE')}
+                  onChange={(e) => setTier(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                 >
+                  <option value="STARTER">STARTER (100 req/min)</option>
                   <option value="PRO">PRO (1,000 req/min)</option>
                   <option value="ENTERPRISE">ENTERPRISE (5,000 req/min)</option>
                 </select>
@@ -557,30 +561,16 @@ export const ApiKeyGenerator: React.FC = () => {
               <div>
                 <label className="block text-slate-300 font-bold mb-1 flex items-center gap-1">
                   <Globe className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Target Country / Jurisdiction (Global):</span>
+                  <span>Target Country Code / Jurisdiction (Worldwide):</span>
                 </label>
-                <select
+                <input
+                  type="text"
+                  placeholder="e.g. GLOBAL, US, GB, DE, CA, JP, AU, SG, BD, IN"
                   value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
-                >
-                  <option value="GLOBAL">🌍 GLOBAL (Worldwide / Multi-Region)</option>
-                  <option value="US">United States (US)</option>
-                  <option value="GB">United Kingdom (GB / UK)</option>
-                  <option value="DE">Germany &amp; EU (DE / EU)</option>
-                  <option value="CA">Canada (CA)</option>
-                  <option value="JP">Japan (JP)</option>
-                  <option value="AU">Australia (AU)</option>
-                  <option value="SG">Singapore (SG)</option>
-                  <option value="CH">Switzerland (CH)</option>
-                  <option value="AE">United Arab Emirates (AE)</option>
-                  <option value="IN">India (IN)</option>
-                  <option value="FR">France (FR)</option>
-                  <option value="NL">Netherlands (NL)</option>
-                  <option value="SE">Sweden &amp; Nordics (SE)</option>
-                  <option value="BR">Brazil &amp; LATAM (BR)</option>
-                  <option value="KR">South Korea (KR)</option>
-                </select>
+                  onChange={(e) => setCountry(e.target.value.toUpperCase())}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white font-mono focus:outline-none focus:border-blue-500"
+                />
+                <span className="text-[10px] text-slate-500 mt-0.5 block">Type any ISO-2 code or keep GLOBAL for unrestricted access worldwide.</span>
               </div>
 
               <div className="sm:col-span-2">
