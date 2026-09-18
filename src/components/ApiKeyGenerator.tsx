@@ -54,7 +54,10 @@ export const ApiKeyGenerator: React.FC = () => {
   const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
     let baseMonthly = 99;
 
-    if (scope.includes('Starter') || selectedTier.includes('STARTER')) {
+    const sUpper = (scope || "").toUpperCase();
+    const tUpper = (selectedTier || "").toUpperCase();
+
+    if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("29")) {
       baseMonthly = 29;
     } else if (scope.includes('Enterprise ($499') || (selectedTier.includes('ENTERPRISE') && !scope.includes('ALL') && !scope.includes('Master'))) {
       baseMonthly = 499;
