@@ -217,6 +217,22 @@ export const ApiKeyGenerator: React.FC = () => {
     }
   ];
 
+  
+  // Auto-sync plan selection from guard.seosiri.com
+  React.useEffect(() => {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    if (url.includes("plan=starter") || url.includes("starter")) {
+      if (typeof setSelectedPackage === "function") setSelectedPackage("SEOSiri Security Shield - Starter ($29/mo)");
+      if (typeof setSelectedTier === "function") setSelectedTier("STARTER (100 req/min)");
+    } else if (url.includes("plan=enterprise") || url.includes("enterprise")) {
+      if (typeof setSelectedPackage === "function") setSelectedPackage("SEOSiri Security Proxy - Enterprise ($499/mo)");
+      if (typeof setSelectedTier === "function") setSelectedTier("ENTERPRISE (5,000 req/min)");
+    } else if (url.includes("plan=pro") || url.includes("pro")) {
+      if (typeof setSelectedPackage === "function") setSelectedPackage("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
+      if (typeof setSelectedTier === "function") setSelectedTier("PRO (1,000 req/min)");
+    }
+  }, []);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 text-left font-sans">
       
@@ -281,7 +297,9 @@ export const ApiKeyGenerator: React.FC = () => {
               onChange={(e) => setCalcScope(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
             >
-              <option value="SECURITY">SEOSiri Security Proxy &amp; WAF ($99/mo)</option>
+              <option value="SEOSiri Security Shield - Starter ($29/mo)">SEOSiri Security Shield - Starter ($29/mo)</option>
+                <option value="SEOSiri Security Proxy & WAF - Pro ($99/mo)">SEOSiri Security Proxy & WAF - Pro ($99/mo)</option>
+                <option value="SEOSiri Security Proxy - Enterprise ($499/mo)">SEOSiri Security Proxy - Enterprise ($499/mo)</option>
               <option value="BIOPHARMA">Biopharma Software Infrastructure ($149/mo)</option>
               <option value="IAIG">Industrial AI Gateway ($149/mo)</option>
               <option value="ROVOMCP">Rovo-MCP Link Gateway ($99/mo)</option>
@@ -313,7 +331,8 @@ export const ApiKeyGenerator: React.FC = () => {
               onChange={(e) => setCalcTier(e.target.value as 'PRO' | 'ENTERPRISE')}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
             >
-              <option value="PRO">PRO (1,000 req/min)</option>
+              <option value="STARTER (100 req/min)">STARTER (100 req/min)</option>
+                <option value="PRO">PRO (1,000 req/min)</option>
               <option value="ENTERPRISE">ENTERPRISE (5,000 req/min)</option>
             </select>
           </div>
