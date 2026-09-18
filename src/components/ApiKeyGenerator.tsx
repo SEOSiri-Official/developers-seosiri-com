@@ -218,18 +218,35 @@ export const ApiKeyGenerator: React.FC = () => {
   ];
 
   
-  // Auto-sync plan selection from guard.seosiri.com
+  
+
+  
+  // Auto-sync tier when package changes
+  React.useEffect(() => {
+    if (selectedPackage.includes("29") || selectedPackage.includes("Starter")) {
+      setSelectedTier("STARTER (100 req/min)");
+    } else if (selectedPackage.includes("499") || (selectedPackage.includes("Enterprise") && !selectedPackage.includes("Master"))) {
+      setSelectedTier("ENTERPRISE (5,000 req/min)");
+    } else if (selectedPackage.includes("599") || selectedPackage.includes("Master")) {
+      setSelectedTier("ENTERPRISE (5,000 req/min)");
+    } else {
+      setSelectedTier("PRO (1,000 req/min)");
+    }
+  }, [selectedPackage]);
+
+  // Read URL query params on initial load
   React.useEffect(() => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     if (url.includes("plan=starter") || url.includes("starter")) {
-      if (typeof setSelectedPackage === "function") setSelectedPackage("SEOSiri Security Shield - Starter ($29/mo)");
-      if (typeof setSelectedTier === "function") setSelectedTier("STARTER (100 req/min)");
+      setSelectedPackage("SEOSiri Security Shield - Starter ($29/mo)");
+      setSelectedTier("STARTER (100 req/min)");
+      setBillingDuration("1 Month (30 Days)");
     } else if (url.includes("plan=enterprise") || url.includes("enterprise")) {
-      if (typeof setSelectedPackage === "function") setSelectedPackage("SEOSiri Security Proxy - Enterprise ($499/mo)");
-      if (typeof setSelectedTier === "function") setSelectedTier("ENTERPRISE (5,000 req/min)");
+      setSelectedPackage("SEOSiri Security Proxy - Enterprise ($499/mo)");
+      setSelectedTier("ENTERPRISE (5,000 req/min)");
     } else if (url.includes("plan=pro") || url.includes("pro")) {
-      if (typeof setSelectedPackage === "function") setSelectedPackage("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
-      if (typeof setSelectedTier === "function") setSelectedTier("PRO (1,000 req/min)");
+      setSelectedPackage("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
+      setSelectedTier("PRO (1,000 req/min)");
     }
   }, []);
 
