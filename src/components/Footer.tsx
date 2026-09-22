@@ -39,6 +39,14 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>Custom Enterprise MCP Services</span>
                 </button>
               </li>
+<li>
+                <a href="https://www.seosiri.com/atlassian-consulting" target="_blank" rel="noopener noreferrer" className="text-sky-400 font-bold hover:underline flex items-center gap-1 text-left">
+                  <Zap className="w-3 h-3 text-blue-400" />
+                  <span>Atlassian Forge &amp; Rovo Consulting</span>
+                </a>
+              </li>
+                </button>
+              </li>
               <li>
                 <button onClick={() => onViewChange('pricing')} className="text-amber-300 hover:text-amber-200 font-bold transition-colors flex items-center gap-1 text-left">
                   <DollarSign className="w-3 h-3 text-amber-400" />
