@@ -45,8 +45,6 @@ export const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   <span>Atlassian Forge &amp; Rovo Consulting</span>
                 </a>
               </li>
-                </button>
-              </li>
               <li>
                 <button onClick={() => onViewChange('pricing')} className="text-amber-300 hover:text-amber-200 font-bold transition-colors flex items-center gap-1 text-left">
                   <DollarSign className="w-3 h-3 text-amber-400" />
