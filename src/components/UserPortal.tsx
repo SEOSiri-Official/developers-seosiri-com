@@ -536,7 +536,33 @@ export const UserPortal: React.FC = () => {
           </div>
         </div>
 
-      </div>
+      
+          {/* UI Kit SDK Client Resource Card */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 text-left font-mono text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-cyan-400">⚛️ @seosiri/developer-ui-kit (v1.0.2)</span>
+              <span className="px-2.5 py-0.5 bg-cyan-500/10 text-cyan-300 rounded text-[10px] border border-cyan-500/20 font-bold">NPM SDK</span>
+            </div>
+            <p className="text-slate-300 text-[11px] font-sans leading-relaxed">
+              White-label React component library and flexible licensing guard for your dashboard frontends.
+            </p>
+            <div className="p-3 bg-slate-950 rounded-xl text-emerald-400 text-[11px] select-all">
+              npm i @seosiri/developer-ui-kit
+            </div>
+            <div className="pt-1 flex items-center justify-between">
+              <a href="https://www.npmjs.com/package/@seosiri/developer-ui-kit" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline text-[11px]">
+                View on NPM &rarr;
+              </a>
+              <button 
+                onClick={() => { window.location.hash = "ui-kit-demo"; }}
+                className="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[11px] font-bold"
+              >
+                Open Live Sandbox
+              </button>
+            </div>
+          </div>
+
+        </div>
     </div>
   );
 };
