@@ -43,10 +43,10 @@ const VALID_VIEWS: ViewMode[] = [
   "manual",
   "governance",
   "security",
+  "ui-kit-demo",
 ];
 
 // Every ViewMode that OnsitePolicyPages is responsible for rendering.
-// Keep this in sync with the `view === '...'` blocks inside OnsitePolicyPages.tsx.
 const ONSITE_POLICY_VIEWS: ViewMode[] = [
   'custom-mcp',
   'disclaimer',
@@ -67,11 +67,6 @@ export function App() {
   };
   const [currentView, setCurrentView] = useState<ViewMode>(getInitialView);
 
-  // Keep currentView in sync with the URL hash for the whole lifetime of the
-  // app, not just at first mount. Without this, a hash-only address-bar edit
-  // (e.g. typing #manual while already on the page) can fire a same-document
-  // navigation that never re-runs getInitialView(), leaving currentView
-  // stale and rendering nothing — the intermittent "blank page" bug.
   React.useEffect(() => {
     const handleHashChange = () => {
       setCurrentView(getInitialView());
@@ -95,9 +90,6 @@ export function App() {
       if (!hash) return;
       if (hash === "manual" || hash === "productivity-manual") {
         setCurrentView("productivity-manual" as ViewMode);
-        setCurrentView("productivity-manual" as ViewMode);
-        setCurrentView("productivity-manual" as ViewMode);
-        setCurrentView("productivity-manual" as ViewMode);
       } else if (hash === "pricing") {
         setCurrentView("pricing" as ViewMode);
       } else if (hash === "governance-liability" || hash === "governance") {
@@ -114,6 +106,8 @@ export function App() {
         setCurrentView("matrix" as ViewMode);
       } else if (hash === "topology") {
         setCurrentView("topology" as ViewMode);
+      } else if (hash === "ui-kit-demo") {
+        setCurrentView("ui-kit-demo" as ViewMode);
       }
     };
     handleHashSync();
@@ -182,7 +176,11 @@ export function App() {
         {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
         {currentView === 'user-portal' && <UserPortal />}
-                {currentView === 'pricing' && (
+        {currentView === 'ui-kit-demo' && <UIKitSandboxView onViewChange={(view) => {
+          window.location.hash = view;
+          setCurrentView(view);
+        }} />}
+        {currentView === 'pricing' && (
           <ApiPricingMatrix onViewChange={(view) => {
             window.location.hash = view;
             setCurrentView(view);
