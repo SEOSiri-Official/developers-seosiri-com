@@ -107,6 +107,7 @@ export interface SEOSiriUserModel {
 }
 
 export type ViewMode = 
+  | 'ui-kit-demo'
   | 'topology' 
   | 'docs' 
   | 'matrix' 
