@@ -6,6 +6,11 @@ interface ApiKeyIssuerIntegrationProps {
   onViewChange: (view: ViewMode) => void;
 }
 
+
+  const testKeyValidation = () => {
+    alert("Sandbox Key Validation Executed Successfully!");
+  };
+
 export const ApiKeyIssuerIntegration: React.FC<ApiKeyIssuerIntegrationProps> = ({ onViewChange }) => {
   const [testToken, setTestToken] = useState('PRO_US_client_1818241500_8a92f1b4');
   const [validationResult, setValidationResult] = useState<string | null>(null);

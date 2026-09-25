@@ -2,7 +2,7 @@ export interface ApiPricingItem {
   id: string;
   name: string;
   gateway: string;
-  category: 'LIFE_SCIENCES' | 'AI_SEARCH_SEO' | 'DATA_DEVOPS' | 'SECURITY_GOV';
+  category: 'LIFE_SCIENCES' | 'AI_SEARCH_SEO' | 'DATA_DEVOPS' | 'SECURITY_GOV' | 'DEVELOPER_TOOLS';
   monthlyUsd: number;
   annualUsd: number;
   rateLimitRpm: number;
