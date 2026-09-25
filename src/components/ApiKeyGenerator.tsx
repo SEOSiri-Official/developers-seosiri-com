@@ -1,10 +1,3 @@
-cd /d/developers-seosiri-com
-
-# 1. Clean up garbage files
-rm -f "{s*" fix_calc.py
-
-# 2. Write a 100% complete, clean, error-free ApiKeyGenerator.tsx directly
-cat << 'EOF' > src/components/ApiKeyGenerator.tsx
 import React, { useState, useEffect } from 'react';
 import { 
   Key, 
@@ -55,28 +48,27 @@ export const ApiKeyGenerator: React.FC = () => {
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
   const ADMIN_PASSCODE = "seosiri2026";
 
-  // Robust Dynamic Pricing Engine
+  // Comprehensive Dynamic Pricing Engine for All Packages
   const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
     const sUpper = (scope || "").toUpperCase();
     const tUpper = (selectedTier || "").toUpperCase();
 
     let baseMonthly = 99;
 
-    const dollarMatch = scope.match(/\$(\d+)/);
-    if (dollarMatch) {
-      baseMonthly = parseInt(dollarMatch[1], 10);
-    } else if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("UI KIT")) {
+    if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("DEVELOPER UI KIT") || sUpper.includes("UI KIT SDK")) {
       baseMonthly = tUpper.includes("ENTERPRISE") ? 199 : 49;
-    } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER")) {
+    } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("$29")) {
       baseMonthly = 29;
-    } else if (sUpper.includes("ENTERPRISE")) {
+    } else if (sUpper.includes("SECURITY PRO") || sUpper.includes("WAF - PRO") || sUpper.includes("$99")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
+    } else if (sUpper.includes("ENTERPRISE") && sUpper.includes("SECURITY")) {
       baseMonthly = 499;
-    }
-
-    if (tUpper.includes("ENTERPRISE") && baseMonthly < 499 && !sUpper.includes("ENTERPRISE")) {
-      baseMonthly = 499;
-    } else if (tUpper.includes("PRO") && baseMonthly === 29) {
-      baseMonthly = 99;
+    } else if (sUpper.includes("BIOPHARMA") || sUpper.includes("IAIG") || sUpper.includes("$149")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 999 : 149;
+    } else if (sUpper === "ALL" || sUpper.includes("MASTER")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 2500 : 299;
+    } else {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
     }
 
     const months = Math.max(1, Math.round(durationDays / 30));
@@ -96,7 +88,7 @@ export const ApiKeyGenerator: React.FC = () => {
   const publicPrice = calculatePrice(calcScope, calcTier, calcDuration);
   const adminPrice = calculatePrice(mcpScope, tier, days);
 
-  // URL Parameter Sync
+  // URL Parameter Synchronization
   useEffect(() => {
     if (typeof window !== "undefined") {
       const url = window.location.href;
@@ -188,6 +180,8 @@ export const ApiKeyGenerator: React.FC = () => {
     const gatewayMap: Record<string, string> = {
       UIKIT: "https://developers.seosiri.com",
       SECURITY_STARTER: "https://guard.seosiri.com",
+      SECURITY_PRO: "https://guard.seosiri.com",
+      SECURITY_ENTERPRISE: "https://guard.seosiri.com",
       BIOPHARMA: "https://biopharma.seosiri.com",
       IAIG: "https://iaig.seosiri.com",
       ROVOMCP: "https://rovomcp.seosiri.com",
@@ -218,7 +212,7 @@ export const ApiKeyGenerator: React.FC = () => {
     const body = encodeURIComponent(
       `Hello,\n\n` +
       `Thank you for your payment via Payoneer.\n\n` +
-      `Your cryptographically signed SEOSiri ${tier} License Key is active:\n` +
+      `Your cryptographically signed SEOSiri ${tier} License Key is active worldwide:\n` +
       `--------------------------------------------------\n` +
       `API Key          : ${generatedKey}\n` +
       `Target Scope     : ${mcpScope}\n` +
@@ -251,7 +245,7 @@ export const ApiKeyGenerator: React.FC = () => {
       a: "Subscriptions are calculated monthly with automatic duration discounts: 5% off for 3 months, 10% off for 6 months, 20% off for 1 year (2 months free), and 25% off for 2 years."
     },
     {
-      q: "Can I license the Developer UI Kit SDK or specific MCP servers?",
+      q: "Can I license a single specific MCP or the entire ecosystem?",
       a: "You can license the UI Kit SDK ($49/mo), individual servers ($29 Starter, $99 Pro, $499 Enterprise), or the complete ecosystem under an ALL master key."
     },
     {
