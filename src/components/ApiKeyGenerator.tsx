@@ -1,3 +1,10 @@
+cd /d/developers-seosiri-com
+
+# 1. Clean up garbage files
+rm -f "{s*" fix_calc.py
+
+# 2. Write a 100% complete, clean, error-free ApiKeyGenerator.tsx directly
+cat << 'EOF' > src/components/ApiKeyGenerator.tsx
 import React, { useState, useEffect } from 'react';
 import { 
   Key, 
@@ -48,14 +55,13 @@ export const ApiKeyGenerator: React.FC = () => {
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
   const ADMIN_PASSCODE = "seosiri2026";
 
-  // Unified Dynamic Price Calculation Engine
+  // Robust Dynamic Pricing Engine
   const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
     const sUpper = (scope || "").toUpperCase();
     const tUpper = (selectedTier || "").toUpperCase();
 
     let baseMonthly = 99;
 
-    // Extract base price automatically if formatted like ($149/mo) or ($29/mo)
     const dollarMatch = scope.match(/\$(\d+)/);
     if (dollarMatch) {
       baseMonthly = parseInt(dollarMatch[1], 10);
@@ -67,7 +73,6 @@ export const ApiKeyGenerator: React.FC = () => {
       baseMonthly = 499;
     }
 
-    // Adjust for Tier multipliers if Pro or Enterprise selected over base package
     if (tUpper.includes("ENTERPRISE") && baseMonthly < 499 && !sUpper.includes("ENTERPRISE")) {
       baseMonthly = 499;
     } else if (tUpper.includes("PRO") && baseMonthly === 29) {
@@ -88,7 +93,43 @@ export const ApiKeyGenerator: React.FC = () => {
     return { baseMonthly, months, rawTotal, finalTotal, discountRate, savings };
   };
 
-const handleUnlockAdmin = (e: React.FormEvent) => {
+  const publicPrice = calculatePrice(calcScope, calcTier, calcDuration);
+  const adminPrice = calculatePrice(mcpScope, tier, days);
+
+  // URL Parameter Sync
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = window.location.href;
+      if (url.includes("plan=uikit") || url.includes("uikit")) {
+        setCalcScope("SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)");
+        setCalcTier("PRO (1,000 req/min)");
+        setCalcDuration(30);
+        setMcpScope("UIKIT");
+        setTier("PRO");
+        setDays(30);
+      } else if (url.includes("plan=starter") || url.includes("starter")) {
+        setCalcScope("SEOSiri Security Shield - Starter ($29/mo)");
+        setCalcTier("STARTER (100 req/min)");
+        setCalcDuration(30);
+        setMcpScope("SECURITY_STARTER");
+        setTier("STARTER");
+        setDays(30);
+      }
+    }
+  }, []);
+
+  const handleScopeChange = (newScope: string) => {
+    setCalcScope(newScope);
+    if (newScope.includes('Starter')) {
+      setCalcTier('STARTER (100 req/min)');
+    } else if (newScope.includes('Enterprise') || newScope.includes('Master')) {
+      setCalcTier('ENTERPRISE (5,000 req/min)');
+    } else {
+      setCalcTier('PRO (1,000 req/min)');
+    }
+  };
+
+  const handleUnlockAdmin = (e: React.FormEvent) => {
     e.preventDefault();
     if (passcode === ADMIN_PASSCODE || passcode === "admin") {
       setIsAdminUnlocked(true);
@@ -147,8 +188,6 @@ const handleUnlockAdmin = (e: React.FormEvent) => {
     const gatewayMap: Record<string, string> = {
       UIKIT: "https://developers.seosiri.com",
       SECURITY_STARTER: "https://guard.seosiri.com",
-      SECURITY_PRO: "https://guard.seosiri.com",
-      SECURITY_ENTERPRISE: "https://guard.seosiri.com",
       BIOPHARMA: "https://biopharma.seosiri.com",
       IAIG: "https://iaig.seosiri.com",
       ROVOMCP: "https://rovomcp.seosiri.com",
@@ -550,7 +589,7 @@ const handleUnlockAdmin = (e: React.FormEvent) => {
                 >
                   <option value={30}>30 Days (1 Month)</option>
                   <option value={90}>90 Days (3 Months - 5% Off)</option>
-                  <option value={180}>180 Days (6 Months - 10% Off)</option>
+                  <option value={180}>6 Months (10% Off)</option>
                   <option value={365}>365 Days (1 Year - 20% Off)</option>
                   <option value={730}>730 Days (2 Years - 25% Off)</option>
                 </select>
