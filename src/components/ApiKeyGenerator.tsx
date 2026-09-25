@@ -1,10 +1,3 @@
-cd /d/developers-seosiri-com
-
-# 1. Discard all broken changes in ApiKeyGenerator.tsx and clean git state
-git checkout src/components/ApiKeyGenerator.tsx
-
-# 2. Write the 100% clean, production-ready ApiKeyGenerator.tsx using a file write (no bash escaping hazards)
-cat << 'EOF' > src/components/ApiKeyGenerator.tsx
 import React, { useState, useEffect } from 'react';
 import { 
   Key, 
