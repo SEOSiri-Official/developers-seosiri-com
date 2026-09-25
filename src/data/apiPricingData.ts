@@ -15,6 +15,19 @@ export interface ApiPricingItem {
 
 export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
   {
+    id: "developer-ui-kit",
+    name: "SEOSiri Developer UI Kit SDK",
+    gateway: "npmjs.com",
+    category: "DEVELOPER_TOOLS",
+    monthlyUsd: 49,
+    annualUsd: 39,
+    rateLimitRpm: 1000,
+    toolsCount: 1,
+    slaUptime: "99.9%",
+    scopeCode: "UIKIT",
+    description: "Framework-agnostic white-label React UI component library with built-in flexible licensing guard."
+  },
+  {
     id: "guard-starter",
     name: "SEOSiri Security Shield - Starter ($29/mo)",
     gateway: "guard.seosiri.com",
@@ -334,3 +347,4 @@ export const MASTER_ENTERPRISE_PASS = {
   gatewaysCount: 13,
   description: 'Unrestricted enterprise access to all 20 API gateways with unified cryptographic HMAC key and priority support.'
 };
+
