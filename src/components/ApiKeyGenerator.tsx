@@ -534,6 +534,7 @@ export const ApiKeyGenerator: React.FC = () => {
                   <option value="SECURITY_PRO">★ SEOSiri Security Proxy &amp; WAF - Pro ($99/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_ENTERPRISE">★ SEOSiri Security Proxy - Enterprise ($499/mo) (guard.seosiri.com)</option>
                                     <option value="UIKIT">Developer UI Kit SDK (@seosiri/developer-ui-kit - v1.0.2)</option>
+                                    <option value="UI-KIT">Developer UI Kit SDK (@seosiri/developer-ui-kit - v1.0.2)</option>
                   <option value="BIOPHARMA">Biopharma Software Infrastructure MCP (biopharma.seosiri.com)</option>
                   <option value="IAIG">Industrial AI Gateway MCP (iaig.seosiri.com)</option>
                   <option value="ROVOMCP">Rovo-MCP Link Gateway (rovomcp.seosiri.com)</option>
