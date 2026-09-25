@@ -1,3 +1,10 @@
+cd /d/developers-seosiri-com
+
+# 1. Discard all broken changes in ApiKeyGenerator.tsx and clean git state
+git checkout src/components/ApiKeyGenerator.tsx
+
+# 2. Write the 100% clean, production-ready ApiKeyGenerator.tsx using a file write (no bash escaping hazards)
+cat << 'EOF' > src/components/ApiKeyGenerator.tsx
 import React, { useState, useEffect } from 'react';
 import { 
   Key, 
@@ -17,16 +24,14 @@ import {
   ChevronUp, 
   AlertCircle,
   Globe,
-  Calculator,
-  Tag,
-  Percent
+  Calculator
 } from 'lucide-react';
 import { LEAD_ARCHITECT, OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 
 export const ApiKeyGenerator: React.FC = () => {
-  // Public Calculator State (Properly Declared)
-  const [calcScope, setCalcScope] = useState('SEOSiri Security Shield - Starter ($29/mo)');
-  const [calcTier, setCalcTier] = useState<string>('STARTER (100 req/min)');
+  // Public Calculator State
+  const [calcScope, setCalcScope] = useState('SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)');
+  const [calcTier, setCalcTier] = useState<string>('PRO (1,000 req/min)');
   const [calcDuration, setCalcDuration] = useState(30);
 
   // Admin Desk State
@@ -40,7 +45,7 @@ export const ApiKeyGenerator: React.FC = () => {
   const [customerEmail, setCustomerEmail] = useState('');
   const [clientId, setClientId] = useState('');
   const [tier, setTier] = useState<string>('PRO');
-  const [mcpScope, setMcpScope] = useState('SECURITY_STARTER');
+  const [mcpScope, setMcpScope] = useState('UIKIT');
   const [country, setCountry] = useState('GLOBAL');
   const [days, setDays] = useState(30);
   const [generatedKey, setGeneratedKey] = useState<string | null>(null);
@@ -50,23 +55,25 @@ export const ApiKeyGenerator: React.FC = () => {
   const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
   const ADMIN_PASSCODE = "seosiri2026";
 
-  // Dynamic Price Calculation Engine (Handles $29 Starter, $99 Pro, $149 Suites, $499 Enterprise, $599 Master)
+  // Unified Dynamic Price Calculation Engine
   const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
-    let baseMonthly = 99;
-
     const sUpper = (scope || "").toUpperCase();
     const tUpper = (selectedTier || "").toUpperCase();
 
-    if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("29")) {
+    let baseMonthly = 99;
+
+    if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("DEVELOPER UI KIT") || sUpper.includes("UI KIT SDK")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 199 : 49;
+    } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("29")) {
       baseMonthly = 29;
-    } else if (scope.includes('Enterprise ($499') || (selectedTier.includes('ENTERPRISE') && !scope.includes('ALL') && !scope.includes('Master'))) {
+    } else if (sUpper.includes("SECURITY_PRO") || sUpper.includes("WAF - PRO")) {
+      baseMonthly = 99;
+    } else if (sUpper.includes("SECURITY_ENTERPRISE") || sUpper.includes("ENTERPRISE")) {
       baseMonthly = 499;
-    } else if (scope === 'ALL' || scope.includes('Master')) {
-      baseMonthly = selectedTier.includes('ENTERPRISE') ? 2500 : 599;
-    } else if (scope === 'BIOPHARMA' || scope === 'IAIG' || scope.includes('149')) {
-      baseMonthly = selectedTier.includes('ENTERPRISE') ? 999 : 149;
-    } else {
-      baseMonthly = selectedTier.includes('ENTERPRISE') ? 499 : 99;
+    } else if (sUpper === "ALL" || sUpper.includes("MASTER")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 2500 : 599;
+    } else if (sUpper === "BIOPHARMA" || sUpper === "IAIG" || sUpper.includes("149")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 999 : 149;
     }
 
     const months = Math.max(1, Math.round(durationDays / 30));
@@ -86,11 +93,18 @@ export const ApiKeyGenerator: React.FC = () => {
   const publicPrice = calculatePrice(calcScope, calcTier, calcDuration);
   const adminPrice = calculatePrice(mcpScope, tier, days);
 
-  // URL Parameter Synchronization (Reads ?plan=starter, ?plan=pro, ?plan=enterprise without crashing)
+  // URL Parameter Sync
   useEffect(() => {
     if (typeof window !== "undefined") {
       const url = window.location.href;
-      if (url.includes("plan=starter") || url.includes("starter")) {
+      if (url.includes("plan=uikit") || url.includes("uikit")) {
+        setCalcScope("SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)");
+        setCalcTier("PRO (1,000 req/min)");
+        setCalcDuration(30);
+        setMcpScope("UIKIT");
+        setTier("PRO");
+        setDays(30);
+      } else if (url.includes("plan=starter") || url.includes("starter")) {
         setCalcScope("SEOSiri Security Shield - Starter ($29/mo)");
         setCalcTier("STARTER (100 req/min)");
         setCalcDuration(30);
@@ -104,18 +118,10 @@ export const ApiKeyGenerator: React.FC = () => {
         setMcpScope("SECURITY_ENTERPRISE");
         setTier("ENTERPRISE");
         setDays(30);
-      } else if (url.includes("plan=pro") || url.includes("pro")) {
-        setCalcScope("SEOSiri Security Proxy & WAF - Pro ($99/mo)");
-        setCalcTier("PRO (1,000 req/min)");
-        setCalcDuration(30);
-        setMcpScope("SECURITY_PRO");
-        setTier("PRO");
-        setDays(30);
       }
     }
   }, []);
 
-  // When package changes, auto-align appropriate tier
   const handleScopeChange = (newScope: string) => {
     setCalcScope(newScope);
     if (newScope.includes('Starter')) {
@@ -184,10 +190,10 @@ export const ApiKeyGenerator: React.FC = () => {
     }
 
     const gatewayMap: Record<string, string> = {
+      UIKIT: "https://developers.seosiri.com",
       SECURITY_STARTER: "https://guard.seosiri.com",
       SECURITY_PRO: "https://guard.seosiri.com",
       SECURITY_ENTERPRISE: "https://guard.seosiri.com",
-      SECURITY: "https://guard.seosiri.com",
       BIOPHARMA: "https://biopharma.seosiri.com",
       IAIG: "https://iaig.seosiri.com",
       ROVOMCP: "https://rovomcp.seosiri.com",
@@ -214,11 +220,11 @@ export const ApiKeyGenerator: React.FC = () => {
     const gatewayUrl = gatewayMap[mcpScope] || "https://developers.seosiri.com";
     const quotaText = tier === 'STARTER' ? '100 req/min' : tier === 'PRO' ? '1,000 req/min' : '5,000 req/min';
 
-    const subject = encodeURIComponent(`Your SEOSiri ${mcpScope} Security & API License [Invoice Confirmed]`);
+    const subject = encodeURIComponent(`Your SEOSiri ${mcpScope} License & Setup Instructions [Invoice Confirmed]`);
     const body = encodeURIComponent(
       `Hello,\n\n` +
       `Thank you for your payment via Payoneer.\n\n` +
-      `Your cryptographically signed SEOSiri ${tier} License Key is active worldwide:\n` +
+      `Your cryptographically signed SEOSiri ${tier} License Key is active:\n` +
       `--------------------------------------------------\n` +
       `API Key          : ${generatedKey}\n` +
       `Target Scope     : ${mcpScope}\n` +
@@ -229,13 +235,7 @@ export const ApiKeyGenerator: React.FC = () => {
       `Paid Amount      : $${adminPrice.finalTotal} USD (Paid in Full)\n` +
       `Target Gateway   : ${gatewayUrl}\n` +
       `--------------------------------------------------\n\n` +
-      `DEPLOYMENT INSTRUCTIONS:\n` +
-      (mcpScope.includes('SECURITY')
-        ? `Option A (DNS CNAME Proxy): Point CNAME api.yourdomain.com -> guard.seosiri.com\n` +
-          `Option B (API Header): Pass 'x-seosiri-key: ${generatedKey}' with all verification requests.\n\n`
-        : `Include header 'x-seosiri-key: ${generatedKey}' in your HTTP requests or MCP client config.\n\n`) +
-      `Developer Portal : https://developers.seosiri.com\n` +
-      `Compliance & DPA : https://guard.seosiri.com/legal/dpa\n\n` +
+      `Developer Portal : https://developers.seosiri.com\n\n` +
       `Best regards,\n` +
       `Momenul Ahmad\n` +
       `Lead Systems Architect, SEOSiri Enterprise Labs\n` +
@@ -257,8 +257,8 @@ export const ApiKeyGenerator: React.FC = () => {
       a: "Subscriptions are calculated monthly with automatic duration discounts: 5% off for 3 months, 10% off for 6 months, 20% off for 1 year (2 months free), and 25% off for 2 years."
     },
     {
-      q: "Can I license a single specific MCP or the entire ecosystem?",
-      a: "You can license individual servers ($29 Starter, $99 Pro, $499 Enterprise) or the complete 21-package ecosystem under an ALL-Ecosystem master key."
+      q: "Can I license the Developer UI Kit SDK or specific MCP servers?",
+      a: "You can license the UI Kit SDK ($49/mo), individual servers ($29 Starter, $99 Pro, $499 Enterprise), or the complete ecosystem under an ALL master key."
     },
     {
       q: "Are my API requests logged or recorded on SEOSiri servers?",
@@ -328,7 +328,7 @@ export const ApiKeyGenerator: React.FC = () => {
               onChange={(e) => handleScopeChange(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
             >
-                            <option value="SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)">SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)</option>
+              <option value="SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)">SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)</option>
               <option value="SEOSiri Security Shield - Starter ($29/mo)">SEOSiri Security Shield - Starter ($29/mo)</option>
               <option value="SEOSiri Security Proxy & WAF - Pro ($99/mo)">SEOSiri Security Proxy &amp; WAF - Pro ($99/mo)</option>
               <option value="SEOSiri Security Proxy - Enterprise ($499/mo)">SEOSiri Security Proxy - Enterprise ($499/mo)</option>
@@ -338,7 +338,7 @@ export const ApiKeyGenerator: React.FC = () => {
               <option value="BIOASSAY">BioAssay Automation &amp; HTS ($99/mo)</option>
               <option value="AEO">AEO/GEO Intelligence MCP ($99/mo)</option>
               <option value="SCHEMA">Content Schema &amp; GA4 MCP ($99/mo)</option>
-              <option value="KEYWORDS">Keyword Cluster &amp; RAG ($99/mo)</option>
+              <option value="KEYWORDS">Keyword Cluster &amp; Vector RAG ($99/mo)</option>
               <option value="GOVERNANCE">AI Search Governance MCP ($99/mo)</option>
               <option value="ENTITY">Semantic Entity &amp; Knowledge Graph MCP ($99/mo)</option>
               <option value="DNS">DNS &amp; Security Audit MCP ($99/mo)</option>
@@ -530,11 +530,10 @@ export const ApiKeyGenerator: React.FC = () => {
                   onChange={(e) => setMcpScope(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                 >
+                  <option value="UIKIT">Developer UI Kit SDK (@seosiri/developer-ui-kit - v1.0.2)</option>
                   <option value="SECURITY_STARTER">★ SEOSiri Security Shield - Starter ($29/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_PRO">★ SEOSiri Security Proxy &amp; WAF - Pro ($99/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_ENTERPRISE">★ SEOSiri Security Proxy - Enterprise ($499/mo) (guard.seosiri.com)</option>
-                                    <option value="UIKIT">Developer UI Kit SDK (@seosiri/developer-ui-kit - v1.0.2)</option>
-                                    <option value="UI-KIT">Developer UI Kit SDK (@seosiri/developer-ui-kit - v1.0.2)</option>
                   <option value="BIOPHARMA">Biopharma Software Infrastructure MCP (biopharma.seosiri.com)</option>
                   <option value="IAIG">Industrial AI Gateway MCP (iaig.seosiri.com)</option>
                   <option value="ROVOMCP">Rovo-MCP Link Gateway (rovomcp.seosiri.com)</option>
@@ -660,5 +659,3 @@ export const ApiKeyGenerator: React.FC = () => {
 };
 
 export default ApiKeyGenerator;
-
-// Build Sync: 1790301104.8799748
