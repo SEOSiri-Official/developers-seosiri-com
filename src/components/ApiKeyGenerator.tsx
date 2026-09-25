@@ -55,20 +55,23 @@ export const ApiKeyGenerator: React.FC = () => {
 
     let baseMonthly = 99;
 
-    if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("DEVELOPER UI KIT") || sUpper.includes("UI KIT SDK")) {
+    // Extract base price automatically if formatted like ($149/mo) or ($29/mo)
+    const dollarMatch = scope.match(/\$(\d+)/);
+    if (dollarMatch) {
+      baseMonthly = parseInt(dollarMatch[1], 10);
+    } else if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("UI KIT")) {
       baseMonthly = tUpper.includes("ENTERPRISE") ? 199 : 49;
-    } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("29")) {
+    } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER")) {
       baseMonthly = 29;
-    } else if (sUpper.includes("SECURITY PRO") || sUpper.includes("WAF - PRO") || sUpper.includes("$99")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
-    } else if (sUpper.includes("ENTERPRISE") && sUpper.includes("SECURITY")) {
+    } else if (sUpper.includes("ENTERPRISE")) {
       baseMonthly = 499;
-    } else if (sUpper.includes("BIOPHARMA") || sUpper.includes("IAIG") || sUpper.includes("$149")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 999 : 149;
-    } else if (sUpper === "ALL" || sUpper.includes("MASTER")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 2500 : 299;
-    } else {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
+    }
+
+    // Adjust for Tier multipliers if Pro or Enterprise selected over base package
+    if (tUpper.includes("ENTERPRISE") && baseMonthly < 499 && !sUpper.includes("ENTERPRISE")) {
+      baseMonthly = 499;
+    } else if (tUpper.includes("PRO") && baseMonthly === 29) {
+      baseMonthly = 99;
     }
 
     const months = Math.max(1, Math.round(durationDays / 30));
@@ -85,50 +88,7 @@ export const ApiKeyGenerator: React.FC = () => {
     return { baseMonthly, months, rawTotal, finalTotal, discountRate, savings };
   };
 
-  const publicPrice = calculatePrice(calcScope, calcTier, calcDuration);
-  const adminPrice = calculatePrice(mcpScope, tier, days);
-
-  // URL Parameter Sync
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const url = window.location.href;
-      if (url.includes("plan=uikit") || url.includes("uikit")) {
-        setCalcScope("SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)");
-        setCalcTier("PRO (1,000 req/min)");
-        setCalcDuration(30);
-        setMcpScope("UIKIT");
-        setTier("PRO");
-        setDays(30);
-      } else if (url.includes("plan=starter") || url.includes("starter")) {
-        setCalcScope("SEOSiri Security Shield - Starter ($29/mo)");
-        setCalcTier("STARTER (100 req/min)");
-        setCalcDuration(30);
-        setMcpScope("SECURITY_STARTER");
-        setTier("STARTER");
-        setDays(30);
-      } else if (url.includes("plan=enterprise") || url.includes("enterprise")) {
-        setCalcScope("SEOSiri Security Proxy - Enterprise ($499/mo)");
-        setCalcTier("ENTERPRISE (5,000 req/min)");
-        setCalcDuration(30);
-        setMcpScope("SECURITY_ENTERPRISE");
-        setTier("ENTERPRISE");
-        setDays(30);
-      }
-    }
-  }, []);
-
-  const handleScopeChange = (newScope: string) => {
-    setCalcScope(newScope);
-    if (newScope.includes('Starter')) {
-      setCalcTier('STARTER (100 req/min)');
-    } else if (newScope.includes('Enterprise') || newScope.includes('Master')) {
-      setCalcTier('ENTERPRISE (5,000 req/min)');
-    } else {
-      setCalcTier('PRO (1,000 req/min)');
-    }
-  };
-
-  const handleUnlockAdmin = (e: React.FormEvent) => {
+const handleUnlockAdmin = (e: React.FormEvent) => {
     e.preventDefault();
     if (passcode === ADMIN_PASSCODE || passcode === "admin") {
       setIsAdminUnlocked(true);
