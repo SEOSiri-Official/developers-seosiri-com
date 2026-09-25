@@ -59,14 +59,16 @@ export const ApiKeyGenerator: React.FC = () => {
       baseMonthly = tUpper.includes("ENTERPRISE") ? 199 : 49;
     } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("29")) {
       baseMonthly = 29;
-    } else if (sUpper.includes("SECURITY_PRO") || sUpper.includes("WAF - PRO")) {
-      baseMonthly = 99;
-    } else if (sUpper.includes("SECURITY_ENTERPRISE") || sUpper.includes("ENTERPRISE")) {
+    } else if (sUpper.includes("SECURITY PRO") || sUpper.includes("WAF - PRO") || sUpper.includes("$99")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
+    } else if (sUpper.includes("ENTERPRISE") && sUpper.includes("SECURITY")) {
       baseMonthly = 499;
-    } else if (sUpper === "ALL" || sUpper.includes("MASTER")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 2500 : 599;
-    } else if (sUpper === "BIOPHARMA" || sUpper === "IAIG" || sUpper.includes("149")) {
+    } else if (sUpper.includes("BIOPHARMA") || sUpper.includes("IAIG") || sUpper.includes("$149")) {
       baseMonthly = tUpper.includes("ENTERPRISE") ? 999 : 149;
+    } else if (sUpper === "ALL" || sUpper.includes("MASTER")) {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 2500 : 299;
+    } else {
+      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
     }
 
     const months = Math.max(1, Math.round(durationDays / 30));
