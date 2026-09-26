@@ -45,8 +45,8 @@ export const ApiKeyGenerator: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [emailStatus, setEmailStatus] = useState<string | null>(null);
 
-  const MASTER_SECRET = "seosiri_master_mcp_secret_key_2026_x99";
-  const ADMIN_PASSCODE = "seosiri2026";
+  const MASTER_SECRET = "seosiri_master_secret_8f49b1c028e34d729a1ef603bc842109e4f21831";
+  const ADMIN_PASSCODE = "siri_Admin_9#mP2$xL8QvW1!zR4aY7*nT_2026";
 
   // Comprehensive Dynamic Pricing Engine for All Packages
   const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
