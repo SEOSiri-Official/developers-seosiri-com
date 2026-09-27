@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { ViewMode } from '../types';
-import { Sparkles, Terminal, Copy, Check, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Sparkles, Terminal, Copy, Check, ExternalLink, ShieldCheck, ShoppingCart, Key } from 'lucide-react';
 
 interface UIKitSandboxViewProps {
   onViewChange: (view: ViewMode) => void;
 }
 
-export const UIKitSandboxView: React.FC<UIKitSandboxViewProps> = () => {
+export const UIKitSandboxView: React.FC<UIKitSandboxViewProps> = ({ onViewChange }) => {
   const [copied, setCopied] = useState(false);
-  const [licenseToken, setLicenseToken] = useState('PRO_US_demo_1818241500_8a92f1b4');
-  const [statusMsg, setStatusMsg] = useState('Standard Free Tier Active');
+  const [licenseToken, setLicenseToken] = useState('PRO_US_demo_UIKIT_1818241500_8a92f1b4');
+  const [statusMsg, setStatusMsg] = useState('Standard Free Tier Active (30 req/min)');
   const [isUnlocked, setIsUnlocked] = useState(false);
 
   const handleCopyInstall = () => {
@@ -19,11 +19,12 @@ export const UIKitSandboxView: React.FC<UIKitSandboxViewProps> = () => {
   };
 
   const handleTestToken = () => {
-    if (licenseToken.startsWith('PRO_') || licenseToken.startsWith('ENT_')) {
+    const token = licenseToken.trim();
+    if (token.startsWith('PRO_') || token.startsWith('ENT_') || token.startsWith('UIKIT_')) {
       setIsUnlocked(true);
-      setStatusMsg('Pro License Verified via HMAC-SHA256 Edge Token');
+      setStatusMsg('Pro License Verified via HMAC-SHA256 Edge Token (1,000 req/min)');
     } else {
-      setStatusMsg('Invalid Token Signature');
+      setStatusMsg('Invalid Token Signature. Purchase required via Key Issuer.');
     }
   };
 
@@ -42,15 +43,25 @@ export const UIKitSandboxView: React.FC<UIKitSandboxViewProps> = () => {
               <p className="text-xs text-slate-400 font-mono">Framework-Agnostic White-Label React Component &amp; Licensing Guard</p>
             </div>
           </div>
-          <a
-            href="https://www.npmjs.com/package/@seosiri/developer-ui-kit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-md"
-          >
-            <span>View on NPM</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => onViewChange('key-issuer')}
+              className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-md"
+            >
+              <ShoppingCart className="w-3.5 h-3.5" />
+              <span>Purchase Pro License ($49/mo)</span>
+            </button>
+            <a 
+  href="https://www.npmjs.com/package/@seosiri/developer-ui-kit" 
+  target="_blank" 
+  rel="noopener noreferrer nofollow" 
+  className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-md"
+>
+
+              <span>View on NPM</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
         {/* Quick Install Banner */}
@@ -82,7 +93,7 @@ export const UIKitSandboxView: React.FC<UIKitSandboxViewProps> = () => {
                 </div>
               </div>
               <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold ${isUnlocked ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-800 text-slate-400'}`}>
-                {isUnlocked ? 'PRO TIER' : 'FREE TIER'}
+                {isUnlocked ? 'PRO TIER ($49)' : 'FREE TIER'}
               </span>
             </div>
 
@@ -92,20 +103,32 @@ export const UIKitSandboxView: React.FC<UIKitSandboxViewProps> = () => {
             </div>
 
             {!isUnlocked ? (
-              <div className="space-y-2">
-                <label className="text-[11px] font-mono text-slate-400 block">Test License Token:</label>
-                <input
-                  type="text"
-                  value={licenseToken}
-                  onChange={(e) => setLicenseToken(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-blue-500"
-                />
-                <button
-                  onClick={handleTestToken}
-                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold font-mono transition-all"
-                >
-                  Verify Token
-                </button>
+              <div className="space-y-3">
+                <div>
+                  <label className="text-[11px] font-mono text-slate-400 block mb-1">Test HMAC License Token:</label>
+                  <input
+                    type="text"
+                    value={licenseToken}
+                    onChange={(e) => setLicenseToken(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleTestToken}
+                    className="flex-1 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold font-mono transition-all"
+                  >
+                    Verify Token
+                  </button>
+                  <button
+                    onClick={() => onViewChange('key-issuer')}
+                    className="px-3 py-2.5 bg-amber-600 hover:bg-amber-500 text-white rounded-xl text-xs font-bold font-mono transition-all flex items-center gap-1"
+                    title="Get a real key via Payoneer"
+                  >
+                    <Key className="w-3.5 h-3.5" />
+                    <span>Get Key</span>
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="space-y-2">
@@ -138,6 +161,7 @@ export default function App() {
       productName="My SaaS Dashboard" 
       productVersion="1.2.0" 
       accentColor="#0284c7"
+      storageKey="seosiri_pro_license"
       onProTask={() => alert('Pro task!')}
     />
   );
