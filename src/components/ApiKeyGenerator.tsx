@@ -320,6 +320,7 @@ export const ApiKeyGenerator: React.FC = () => {
               <option value="SEOSiri Security Shield - Starter ($29/mo)">SEOSiri Security Shield - Starter ($29/mo)</option>
               <option value="SEOSiri Security Proxy & WAF - Pro ($99/mo)">SEOSiri Security Proxy &amp; WAF - Pro ($99/mo)</option>
               <option value="SEOSiri Security Proxy - Enterprise ($499/mo)">SEOSiri Security Proxy - Enterprise ($499/mo)</option>
+              <option value="STAL">★ SEOSIRI Theranostic Loop - STAL (99/mo) (stal.seosiri.com)</option>
               <option value="BIOPHARMA">Biopharma Software Infrastructure ($149/mo)</option>
               <option value="IAIG">Industrial AI Gateway ($149/mo)</option>
               <option value="ROVOMCP">Rovo-MCP Link Gateway ($99/mo)</option>
@@ -522,7 +523,8 @@ export const ApiKeyGenerator: React.FC = () => {
                   <option value="SECURITY_STARTER">★ SEOSiri Security Shield - Starter ($29/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_PRO">★ SEOSiri Security Proxy &amp; WAF - Pro ($99/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_ENTERPRISE">★ SEOSiri Security Proxy - Enterprise ($499/mo) (guard.seosiri.com)</option>
-                  <option value="BIOPHARMA">Biopharma Software Infrastructure MCP (biopharma.seosiri.com)</option>
+                  <option value="STAL">★ SEOSIRI Theranostic Loop - STAL (99/mo) (stal.seosiri.com)</option>
+              <option value="BIOPHARMA">Biopharma Software Infrastructure MCP (biopharma.seosiri.com)</option>
                   <option value="IAIG">Industrial AI Gateway MCP (iaig.seosiri.com)</option>
                   <option value="ROVOMCP">Rovo-MCP Link Gateway (rovomcp.seosiri.com)</option>
                   <option value="BIOASSAY">BioAssay Automation &amp; HTS MCP (bioassay.seosiri.com)</option>

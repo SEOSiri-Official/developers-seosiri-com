@@ -176,7 +176,32 @@ export const MCP_MODULES: MCPModule[] = [
     version: '1.0.4',
     status: 'Operational',
     tools: [
-      { name: 'execute_stal_pipeline', description: 'Executes the unified theranostic loop: bioassay check, biopharma docking, biorobotics pathing, and metered billing.', sampleInput: '{"session_token":"SES-01","assay_telemetry":{"assay_method":"TR-FRET","matrix_payload_base64":"AA=="},"target_molecular_profile":{"allowed_toxicity_threshold":0.05},"spatial_kinematic_constraints":{"voxel_target_matrix":[10,20,30],"hardware_profile_id":"ARM-1"}}' }
+      { 
+        name: 'execute_stal_pipeline', 
+        description: 'Atomic end-to-end execution of the full theranostic loop: zero-trust HIPAA PII scrubbing, bioassay target validation, biopharma molecular synthesis, and biorobotics surgical kinematic pathing with metered transaction logging.', 
+        sampleInput: '{"session_token":"STAL-SES-01","developer_account_id":"HOSPITAL-AOCR-01","assay_telemetry":{"assay_method":"TR-FRET","matrix_payload_base64":"Q0VMTF9URVNUX0RBVEE=","min_confidence_threshold":0.85},"target_molecular_profile":{"allowed_toxicity_threshold":0.05,"preferred_conjugate_class":"KINASE"},"spatial_kinematic_constraints":{"voxel_target_matrix":[14.2,55.8,120.4],"hardware_profile_id":"ROBOT-SURGICAL-ARM-01"}}' 
+      },
+      {
+        name: 'bioassay_micro_validate',
+        description: 'Stage 1: Evaluates tissue phenotype arrays & biochemical anomalies across multi-well loops. Halts pipeline if target affinity falls below 95% threshold.',
+        sampleInput: '{"assay_method":"TR-FRET","matrix_payload_base64":"Q0VMTF9URVNUX0RBVEE=","min_confidence_threshold":0.95}'
+      },
+      {
+        name: 'biopharma_dock_synthesize',
+        description: 'Stage 2: Runs non-linear predictive docking simulations, validates molecular SMILES against cellular toxicity limits, and compiles CDISC SDTM v1.7 records.',
+        sampleInput: '{"allowed_toxicity_threshold":0.05,"preferred_conjugate_class":"KINASE_INHIBITOR"}'
+      },
+      {
+        name: 'biorobotics_plan_trajectory',
+        description: 'Stage 3: Ingests 3D voxel target coordinates [X, Y, Z], evaluates surgical tool clearance margins, and generates deterministic G-code robotic actuation paths.',
+        sampleInput: '{"voxel_target_matrix":[14.2,55.8,120.4],"hardware_profile_id":"SURGICAL-ROBO-01","density_margin":0.5}'
+      },
+      {
+        name: 'compute_metered_ledger',
+        description: 'Stage 4: Calculates real-time compute resource units (Base .50 + /usr/bin/bash.85/struct + /usr/bin/bash.12/step + /usr/bin/bash.0025/ms) and commits an immutable SHA-256 audit ledger hash.',
+        sampleInput: '{"session_token":"STAL-SES-01","developer_account_id":"HOSPITAL-AOCR-01","structures_analyzed":3,"kinematic_steps":7,"execution_duration_ms":450}'
+      }
+    ],"hardware_profile_id":"ARM-1"}}' }
     ]
   },
   {
