@@ -43,7 +43,7 @@ export const UserPortal: React.FC = () => {
     country: 'US',
     expiresAtUnix: Math.floor(Date.now() / 1000) + (30 * 86400),
     domain: 'api.guest-account.com',
-    rawKey: 'PRO_US_guest-account_SECURITY_1818241500_c3e8a91b',
+    rawKey: 'PRO_GLOBAL_stal-org_STAL_1793255796_e83b983d',
     isValid: false
   });
 
@@ -153,7 +153,7 @@ export const UserPortal: React.FC = () => {
 
     // 2. Background verification with edge gateway
     try {
-      await fetch("https://guard.seosiri.com/auth/verify-google", {
+      await fetch("https://stal.seosiri.com/auth/verify-google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -180,7 +180,7 @@ export const UserPortal: React.FC = () => {
 
   // Synchronized 1:1 with Admin API Key Issuer & Cloudflare Edge Gateways
   const gatewayUrlMap: Record<string, string> = {
-    SECURITY: "guard.seosiri.com",
+    SECURITY: "stal.seosiri.com",
     ROVOMCP: "rovomcp.seosiri.com",
     BIOPHARMA: "biopharma.seosiri.com",
     BIOASSAY: "bioassay.seosiri.com",
@@ -198,7 +198,7 @@ export const UserPortal: React.FC = () => {
     ALL: "developers.seosiri.com"
   };
 
-  const activeGateway = gatewayUrlMap[license.scope] || "guard.seosiri.com";
+  const activeGateway = gatewayUrlMap[license.scope] || "stal.seosiri.com";
 
   // Cryptographic Key Verifier (HMAC-SHA256)
   const handleVerifyAndSwitchKey = async (keyToVerify: string) => {
@@ -477,7 +477,7 @@ export const UserPortal: React.FC = () => {
                   <strong className="text-sky-400 block font-bold">Step 1: DNS CNAME Delegation</strong>
                   <span>In your domain DNS registrar (Cloudflare, GoDaddy, Route 53), configure:</span>
                   <div className="p-2 bg-slate-950 rounded text-emerald-400 font-bold mt-1">
-                    CNAME {license.domain} &rarr; guard.seosiri.com
+                    CNAME {license.domain} &rarr; stal.seosiri.com
                   </div>
                 </div>
 
