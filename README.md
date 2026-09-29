@@ -76,3 +76,4 @@ This repository represents the master front-end control plane, administrative ke
 
 * **Lead Architect & Founder:** Momenul Ahmad ([seosiri.com](https://seosiri.com))
 * **Corporate Contact Desk:** info@seosiri.com
+\n\n## 💖 Funding & Sponsorship\nTo support maintenance and enterprise feature developments across SEOSiri repositories, please review our official funding guidelines at: [SEOSiri Developer UI Kit Funding (.github/FUNDING.yml)](https://github.com/SEOSiri-Official/developer-ui-kit/blob/main/.github/FUNDING.yml).\n
