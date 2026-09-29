@@ -201,7 +201,7 @@ export const MCP_MODULES: MCPModule[] = [
         description: 'Stage 4: Calculates real-time compute resource units (Base .50 + /usr/bin/bash.85/struct + /usr/bin/bash.12/step + /usr/bin/bash.0025/ms) and commits an immutable SHA-256 audit ledger hash.',
         sampleInput: '{"session_token":"STAL-SES-01","developer_account_id":"HOSPITAL-AOCR-01","structures_analyzed":3,"kinematic_steps":7,"execution_duration_ms":450}'
       }
-    ],"hardware_profile_id":"ARM-1"}}' }
+    
     ]
   },
   {
