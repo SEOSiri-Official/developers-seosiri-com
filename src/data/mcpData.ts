@@ -159,6 +159,27 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: 'stal-mcp',
+    title: 'SEOSIRI Theranostic Autonomous Loop (STAL)',
+    shortName: 'STAL Clinical Loop',
+    category: 'operational',
+    description: 'Unified clinical loop coordinating BioAssay target validation, Biopharma molecular synthesis, and BioRobotics trajectory kinematics under zero-trust HIPAA PII scrubbing.',
+    guideUrl: 'https://www.seosiri.com/2026/08/stal-mcp.html',
+    pypiPackage: '@seosiri/stal-mcp',
+    pypiCommand: 'npm install @seosiri/stal-mcp',
+    edgeGateway: 'stal.seosiri.com',
+    edgeUrl: 'https://stal.seosiri.com',
+    color: '#8b5cf6',
+    badgeBg: 'bg-purple-500/10',
+    badgeText: 'text-purple-400 border-purple-500/20',
+    iconName: 'Activity',
+    version: '1.0.4',
+    status: 'Operational',
+    tools: [
+      { name: 'execute_stal_pipeline', description: 'Executes the unified theranostic loop: bioassay check, biopharma docking, biorobotics pathing, and metered billing.', sampleInput: '{"session_token":"SES-01","assay_telemetry":{"assay_method":"TR-FRET","matrix_payload_base64":"AA=="},"target_molecular_profile":{"allowed_toxicity_threshold":0.05},"spatial_kinematic_constraints":{"voxel_target_matrix":[10,20,30],"hardware_profile_id":"ARM-1"}}' }
+    ]
+  },
+  {
     id: 'bioassay-mcp',
     title: 'BioAssay & HTS Automation MCP',
     shortName: 'BioAssay Automation',
