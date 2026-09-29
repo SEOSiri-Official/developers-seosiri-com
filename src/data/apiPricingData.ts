@@ -24,7 +24,7 @@ export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
     annualUsd: 159,
     slaUptime: '99.9%',
     toolsCount: 5,
-    rateLimitRpm: '1,000',
+    rateLimitRpm: 1000,
     description: 'Unified clinical loop: zero-trust HIPAA PII shield, bioassay micro-validation, biopharma molecular synthesis, and surgical robotic kinematics with metered ledger audit.',
     featured: true
   },
