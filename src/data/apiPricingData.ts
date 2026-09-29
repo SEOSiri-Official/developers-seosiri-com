@@ -15,6 +15,20 @@ export interface ApiPricingItem {
 
 export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
   {
+    id: 'stal-gateway',
+    name: 'SEOSIRI Theranostic Autonomous Loop (STAL)',
+    scopeCode: 'STAL',
+    gateway: 'stal.seosiri.com',
+    category: 'LIFE_SCIENCES',
+    monthlyUsd: 199,
+    annualUsd: 159,
+    slaUptime: '99.9%',
+    toolsCount: 5,
+    rateLimitRpm: '1,000',
+    description: 'Unified clinical loop: zero-trust HIPAA PII shield, bioassay micro-validation, biopharma molecular synthesis, and surgical robotic kinematics with metered ledger audit.',
+    featured: true
+  },
+  {
     id: "developer-ui-kit",
     name: "SEOSiri Developer UI Kit SDK",
     gateway: "npmjs.com",

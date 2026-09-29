@@ -193,6 +193,7 @@ export const UserPortal: React.FC = () => {
     DB: "db.seosiri.com",
     BIOROBOTICS: "mcp.seosiri.com",
     LEARNING: "mcp.seosiri.com",
+    STAL: "stal.seosiri.com",
     BIOMETRIC: "mcp.seosiri.com",
     ETL: "hubappapi.seosiri.com",
     ALL: "developers.seosiri.com"
@@ -560,6 +561,26 @@ export const UserPortal: React.FC = () => {
                 Open Live Sandbox
               </button>
             </div>
+          </div>
+
+          {/* SEOSiri All-MCP Live Interactive Sandbox */}
+          <div className="mt-4 p-4 bg-slate-950/80 border border-slate-800 rounded-2xl space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center space-x-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="text-xs font-mono font-bold text-white">SEOSiri Multi-MCP Ecosystem Live Sandbox</span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-sky-400 border border-blue-500/20">16+ Servers Active</span>
+              </div>
+              <button
+                onClick={() => { window.location.hash = "tester"; }}
+                className="px-3.5 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-lg text-[11px] font-mono font-bold transition-all shadow-md"
+              >
+                Launch All-MCP Sandbox &rarr;
+              </button>
+            </div>
+            <p className="text-slate-300 text-[11px] font-sans leading-relaxed m-0">
+              Interactive JSON-RPC 2.0 testing environment for STAL, Biopharma, BioAssay, AEO/GEO, and Database Infrastructure MCP servers with real-time schema validation and live response inspection.
+            </p>
           </div>
 
         </div>
