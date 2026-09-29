@@ -159,6 +159,36 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: 'bioassay-mcp',
+    title: 'BioAssay & HTS Automation MCP',
+    shortName: 'BioAssay Automation',
+    category: 'operational',
+    description: 'High-Throughput Screening (HTS) assay mathematics across sub-cellular, cellular, tissue, and organism biological tiers, device telemetry, and HL7 FHIR v4.0.1 clinical conversion.',
+    guideUrl: 'https://www.seosiri.com/2026/07/bioassay-mcp.html',
+    pypiPackage: 'seosiri-bioassay-mcp',
+    pypiCommand: 'pip install seosiri-bioassay-mcp',
+    edgeGateway: 'bioassay.seosiri.com',
+    edgeUrl: 'https://bioassay.seosiri.com',
+    color: '#06b6d4',
+    badgeBg: 'bg-cyan-500/10',
+    badgeText: 'text-cyan-400 border-cyan-500/20',
+    iconName: 'Activity',
+    version: '1.1.2',
+    status: 'Operational',
+    tools: [
+      { name: 'calculate_tr_fret_ratio', description: 'Calculates TR-FRET emission ratio (665nm/620nm) with background correction.', sampleInput: '{"donor_signal": 1200, "acceptor_signal": 4800}' },
+      { name: 'calculate_uaglo_viability', description: 'Computes luminescence viability percentage against negative controls.', sampleInput: '{"luminescence": 85000, "control_luminescence": 100000}' },
+      { name: 'calculate_elisa_absorbance', description: 'Standard curve optical density quantification for ELISA immunoassays.', sampleInput: '{"od_value": 1.45, "slope": 0.85, "intercept": 0.05}' },
+      { name: 'calculate_hica_cytotoxicity', description: 'Computes high-content image analysis cytotoxicity indexes.', sampleInput: '{"total_cells": 1000, "dead_cells": 120}' },
+      { name: 'model_subcellular_binding', description: 'Models receptor-ligand binding kinetics and dissociation constants (Kd).', sampleInput: '{"ligand_conc": 10, "kd": 2.5}' },
+      { name: 'model_cellular_signaling', description: 'Quantifies secondary messenger pathway flux (cAMP/IP3).', sampleInput: '{"basal_level": 5.0, "stimulated_level": 45.0}' },
+      { name: 'model_tissue_permeability', description: 'Apparent permeability coefficient (Papp) modeling across Caco-2 monolayers.', sampleInput: '{"delta_q": 15.2, "area": 1.12, "initial_conc": 100, "delta_t": 3600}' },
+      { name: 'model_organism_pharmacokinetics', description: 'Compartmental PK clearance and area under curve (AUC) estimation.', sampleInput: '{"dose": 250, "clearance": 12.5}' },
+      { name: 'process_device_telemetry', description: 'Parses live telemetry feeds from laboratory microplate readers and liquid handlers.', sampleInput: '{"device_id": "READER-01", "raw_reading": [0.12, 0.45, 0.98]}' },
+      { name: 'convert_to_hl7_fhir', description: 'Converts raw microplate observation results into HL7 FHIR v4.0.1 standard JSON.', sampleInput: '{"patient_id": "PAT-99", "test_code": "29463-7", "numeric_value": 4.5, "unit": "mmol/L"}' }
+    ]
+  },
+  {
     id: "vscode-mcp-manager",
     title: "VS Code Suite Manager MCP",
     shortName: "VS Code Manager",
