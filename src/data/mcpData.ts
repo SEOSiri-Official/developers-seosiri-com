@@ -198,7 +198,7 @@ export const MCP_MODULES: MCPModule[] = [
       },
       {
         name: 'compute_metered_ledger',
-        description: 'Stage 4: Calculates real-time compute resource units (Base .50 + /usr/bin/bash.85/struct + /usr/bin/bash.12/step + /usr/bin/bash.0025/ms) and commits an immutable SHA-256 audit ledger hash.',
+        description: 'Stage 4: Calculates real-time compute resource units (Base $7.50 + $0.85/struct + $0.12/step + $0.0025/ms) and commits an immutable SHA-256 audit ledger hash.',
         sampleInput: '{"session_token":"STAL-SES-01","developer_account_id":"HOSPITAL-AOCR-01","structures_analyzed":3,"kinematic_steps":7,"execution_duration_ms":450}'
       }
     
@@ -1026,7 +1026,7 @@ export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } 
 // Build Sync Timestamp: 1786760030.4177892
 
 
-export const TOTAL_OFFICIAL_GATEWAYS = 12;
+export const TOTAL_OFFICIAL_GATEWAYS = 14;
 
 
 // Final Clean Metrics Sync
