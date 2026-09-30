@@ -85,6 +85,13 @@ export const NodeInspectorModal: React.FC<NodeInspectorModalProps> = ({
                 <h2 className="text-xl font-bold text-white mt-1">
                   {m ? m.title : node?.label}
                 </h2>
+
+          {module.vpcReady && (
+            <span className="px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs rounded-full font-bold inline-flex items-center gap-1.5 ml-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              VPC Ready
+            </span>
+          )}
                 {m && <p className="text-xs text-slate-400 font-mono">Package Version v{m.version}</p>}
               </div>
             </div>
