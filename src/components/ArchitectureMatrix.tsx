@@ -1,3 +1,4 @@
+type Module = any;
 import React from 'react';
 import { MCPModule } from '../types';
 import { Box, Code, Zap, Terminal, ArrowDown, Layers, ExternalLink, Copy, BookOpen } from 'lucide-react';
@@ -10,6 +11,17 @@ export interface ArchitectureMatrixProps {
 export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ modules, onSelectModule }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 space-y-12 animate-fade-in text-left">
+
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono">
+        <div className="space-y-1 text-left">
+          <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Enterprise Infrastructure Layer</span>
+          <h2 className="text-lg font-bold text-white">Zero-Trust Cloudflare V8 Edge &amp; Private VPC Architecture</h2>
+        </div>
+        <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold inline-flex items-center gap-1.5 shrink-0">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          All 19 Modules VPC Ready
+        </span>
+      </div>
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-white flex items-center gap-2 uppercase tracking-wide font-mono">
           <Layers className="w-5 h-5 text-blue-500" /> Layer 1: AI Host Clients &amp; IDE Integration
@@ -19,7 +31,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ modules,
             <div className="bg-slate-950 p-2 rounded-lg border border-slate-800"><Box className="w-6 h-6 text-emerald-400" /></div>
             <div><h3 className="text-white font-bold text-sm">Claude Desktop</h3>
 
-                {module.vpcReady && (
+                {(module as any).vpcReady && (
                   <span className="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] rounded-full font-bold inline-flex items-center gap-1 ml-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     VPC Ready
