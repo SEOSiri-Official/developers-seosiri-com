@@ -68,6 +68,11 @@ export const DirectoryTable: React.FC<DirectoryTableProps> = ({
               <span className="text-[10px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded">
                 Central Directory Hub
               </span>
+                <span className="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] rounded-full font-bold inline-flex items-center gap-1 ml-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  VPC Ready
+                </span>
+
               <span className="text-xs text-slate-400 font-mono">Master Index URL</span>
             </div>
             <h3 className="text-base font-bold text-white mt-1">

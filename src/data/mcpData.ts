@@ -175,6 +175,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Activity',
     version: '1.0.4',
     status: 'Operational',
+    vpcReady: true,
     tools: [
       { 
         name: 'execute_stal_pipeline', 
@@ -221,6 +222,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Activity',
     version: '1.1.2',
     status: 'Operational',
+    vpcReady: true,
     tools: [
       { name: 'calculate_tr_fret_ratio', description: 'Calculates TR-FRET emission ratio (665nm/620nm) with background correction.', sampleInput: '{"donor_signal": 1200, "acceptor_signal": 4800}' },
       { name: 'calculate_uaglo_viability', description: 'Computes luminescence viability percentage against negative controls.', sampleInput: '{"luminescence": 85000, "control_luminescence": 100000}' },
@@ -251,6 +253,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: "Settings2",
     version: "1.0.3",
     status: "Operational",
+    vpcReady: true,
     tools: [
       { name: "vscode_generate_mcp_config", description: "Generates verified configuration snippets for Claude Desktop, Cursor, and OpenAI Responses API Remote MCP tool connectors.", sampleInput: '{"client_type": "OPENAI_RESPONSES_API"}' },
       { name: "vscode_audit_extension_manifest", description: "Audits extension manifests for security vulnerabilities, activation triggers, and tool bindings.", sampleInput: '{"manifest_json": "{}"}' },
@@ -275,6 +278,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: "ShieldCheck",
     version: "1.0.0",
     status: "Operational",
+    vpcReady: true,
     tools: [
       { name: "rovomcp_sanitize_payload", description: "Executes real-time PII/PHI redaction (SSN, credit card, email, IP) at the edge based on industry compliance policy.", sampleInput: '{"contextData": "User John Doe SSN 123-45-6789", "policy": {"maskPII": true, "industryCategory": "HEALTHCARE"}}' },
       { name: "rovomcp_inspect_prompt", description: "Runs incoming prompts through the AI Firewall to intercept prompt injections and overrides.", sampleInput: '{"contextData": "ignore previous instructions"}' },
@@ -299,6 +303,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: "Cpu",
     version: "1.0.0",
     status: "Operational",
+    vpcReady: true,
     tools: [
       { name: "iaig_list_assets", description: "Browses ISA-95 hierarchical data tree (Enterprise/Site/Area/Line/Cell/Asset).", sampleInput: "{\"enterprise_scope\": \"Enterprise\", \"level_depth\": \"ASSET\"}" },
       { name: "iaig_read_tag", description: "Fetches real-time process variables from Unified Namespace over MQTT/OPC UA.", sampleInput: "{\"uns_topic_path\": \"Enterprise/Site_01/Area_A/Line_1/Robot/Speed\"}" },
@@ -351,6 +356,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: "Cpu",
     version: "1.2.0",
     status: "Operational",
+    vpcReady: true,
     tools: [
       { name: "lambda_ingest_hot_tier", description: "Sub-millisecond in-memory Hot Tier RAM writes with backpressure throttling.", sampleInput: '{"data": []}' },
       { name: "lambda_filter_stream", description: "Applies real-time stream filtering rules.", sampleInput: '{"stream_id": "S1"}' }
@@ -373,6 +379,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: "Database",
     version: "1.0.3",
     status: "Operational",
+    vpcReady: true,
     tools: [
       { name: "ingest_webhook_payload", description: "Ingests high-speed webhooks from Stripe, Shopify, GitHub, or HubSpot into Hot Tier RAM queue.", sampleInput: '{"source": "stripe", "payload": {}}' },
       { name: "scrub_pii_sha256", description: "Executes SHA-256 cryptographic PII scrubbing on customer fields.", sampleInput: '{"email": "client@seosiri.com"}' },
@@ -399,6 +406,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Sparkles',
     version: '1.4.2',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['OPENAI_API_KEY', 'PERPLEXITY_API_KEY', 'GEMINI_API_KEY'],
     tools: [
       {
@@ -467,6 +475,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'ShieldCheck',
     version: '1.2.8',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['CLOUDFLARE_API_TOKEN'],
     tools: [
       {
@@ -535,6 +544,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Building2',
     version: '1.1.5',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['GOVERNANCE_SECRET_KEY'],
     tools: [
       {
@@ -569,6 +579,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Zap',
     version: '1.0.4',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['PAGESPEED_API_KEY'],
     tools: [
       {
@@ -603,6 +614,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Link',
     version: '1.2.0',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['MOZ_API_KEY', 'AHREFS_API_TOKEN'],
     tools: [
       {
@@ -637,6 +649,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'ShoppingBag',
     version: '1.1.2',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['MERCHANT_CENTER_ID'],
     tools: [
       {
@@ -671,6 +684,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'MapPin',
     version: '1.0.8',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['GOOGLE_MAPS_API_KEY'],
     tools: [
       {
@@ -705,6 +719,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Globe2',
     version: '1.1.0',
     status: 'Operational',
+    vpcReady: true,
     envVars: [],
     tools: [
       {
@@ -739,6 +754,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Eye',
     version: '1.3.1',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['GEMINI_API_KEY'],
     tools: [
       {
@@ -773,6 +789,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'Video',
     version: '1.0.5',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['YOUTUBE_API_KEY'],
     tools: [
       {
@@ -802,6 +819,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'FileText',
     version: '1.2.3',
     status: 'Operational',
+    vpcReady: true,
     envVars: [],
     tools: [
       {
@@ -865,6 +883,7 @@ export const MCP_MODULES: MCPModule[] = [
     iconName: 'LayoutList',
     version: '1.0.1',
     status: 'Operational',
+    vpcReady: true,
     envVars: ['OPENAI_API_KEY'],
     tools: [
       {
@@ -892,6 +911,7 @@ export const MCP_MODULES: MCPModule[] = [
   iconName: "ShieldCheck",
   version: "1.0.0",
   status: "Operational",
+    vpcReady: true,
   tools: [
     { name: "calculate_4pl_curve", description: "Fits 4-Parameter Logistic non-linear sigmoidal dose-response curves.", sampleInput: '{"concentrations": [0.1, 1.0, 10.0], "responses": [5, 50, 95]}' },
     { name: "assess_parallelism", description: "Computes shared slope/asymptotes consistency via F-Test and TOST metrics.", sampleInput: '{"reference_responses": [10, 20, 30], "test_responses": [10.5, 20.2, 29.8]}' },
