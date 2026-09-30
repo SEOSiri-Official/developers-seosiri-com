@@ -35,6 +35,7 @@ export interface MCPTool {
 }
 
 export interface MCPModule {
+  vpcReady?: boolean;
   id: string;
   title: string;
   shortName: string;
