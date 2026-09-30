@@ -19,7 +19,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ modules,
             <div className="bg-slate-950 p-2 rounded-lg border border-slate-800"><Box className="w-6 h-6 text-emerald-400" /></div>
             <div><h3 className="text-white font-bold text-sm">Claude Desktop</h3>
 
-                {mod.vpcReady && (
+                {module.vpcReady && (
                   <span className="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] rounded-full font-bold inline-flex items-center gap-1 ml-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     VPC Ready
