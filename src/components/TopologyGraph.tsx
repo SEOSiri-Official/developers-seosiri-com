@@ -1,16 +1,26 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
+import * as d3 from 'd3';
 import { 
-  Shield, Activity, Database, Cpu, Globe, Server, Package, 
-  ExternalLink, Code, Layers, FileText, CheckCircle, RefreshCw, 
-  ZoomIn, ZoomOut, Maximize2, Search, Filter, Compass, Terminal,
-  RotateCcw, Sparkles, Zap, BookOpen, Info, ShieldAlert 
-} from 'lucide-react';
-  Shield, Activity, Database, Cpu, Globe, Server, Package, 
   GraphNode, 
   GraphLink, 
   MCPModule 
+} from '../types';
+import { generateGraphData, CENTRAL_HUB_URL } from '../data/mcpData';
+import {
+  ZoomIn, 
   ZoomOut, 
+  RotateCcw, 
+  Maximize2, 
+  Sparkles, 
+  Globe, 
+  Terminal, 
+  Zap, 
+  BookOpen, 
+  Info,
+  ExternalLink,
+  ShieldAlert,
   Server
+} from 'lucide-react';
 
 interface TopologyGraphProps {
   searchQuery?: string;
