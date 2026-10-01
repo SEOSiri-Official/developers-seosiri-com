@@ -273,8 +273,7 @@ export default {
             use: "sig",
             alg: "RS256",
             kid: "seosiri-edge-master-key-2026",
-            n: "seosiri-edge-master-key-2026",
-      "n": "yrh4OratdtPL4SM4fOahxji3BLxbCj00IMHWhNBLw41c2PottMq7MCToszEpAZEEYB8g_fBLlWMm4XoMTHq_sp-mXHrLzpOWm8t14SVPiXaQWsDPENK_1YvTl2G8TARFyxMDCpx1SEBeXqSloOVQmyQkDEvD5L4eM1fhDderptVbe4QwJ
+           "n": "yrh4OratdtPL4SM4fOahxji3BLxbCj00IMHWhNBLw41c2PottMq7MCToszEpAZEEYB8g_fBLlWMm4XoMTHq_sp-mXHrLzpOWm8t14SVPiXaQWsDPENK_1YvTl2G8TARFyxMDCpx1SEBeXqSloOVQmyQkDEvD5L4eM1fhDderptVbe4QwJ
 NKDr42OyBtT768tQ4vyJPwht2cVEI1ObQpPzj6ml6CdFVC9QqdBL-iDbR0ADt4oBFMnaBhuwAg8We1Zl-69IK5cI1E3pDg8MSs7CYVDGXvvaR7nJhrUsEnjeaNoHgI9GChlQSbZFBlbsAbmGZnnP0xBbmir3jjX3p_Z6w"
             e: "AQAB"
           }
