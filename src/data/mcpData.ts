@@ -1,3 +1,6 @@
+
+// UI Kit SDK Version Control
+export const UI_KIT_SDK_VERSION = "v1.0.2";
 import { MCPModule, GraphNode, GraphLink } from '../types';
 
 export const CENTRAL_HUB_URL = 'https://www.seosiri.com/2026/07/seosiri-mcp-servers.html';
