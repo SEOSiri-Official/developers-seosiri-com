@@ -19,7 +19,7 @@ export const ArchitectureMatrix: React.FC<ArchitectureMatrixProps> = ({ modules,
         </div>
         <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold inline-flex items-center gap-1.5 shrink-0">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          All 19 Modules VPC Ready
+          All 23 Modules VPC Ready
         </span>
       </div>
       <div className="space-y-4">
