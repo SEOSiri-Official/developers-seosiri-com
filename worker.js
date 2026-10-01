@@ -213,6 +213,76 @@ export default {
       });
     }
 
+    // OpenID Connect (OIDC) & OAuth2 Authorization Endpoints
+    if (url.pathname === "/.well-known/openid-configuration") {
+      return new Response(JSON.stringify({
+        issuer: "https://developers.seosiri.com",
+        authorization_endpoint: "https://developers.seosiri.com/oauth/authorize",
+        token_endpoint: "https://developers.seosiri.com/oauth/token",
+        jwks_uri: "https://developers.seosiri.com/.well-known/jwks.json",
+        response_types_supported: ["code", "token", "id_token"],
+        subject_types_supported: ["public"],
+        id_token_signing_alg_values_supported: ["HS256", "RS256"],
+        scopes_supported: ["openid", "profile", "email", "mcp:stal", "mcp:biopharma"],
+        token_endpoint_auth_methods_supported: ["client_secret_basic", "private_key_jwt"],
+        claims_supported: ["sub", "iss", "aud", "exp", "iat", "email", "seosiri_tier", "mcp_scope"]
+      }, null, 2), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "public, max-age=3600, s-maxage=86400",
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
+    }
+
+    if (url.pathname === "/oauth/authorize") {
+      const clientId = url.searchParams.get("client_id") || "demo_client";
+      const redirectUri = url.searchParams.get("redirect_uri") || "https://developers.seosiri.com/callback";
+      return new Response(JSON.stringify({
+        status: "OAUTH_AUTHORIZE_READY",
+        message: "SEOSiri Enterprise Identity Provider Authorization Gate",
+        client_id: clientId,
+        redirect_uri: redirectUri,
+        authorization_code: "seosiri_auth_code_999x",
+        instructions: "Append ?code=seosiri_auth_code_999x to redirect_uri for token exchange."
+      }, null, 2), {
+        status: 200,
+        headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
+      });
+    }
+
+    if (url.pathname === "/oauth/token") {
+      return new Response(JSON.stringify({
+        access_token: "seosiri_edge_jwt_token_2026_pro_active",
+        token_type: "Bearer",
+        expires_in: 86400,
+        refresh_token: "seosiri_refresh_token_xyz",
+        scope: "mcp:stal mcp:biopharma openid profile"
+      }, null, 2), {
+        status: 200,
+        headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
+      });
+    }
+
+    if (url.pathname === "/.well-known/jwks.json") {
+      return new Response(JSON.stringify({
+        keys: [
+          {
+            kty: "RSA",
+            use: "sig",
+            alg: "RS256",
+            kid: "seosiri-edge-master-key-2026",
+            n: "0siri-enterprise-secure-gateway-modulus-placeholder-xyz...",
+            e: "AQAB"
+          }
+        ]
+      }, null, 2), {
+        status: 200,
+        headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
+      });
+    }
+
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",
