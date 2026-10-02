@@ -288,6 +288,64 @@ export default {
       });
     }
 
+    
+    if (url.pathname === "/fhir/extensions/edge-provenance") {
+      const structureDefinition = {
+        "resourceType": "StructureDefinition",
+        "id": "edge-provenance",
+        "url": "https://developers.seosiri.com/fhir/extensions/edge-provenance",
+        "version": "1.0.0",
+        "name": "EdgeProvenanceExtension",
+        "title": "SEOSiri Cryptographic Edge Provenance Extension",
+        "status": "active",
+        "experimental": false,
+        "date": currentDate,
+        "publisher": "SEOSiri Enterprise Labs",
+        "contact": [{ "name": "Momenul Ahmad", "telecom": [{ "system": "email", "value": "info@seosiri.com" }] }],
+        "description": "Attests that environmental bioassay telemetry was cryptographically authenticated via SEOSiri HMAC-SHA256 Edge Gateways before FHIR ingestion.",
+        "fhirVersion": "4.0.1",
+        "kind": "complex-type",
+        "abstract": false,
+        "context": [
+          { "type": "element", "expression": "DiagnosticReport" },
+          { "type": "element", "expression": "Observation" }
+        ],
+        "type": "Extension",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Extension",
+              "path": "Extension",
+              "short": "HMAC-SHA256 Edge Provenance Token",
+              "definition": "Cryptographic signature verifying edge sensor authenticity and tamper-proofing.",
+              "max": "1"
+            },
+            {
+              "id": "Extension.url",
+              "path": "Extension.url",
+              "fixedUri": "https://developers.seosiri.com/fhir/extensions/edge-provenance"
+            },
+            {
+              "id": "Extension.value[x]",
+              "path": "Extension.value[x]",
+              "type": [{ "code": "string" }]
+            }
+          ]
+        }
+      };
+
+      return new Response(JSON.stringify(structureDefinition, null, 2), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/fhir+json; charset=utf-8",
+          "Access-Control-Allow-Origin": "*",
+          "Cache-Control": "public, max-age=86400"
+        }
+      });
+    }
+
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",

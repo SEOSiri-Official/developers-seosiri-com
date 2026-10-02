@@ -162,6 +162,30 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: "aquashield-mcp",
+    title: "AquaShield Water Surveillance & FHIR MCP",
+    shortName: "AquaShield FHIR",
+    category: "specialized",
+    description: "Autonomous freshwater surveillance MCP server mapping urban water bioassay telemetry directly into HL7 FHIR v4.0.1 DiagnosticReports for municipal healthcare response.",
+    guideUrl: "https://www.seosiri.com/2026/08/biopharma-mcp.html",
+    pypiPackage: "aquashield-mcp",
+    pypiCommand: "python aquashield_mcp.py",
+    edgeGateway: "biopharma.seosiri.com",
+    edgeUrl: "https://biopharma.seosiri.com",
+    color: "#06b6d4",
+    badgeBg: "bg-cyan-500/10",
+    badgeText: "text-cyan-400 border-cyan-500/20",
+    iconName: "Activity",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "compute_4pl_toxicity", description: "4-Parameter Logistic Hill-slope regression for micro-pollutants.", sampleInput: '{"concentration": 45.0}' },
+      { name: "compute_nsf_wqi", description: "Calculates NSF Water Quality Index using weighted geometric means.", sampleInput: '{"do_pct": 75.0, "ph": 7.2}' },
+      { name: "sanitize_citizen_telemetry", description: "EU GDPR-compliant SHA-256 citizen geo-hashing.", sampleInput: '{"lat": 51.05, "lon": 3.71}' },
+      { name: "generate_ieee_fhir_bundle", description: "Transforms water bioassay readings into valid HL7 FHIR v4.0.1 bundles.", sampleInput: '{"e_coli_cfu": 480}' }
+    ]
+  },
+  {
     id: 'stal-mcp',
     title: 'SEOSIRI Theranostic Autonomous Loop (STAL)',
     shortName: 'STAL Clinical Loop',
