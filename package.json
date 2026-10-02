@@ -10,11 +10,11 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
-  "dependencies": {},
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@types/d3": "^7.4.3",
     "@types/node": "^22.20.1",
+    "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
     "d3": "^7.9.0",
     "esbuild": "^0.25.0",
