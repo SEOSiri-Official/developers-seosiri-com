@@ -12,10 +12,7 @@ Official enterprise developer portal, interactive D3 network topology graph, and
 ## 🚀 Overview & Key Features
 
 - **19 Active MCP Servers:** Force-directed D3 network graph mapping connections between AI host clients (Claude Desktop, Cursor AI, LangChain), Cloudflare edge gateways (`*.seosiri.com`), and published packages.
-- **214 Autonomous MCP Tools:** Real-time tool schema inspector detailing tool parameters, descriptions, and sample JSON input payloads.
-- **Zero-Setup Client Config Generator:** Automatically compiles valid `claude_desktop_config.json` files for local `uv` and `npx` package execution.
-- **Live Edge Health Inspector:** Monitors sub-millisecond HTTP response latencies across all live Cloudflare Worker edge subdomains.
-- **Dynamic Serverless Sitemap & LLM.txt Engine:** Generates real-time `/sitemap.xml` and `/llm.txt` endpoints at the edge for Googlebot and AI crawlers (GPTBot, ClaudeBot, PerplexityBot).
+- **163 Autonomous MCP Tools:** Real-time tool schema inspector detailing tool parameters, descriptions, and sample JSON input payloads.
 
 ---
 # 🏛️ Categorized Master Registry: 19 Sovereign MCP Servers (163 Tools)
