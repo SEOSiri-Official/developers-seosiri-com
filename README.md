@@ -11,11 +11,11 @@ Official enterprise developer portal, interactive D3 network topology graph, and
 
 ## 🚀 Overview & Key Features
 
-- **19 Active MCP Servers:** Force-directed D3 network graph mapping connections between AI host clients (Claude Desktop, Cursor AI, LangChain), Cloudflare edge gateways (`*.seosiri.com`), and published packages.
-- **163 Autonomous MCP Tools:** Real-time tool schema inspector detailing tool parameters, descriptions, and sample JSON input payloads.
+- **19 Active MCP Servers & Other packages (23 published):** Force-directed D3 network graph mapping connections between AI host clients (Claude Desktop, Cursor AI, LangChain), Cloudflare edge gateways (`*.seosiri.com`), and published packages.
+- **214 Autonomous MCP Tools:** Real-time tool schema inspector detailing tool parameters, descriptions, and sample JSON input payloads.
 
 ---
-# 🏛️ Categorized Master Registry: 19 Sovereign MCP Servers (163 Tools)
+# 🏛️ Categorized Master Registry: 19 Sovereign MCP Servers plus others tools (214 Tools)
 
 ### 1. Life Sciences, Theranostics & Bionics Suite
 * **`stal-mcp`** (`@seosiri/stal-mcp`)
