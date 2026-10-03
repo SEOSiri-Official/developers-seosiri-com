@@ -146,3 +146,19 @@ This repository represents the master front-end control plane, administrative ke
 ## ❤️ Funding & Sponsorship
 
 To support maintenance, security audits, and enterprise feature developments across SEOSiri repositories, please review our official funding guidelines at: [SEOSiri Developer UI Kit Funding (.github/FUNDING.yml)](https://github.com/SEOSiri-Official/developer-ui-kit/blob/main/.github/FUNDING.yml).
+
+
+### 17. AquaShield Water Surveillance & FHIR Interoperability MCP (`aquashield-mcp`)
+- **Category:** Specialized / Digital Health & Ecological Surveillance
+- **Repository:** [SEOSiri-Official/aquashield-mcp](https://github.com/SEOSiri-Official/aquashield-mcp)
+- **Technical Specification Guide:** [https://www.seosiri.com/aquashield-mcp](https://www.seosiri.com/aquashield-mcp)
+- **Live Edge Gateway:** `https://biopharma.seosiri.com/rpc` (JSON-RPC 2.0 & SSE)
+- **Canonical HL7 FHIR URI:** [https://developers.seosiri.com/fhir/extensions/edge-provenance](https://developers.seosiri.com/fhir/extensions/edge-provenance)
+- **Docker Hub Container (~85MB):** `docker pull seosiri/aquashield-mcp:latest`
+- **Execution Transport:** FastMCP / Python / Stdio / Edge HTTP
+- **Standards:** HL7 FHIR v4.0.1, IEEE 11073-10101, LOINC (`41852-5`, `56475-7`), SNOMED CT (`264353000`), EU GDPR Art. 9 Geo-Salting
+- **Core Autonomous Tools:**
+  1. `compute_4pl_toxicity`: 4-Parameter Logistic Hill-slope regression for micro-pollutants and bioassays (sub-0.01ms evaluation).
+  2. `compute_nsf_wqi`: National Sanitation Foundation Water Quality Index multi-parameter weighted geometric aggregation.
+  3. `sanitize_citizen_telemetry`: Non-reversible SHA-256 citizen location salting (64-bit entropy truncation).
+  4. `generate_ieee_fhir_bundle`: Direct serialization of freshwater bioassays into compliant HL7 FHIR `DiagnosticReport` & `Observation` transaction bundles.
