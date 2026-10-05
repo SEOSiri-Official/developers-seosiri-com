@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { MCP_MODULES, CENTRAL_HUB_URL } from '../data/mcpData';
 import { MCPModule } from '../types';
+import React, { useEffect, useState } from 'react';
+import { fetchPackageDownloads } from '../utils/packageAnalytics';
 import { 
   Globe, 
   Terminal, 
@@ -53,6 +55,20 @@ export const DirectoryTable: React.FC<DirectoryTableProps> = ({
 
     return matchesCat && matchesQuery;
   });
+
+  const PackageDownloadBadge: React.FC<{ pkgName: string; type: 'npm' | 'pypi' }> = ({ pkgName, type }) => {
+  const [downloads, setDownloads] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetchPackageDownloads(pkgName, type).then(setDownloads);
+  }, [pkgName, type]);
+
+  return (
+    <span className="px-2 py-0.5 bg-slate-800 text-emerald-400 font-mono text-[11px] rounded border border-slate-700">
+      {downloads !== null ? `${downloads.toLocaleString()} downloads/mo` : 'Fetching...'}
+    </span>
+  );
+};
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
