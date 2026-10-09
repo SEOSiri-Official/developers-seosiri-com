@@ -18,6 +18,13 @@ export interface CloudflareEdgeGateway {
 // Exact 10 Official Cloudflare Edge Gateways (*.seosiri.com)
 export const OFFICIAL_EDGE_GATEWAYS: CloudflareEdgeGateway[] = [
   {
+    id: "15",
+    subdomain: "tasks.seosiri.com",
+    healthEndpoint: "https://tasks.seosiri.com/health",
+    targetMcpServer: "employees-tasks-sentinel",
+    purpose: "Autonomous Workforce Task Velocity & Multi-Tenant Sentinel Gateway"
+  },
+  {
     id: "1",
     subdomain: "aeo.seosiri.com",
     healthEndpoint: "https://aeo.seosiri.com/health",
@@ -1077,7 +1084,7 @@ export function generateGraphData(): { nodes: GraphNode[]; links: GraphLink[] } 
 // Build Sync Timestamp: 1786760030.4177892
 
 
-export const TOTAL_OFFICIAL_GATEWAYS = 14;
+export const TOTAL_OFFICIAL_GATEWAYS = 15;
 
 
 // Final Clean Metrics Sync
