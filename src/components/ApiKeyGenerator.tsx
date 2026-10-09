@@ -50,31 +50,31 @@ export const ApiKeyGenerator: React.FC = () => {
 
   // Comprehensive Dynamic Pricing Engine for All Packages
   const calculatePrice = (scope: string, selectedTier: string, durationDays: number) => {
+    let baseMonthly = 99;
     const sUpper = (scope || "").toUpperCase();
     const tUpper = (selectedTier || "").toUpperCase();
 
-    let baseMonthly = 99;
+    // Dynamically extract dollar amount from string (e.g. $49/mo, $149/mo, $29/mo)
     const match = scope.match(/\$(\d+)/);
     if (match) {
       baseMonthly = parseInt(match[1], 10);
-    } else if (scope.toUpperCase().includes("SENTINEL")) {
+    } else if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("UI KIT")) {
       baseMonthly = 49;
+    } else if (sUpper.includes("SENTINEL")) {
+      baseMonthly = 49;
+    } else if (sUpper.includes("STAL")) {
+      baseMonthly = 99;
+    } else if (sUpper.includes("STARTER")) {
+      baseMonthly = 29;
+    } else if (sUpper.includes("ENTERPRISE") && !sUpper.includes("UI")) {
+      baseMonthly = 499;
     }
 
-    if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("DEVELOPER UI KIT") || sUpper.includes("UI KIT SDK")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 199 : 49;
-    } else if (sUpper.includes("STARTER") || tUpper.includes("STARTER") || sUpper.includes("$29")) {
-      baseMonthly = 29;
-    } else if (sUpper.includes("SECURITY PRO") || sUpper.includes("WAF - PRO") || sUpper.includes("$99")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
-    } else if (sUpper.includes("ENTERPRISE") && sUpper.includes("SECURITY")) {
-      baseMonthly = 499;
-    } else if (sUpper.includes("BIOPHARMA") || sUpper.includes("IAIG") || sUpper.includes("$149")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 999 : 149;
-    } else if (sUpper === "ALL" || sUpper.includes("MASTER")) {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 2500 : 299;
-    } else {
-      baseMonthly = tUpper.includes("ENTERPRISE") ? 499 : 99;
+    // Tier multipliers if upgraded
+    if (tUpper.includes("ENTERPRISE") && baseMonthly < 499 && !sUpper.includes("ALL")) {
+      baseMonthly = Math.round(baseMonthly * 3.4);
+    } else if (tUpper.includes("PRO") && baseMonthly === 29) {
+      baseMonthly = 99;
     }
 
     const months = Math.max(1, Math.round(durationDays / 30));
