@@ -2,7 +2,7 @@ export interface ApiPricingItem {
   id: string;
   name: string;
   gateway: string;
-  category: 'LIFE_SCIENCES' | 'AI_SEARCH_SEO' | 'DATA_DEVOPS' | 'SECURITY_GOV' | 'DEVELOPER_TOOLS';
+  category: 'LIFE_SCIENCES' | 'AI_SEARCH_SEO' | 'DATA_DEVOPS' | 'SECURITY_GOV' | 'DEVELOPER_TOOLS' | 'WORKFORCE_SENTINEL';
   monthlyUsd: number;
   annualUsd: number;
   rateLimitRpm: number;
@@ -14,6 +14,20 @@ export interface ApiPricingItem {
 }
 
 export const ALL_API_PRICING_CATALOG: ApiPricingItem[] = [
+  {
+    id: "employees-tasks-sentinel",
+    name: "SEOSiri Task Sentinel & Workforce Agent",
+    scopeCode: "SENTINEL",
+    gateway: "tasks.seosiri.com",
+    category: "DATA_DEVOPS",
+    monthlyUsd: 49,
+    annualUsd: 39,
+    rateLimitRpm: 2500,
+    toolsCount: 5,
+    slaUptime: "99.99%",
+    description: "Multi-tenant workforce task velocity orchestration, auto-dispatch engine, and native Windows/macOS desktop tray sentinel daemon.",
+    featured: true
+  },
   {
     id: 'stal-gateway',
     name: 'SEOSIRI Theranostic Autonomous Loop (STAL)',

@@ -179,6 +179,7 @@ export const ApiKeyGenerator: React.FC = () => {
 
     const gatewayMap: Record<string, string> = {
       UIKIT: "https://developers.seosiri.com",
+      SENTINEL: "https://tasks.seosiri.com",
       SECURITY_STARTER: "https://guard.seosiri.com",
       SECURITY_PRO: "https://guard.seosiri.com",
       SECURITY_ENTERPRISE: "https://guard.seosiri.com",
@@ -316,6 +317,7 @@ export const ApiKeyGenerator: React.FC = () => {
               onChange={(e) => handleScopeChange(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
             >
+                            <option value="SEOSiri Task Sentinel & Workforce Agent ($49/mo)">SEOSiri Task Sentinel &amp; Workforce Agent ($49/mo)</option>
               <option value="SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)">SEOSiri Developer UI Kit SDK - v1.0.2 ($49/mo)</option>
               <option value="SEOSiri Security Shield - Starter ($29/mo)">SEOSiri Security Shield - Starter ($29/mo)</option>
               <option value="SEOSiri Security Proxy & WAF - Pro ($99/mo)">SEOSiri Security Proxy &amp; WAF - Pro ($99/mo)</option>
@@ -519,6 +521,7 @@ export const ApiKeyGenerator: React.FC = () => {
                   onChange={(e) => setMcpScope(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-blue-500"
                 >
+                                    <option value="SENTINEL">SEOSiri Task Sentinel &amp; Workforce Agent (tasks.seosiri.com)</option>
                   <option value="UIKIT">Developer UI Kit SDK (@seosiri/developer-ui-kit - v1.0.2)</option>
                   <option value="SECURITY_STARTER">★ SEOSiri Security Shield - Starter ($29/mo) (guard.seosiri.com)</option>
                   <option value="SECURITY_PRO">★ SEOSiri Security Proxy &amp; WAF - Pro ($99/mo) (guard.seosiri.com)</option>
