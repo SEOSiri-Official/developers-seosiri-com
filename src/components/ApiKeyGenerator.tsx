@@ -54,6 +54,12 @@ export const ApiKeyGenerator: React.FC = () => {
     const tUpper = (selectedTier || "").toUpperCase();
 
     let baseMonthly = 99;
+    const match = scope.match(/\$(\d+)/);
+    if (match) {
+      baseMonthly = parseInt(match[1], 10);
+    } else if (scope.toUpperCase().includes("SENTINEL")) {
+      baseMonthly = 49;
+    }
 
     if (sUpper.includes("UI-KIT") || sUpper.includes("UIKIT") || sUpper.includes("DEVELOPER UI KIT") || sUpper.includes("UI KIT SDK")) {
       baseMonthly = tUpper.includes("ENTERPRISE") ? 199 : 49;
