@@ -172,7 +172,7 @@ export const MCP_MODULES: MCPModule[] = [
     id: "aquashield-mcp",
     title: "AquaShield Water Surveillance & FHIR MCP",
     shortName: "AquaShield FHIR",
-    category: "specialized",
+    category: "operational",
     vpcReady: true,
     description: "Autonomous freshwater surveillance MCP server mapping urban water bioassay telemetry directly into HL7 FHIR v4.0.1 DiagnosticReports for municipal healthcare response.",
     guideUrl: "https://seosiri.com/aquashield-mcp",

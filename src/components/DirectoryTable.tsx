@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+
 import { MCP_MODULES, CENTRAL_HUB_URL } from '../data/mcpData';
 import { MCPModule } from '../types';
-import React, { useEffect, useState } from 'react';
+
 import { fetchPackageDownloads } from '../utils/packageAnalytics';
 import { 
   Globe, 

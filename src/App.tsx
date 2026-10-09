@@ -174,7 +174,7 @@ export function App() {
         {currentView === 'architect' && <ArchitectProfile />}
         {currentView === 'config' && <ConfigGenerator modules={MCP_MODULES} />}
         {currentView === 'table' && <DirectoryTable modules={filteredModules} onSelectModule={setSelectedModule} />}
-        {currentView === 'tester' && <EndpointTester modules={MCP_MODULES} />}
+        {currentView === 'tester' && <EndpointTester />}
         {currentView === 'key-issuer' && <ApiKeyGenerator />}
         {currentView === 'user-portal' && <UserPortal />}
         {currentView === 'ui-kit-demo' && <UIKitSandboxView onViewChange={(view) => {
