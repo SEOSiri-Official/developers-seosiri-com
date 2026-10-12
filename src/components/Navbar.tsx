@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  DollarSign,
+import { Shield, DollarSign,
   Network,
   Layers,
   Settings2,
@@ -17,8 +16,7 @@ import {
   Sparkles,
   Zap,
   Key,
-  Lock
-} from 'lucide-react';
+  Lock } from 'lucide-react';
 import { ViewMode } from '../types';
 import { LEAD_ARCHITECT, TOTAL_MCP_TOOLS_COUNT } from '../data/mcpData';
 
