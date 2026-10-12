@@ -57,7 +57,15 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const navItems: { id: ViewMode; label: string; shortLabel: string; icon: React.ReactNode; badge?: string }[] = [
+  const navItems: { id: ViewMode; label: string; shortLabel: string; icon: React.ReactNode; badge?: string; externalUrl?: string }[] = [
+    {
+      id: "topology" as ViewMode,
+      label: "Task Sentinel",
+      shortLabel: "Sentinel",
+      icon: <Shield className="w-4 h-4 mr-1.5 text-emerald-400" />,
+      badge: "SAAS",
+      externalUrl: "https://board.seosiri.com"
+    },
     {
       id: 'ui-kit-demo',
       label: 'UI Kit SDK',
@@ -174,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             return (
               <button
                 key={item.id}
-                onClick={() => onViewChange(item.id)}
+                onClick={() => { if (item.externalUrl) { window.open(item.externalUrl, "_blank"); } else { onViewChange(item.id); } }}
                 className={`flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 font-bold'
