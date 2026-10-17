@@ -393,27 +393,16 @@ export default {
 
     
     // =========================================================================
+
+    // =========================================================================
     // SMARTTRANSIT AI: OFFICIAL PRODUCTION EDGE GATEWAY
     // Route: /api/v1/smart-transit
     // Compliant: UAE NESA IA v2, UAE PDPL Law 45/2021, JSON-RPC 2.0
     // =========================================================================
     if (url.pathname === "/api/v1/smart-transit" || url.pathname === "/api/v1/smart-transit/") {
-      if (request.method === "OPTIONS") {
-        return new Response(null, {
-          status: 204,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, x-seosiri-key"
-          }
-        });
-      }
-
-      // JSON-RPC 2.0 Multi-Agent Execution Handler
       if (request.method === "POST") {
         try {
           const body = await request.json();
-          
           if (body.method === "tools/list") {
             return new Response(JSON.stringify({
               jsonrpc: "2.0",
@@ -437,7 +426,7 @@ export default {
               }
             }, null, 2), {
               status: 200,
-              headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+              headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
             });
           }
 
@@ -471,7 +460,7 @@ export default {
               result: { content: [{ type: "text", text: JSON.stringify(resultData, null, 2) }] }
             }, null, 2), {
               status: 200,
-              headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+              headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
             });
           }
         } catch (e) {
@@ -479,7 +468,7 @@ export default {
         }
       }
 
-      // HTTP GET Health & Compliance Specification
+      // HTTP GET Health Check
       return new Response(JSON.stringify({
         status: "HEALTHY",
         gateway: "SmartTransit AI Production Edge Gateway",
@@ -491,7 +480,7 @@ export default {
         timestamp: new Date().toISOString()
       }, null, 2), {
         status: 200,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
       });
     }
 
