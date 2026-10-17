@@ -243,7 +243,7 @@ export const EndpointTester: React.FC = () => {
               1. Select Target Gateway
             </h3>
 
-            <div className="space-y-2">
+            <div className="space-y-2 max-h-[460px] overflow-y-auto pr-1.5 scrollbar-thin scrollbar-thumb-slate-700">
               {[...MCP_MODULES].sort((a, b) => a.id === "smart-transit-ai" ? -1 : b.id === "smart-transit-ai" ? 1 : 0).map((m) => (
                 <button
                   key={m.id}

@@ -332,7 +332,10 @@ export const MCP_MODULES: MCPModule[] = [
       { name: "negotiate_drone_bus_leapfrog", description: "Calculates inter-vehicle mobile recovery and inductive dock rendezvous on moving RTA buses.", sampleInput: '{"drone_lat": 25.201, "drone_lon": 55.277, "battery_pct": 26.5}' },
       { name: "triage_trapped_vehicle_biometrics", description: "Correlates FLIR aerial thermal cameras with passenger wearable SpO2 and heart-rate telemetry.", sampleInput: '{"cabin_temp_c": 46.2, "wearer_spo2": 87}' },
       { name: "compute_safe_bow_wave_velocity", description: "Hydro-dynamic bus propulsion throttling to prevent water wakes swamping sedans.", sampleInput: '{"water_depth_cm": 22.0}' },
-      { name: "authenticate_and_audit_actuation", description: "Constant-time HMAC-SHA256 token verification with UAE NESA compliance logging.", sampleInput: '{"caller_id": "RTA_CONTROLLER_01"}' }
+      { name: "authenticate_and_audit_actuation", description: "Constant-time HMAC-SHA256 token verification with UAE NESA compliance logging.", sampleInput: '{"caller_id": "RTA_CONTROLLER_01"}' },
+      { name: "process_full_transit_telemetry", description: "Zero-heap embedded C99 bus gateway HAL telemetry bridge ingestion.", sampleInput: '{"bus_id": "RTA_104", "water_depth_cm": 28.5}' },
+      { name: "generate_zkp_citizen_triage_token", description: "Zero-Knowledge cryptographic priority tokens compliant with UAE PDPL.", sampleInput: '{"commuter_id": "CITIZEN_089", "is_critical": true}' },
+      { name: "trigger_municipal_stormwater_catchment", description: "Pre-emptive subterranean stormwater pump station activation.", sampleInput: '{"depth_cm": 24.0}' }
     ]
   },
   {
