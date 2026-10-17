@@ -38,7 +38,22 @@ export const EndpointTester: React.FC = () => {
     setTimeout(() => {
       let mockResult: any = {};
 
-      if (requestType === 'healthcheck') {
+      
+      if (selectedModuleId === 'smart-transit-ai') {
+        mockResult = {
+          water_depth_cm: 28.5,
+          hazard_level: 'CRITICAL_CIVIC_HAZARD',
+          autonomous_preemption_triggered: true,
+          impacted_corridor: 'SZR_INTERCHANGE_4',
+          actuations_dispatched: [
+            'DRONE_ROOF_SORTIE_LAUNCHED',
+            'TRAFFIC_SIGNAL_PREEMPTION_ACTIVE',
+            'RESCUE_ROBOT_X30_DISPATCHED'
+          ],
+          compliance_seal: 'UAE_NESA_IA_V2_VERIFIED'
+        };
+      } else if (requestType === 'healthcheck') {
+
         mockResult = {
           status: 'ok',
           edgeGateway: activeModule.edgeGateway,
