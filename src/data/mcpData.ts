@@ -169,6 +169,34 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: "smart-transit-ai",
+    title: "SmartTransit AI: Dubai Autonomous Resilience Mesh",
+    shortName: "SmartTransit AI",
+    category: "specialized",
+    vpcReady: true,
+    description: "Autonomous multi-agent physical mesh connecting RTA transit buses, automated roof-docked drones, and quadruped rescue robots for Dubai flash-flood mitigation and infrastructure preemption.",
+    guideUrl: "https://developers.seosiri.com/#tester",
+    pypiPackage: "smarttransit-mcp (Private)",
+    pypiCommand: "python -m dubai_agentic_mesh.mcp_server",
+    edgeGateway: "transit.seosiri.com",
+    edgeUrl: "https://transit.seosiri.com",
+    color: "#10b981",
+    badgeBg: "bg-emerald-500/10",
+    badgeText: "text-emerald-400 border-emerald-500/20",
+    iconName: "Navigation",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "assess_urban_flood_risk", description: "Multi-sensor road inundation evaluation for Dubai arterial corridors.", sampleInput: '{"water_depth_cm": 28.5}' },
+      { name: "deploy_bus_mounted_drone_mesh", description: "Autonomous vehicle-roof drone launch establishing sub-1GHz aerial RF relays.", sampleInput: '{"target_lat": 25.197, "target_lon": 55.274}' },
+      { name: "preempt_traffic_signals_for_rescue", description: "Reprograms municipal signals to clear emergency green corridors and deploys X30 rescue robots.", sampleInput: '{"corridor_id": "SZR_INTERCHANGE_4"}' },
+      { name: "negotiate_drone_bus_leapfrog", description: "Calculates inter-vehicle mobile recovery and inductive dock rendezvous on moving RTA buses.", sampleInput: '{"drone_lat": 25.201, "drone_lon": 55.277, "battery_pct": 26.5}' },
+      { name: "triage_trapped_vehicle_biometrics", description: "Correlates FLIR aerial thermal cameras with passenger wearable SpO2 and heart-rate telemetry.", sampleInput: '{"cabin_temp_c": 46.2, "wearer_spo2": 87}' },
+      { name: "compute_safe_bow_wave_velocity", description: "Hydro-dynamic bus propulsion throttling to prevent water wakes swamping sedans.", sampleInput: '{"water_depth_cm": 22.0}' },
+      { name: "authenticate_and_audit_actuation", description: "Constant-time HMAC-SHA256 token verification with UAE NESA compliance logging.", sampleInput: '{"caller_id": "RTA_CONTROLLER_01"}' }
+    ]
+  },
+  {
     id: "aquashield-mcp",
     title: "AquaShield Water Surveillance & FHIR MCP",
     shortName: "AquaShield FHIR",

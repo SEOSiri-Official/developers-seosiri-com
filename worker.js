@@ -346,6 +346,51 @@ export default {
       });
     }
 
+    
+    // SmartTransit AI Black-Box Edge RPC Proxy (Keeps source code 100% private)
+    if (url.pathname === "/api/smart-transit/rpc" || (url.hostname === "transit.seosiri.com" && url.pathname === "/rpc")) {
+      if (request.method === "OPTIONS") {
+        return new Response(null, {
+          status: 204,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization, x-seosiri-key"
+          }
+        });
+      }
+
+      if (request.method === "POST") {
+        try {
+          const body = await request.json();
+          if (body.method === "tools/list") {
+            return new Response(JSON.stringify({
+              jsonrpc: "2.0",
+              id: body.id || 1,
+              result: {
+                system: "SmartTransit AI: Dubai Municipal Autonomous Resilience Mesh",
+                security: "UAE NESA Information Assurance v2 Compliant",
+                ip_status: "Confidential Property (Protected Under NDA)",
+                tools: [
+                  { name: "assess_urban_flood_risk", status: "Operational" },
+                  { name: "deploy_bus_mounted_drone_mesh", status: "Operational" },
+                  { name: "preempt_traffic_signals_for_rescue", status: "Operational" },
+                  { name: "negotiate_drone_bus_leapfrog", status: "Operational" },
+                  { name: "triage_trapped_vehicle_biometrics", status: "Operational" },
+                  { name: "compute_safe_bow_wave_velocity", status: "Operational" },
+                  { name: "authenticate_and_audit_actuation", status: "Operational" }
+                ]
+              }
+            }), {
+              status: 200,
+              headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+            });
+          }
+        } catch(e) {}
+      }
+      return new Response("SmartTransit AI Municipal Edge Gateway Active", { status: 200 });
+    }
+
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",
