@@ -169,6 +169,145 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
+    id: "biometric-iot-bridge",
+    title: "Biometric IoT Bridge & Wearable Vitals MCP",
+    shortName: "Biometric IoT",
+    category: "specialized",
+    vpcReady: true,
+    description: "Zero-heap wearable vitals bridge syncing BLE PPG heart rate, pulse oximetry SpO2, and galvanic skin response into FHIR Observation schemas.",
+    guideUrl: "https://www.seosiri.com/2026/02/biometric-iot-bridge.html",
+    pypiPackage: "biometric-iot-bridge-mcp",
+    pypiCommand: "pip install biometric-iot-bridge-mcp",
+    edgeGateway: "mcp.seosiri.com",
+    edgeUrl: "https://mcp.seosiri.com",
+    color: "#ef4444",
+    badgeBg: "bg-red-500/10",
+    badgeText: "text-red-400 border-red-500/20",
+    iconName: "HeartPulse",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "parse_ble_heart_rate", description: "Decodes raw Bluetooth SIG 0x2A37 heart rate measurement payloads.", sampleInput: '{"raw_hex": "164800"}' },
+      { name: "export_fhir_vitals_observation", description: "Converts wearable biometric telemetry into standard HL7 FHIR resources.", sampleInput: '{"heart_rate": 72, "spo2": 98}' }
+    ]
+  }
+  {
+    id: "learning-orchestrator",
+    title: "Adaptive Learning & Skill Development MCP",
+    shortName: "Learning MCP",
+    category: "specialized",
+    vpcReady: true,
+    description: "Pedagogical orchestration applying Bloom's Revised Taxonomy, SuperMemo SM-2 spaced repetition, and LTI 1.3 LMS bridges.",
+    guideUrl: "https://www.seosiri.com/2026/07/seosiri-mcp-servers.html",
+    pypiPackage: "seosiri-learning-orchestrator",
+    pypiCommand: "pip install seosiri-learning-orchestrator",
+    edgeGateway: "mcp.seosiri.com",
+    edgeUrl: "https://mcp.seosiri.com",
+    color: "#14b8a6",
+    badgeBg: "bg-teal-500/10",
+    badgeText: "text-teal-400 border-teal-500/20",
+    iconName: "Sparkles",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "compute_sm2_interval", description: "Calculates optimal spaced-repetition memory retention review intervals.", sampleInput: '{"repetition": 3, "ease_factor": 2.5}' },
+      { name: "map_blooms_taxonomy", description: "Categorizes educational objectives across 6 cognitive domain levels.", sampleInput: '{"objective": "Design an agent"}' }
+    ]
+  },
+  {
+    id: "biorobotics",
+    title: "Bio-Robotics & Neuro-Prosthetics MCP",
+    shortName: "Biorobotics MCP",
+    category: "specialized",
+    vpcReady: true,
+    description: "UniProt protein sequence analysis, automated microplate pipetting robotics, and surface EMG prosthetic arm G-code generation.",
+    guideUrl: "https://www.seosiri.com/2026/07/seosiri-bio-robotics-core-engine.html",
+    pypiPackage: "seosiri-biorobotics",
+    pypiCommand: "pip install seosiri-biorobotics",
+    edgeGateway: "mcp.seosiri.com",
+    edgeUrl: "https://mcp.seosiri.com",
+    color: "#ec4899",
+    badgeBg: "bg-pink-500/10",
+    badgeText: "text-pink-400 border-pink-500/20",
+    iconName: "Activity",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "query_uniprot_sequence", description: "Fetches FASTA protein sequences and annotated functional domains.", sampleInput: '{"uniprot_id": "P04637"}' },
+      { name: "generate_pipetting_gcode", description: "Compiles 96-well and 384-well microplate automation coordinates.", sampleInput: '{"plate_format": 96}' }
+    ]
+  },
+  {
+    id: "semantic-entity-mcp",
+    title: "Semantic Entity & Knowledge Graph MCP",
+    shortName: "Semantic Entity",
+    category: "core-seo",
+    vpcReady: true,
+    description: "Wikidata QID entity disambiguation, Schema.org sameAs reconciliation, and semantic triple extraction for Answer Engines.",
+    guideUrl: "https://www.seosiri.com/2026/08/semantic-entity-mcp.html",
+    pypiPackage: "seosiri-semantic-entity-mcp",
+    pypiCommand: "pip install seosiri-semantic-entity-mcp",
+    edgeGateway: "entity.seosiri.com",
+    edgeUrl: "https://entity.seosiri.com",
+    color: "#0ea5e9",
+    badgeBg: "bg-sky-500/10",
+    badgeText: "text-sky-400 border-sky-500/20",
+    iconName: "Network",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "resolve_wikidata_qid", description: "Disambiguates named entities against Wikidata knowledge base.", sampleInput: '{"entity": "Momenul Ahmad"}' },
+      { name: "generate_entity_triples", description: "Extracts Subject-Predicate-Object triples for LLM graph grounding.", sampleInput: '{"text": "SEOSiri builds MCP"}' }
+    ]
+  },
+  {
+    id: "seosiri-db-infra-mcp",
+    title: "Cloud DB & S3 Storage Infrastructure MCP",
+    shortName: "DB Infra MCP",
+    category: "infrastructure",
+    vpcReady: true,
+    description: "Read-only Postgres, DuckDB, ClickHouse warehouse introspection and AWS S3 storage integrity auditing.",
+    guideUrl: "https://www.seosiri.com/2026/08/seosiri-db-infra-mcp.html",
+    pypiPackage: "seosiri-db-infra-mcp",
+    pypiCommand: "pip install seosiri-db-infra-mcp",
+    edgeGateway: "db.seosiri.com",
+    edgeUrl: "https://db.seosiri.com",
+    color: "#8b5cf6",
+    badgeBg: "bg-purple-500/10",
+    badgeText: "text-purple-400 border-purple-500/20",
+    iconName: "Database",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "read_postgres_schema", description: "Safely extracts table schemas and foreign key relationships with zero write risk.", sampleInput: '{"schema": "public"}' },
+      { name: "audit_s3_bucket_lifecycle", description: "Audits cold-storage lifecycle transitions and public access block status.", sampleInput: '{"bucket": "prod-cold-tier"}' }
+    ]
+  },
+  {
+    id: "ops-comm-mcp",
+    title: "Operations & Communications MCP",
+    shortName: "OpsComm MCP",
+    category: "infrastructure",
+    vpcReady: true,
+    description: "Production DevOps and incident management MCP server for Sentry stacktrace ingestion, Linear ticket dispatching, and Slack alerting.",
+    guideUrl: "https://www.seosiri.com/2026/08/ops-comm-mcp.html",
+    pypiPackage: "seosiri-ops-comm-mcp",
+    pypiCommand: "pip install seosiri-ops-comm-mcp",
+    edgeGateway: "ops.seosiri.com",
+    edgeUrl: "https://ops.seosiri.com",
+    color: "#f59e0b",
+    badgeBg: "bg-amber-500/10",
+    badgeText: "text-amber-400 border-amber-500/20",
+    iconName: "Cpu",
+    version: "1.0.0",
+    status: "Operational",
+    tools: [
+      { name: "parse_sentry_stacktrace", description: "Parses raw Sentry error events into structured root-cause analyses.", sampleInput: '{"event_id": "evt_8921"}' },
+      { name: "sync_linear_issue", description: "Creates or updates Linear engineering tasks from triage tickets.", sampleInput: '{"title": "Bug fix", "priority": 1}' },
+      { name: "dispatch_slack_ops_alert", description: "Sends encrypted Slack alerts to on-call engineering channels.", sampleInput: '{"channel": "#dev-alerts", "msg": "Critical"}' }
+    ]
+  },
+  {
     id: "smart-transit-ai",
     title: "SmartTransit AI: Dubai Autonomous Resilience Mesh",
     shortName: "SmartTransit AI",
