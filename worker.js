@@ -151,6 +151,7 @@ function generateDynamicSitemapXml(currentDate) {
 
 export default {
   async fetch(request, env, ctx) {
+
     const url = new URL(request.url);
 
     // =========================================================================
@@ -253,7 +254,11 @@ export default {
         headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
       });
     }
-    // END SMARTTRANSIT BLOCK
+    // END SMARTTRANSIT
+
+    const url = new URL(request.url);
+
+    // =========================================================================
 
     const currentDate = new Date().toISOString().split("T")[0];
 
