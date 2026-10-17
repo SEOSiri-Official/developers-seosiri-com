@@ -153,6 +153,72 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    
+    // =========================================================================
+    // CANONICAL HL7 FHIR v4.0.1 STRUCTURE DEFINITION
+    // Route: /fhir/extensions/edge-provenance
+    // Standards: HL7 FHIR v4.0.1, IEEE 11073-10101, LOINC, SNOMED-CT
+    // =========================================================================
+    if (url.pathname === "/fhir/extensions/edge-provenance") {
+      return new Response(JSON.stringify({
+        "resourceType": "StructureDefinition",
+        "id": "edge-provenance",
+        "url": "https://developers.seosiri.com/fhir/extensions/edge-provenance",
+        "version": "1.0.0",
+        "name": "EdgeProvenanceExtension",
+        "title": "SEOSiri Cryptographic Edge Provenance Extension",
+        "status": "active",
+        "experimental": false,
+        "date": "2026-10-02",
+        "publisher": "SEOSiri Enterprise Labs",
+        "contact": [
+          {
+            "name": "Momenul Ahmad",
+            "telecom": [{ "system": "email", "value": "info@seosiri.com" }]
+          }
+        ],
+        "description": "Attests that environmental bioassay telemetry was cryptographically authenticated via SEOSiri HMAC-SHA256 Edge Gateways before FHIR ingestion.",
+        "fhirVersion": "4.0.1",
+        "kind": "complex-type",
+        "abstract": false,
+        "context": [
+          { "type": "element", "expression": "DiagnosticReport" },
+          { "type": "element", "expression": "Observation" }
+        ],
+        "type": "Extension",
+        "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+        "derivation": "constraint",
+        "differential": {
+          "element": [
+            {
+              "id": "Extension",
+              "path": "Extension",
+              "short": "HMAC-SHA256 Edge Provenance Token",
+              "definition": "Cryptographic signature verifying edge sensor authenticity and tamper-proofing.",
+              "max": "1"
+            },
+            {
+              "id": "Extension.url",
+              "path": "Extension.url",
+              "fixedUri": "https://developers.seosiri.com/fhir/extensions/edge-provenance"
+            },
+            {
+              "id": "Extension.value[x]",
+              "path": "Extension.value[x]",
+              "type": [{ "code": "string" }]
+            }
+          ]
+        }
+      }, null, 2), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/fhir+json; charset=utf-8",
+          "Access-Control-Allow-Origin": "*",
+          "Cache-Control": "public, max-age=86400"
+        }
+      });
+    }
+
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({
         status: "HEALTHY",
