@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 
 export const EndpointTester: React.FC = () => {
-  const [selectedModuleId, setSelectedModuleId] = useState<string>('aeo-geo');
+  const [selectedModuleId, setSelectedModuleId] = useState<string>('smart-transit-ai');
   const [requestType, setRequestType] = useState<'tools/list' | 'tools/call' | 'healthcheck'>('tools/list');
   const [selectedToolIndex, setSelectedToolIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -229,7 +229,7 @@ export const EndpointTester: React.FC = () => {
             </h3>
 
             <div className="space-y-2">
-              {MCP_MODULES.map((m) => (
+              {[...MCP_MODULES].sort((a, b) => a.id === "smart-transit-ai" ? -1 : b.id === "smart-transit-ai" ? 1 : 0).map((m) => (
                 <button
                   key={m.id}
                   onClick={() => {
