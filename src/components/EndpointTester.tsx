@@ -227,7 +227,7 @@ export const EndpointTester: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
+    <div className="w-full max-w-7xl mx-auto px-4 py-8 space-y-6">
       
       {/* Header */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
@@ -442,7 +442,15 @@ export const EndpointTester: React.FC = () => {
                   <p className="text-xs font-mono">Querying {activeModule.edgeGateway} via Cloudflare Workers...</p>
                 </div>
               ) : responsePayload ? (
-                <pre className="whitespace-pre">{JSON.stringify(responsePayload, null, 2)}</pre>
+                <pre className="whitespace-pre">{(() => {
+                  try {
+                    if (responsePayload?.result?.content?.[0]?.text) {
+                      const parsed = JSON.parse(responsePayload.result.content[0].text);
+                      return JSON.stringify({ ...responsePayload, result: parsed }, null, 2);
+                    }
+                  } catch (e) {}
+                  return JSON.stringify(responsePayload, null, 2);
+                })()}</pre>
               ) : (
                 <div className="flex flex-col items-center justify-center space-y-2 py-10 text-slate-500 text-center">
                   <TerminalSquare className="w-8 h-8 text-slate-700" />
