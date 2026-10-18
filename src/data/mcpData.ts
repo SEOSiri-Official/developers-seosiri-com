@@ -169,40 +169,6 @@ function createTools(prefix: string, count: number, moduleTitle: string): { name
 
 export const MCP_MODULES: MCPModule[] = [
   {
-    id: "smarttransit-ai-mcp",
-    title: "SmartTransit AI: Dubai Municipal Autonomous Resilience Mesh",
-    shortName: "SmartTransit AI (Private)",
-    category: "specialized",
-    description: "Sovereign closed-source multi-agent urban resilience mesh connecting vehicle-mounted drone roofs, flash flood sensors, bio-thermal triage, and NESA-compliant Zero-Trust actuation.",
-    guideUrl: "https://www.seosiri.com/2026/09/chip-agnostic-smart-transit-ai.html",
-    pypiPackage: undefined,
-    pypiCommand: "python -m dubai_agentic_mesh.mcp_server (Private VPC/Local)",
-    edgeGateway: "transit.seosiri.com",
-    edgeUrl: "https://transit.seosiri.com",
-    color: "#f97316",
-    badgeBg: "bg-orange-500/10",
-    badgeText: "text-orange-400 border-orange-500/20",
-    iconName: "Cpu",
-    version: "1.0.0",
-    status: "Operational (Private Enterprise)",
-    vpcReady: true,
-    tools: [
-      { name: "assess_urban_flood_risk", description: "Evaluates sudden stormwater accumulation and flash flood risks on Dubai transit corridors.", sampleInput: '{"water_depth_cm": 28.5, "storm_runoff_rate": 92.0}' },
-      { name: "deploy_bus_mounted_drone_mesh", description: "Autonomously launches roof-docked drone from active transit bus to establish airborne RF mesh.", sampleInput: '{"target_lat": 25.1975, "target_lon": 55.2750}' },
-      { name: "preempt_traffic_signals_for_rescue", description: "Reprograms municipal traffic signals to create emergency green corridors and deploys rescue robots.", sampleInput: '{"corridor_id": "SZR_INTERCHANGE_4", "hazard_lat": 25.1975, "hazard_lon": 55.2750}' },
-      { name: "process_full_transit_telemetry", description: "Runs end-to-end multi-agent triage: parses bus HAL telemetry, evaluates threats, and executes actuation.", sampleInput: '{"bus_id": "RTA_BUS_104", "water_depth_cm": 28.5, "rssi": -92}' },
-      { name: "negotiate_drone_bus_leapfrog", description: "Negotiates autonomous mobile recovery and inductive dock rendezvous with the closest moving RTA bus.", sampleInput: '{"drone_lat": 25.2010, "drone_lon": 55.2770, "battery_pct": 26.5}' },
-      { name: "triage_trapped_vehicle_biometrics", description: "Fuses aerial thermal vision with passenger wearable health sensor data to prioritize emergency extraction.", sampleInput: '{"cabin_temp_c": 46.2, "water_submersion_pct": 65.0, "wearer_heart_rate": 138, "wearer_spo2": 87}' },
-      { name: "compute_safe_bow_wave_velocity", description: "Calculates active bus speed limits to prevent generating destructive water bow-waves in flash floods.", sampleInput: '{"water_depth_cm": 18.0, "curb_distance_m": 3.5}' },
-      { name: "generate_zkp_citizen_triage_token", description: "Issues privacy-preserving Zero-Knowledge triage tokens for emergency extraction under UAE PDPL.", sampleInput: '{"commuter_id": "commuter_99", "is_critical": true}' },
-      { name: "trigger_municipal_stormwater_catchment", description: "Aggregates distributed bus sensor data to pre-emptively activate subterranean stormwater pump stations.", sampleInput: '[{"node_id": "SZR_104", "depth_cm": 22.5}]' },
-      { name: "authenticate_and_audit_actuation", description: "Validates caller authorization via constant-time HMAC-SHA256 and logs NESA-compliant audit trails.", sampleInput: '{"caller_id": "RTA_CONTROLLER_01", "nonce": "nonce_abc"}' },
-      { name: "simulate_agent_conflict_resolution", description: "Simulates multi-agent command collisions and returns deterministic priority conflict resolution.", sampleInput: '{}' },
-      { name: "test_cellular_blackout_mesh_failover", description: "Simulates total cellular network failure and measures local sub-1GHz mesh failover latency.", sampleInput: '{}' },
-      { name: "verify_actuation_rollback_fallback", description: "Tests closed-loop actuation timeout handling, verification failure, and autonomous safety fallback.", sampleInput: '{}' }
-    ]
-  },
-  {
     id: "biometric-iot-bridge",
     title: "Biometric IoT Bridge & Wearable Vitals MCP",
     shortName: "Biometric IoT",
