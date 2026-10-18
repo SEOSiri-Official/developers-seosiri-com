@@ -61,10 +61,11 @@ export const ConfigGenerator: React.FC<ConfigGeneratorProps> = ({ modules, onVie
       } else if (mod.pypiPackage && (mod.pypiPackage.startsWith('@') || mod.pypiPackage.includes('npm'))) {
         config.mcpServers[mod.id] = { command: "npx", args: ["-y", mod.pypiPackage], env: envObj };
       } else {
-        let cmd = "uvx";
-        let argsArr = [mod.pypiPackage];
-        if (transport === 'pipx run') { cmd = "pipx"; argsArr = ["run", mod.pypiPackage]; }
-        else if (transport === 'python -m') { cmd = "python"; argsArr = ["-m", mod.pypiPackage]; }
+        let pkg = mod.pypiPackage || (mod.id === 'smarttransit-ai-mcp' ? 'smarttransit-ai' : mod.id);
+        let cmd = mod.pypiPackage ? "uvx" : "python";
+        let argsArr = mod.pypiPackage ? [pkg] : ["-m", "dubai_agentic_mesh.mcp_server"];
+        if (transport === 'pipx run') { cmd = "pipx"; argsArr = ["run", pkg]; }
+        else if (transport === 'python -m') { cmd = "python"; argsArr = ["-m", mod.pypiPackage || "dubai_agentic_mesh.mcp_server"]; }
         config.mcpServers[mod.id] = { command: cmd, args: argsArr, env: envObj };
       }
     });

@@ -130,7 +130,7 @@ ${tool.sampleInput}
       mcpServers: {
         [selectedModule.id]: {
           command: 'uvx',
-          args: [selectedModule.pypiPackage],
+          args: selectedModule.pypiPackage ? [selectedModule.pypiPackage] : ['-m', 'dubai_agentic_mesh.mcp_server'],
           env: (selectedModule.envVars || []).reduce((acc: any, key: string) => {
             acc[key] = `YOUR_${key}`;
             return acc;
