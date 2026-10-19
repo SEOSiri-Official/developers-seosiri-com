@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, DollarSign, ShieldCheck, Zap, ArrowLeft, Mail, ExternalLink, CheckCircle2, TrendingDown } from 'lucide-react';
+import { BookOpen, DollarSign, ShieldCheck, Zap, ArrowLeft, Mail, ExternalLink, CheckCircle2, TrendingDown, Globe2 } from 'lucide-react';
 import { OFFICIAL_CORPORATE_EMAIL } from '../data/mcpData';
 
 interface EnterpriseManualProps {
@@ -25,20 +25,21 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
               <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 Enterprise AI Productivity &amp; Cost-Optimization Manual
               </h1>
-              <p className="text-xs text-slate-400 font-mono mt-1">ROI Analysis • Infrastructure Consolidation • Zero-Leakage Edge</p>
+              <p className="text-xs text-slate-400 font-mono mt-1">ROI Analysis • Infrastructure Consolidation • Custom Design &amp; Development • Global Deployment</p>
             </div>
           </div>
-          <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs rounded-full font-bold">
-            EXECUTIVE B2B PLAYBOOK &amp; ROI
+          <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs rounded-full font-bold flex items-center gap-1">
+            <Globe2 className="w-3.5 h-3.5" />
+            <span>GLOBAL ENTERPRISE PLAYBOOK</span>
           </span>
         </div>
 
         <p className="text-sm text-slate-300 leading-relaxed">
-          Engineering organizations waste thousands monthly across disconnected SaaS subscriptions for scraping proxies, schema checkers, web application firewalls, and custom wrappers. The <strong>SEOSiri Model Context Protocol Suite</strong> consolidates these workflows into sovereign execution layers powered by global Cloudflare Workers edge nodes.
+          Engineering organizations worldwide waste thousands monthly across disconnected SaaS subscriptions for scraping proxies, schema checkers, web application firewalls, and custom wrappers. The <strong>SEOSiri Model Context Protocol Suite</strong> consolidates these workflows into sovereign execution layers powered by global Cloudflare Workers edge nodes—custom-designed and developed for enterprise workflows across North America, Europe, MENA, APAC, and Latin America.
         </p>
 
         {/* Highlight Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
             <span className="text-xs font-mono font-bold text-emerald-400 block">84% Faster Data Ingestion</span>
             <p className="text-xs text-slate-400">Zero-latency webhook ingestion via Cloudflare Edge Gateways.</p>
@@ -46,6 +47,10 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
           <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
             <span className="text-xs font-mono font-bold text-sky-400 block">100% Deterministic Tool Calls</span>
             <p className="text-xs text-slate-400">Strict JSON schema validation eliminates model hallucination.</p>
+          </div>
+          <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-1">
+            <span className="text-xs font-mono font-bold text-amber-400 block">Global Multi-Region Scale</span>
+            <p className="text-xs text-slate-400">Custom design and deployment for worldwide enterprise teams.</p>
           </div>
         </div>
 
@@ -91,22 +96,23 @@ export const EnterpriseProductivityManual: React.FC<EnterpriseManualProps> = ({ 
           </div>
         </div>
 
-        {/* Lead Capture Box */}
+        {/* Lead Capture Box - Global Enterprise Design & Development */}
         <div className="bg-gradient-to-r from-blue-950/80 to-slate-950 p-6 rounded-2xl border border-blue-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <h3 className="text-white font-bold text-sm">Schedule an Enterprise Architecture &amp; Tooling Audit</h3>
-            <p className="text-xs text-slate-400 mt-1 font-mono">Cut redundant SaaS seats and deploy zero-trust MCP gateways with Lead Systems Architect Momenul Ahmad.</p>
+            <h3 className="text-white font-bold text-sm">Schedule a Global Enterprise Architecture, Custom Design &amp; Development Audit</h3>
+            <p className="text-xs text-slate-400 mt-1 font-mono">Cut redundant SaaS seats, build bespoke MCP tools, and deploy zero-trust edge gateways worldwide with Lead Systems Architect Momenul Ahmad.</p>
           </div>
           <a
-            href={`mailto:${OFFICIAL_CORPORATE_EMAIL}?subject=Enterprise%20Productivity%20%26%20Architecture%20Consultation`}
+            href={`mailto:${OFFICIAL_CORPORATE_EMAIL}?subject=Global%20Enterprise%20Architecture,%20Custom%20Design%20%26%20Development%20Consultation`}
             className="px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold font-mono transition-all shadow-lg shrink-0 flex items-center gap-2"
           >
             <Mail className="w-3.5 h-3.5" />
-            <span>Book Consultation &rarr;</span>
+            <span>Book Global Consultation &rarr;</span>
           </a>
         </div>
       </div>
     </div>
   );
 };
+
 export default EnterpriseProductivityManual;
