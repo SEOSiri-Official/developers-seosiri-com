@@ -335,7 +335,7 @@ export const MCP_MODULES: MCPModule[] = [
       { name: "authenticate_and_audit_actuation", description: "Constant-time HMAC-SHA256 token verification with UAE NESA compliance logging.", sampleInput: '{"caller_id": "RTA_CONTROLLER_01"}' },
       { name: "process_full_transit_telemetry", description: "Zero-heap embedded C99 bus gateway HAL telemetry bridge ingestion.", sampleInput: '{"bus_id": "RTA_104", "water_depth_cm": 28.5}' },
       { name: "generate_zkp_citizen_triage_token", description: "Zero-Knowledge cryptographic priority tokens compliant with UAE PDPL.", sampleInput: '{"commuter_id": "CITIZEN_089", "is_critical": true}' },
-      { name: "trigger_municipal_stormwater_catchment", description: "Pre-emptive subterranean stormwater pump station activation.", sampleInput: '{"depth_cm": 24.0}' }
+      { name: "trigger_municipal_stormwater_catchment", description: "Pre-emptive subterranean stormwater pump station activation.", sampleInput: '{"depth_cm": 24.0}' },
       { name: "simulate_agent_conflict_resolution", status: "Operational", target: "Multi-Agent Priority Queue Consensus" },
       { name: "test_cellular_blackout_mesh_failover", status: "Operational", target: "802.11ah Sub-1GHz Tactical Ad-Hoc Mesh" },
       { name: "verify_actuation_rollback_fallback", status: "Operational", target: "Closed-Loop Timeout & Safety Fallback" }
