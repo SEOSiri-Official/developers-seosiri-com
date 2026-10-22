@@ -63,11 +63,7 @@ const ONSITE_POLICY_VIEWS: ViewMode[] = [
 
 export function App() {
   const getInitialView = (): ViewMode => {
-    let rawHash = window.location.hash.replace("#", "").trim();
-    if (rawHash.startsWith("legal/")) {
-      rawHash = rawHash.replace("legal/", "");
-    }
-    const hash = rawHash.split("?")[0] as ViewMode;
+    const hash = window.location.hash.replace("#", "") as ViewMode;
     return VALID_VIEWS.includes(hash) ? hash : "topology";
   };
   const [currentView, setCurrentView] = useState<ViewMode>(getInitialView);
@@ -90,18 +86,7 @@ export function App() {
   // Synchronize window.location.hash with React currentView state
   React.useEffect(() => {
     const handleHashSync = () => {
-    const rawHash = window.location.hash.replace("#", "").trim();
-    if (rawHash === "legal/dpa" || rawHash === "dpa") {
-      setCurrentView("dpa");
-      return;
-    }
-    if (rawHash.startsWith("legal/")) {
-      const sub = rawHash.replace("legal/", "");
-      setCurrentView(sub as ViewMode);
-      return;
-    }
-      let rawHash = window.location.hash.replace("#", "").trim();
-    if (rawHash.startsWith("legal/")) { rawHash = rawHash.replace("legal/", ""); }
+      const rawHash = window.location.hash.replace("#", "").trim();
       const hash = rawHash.split("?")[0];
       if (!hash) return;
       if (hash === "manual" || hash === "productivity-manual") {

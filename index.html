@@ -137,7 +137,14 @@
         }, true);
       })();
     </script>
-  </head>
+  
+  <script>
+    // Normalize /#/legal/dpa -> #/dpa instantly
+    if (window.location.hash.startsWith('#/legal/')) {
+      window.location.hash = window.location.hash.replace('#/legal/', '#');
+    }
+  </script>
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
