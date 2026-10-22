@@ -90,6 +90,16 @@ export function App() {
   // Synchronize window.location.hash with React currentView state
   React.useEffect(() => {
     const handleHashSync = () => {
+    const rawHash = window.location.hash.replace("#", "").trim();
+    if (rawHash === "legal/dpa" || rawHash === "dpa") {
+      setCurrentView("dpa");
+      return;
+    }
+    if (rawHash.startsWith("legal/")) {
+      const sub = rawHash.replace("legal/", "");
+      setCurrentView(sub as ViewMode);
+      return;
+    }
       let rawHash = window.location.hash.replace("#", "").trim();
     if (rawHash.startsWith("legal/")) { rawHash = rawHash.replace("legal/", ""); }
       const hash = rawHash.split("?")[0];
