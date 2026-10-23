@@ -36,11 +36,11 @@ export function registerDynamicWebMcpTools() {
 
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
-        const uniqueToolName = ;
+        const uniqueToolName = moduleItem.id.replace(/-/g, '_') + '_' + toolItem.name;
         webMcp.registerTool({
           name: uniqueToolName,
-          title: ,
-          description: ,
+          title: moduleItem.shortName + ': ' + toolItem.name,
+          description: toolItem.description + ' [Gateway: ' + moduleItem.edgeGateway + ']',
           inputSchema: {
             type: 'object',
             properties: {
@@ -48,7 +48,7 @@ export function registerDynamicWebMcpTools() {
             }
           },
           execute: async (input: { argumentsJson?: string }) => {
-            const targetUrl = ;
+            const targetUrl = 'https://' + moduleItem.edgeGateway + '/rpc';
             let parsedArgs = {};
             try {
               parsedArgs = input.argumentsJson ? JSON.parse(input.argumentsJson) : JSON.parse(toolItem.sampleInput || '{}');
