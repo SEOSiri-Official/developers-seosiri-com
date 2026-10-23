@@ -9,6 +9,7 @@ export function registerDynamicWebMcpTools() {
   // W3C spec standard interface: document.modelContext
   const webMcp = (document as any).modelContext;
 
+  if (!webMcp || typeof webMcp.registerTool !== 'function') {
     return;
   }
 
