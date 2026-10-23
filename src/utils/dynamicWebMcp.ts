@@ -6,9 +6,9 @@ import { MCP_MODULES } from '../data/mcpData';
 export function registerDynamicWebMcpTools() {
   if (typeof window === 'undefined') return;
 
-  const webMcp = (document as any).modelContext || (window as any).modelContext || (navigator as any).modelContext;
+  // W3C spec standard interface: document.modelContext
+  const webMcp = (document as any).modelContext;
 
-  if (!webMcp || typeof webMcp.registerTool !== 'function') {
     return;
   }
 
