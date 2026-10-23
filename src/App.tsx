@@ -1,3 +1,4 @@
+import { WebMcpInspector } from './components/WebMcpInspector';
 import { ApiKeyIssuerIntegration } from './components/ApiKeyIssuerIntegration';
 import { UIKitSandboxView } from './components/UIKitSandboxView';
 import { EnterpriseProductivityManual } from "./components/EnterpriseProductivityManual";
@@ -49,6 +50,7 @@ const VALID_VIEWS: ViewMode[] = [
   "governance",
   "security",
   "ui-kit-demo",
+  "webmcp",
 ];
 
 // Every ViewMode that OnsitePolicyPages is responsible for rendering.
@@ -187,6 +189,7 @@ useEffect(() => {
           window.location.hash = view;
           setCurrentView(view);
         }} />}
+        {currentView === 'webmcp' && <WebMcpInspector />}
         {currentView === 'pricing' && (
           <ApiPricingMatrix onViewChange={(view) => {
             window.location.hash = view;
