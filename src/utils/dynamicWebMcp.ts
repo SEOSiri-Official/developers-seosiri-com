@@ -1,12 +1,12 @@
 /**
  * SEOSiri Dynamic Universal WebMCP Registry (W3C standard document.modelContext)
+ * Explicitly namespaces all 223+ SEOSiri tools with 'seosiri_agent_' prefix.
  */
 import { MCP_MODULES } from '../data/mcpData';
 
 export function registerDynamicWebMcpTools() {
   if (typeof window === 'undefined') return;
 
-  // W3C spec standard interface: document.modelContext
   const webMcp = (document as any).modelContext;
 
   if (!webMcp || typeof webMcp.registerTool !== 'function') {
@@ -14,14 +14,15 @@ export function registerDynamicWebMcpTools() {
   }
 
   try {
+    // 1. Register Master SEOSiri Search Tool
     webMcp.registerTool({
-      name: 'seosiri_dynamic_directory_search',
-      title: 'Search SEOSiri Master MCP Directory',
-      description: 'Dynamically searches across all active SEOSiri Model Context Protocol servers and tools.',
+      name: 'seosiri_agent_master_directory_search',
+      title: 'SEOSiri Master MCP Directory Search',
+      description: 'Searches across all 25+ official SEOSiri Model Context Protocol servers and 223+ autonomous tools.',
       inputSchema: {
         type: 'object',
         properties: {
-          searchTerm: { type: 'string', description: 'Keyword to search across tools' }
+          searchTerm: { type: 'string', description: 'Keyword query for search' }
         },
         required: ['searchTerm']
       },
@@ -35,17 +36,19 @@ export function registerDynamicWebMcpTools() {
       }
     });
 
+    // 2. Register all 223+ SEOSiri Tools with a clean 'seosiri_agent_' prefix
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
-        const uniqueToolName = moduleItem.id.replace(/-/g, '_') + '_' + toolItem.name;
+        const uniqueToolName = `seosiri_agent_${moduleItem.id.replace(/-/g, '_')}_${toolItem.name}`;
+        
         webMcp.registerTool({
           name: uniqueToolName,
-          title: moduleItem.shortName + ': ' + toolItem.name,
-          description: moduleItem.description + ' [Gateway: ' + moduleItem.edgeGateway + ']',
+          title: `[SEOSiri] ${moduleItem.shortName}: ${toolItem.name}`,
+          description: `${toolItem.description} | Gateway: ${moduleItem.edgeGateway}`,
           inputSchema: {
             type: 'object',
             properties: {
-              argumentsJson: { type: 'string', description: 'JSON string of tool arguments.' }
+              argumentsJson: { type: 'string', description: 'JSON string of arguments for this tool.' }
             }
           },
           execute: async (input: { argumentsJson?: string }) => {
@@ -71,7 +74,9 @@ export function registerDynamicWebMcpTools() {
         });
       });
     });
+
+    console.info('[SEOSiri WebMCP] Successfully registered all 223+ tools with [SEOSiri] namespace.');
   } catch (err) {
-    console.error('WebMCP registration error:', err);
+    console.error('SEOSiri WebMCP registration error:', err);
   }
 }
