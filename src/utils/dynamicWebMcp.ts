@@ -8,7 +8,7 @@ export function registerDynamicWebMcpTools() {
 
   const webMcp = (document as any).modelContext || (window as any).modelContext || (navigator as any).modelContext;
 
-    console.info('WebMCP (document.modelContext) runtime interface pending browser activation flag.');
+  if (!webMcp || typeof webMcp.registerTool !== 'function') {
     return;
   }
 
@@ -40,7 +40,7 @@ export function registerDynamicWebMcpTools() {
         webMcp.registerTool({
           name: uniqueToolName,
           title: moduleItem.shortName + ': ' + toolItem.name,
-          description: toolItem.description + ' [Gateway: ' + moduleItem.edgeGateway + ']',
+          description: moduleItem.description + ' [Gateway: ' + moduleItem.edgeGateway + ']',
           inputSchema: {
             type: 'object',
             properties: {
@@ -70,9 +70,7 @@ export function registerDynamicWebMcpTools() {
         });
       });
     });
-
-    console.info('Successfully bound all 223+ tools to document.modelContext.');
-  } catch (error) {
-    console.error('WebMCP registration error:', error);
+  } catch (err) {
+    console.error('WebMCP registration error:', err);
   }
 }
