@@ -23,6 +23,10 @@ import { ApiKeyGenerator } from './components/ApiKeyGenerator';
 import { UserPortal } from './components/UserPortal';
 import { EducationalJourneyBanner } from "./components/EducationalJourneyBanner";
 import { Footer } from './components/Footer';
+import { useEffect } from 'react';
+import { registerDynamicWebMcpTools } from './utils/dynamicWebMcp';
+
+
 
 // Every ViewMode this app can route to via URL hash on initial load.
 const VALID_VIEWS: ViewMode[] = [
@@ -115,7 +119,9 @@ export function App() {
     window.addEventListener("hashchange", handleHashSync);
     return () => window.removeEventListener("hashchange", handleHashSync);
   }, []);
-
+useEffect(() => {
+  registerDynamicWebMcpTools();
+}, []);
 
   const filteredModules = MCP_MODULES.filter((mod) => {
     const matchesCategory = selectedCategory === 'all' || mod.category === selectedCategory;
