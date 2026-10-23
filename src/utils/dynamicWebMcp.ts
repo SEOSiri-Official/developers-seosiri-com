@@ -1,12 +1,11 @@
-"""
-SEOSiri Dynamic Universal WebMCP Registry (W3C standard document.modelContext)
-"""
+/**
+ * SEOSiri Dynamic Universal WebMCP Registry (W3C standard document.modelContext)
+ */
 import { MCP_MODULES } from '../data/mcpData';
 
 export function registerDynamicWebMcpTools() {
   if (typeof window === 'undefined') return;
 
-  // W3C spec standard surface is document.modelContext
   const webMcp = (document as any).modelContext || (window as any).modelContext || (navigator as any).modelContext;
 
     console.info('WebMCP (document.modelContext) runtime interface pending browser activation flag.');
