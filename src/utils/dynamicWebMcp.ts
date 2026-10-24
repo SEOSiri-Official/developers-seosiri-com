@@ -65,7 +65,7 @@ export function registerDynamicWebMcpTools() {
               parsedArgs = {};
             }
 
-            let userApiKey = 'SEOSIRI_PUBLIC_AGENT_TIER';
+            let userApiKey = 'FREE_TIER';
             try {
               const storedKey = localStorage.getItem('seosiri_pro_api_key');
               if (storedKey) userApiKey = storedKey;
