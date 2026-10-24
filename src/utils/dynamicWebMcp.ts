@@ -69,16 +69,37 @@ export function registerDynamicWebMcpTools() {
               parsedArgs = {};
             }
             
-            const res = await fetch(targetUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                jsonrpc: '2.0',
-                id: Math.floor(Math.random() * 100000),
-                method: 'tools/call',
-                params: { name: toolItem.name, arguments: parsedArgs }
-              })
-            });
+            let fetchUrl = targetUrl;
+            let res;
+            try {
+              res = await fetch(fetchUrl, {
+                method: 'POST',
+                headers: { 
+                  'Content-Type': 'application/json',
+                  'x-seosiri-key': userApiKey
+                },
+                body: JSON.stringify({
+                  jsonrpc: '2.0',
+                  id: Math.floor(Math.random() * 100000),
+                  method: 'tools/call',
+                  params: { name: toolItem.name, arguments: parsedArgs }
+                })
+              });
+                throw new Error('Endpoint returned 404');
+              }
+            } catch (err) {
+              fetchUrl = 'https://transit.seosiri.com/rpc';
+              res = await fetch(fetchUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'x-seosiri-key': userApiKey },
+                body: JSON.stringify({
+                  jsonrpc: '2.0',
+                  id: Math.floor(Math.random() * 100000),
+                  method: 'tools/call',
+                  params: { name: toolItem.name, arguments: parsedArgs }
+                })
+              });
+            }
             return await res.json();
           }
         });
