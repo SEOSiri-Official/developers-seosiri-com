@@ -1,6 +1,6 @@
 /**
  * SEOSiri Master Universal WebMCP Registry (W3C standard document.modelContext)
- * Direct edge routing with clean error boundaries and no cascading CORS loops.
+ * Syntactically balanced, type-safe, and direct edge routing.
  */
 import { MCP_MODULES } from '../data/mcpData';
 
@@ -52,7 +52,7 @@ export function registerDynamicWebMcpTools() {
       }
     });
 
-    // 2. Direct-to-Gateway Registration (No cross-cascading)
+    // 2. Dynamically Register All Tools from Master Dataset (mcpData.ts)
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
         const uniqueToolName = `seosiri_agent_${moduleItem.id.replace(/-/g, '_')}_${toolItem.name}`;
@@ -82,14 +82,14 @@ export function registerDynamicWebMcpTools() {
             } catch {}
 
             const startTime = performance.now();
-            const targetUrl = `https://${moduleItem.edgeGateway}/rpc`;
+            const targetUrl = 'https://' + moduleItem.edgeGateway + '/rpc';
 
             try {
               const res = await fetch(targetUrl, {
                 method: 'POST',
                 headers: { 
-                  'Content-Type': 'application/json', 
-                  'x-seosiri-key': userApiKey 
+                  'Content-Type': 'application/json',
+                  'x-seosiri-key': userApiKey
                 },
                 body: JSON.stringify({
                   jsonrpc: '2.0',
@@ -115,8 +115,8 @@ export function registerDynamicWebMcpTools() {
                 success: false,
                 latencyMs: Number(durationMs),
                 gatewayUsed: moduleItem.edgeGateway,
-                complianceTier: 'ERR_ISOLATED',
-                response: { error: err.message || 'Network/CORS preflight dropped' }
+                complianceTier: 'EDGE_UNREACHED',
+                response: { error: err.message || 'Direct edge gateway connection unreached' }
               };
             }
           }
@@ -124,7 +124,7 @@ export function registerDynamicWebMcpTools() {
       });
     });
 
-    console.info('[SEOSiri Master WebMCP] Clean direct edge routing loaded without cascading loops.');
+    console.info('[SEOSiri Master WebMCP] Successfully registered all tools with balanced TypeScript structure.');
   } catch (err) {
     console.error('SEOSiri WebMCP initialization error:', err);
   }
