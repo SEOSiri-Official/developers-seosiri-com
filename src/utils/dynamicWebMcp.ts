@@ -1,7 +1,3 @@
-/**
- * SEOSiri Master Universal WebMCP Registry (W3C standard document.modelContext)
- * Syntactically balanced, type-safe, and direct edge routing.
- */
 import { MCP_MODULES } from '../data/mcpData';
 
 declare global {
@@ -52,7 +48,7 @@ export function registerDynamicWebMcpTools() {
       }
     });
 
-    // 2. Dynamically Register All Tools from Master Dataset (mcpData.ts)
+    // 2. Direct-to-Gateway Registration (Wired dynamically to mcpData.ts)
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
         const uniqueToolName = `seosiri_agent_${moduleItem.id.replace(/-/g, '_')}_${toolItem.name}`;
