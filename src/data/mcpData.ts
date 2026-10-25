@@ -1264,5 +1264,5 @@ export const TOTAL_OFFICIAL_GATEWAYS = 15;
 export const DIRECTORY_TITLE = 'MCP Servers & Endpoints Directory';
 export const TOTAL_PUBLISHED_SERVERS = 25;
 export const TOTAL_PACKAGES_COUNT = 25;
-export const TOTAL_MCP_TOOLS_COUNT = 223;
+export const TOTAL_MCP_TOOLS_COUNT = 245;
 // Last Audit Sync: 1791550459.6839855
