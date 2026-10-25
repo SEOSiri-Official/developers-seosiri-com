@@ -1,3 +1,7 @@
+/**
+ * SEOSiri Master Universal WebMCP Registry (W3C standard document.modelContext)
+ * Direct edge routing with clean error boundaries and no cascading CORS loops.
+ */
 import { MCP_MODULES } from '../data/mcpData';
 
 declare global {
@@ -28,6 +32,7 @@ export function registerDynamicWebMcpTools() {
   const webMcp = document.modelContext;
 
   try {
+    // 1. Master Directory Search Tool
     webMcp.registerTool({
       name: 'seosiri_agent_master_directory_search',
       title: 'Search SEOSiri Master MCP Directory',
@@ -47,6 +52,7 @@ export function registerDynamicWebMcpTools() {
       }
     });
 
+    // 2. Direct-to-Gateway Registration (No cross-cascading)
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
         const uniqueToolName = `seosiri_agent_${moduleItem.id.replace(/-/g, '_')}_${toolItem.name}`;
@@ -76,38 +82,49 @@ export function registerDynamicWebMcpTools() {
             } catch {}
 
             const startTime = performance.now();
-            const targetUrl = 'https://' + moduleItem.edgeGateway + '/rpc';
+            const targetUrl = `https://${moduleItem.edgeGateway}/rpc`;
 
-            const res = await fetch(targetUrl, {
-              method: 'POST',
-              headers: { 
-                'Content-Type': 'application/json', 
-                'x-seosiri-key': userApiKey 
-              },
-              body: JSON.stringify({
-                jsonrpc: '2.0',
-                id: Math.floor(Math.random() * 100000),
-                method: 'tools/call',
-                params: { name: toolItem.name, arguments: parsedArgs }
-              })
-            });
+            try {
+              const res = await fetch(targetUrl, {
+                method: 'POST',
+                headers: { 
+                  'Content-Type': 'application/json', 
+                  'x-seosiri-key': userApiKey 
+                },
+                body: JSON.stringify({
+                  jsonrpc: '2.0',
+                  id: Math.floor(Math.random() * 100000),
+                  method: 'tools/call',
+                  params: { name: toolItem.name, arguments: parsedArgs }
+                })
+              });
 
-            const jsonRes = await res.json();
-            const durationMs = (performance.now() - startTime).toFixed(2);
+              const jsonRes = await res.json();
+              const durationMs = (performance.now() - startTime).toFixed(2);
 
-            return {
-              success: res.ok,
-              latencyMs: Number(durationMs),
-              gatewayUsed: moduleItem.edgeGateway,
-              complianceTier: 'UAE_NESA_IA_V2 / GDPR Active',
-              response: jsonRes
-            };
+              return {
+                success: res.ok,
+                latencyMs: Number(durationMs),
+                gatewayUsed: moduleItem.edgeGateway,
+                complianceTier: 'UAE_NESA_IA_V2 / GDPR Active',
+                response: jsonRes
+              };
+            } catch (err: any) {
+              const durationMs = (performance.now() - startTime).toFixed(2);
+              return {
+                success: false,
+                latencyMs: Number(durationMs),
+                gatewayUsed: moduleItem.edgeGateway,
+                complianceTier: 'ERR_ISOLATED',
+                response: { error: err.message || 'Network/CORS preflight dropped' }
+              };
+            }
           }
         });
       });
     });
 
-    console.info('[SEOSiri Master WebMCP] Successfully registered all tools with 0 errors.');
+    console.info('[SEOSiri Master WebMCP] Clean direct edge routing loaded without cascading loops.');
   } catch (err) {
     console.error('SEOSiri WebMCP initialization error:', err);
   }
