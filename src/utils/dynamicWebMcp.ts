@@ -50,10 +50,12 @@ export function registerDynamicWebMcpTools() {
 
     // 2. Browser-Safe Tool Registration (Routed via Active Master Gateway)
     // Exclude private competition infrastructure (e.g. SmartTransit AI) from public browser agents
-    const publicModules = MCP_MODULES.filter(m => 
-      m.edgeGateway !== 'transit.seosiri.com' &&
-      m.id !== 'smarttransit-ai-mcp'
-    );
+        const publicModules = MCP_MODULES.filter((m) => {
+      const isPrivateId = m.id.includes('smarttransit') || m.id.includes('transit');
+      const isPrivateGateway = m.edgeGateway === 'transit.seosiri.com';
+      const isPrivateStatus = typeof m.status === 'string' && m.status.toLowerCase().includes('private');
+      return !(isPrivateId || isPrivateGateway || isPrivateStatus);
+    });
 
     publicModules.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
