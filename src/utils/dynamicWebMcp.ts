@@ -48,7 +48,7 @@ export function registerDynamicWebMcpTools() {
       }
     });
 
-    // 2. Direct-to-Gateway Registration (Wired dynamically to mcpData.ts)
+    // 2. Direct Isolated Execution per Gateway
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
         const uniqueToolName = `seosiri_agent_${moduleItem.id.replace(/-/g, '_')}_${toolItem.name}`;
@@ -111,7 +111,7 @@ export function registerDynamicWebMcpTools() {
                 success: false,
                 latencyMs: Number(durationMs),
                 gatewayUsed: moduleItem.edgeGateway,
-                complianceTier: 'EDGE_UNREACHED',
+                complianceTier: 'GATEWAY_ISOLATED',
                 response: { error: err.message || 'Direct edge gateway connection unreached' }
               };
             }
@@ -120,7 +120,7 @@ export function registerDynamicWebMcpTools() {
       });
     });
 
-    console.info('[SEOSiri Master WebMCP] Successfully registered all tools with balanced TypeScript structure.');
+    console.info('[SEOSiri Master WebMCP] Production tools registered with direct isolated edge routing.');
   } catch (err) {
     console.error('SEOSiri WebMCP initialization error:', err);
   }
