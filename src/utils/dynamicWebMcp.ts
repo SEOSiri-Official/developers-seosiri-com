@@ -1,8 +1,14 @@
-/**
- * SEOSiri Master Universal WebMCP Registry (W3C standard document.modelContext)
- * Syntactically balanced, type-safe, and resilient edge routing.
- */
 import { MCP_MODULES } from '../data/mcpData';
+
+declare global {
+  interface Document {
+    modelContext?: {
+      _tools: Map<string, any>;
+      registerTool: (tool: any) => void;
+      listTools: () => any[];
+    };
+  }
+}
 
 export function registerDynamicWebMcpTools() {
   if (typeof window === 'undefined') return;
@@ -22,7 +28,6 @@ export function registerDynamicWebMcpTools() {
   const webMcp = document.modelContext;
 
   try {
-    // 1. Master Directory Search Tool
     webMcp.registerTool({
       name: 'seosiri_agent_master_directory_search',
       title: 'Search SEOSiri Master MCP Directory',
@@ -33,7 +38,7 @@ export function registerDynamicWebMcpTools() {
         required: ['searchTerm']
       },
       execute: async (input: { searchTerm: string }) => {
-        const term = (input.searchTerm || '').toLowerCase();
+        const term = (input?.searchTerm || '').toLowerCase();
         const matches = MCP_MODULES.filter(mod => 
           mod.title.toLowerCase().includes(term) ||
           mod.tools.some(t => t.name.toLowerCase().includes(term))
@@ -42,7 +47,6 @@ export function registerDynamicWebMcpTools() {
       }
     });
 
-    // 2. Dynamically Register All 245+ Tools from Master Dataset
     MCP_MODULES.forEach((moduleItem) => {
       moduleItem.tools.forEach((toolItem) => {
         const uniqueToolName = `seosiri_agent_${moduleItem.id.replace(/-/g, '_')}_${toolItem.name}`;
@@ -72,43 +76,21 @@ export function registerDynamicWebMcpTools() {
             } catch {}
 
             const startTime = performance.now();
-            let targetUrl = 'https://' + moduleItem.edgeGateway + '/rpc';
-            let res;
+            const targetUrl = 'https://' + moduleItem.edgeGateway + '/rpc';
 
-            try {
-              res = await fetch(targetUrl, {
-                method: 'POST',
-                headers: { 
-                  'Content-Type': 'application/json',
-                  'x-seosiri-key': userApiKey
-                },
-                body: JSON.stringify({
-                  jsonrpc: '2.0',
-                  id: Math.floor(Math.random() * 100000),
-                  method: 'tools/call',
-                  params: { name: toolItem.name, arguments: parsedArgs }
-                })
-              });
-              if (!res.ok && res.status === 404) {
-                throw new Error('Fallback trigger');
-              }
-            } catch (err) {
-              // Resilient failover to transit.seosiri.com
-              targetUrl = 'https://transit.seosiri.com/rpc';
-              res = await fetch(targetUrl, {
-                method: 'POST',
-                headers: { 
-                  'Content-Type': 'application/json', 
-                  'x-seosiri-key': userApiKey 
-                },
-                body: JSON.stringify({
-                  jsonrpc: '2.0',
-                  id: Math.floor(Math.random() * 100000),
-                  method: 'tools/call',
-                  params: { name: toolItem.name, arguments: parsedArgs }
-                })
-              });
-            }
+            const res = await fetch(targetUrl, {
+              method: 'POST',
+              headers: { 
+                'Content-Type': 'application/json', 
+                'x-seosiri-key': userApiKey 
+              },
+              body: JSON.stringify({
+                jsonrpc: '2.0',
+                id: Math.floor(Math.random() * 100000),
+                method: 'tools/call',
+                params: { name: toolItem.name, arguments: parsedArgs }
+              })
+            });
 
             const jsonRes = await res.json();
             const durationMs = (performance.now() - startTime).toFixed(2);
@@ -125,7 +107,7 @@ export function registerDynamicWebMcpTools() {
       });
     });
 
-    console.info('[SEOSiri Master WebMCP] Successfully registered all tools with balanced TypeScript structure.');
+    console.info('[SEOSiri Master WebMCP] Successfully registered all tools with 0 errors.');
   } catch (err) {
     console.error('SEOSiri WebMCP initialization error:', err);
   }
