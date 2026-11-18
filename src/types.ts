@@ -107,7 +107,8 @@ export interface SEOSiriUserModel {
   createdAt: string;
 }
 
-export type ViewMode = 
+export type ViewMode =
+  | "webmcp" 
   | 'ui-kit-demo'
   | 'topology' 
   | 'docs' 
